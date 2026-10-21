@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Opening WATAM DeFi Intelligence…</title>
+<style>
+  :root { color-scheme: light dark; --bg:#0b1220; --ink:#e7ecf5; --muted:#8a96ad; --accent:#e9b949; }
+  @media (prefers-color-scheme: light) { :root { --bg:#f6f7fb; --ink:#10172a; --muted:#566079; } }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  main { min-height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; }
+  p { color:var(--muted); font-size:14px; margin:6px 0; } a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <p>Opening WATAM DeFi Intelligence…</p>
+  <p><a id="go" href="__TARGET__/">Continue to the application</a></p>
+</main>
+<script>
+  // The application's current address (updated automatically when its tunnel restarts).
+  // /app/<path> opens <path> in the application; ?query and #fragment are kept.
+  var TARGET = "__TARGET__";
+  var rest = location.pathname.replace(/^\/app(\/|$)/, "/");
+  if (!/^\/app(\/|$)/.test(location.pathname)) { location.replace("/"); }
+  else { var dest = TARGET + rest + location.search + location.hash; document.getElementById("go").href = dest; location.replace(dest); }
+</script>
+</body>
+</html>
