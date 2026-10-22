@@ -4,32 +4,453 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WATAM DeFi Intelligence</title>
-<meta name="description" content="Verifiable on-chain analytics for DeFi teams: evidence-backed token reports and anomaly findings.">
+<meta name="description" content="On-chain analytics your team can verify: swaps decoded from Uniswap, Velodrome, Aerodrome and PancakeSwap, gated runs, and the SQL behind every anomaly finding.">
+<meta property="og:title" content="WATAM DeFi Intelligence">
+<meta property="og:description" content="Every finding, traceable to the block.">
+<meta property="og:image" content="https://wearetheartmakers.github.io/defi-intelligence/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A1020">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-condensed-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  :root { color-scheme: light dark; --bg:#0b1220; --card:#121b2e; --ink:#e7ecf5; --muted:#8a96ad; --accent:#e9b949; --line:#22304b; }
-  @media (prefers-color-scheme: light) { :root { --bg:#f6f7fb; --card:#fff; --ink:#10172a; --muted:#566079; --line:#dfe3ec; } }
-  html,body { margin:0; min-height:100%; background:var(--bg); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
-  main { max-width:560px; margin:0 auto; padding:18vh 20px 40px; }
-  h1 { font-size:26px; margin:0 0 8px; letter-spacing:-.01em; }
-  p { color:var(--muted); margin:0 0 20px; }
-  .row { display:flex; gap:12px; flex-wrap:wrap; }
-  a.btn { display:inline-block; padding:11px 18px; border-radius:10px; font-weight:600; text-decoration:none; border:1px solid var(--line); color:var(--ink); background:var(--card); }
-  a.btn.primary { background:var(--accent); color:#10172a; border-color:var(--accent); }
-  a.btn:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
-  footer { margin-top:48px; font-size:13px; color:var(--muted); }
-  footer a { color:var(--muted); }
+@font-face{font-family:"Plex Sans";font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/ibm-plex-sans-latin.woff2) format("woff2")}
+@font-face{font-family:"Plex Condensed";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/ibm-plex-sans-condensed-600-latin.woff2) format("woff2")}
+:root{
+  --night:#0A1020; --deep:#070C18; --surface:#111A2E; --line:#24314D;
+  --ink:#E8EDF6; --ink-2:#A7B2C6; --ink-3:#8590A8;
+  --blue:#7EA6FF; --brass:#E2B65E; --brass-ink:#1A1407; --amber:#E7A951;
+  --display:"Plex Condensed","Plex Sans",system-ui,sans-serif;
+  --text:"Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--deep);-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);background:var(--deep);font:17px/1.6 var(--text);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+#field{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;cursor:crosshair}
+.wrap{position:relative;z-index:1;pointer-events:none}
+.wrap a,.wrap button,.wrap [data-node]{pointer-events:auto}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(16px,4vw,48px)}
+.mark{font:600 19px/1 var(--display);letter-spacing:.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark i{width:10px;height:10px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px rgba(226,182,94,.18)}
+.bar nav{display:flex;align-items:center;gap:22px;font-size:15px}
+.bar nav a{text-decoration:none;color:var(--ink-2)}
+.bar nav a:hover{color:var(--ink)}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid var(--line);background:rgba(17,26,46,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .2s,background .2s}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--brass);color:var(--brass-ink);border-color:var(--brass)}
+.btn.primary:hover{background:#ecc677}
+.bar .btn{padding:9px 16px;font-size:15px;color:var(--brass-ink)}
+
+.hero{min-height:calc(100svh - 76px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(16px,4vw,48px) clamp(40px,8vh,88px)}
+.hero .lede{max-width:600px}
+.kicker{color:var(--ink-2);font-size:16px;margin:0 0 14px}
+h1{font:600 clamp(46px,7.4vw,104px)/.94 var(--display);letter-spacing:-.015em;margin:0 0 26px;max-width:11ch;text-wrap:balance}
+h1 .line{display:block;overflow:hidden}
+h1 .line span{display:block;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.7,.1,1) forwards}
+h1 .line:nth-child(2) span{animation-delay:.12s}
+@keyframes rise{to{transform:none}}
+.hero p.sub{font-size:clamp(17px,1.5vw,19px);color:var(--ink-2);max-width:54ch;margin:0 0 30px}
+.hero p.sub b{color:var(--ink);font-weight:500}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hint{margin-top:26px;font-size:14px;color:var(--ink-3);display:flex;align-items:center;gap:10px}
+.hint svg{flex:none}
+.note{position:absolute;right:clamp(16px,4vw,48px);bottom:18px;font-size:12px;color:var(--ink-3)}
+
+section{position:relative;padding:clamp(72px,11vh,128px) clamp(16px,4vw,48px)}
+.veil{background:linear-gradient(180deg,rgba(7,12,24,0) 0,rgba(7,12,24,.88) 120px,rgba(7,12,24,.92) 100%)}
+.veil.see{background:linear-gradient(90deg,rgba(7,12,24,.86) 0,rgba(7,12,24,.5) 42%,rgba(7,12,24,.25) 100%)}
+h2{font:600 clamp(32px,4.2vw,56px)/1.02 var(--display);letter-spacing:-.01em;margin:0 0 14px;max-width:18ch}
+.intro{color:var(--ink-2);max-width:60ch;margin:0 0 48px}
+
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s;border-top:1px solid var(--line)}
+.flow li{position:relative;padding:26px 22px 8px 0;counter-increment:s}
+.flow li::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--brass);transition:width .5s cubic-bezier(.2,.7,.1,1)}
+.flow li:hover::before,.flow li.on::before{width:100%}
+.flow .n{font:600 15px/1 var(--display);color:var(--brass);margin-bottom:14px;display:block}
+.flow .n::before{content:counter(s)}
+.flow h3{font:600 24px/1.1 var(--display);margin:0 0 10px}
+.flow p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.55}
+.flow code{font:13.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue)}
+
+.reads{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(32px,6vw,96px);align-items:start}
+.names{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 26px}
+.names li{font:600 clamp(28px,3.4vw,46px)/1.18 var(--display);color:var(--ink-3);transition:color .2s;cursor:default}
+.names li:hover,.names li.on{color:var(--ink)}
+.names.dex li:hover,.names.dex li.on{color:var(--brass)}
+.group + .group{margin-top:40px}
+.group h3{font:500 15px/1 var(--text);color:var(--ink-2);margin:0 0 14px}
+.fine{color:var(--ink-3);font-size:14px;margin:28px 0 0;max-width:60ch}
+
+.close{text-align:left}
+.close h2{max-width:20ch}
+footer{position:relative;padding:28px clamp(16px,4vw,48px) 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--ink-3);border-top:1px solid var(--line);background:var(--deep)}
+footer nav{display:flex;gap:20px}
+footer a{color:var(--ink-3);text-decoration:none}
+footer a:hover{color:var(--ink)}
+
+@media (max-width:900px){
+  .flow{grid-template-columns:1fr;border-top:0}
+  .flow li{border-top:1px solid var(--line);padding:22px 0}
+  .reads{grid-template-columns:1fr}
+  .bar nav .txt{display:none}
+}
+@media (max-width:420px){
+  .mark{font-size:16px}
+  .bar .btn{padding:8px 13px;font-size:14px}
+}
+@media (max-width:520px){
+  .note{position:static;padding:0 16px 16px}
+  .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  h1 .line span{animation:none;transform:none}
+  .flow li::before{transition:none}
+}
 </style>
 </head>
 <body>
-<main>
-  <h1>WATAM DeFi Intelligence</h1>
-  <p>On-chain analytics your team can verify: evidence-backed token reports and anomaly findings, each with its method and SQL.</p>
-  <div class="row">
-    <a class="btn primary" href="/app/">Open the application</a>
-    <a class="btn" href="https://wearetheartmakers.github.io/defi-intelligence/">About &amp; pricing</a>
-  </div>
-  <footer>WeAreTheArtMakers · Osmanağa Mah. Kırtasiyeci Sok., 34714 Kadıköy – İstanbul ·
-    <a href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a></footer>
-</main>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header class="bar">
+    <a class="mark" href="/"><i></i>WATAM DeFi Intelligence</a>
+    <nav>
+      <a class="txt" href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
+      <a class="txt" href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
+      <a class="btn primary" href="/app/">Open the app</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="lede">
+        <p class="kicker">On-chain analytics for protocol and token teams</p>
+        <h1><span class="line"><span>Every finding,</span></span><span class="line"><span>traceable to the block.</span></span></h1>
+        <p class="sub">We decode swaps from <b>Uniswap</b>, <b>Velodrome</b>, <b>Aerodrome</b> and <b>PancakeSwap</b>, publish a run only when its coverage gates pass, and hand your team the SQL behind every anomaly.</p>
+        <div class="ctas">
+          <a class="btn primary" href="/app/">Open the application</a>
+          <a class="btn" href="https://wearetheartmakers.github.io/defi-intelligence/">See how it works</a>
+        </div>
+        <p class="hint"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.25" stroke="#E2B65E" stroke-width="1.5"/><path d="M9 4v2.5M9 11.5V14M4 9h2.5M11.5 9H14" stroke="#E2B65E" stroke-width="1.5" stroke-linecap="round"/></svg><span id="hintText">Move across the field to decode the raw logs. Click a venue to send a swap through the gates.</span></p>
+      </div>
+      <p class="note">Animated illustration of the pipeline, not live data.</p>
+    </div>
+
+    <section class="veil" aria-labelledby="h-flow">
+      <h2 id="h-flow">From a raw log to a finding you can check</h2>
+      <p class="intro">Each step leaves evidence behind. Nothing reaches a report unless the step before it can be reproduced.</p>
+      <ol class="flow">
+        <li data-node="ingest"><span class="n"></span><h3>Ingest</h3><p>Logs are read by block range for each network, with the RPC and range recorded for every run.</p></li>
+        <li data-node="decode"><span class="n"></span><h3>Decode</h3><p><code>Swap</code>, <code>Sync</code> and <code>Transfer</code> events are decoded per venue: Uniswap v2, v3 and v4, Solidly-style pools and PancakeSwap.</p></li>
+        <li data-node="gate"><span class="n"></span><h3>Gate</h3><p>A run is published only if coverage, decoding and uniqueness checks pass. Gaps are listed, never hidden.</p></li>
+        <li data-node="detect"><span class="n"></span><h3>Detect</h3><p>Volume, swap-count and liquidity shifts are measured against a frozen baseline, per token and pool.</p></li>
+        <li data-node="finding"><span class="n"></span><h3>Explain</h3><p>Every finding ships with its method, the alternative explanations and the SQL that reproduces it.</p></li>
+      </ol>
+    </section>
+
+    <section class="veil see" aria-labelledby="h-reads">
+      <div class="reads">
+        <div>
+          <h2 id="h-reads">Where it reads</h2>
+          <p class="intro" style="margin-bottom:0">Five networks and the venues we decode on them. Hover a name to find it in the field.</p>
+          <p class="fine">Names identify the contracts we decode. They do not imply a partnership or endorsement.</p>
+        </div>
+        <div>
+          <div class="group">
+            <h3>Networks</h3>
+            <ul class="names">
+              <li data-node="eth">Ethereum</li><li data-node="arb">Arbitrum One</li><li data-node="base">Base</li><li data-node="op">OP Mainnet</li><li data-node="bnb">BNB Smart Chain</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Venues</h3>
+            <ul class="names dex">
+              <li data-node="uni2">Uniswap v2</li><li data-node="uni3">Uniswap v3</li><li data-node="uni4">Uniswap v4</li><li data-node="velo">Velodrome</li><li data-node="aero">Aerodrome</li><li data-node="cake">PancakeSwap</li><li data-node="sushi">SushiSwap</li><li data-node="oneinch">1inch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="veil close" aria-labelledby="h-close">
+      <h2 id="h-close">Bring one question. Leave with evidence.</h2>
+      <p class="intro">Pilots start with one question, agreed pools and windows, and written success criteria. It runs on your infrastructure, with local AI models by default.</p>
+      <div class="ctas">
+        <a class="btn primary" href="/app/">Open the application</a>
+        <a class="btn" href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pilots and pricing</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 WeAreTheArtMakers</span>
+    <nav><a href="https://wearetheartmakers.github.io/defi-intelligence/privacy.html">Privacy</a><a href="https://wearetheartmakers.github.io/defi-intelligence/legal.html">Legal</a><a href="mailto:admin@wearetheartmakers.com">Contact</a></nav>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const cv = document.getElementById("field"), cx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const C = { night:"#0A1020", ink:"232,237,246", ink3:"133,144,168", brass:"226,182,95", blue:"126,166,255", amber:"231,169,81", line:"36,49,77" };
+
+  // The pipeline graph. Venues feed networks; networks feed ingest → decode → gate → detect → finding.
+  // Positions are fractions of the viewport (desktop); on narrow screens they are re-spread.
+  const N = [
+    { id:"uni2", label:"Uniswap v2", kind:"dex", x:.56, y:.14, on:["eth","arb","base","op","bnb"] },
+    { id:"uni3", label:"Uniswap v3", kind:"dex", x:.70, y:.09, on:["eth","arb","base","op","bnb"] },
+    { id:"uni4", label:"Uniswap v4", kind:"dex", x:.85, y:.13, on:["eth","arb","base","op"] },
+    { id:"velo", label:"Velodrome", kind:"dex", x:.95, y:.30, on:["op"] },
+    { id:"aero", label:"Aerodrome", kind:"dex", x:.50, y:.33, on:["base"] },
+    { id:"cake", label:"PancakeSwap", kind:"dex", x:.93, y:.52, on:["bnb","eth","arb","base"] },
+    { id:"sushi", label:"SushiSwap", kind:"dex", x:.47, y:.55, on:["eth","arb"] },
+    { id:"oneinch", label:"1inch", kind:"dex", x:.96, y:.72, on:["eth","arb","base","op","bnb"] },
+    { id:"eth", label:"Ethereum", kind:"chain", x:.63, y:.27 },
+    { id:"arb", label:"Arbitrum One", kind:"chain", x:.78, y:.25 },
+    { id:"base", label:"Base", kind:"chain", x:.60, y:.45 },
+    { id:"op", label:"OP Mainnet", kind:"chain", x:.84, y:.38 },
+    { id:"bnb", label:"BNB Smart Chain", kind:"chain", x:.82, y:.55 },
+    { id:"ingest", label:"Ingest", kind:"stage", x:.70, y:.52 },
+    { id:"decode", label:"Decode", kind:"stage", x:.66, y:.66 },
+    { id:"gate", label:"Gate", kind:"stage", x:.74, y:.76 },
+    { id:"detect", label:"Detect", kind:"stage", x:.84, y:.84 },
+    { id:"finding", label:"Finding", kind:"stage", x:.93, y:.92 },
+  ];
+  const byId = Object.fromEntries(N.map(n => [n.id, n]));
+  const E = [];
+  N.filter(n => n.kind === "dex").forEach(d => d.on.forEach(c => E.push([d.id, c])));
+  ["eth","arb","base","op","bnb"].forEach(c => E.push([c, "ingest"]));
+  E.push(["ingest","decode"],["decode","gate"],["gate","detect"],["detect","finding"]);
+
+  // Real topic hashes and the event signatures they stand for.
+  const LOGS = [
+    ["0xc42079f9…4e115fbcca67", "Swap(sender, recipient, amount0, amount1, sqrtPriceX96, liquidity, tick)"],
+    ["0xd78ad95f…e3d130840159d822", "Swap(sender, amount0In, amount1In, amount0Out, amount1Out, to)"],
+    ["0x1c411e9a…62b03a9fffbbad1", "Sync(reserve0, reserve1)"],
+    ["0xddf252ad…28f55a4df523b3ef", "Transfer(from, to, value)"],
+    ["0x000000000000000000000000…", "indexed address → pool"],
+    ["0x0de0b6b3a7640000", "1.0 × 10¹⁸ (one token, 18 decimals)"],
+    ["blockNumber 0x…", "block range recorded with the run"],
+    ["logIndex 0x2a", "unique on (tx hash, log index)"],
+    ["removed: false", "re-org check passed"],
+  ];
+  const EV = ["Swap","Swap","Swap","Sync","Transfer"];
+
+  let W = 0, H = 0, dpr = 1, narrow = false, frags = [], parts = [], rings = [];
+  const mouse = { x:-9999, y:-9999, tx:-9999, ty:-9999, in:false };
+  let focus = null, hover = null;
+
+  function layout() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight; narrow = W < 900;
+    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    N.forEach(n => {
+      const x = narrow ? .05 + (n.x - .45) / .53 * .72 : n.x, y = narrow ? .10 + n.y * .21 : n.y;
+      n.bx = x * W; n.by = y * H; if (n.px === undefined) { n.px = n.bx; n.py = n.by; }
+    });
+    const count = Math.round(Math.min(70, W * H / 21000));
+    frags = Array.from({ length: count }, (_, i) => mkFrag(Math.random() * H));
+  }
+  function mkFrag(y) {
+    const [raw, dec] = LOGS[Math.floor(Math.random() * LOGS.length)];
+    return { x: Math.random() * W, y, v: 6 + Math.random() * 10, raw, dec, a: .05 + Math.random() * .06, t: 0 };
+  }
+
+  function route(from) {
+    // venue → one of its networks → ingest → decode → gate → (detect → finding, rarely)
+    const d = byId[from], c = d.on[Math.floor(Math.random() * d.on.length)];
+    const path = [from, c, "ingest", "decode", "gate"], r = Math.random();
+    const fate = r < .07 ? "finding" : r < .16 ? "gap" : "pass";
+    if (fate === "finding") path.push("detect", "finding");
+    return { path, seg: 0, t: 0, fate, ev: EV[Math.floor(Math.random() * EV.length)], speed: .55 + Math.random() * .5 };
+  }
+  function spawn(from) {
+    const dex = N.filter(n => n.kind === "dex");
+    parts.push(route(from || dex[Math.floor(Math.random() * dex.length)].id));
+  }
+
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const lit = id => focus === id || hover === id;
+  const R = () => narrow ? 90 : 140;
+
+  function lensK(x, y) { const d = Math.hypot(x - mouse.x, y - mouse.y); return Math.max(0, 1 - d / R()); }
+
+  let last = performance.now(), acc = 0;
+  function frame(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    mouse.x += (mouse.tx - mouse.x) * .18; mouse.y += (mouse.ty - mouse.y) * .18;
+    acc += dt; if (acc > (narrow ? .5 : .28)) { acc = 0; if (parts.length < 60) spawn(); }
+    draw(dt);
+    if (!reduce && !document.hidden) requestAnimationFrame(frame); else running = false;
+  }
+  let running = false;
+  function start() { if (!running && !reduce) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
+
+  const hero = document.querySelector(".hero");
+  let dim = 1;
+  function draw(dt) {
+    const hb = hero.getBoundingClientRect().bottom;
+    dim = hb > H * .55 ? 1 : .3;
+    cx.globalAlpha = 1;
+    cx.fillStyle = C.night; cx.fillRect(0, 0, W, H);
+    const g = cx.createRadialGradient(W * .78, H * .45, 0, W * .78, H * .45, Math.max(W, H) * .7);
+    g.addColorStop(0, "rgba(126,166,255,.07)"); g.addColorStop(1, "rgba(7,12,24,0)"); cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+
+    // raw log fragments drifting up; inside the lens they resolve into what they mean
+    cx.textBaseline = "middle";
+    cx.globalAlpha = dim;
+    frags.forEach((f, i) => {
+      f.y -= f.v * dt; if (f.y < -20) frags[i] = mkFrag(H + 20);
+      const k = mouse.in ? lensK(f.x, f.y) : 0;
+      f.t += ((k > 0 ? 1 : 0) - f.t) * Math.min(1, dt * 6);
+      if (f.t < .98) {
+        cx.font = "12px ui-monospace, SFMono-Regular, Menlo, monospace";
+        cx.fillStyle = `rgba(${C.ink3},${f.a * (1 - f.t)})`; cx.fillText(f.raw, f.x, f.y);
+      }
+      if (f.t > .02) {
+        cx.font = "500 13px 'Plex Sans', system-ui, sans-serif";
+        const dw = cx.measureText(f.dec).width, dx = Math.max(8, Math.min(f.x, W - dw - 12));
+        cx.fillStyle = `rgba(${C.brass},${.85 * f.t * Math.max(.35, k)})`; cx.fillText(f.dec, dx, f.y);
+      }
+    });
+
+    // nodes drift a little away from the cursor
+    N.forEach(n => {
+      let tx = n.bx, ty = n.by;
+      if (mouse.in) {
+        const dx = n.bx - mouse.x, dy = n.by - mouse.y, d = Math.hypot(dx, dy) || 1, k = Math.max(0, 1 - d / (R() * 1.6));
+        tx += dx / d * k * 26; ty += dy / d * k * 26;
+      }
+      n.px += (tx - n.px) * Math.min(1, dt * 5); n.py += (ty - n.py) * Math.min(1, dt * 5);
+    });
+
+    // edges
+    E.forEach(([a, b]) => {
+      const A = byId[a], B = byId[b], hot = lit(a) || lit(b);
+      const k = mouse.in ? Math.max(lensK(A.px, A.py), lensK(B.px, B.py)) : 0;
+      cx.strokeStyle = hot ? `rgba(${C.brass},.55)` : `rgba(${C.blue},${.07 + k * .25})`;
+      cx.lineWidth = hot ? 1.4 : 1; cx.globalAlpha = hot ? 1 : dim;
+      cx.beginPath(); cx.moveTo(A.px, A.py); cx.lineTo(B.px, B.py); cx.stroke();
+    });
+
+    // events moving through the pipeline
+    cx.globalAlpha = dim;
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const p = parts[i], A = byId[p.path[p.seg]], B = byId[p.path[p.seg + 1]];
+      const slow = mouse.in ? 1 - .75 * lensK(A.px + (B.px - A.px) * p.t, A.py + (B.py - A.py) * p.t) : 1;
+      p.t += dt * p.speed * slow;
+      if (p.t >= 1) {
+        p.t = 0; p.seg++;
+        const at = p.path[p.seg];
+        if (at === "gate" && p.fate === "gap") { rings.push({ id:"gate", r:0, c:C.ink3, life:1 }); parts.splice(i, 1); continue; }
+        if (p.seg >= p.path.length - 1) {
+          rings.push({ id: at, r: 0, c: at === "finding" ? C.amber : C.brass, life: 1 });
+          parts.splice(i, 1); continue;
+        }
+        continue;
+      }
+      const t = ease(p.t), x = A.px + (B.px - A.px) * t, y = A.py + (B.py - A.py) * t;
+      const col = p.fate === "finding" && p.seg >= 4 ? C.amber : p.ev === "Transfer" ? C.blue : C.brass;
+      cx.fillStyle = `rgba(${col},.95)`; cx.beginPath(); cx.arc(x, y, p.fate === "finding" && p.seg >= 4 ? 3.2 : 2.2, 0, 7); cx.fill();
+      cx.fillStyle = `rgba(${col},.18)`; cx.beginPath(); cx.arc(x, y, 7, 0, 7); cx.fill();
+      const k = mouse.in ? lensK(x, y) : 0;
+      if (k > .15) {
+        cx.font = "500 11px 'Plex Sans', system-ui, sans-serif";
+        cx.fillStyle = `rgba(${C.ink},${k})`; cx.fillText(p.ev, x + 9, y - 9);
+      }
+    }
+
+    // pulses where an event lands: brass = published, grey = listed as a gap, amber = a finding
+    for (let i = rings.length - 1; i >= 0; i--) {
+      const r = rings[i], n = byId[r.id]; r.r += dt * 60; r.life -= dt * 1.1;
+      if (r.life <= 0) { rings.splice(i, 1); continue; }
+      cx.strokeStyle = `rgba(${r.c},${r.life * .8})`; cx.lineWidth = 1.5;
+      cx.beginPath(); cx.arc(n.px, n.py, 6 + r.r, 0, 7); cx.stroke();
+    }
+
+    // nodes and labels
+    N.forEach(n => {
+      const k = mouse.in ? lensK(n.px, n.py) : 0, hot = lit(n.id);
+      cx.globalAlpha = hot ? 1 : dim;
+      if (hot) {                                   // a steady beacon on the node named on the page
+        const ph = (performance.now() / 1400) % 1;
+        cx.strokeStyle = `rgba(${C.brass},${.9 * (1 - ph)})`; cx.lineWidth = 2;
+        cx.beginPath(); cx.arc(n.px, n.py, 10 + ph * 34, 0, 7); cx.stroke();
+      }
+      if (n.kind === "chain") {
+        cx.strokeStyle = `rgba(${C.blue},${hot ? 1 : .55 + k * .45})`; cx.lineWidth = 1.5;
+        cx.beginPath(); cx.arc(n.px, n.py, hot ? 9 : 7, 0, 7); cx.stroke();
+      } else if (n.kind === "stage") {
+        cx.fillStyle = `rgba(${n.id === "finding" ? C.amber : C.brass},${hot ? 1 : .8})`;
+        cx.fillRect(n.px - 5, n.py - 5, 10, 10);
+      } else {
+        cx.fillStyle = `rgba(${C.ink},${hot ? 1 : .55 + k * .45})`;
+        cx.beginPath(); cx.arc(n.px, n.py, hot ? 5 : 3.5, 0, 7); cx.fill();
+      }
+      const show = hot ? 1 : n.kind === "stage" ? .75 : narrow ? .35 + k * .65 : .42 + k * .58;
+      cx.font = n.kind === "dex" ? `600 ${narrow ? 12.5 : 14}px 'Plex Condensed', 'Plex Sans', sans-serif` : `500 ${narrow ? 11 : 12.5}px 'Plex Sans', system-ui, sans-serif`;
+      cx.fillStyle = hot ? `rgba(${n.kind === "dex" ? C.brass : C.ink},1)` : `rgba(${n.kind === "stage" ? C.brass : C.ink},${show})`;
+      const lw = cx.measureText(n.label).width, left = n.px + 11 + lw > W - 12;
+      cx.fillText(n.label, left ? n.px - 11 - lw : n.px + 11, n.py + 1);
+    });
+
+    // the decoding lens
+    cx.globalAlpha = 1;
+    if (mouse.in) {
+      const r = R();
+      cx.strokeStyle = `rgba(${C.brass},.5)`; cx.lineWidth = 1;
+      cx.beginPath(); cx.arc(mouse.x, mouse.y, r, 0, 7); cx.stroke();
+      cx.setLineDash([2, 6]); cx.beginPath(); cx.arc(mouse.x, mouse.y, r + 8, 0, 7); cx.stroke(); cx.setLineDash([]);
+      for (let a = 0; a < 4; a++) {
+        const ang = a * Math.PI / 2, c1 = Math.cos(ang), s1 = Math.sin(ang);
+        cx.beginPath(); cx.moveTo(mouse.x + c1 * (r - 6), mouse.y + s1 * (r - 6)); cx.lineTo(mouse.x + c1 * (r + 6), mouse.y + s1 * (r + 6)); cx.stroke();
+      }
+      cx.font = "500 11px 'Plex Sans', system-ui, sans-serif"; cx.fillStyle = `rgba(${C.brass},.8)`;
+      cx.fillText("decoding", mouse.x + r * .72 + 10, mouse.y - r * .72 - 4);
+    }
+  }
+
+  function nearestDex(x, y) {
+    let best = null, bd = 1e9;
+    N.forEach(n => { if (n.kind !== "dex") return; const d = Math.hypot(n.px - x, n.py - y); if (d < bd) { bd = d; best = n; } });
+    return bd < 120 ? best : null;
+  }
+
+  addEventListener("pointermove", e => {
+    mouse.tx = e.clientX; mouse.ty = e.clientY;
+    if (!mouse.in) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
+    const t = e.target, busy = t.closest && t.closest("[data-node], a, button, footer");
+    mouse.in = !busy && e.clientY < hero.getBoundingClientRect().bottom; if (reduce) draw(0);
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => { mouse.in = false; if (reduce) draw(0); });
+  addEventListener("blur", () => { mouse.in = false; });
+  cv.addEventListener("click", e => {
+    const d = nearestDex(e.clientX, e.clientY);
+    if (d) { for (let i = 0; i < 6; i++) setTimeout(() => spawn(d.id), i * 90); rings.push({ id:d.id, r:0, c:C.brass, life:1 }); }
+  });
+
+  // names and steps on the page light up their node in the field
+  document.querySelectorAll("[data-node]").forEach(el => {
+    el.addEventListener("pointerenter", () => { hover = el.dataset.node; if (reduce) draw(0); });
+    el.addEventListener("pointerleave", () => { hover = null; if (reduce) draw(0); });
+  });
+  const steps = [...document.querySelectorAll(".flow li")];
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => en.target.classList.toggle("on", en.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
+    steps.forEach(s => io.observe(s));
+  }
+
+  if (matchMedia("(hover: none)").matches) document.getElementById("hintText").textContent = "Touch the field to decode the raw logs. Tap a venue to send a swap through the gates.";
+  addEventListener("resize", () => { layout(); if (reduce) draw(0); });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) start(); });
+  layout();
+  if (reduce) { for (let i = 0; i < 24; i++) { spawn(); parts[i].seg = Math.floor(Math.random() * 3); parts[i].t = Math.random(); } draw(0); }
+  else { for (let i = 0; i < 14; i++) { spawn(); parts[i].t = Math.random(); } start(); }
+  document.fonts && document.fonts.ready.then(() => reduce && draw(0));
+})();
+</script>
 </body>
 </html>
