@@ -3,7 +3,7 @@
 > On-chain DEX analytics for token teams, exchange listing and risk teams and funds. Swaps are decoded directly from the
 > chain on Arbitrum One, OP Mainnet, Ethereum, Base, BNB Smart Chain, Monad, Avalanche C-Chain, Solana, TON. Every anomaly finding carries an Evidence Card that answers five questions. Independent analytics; not affiliated with the projects or exchanges listed.
 
-Data as of 29 Oct 2026, 18:55 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
+Data as of 29 Oct 2026, 19:06 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
 
 ## The five evidence questions
 
