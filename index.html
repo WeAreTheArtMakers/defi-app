@@ -19,6 +19,7 @@
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0A1020" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://defi.wearetheartmakers.com/#org","name":"WATAM Intelligence","alternateName":["WATAM","We Are The Art Makers"],"url":"https://defi.wearetheartmakers.com/","email":"admin@wearetheartmakers.com","logo":"https://defi.wearetheartmakers.com/assets/favicon.svg","sameAs":["https://github.com/WeAreTheArtMakers/defi-intelligence"]},{"@type":"WebSite","@id":"https://defi.wearetheartmakers.com/#website","url":"https://defi.wearetheartmakers.com/","name":"WATAM DeFi Intelligence","publisher":{"@id":"https://defi.wearetheartmakers.com/#org"}},{"@type":"WebApplication","@id":"https://defi.wearetheartmakers.com/#app","name":"WATAM DeFi Intelligence","applicationCategory":"BusinessApplication","applicationSubCategory":"Blockchain analytics","operatingSystem":"Web","browserRequirements":"Requires a modern web browser","url":"https://app.wearetheartmakers.com/","publisher":{"@id":"https://defi.wearetheartmakers.com/#org"},"description":"On-chain analytics for protocol and token teams: swaps decoded on Ethereum, Arbitrum One, OP Mainnet, Base, BNB Smart Chain, Avalanche C-Chain, Monad, Solana and TON, with an Evidence Card behind every anomaly finding that answers five questions: what was observed, where the evidence is, how it was computed, how much it can be trusted and how to check it independently on a public node.","featureList":["Swaps decoded directly from the chain","Coverage, decoding and uniqueness gates before a run is published","Evidence Card per anomaly finding","Detection SQL with its hash and a public-node reproduction recipe","Scheduled catalog refresh: EVM every 12 hours, TON every 3, Solana hourly"],"offers":[{"@type":"Offer","name":"Evidence Snapshot (7 days, one token)","price":"900","priceCurrency":"USD","url":"https://wearetheartmakers.github.io/defi-intelligence/pricing.html"}]}]}</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/ibm-plex-sans-condensed-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -63,7 +64,7 @@ p a,li a,.fine a{color:var(--brass-text);text-underline-offset:3px}
 .mark{font:600 19px/1 var(--display);letter-spacing:.01em;text-decoration:none;display:flex;align-items:center;gap:10px;min-height:44px;white-space:nowrap}
 .mark i{width:10px;height:10px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px rgba(var(--rgb-brass),.2);flex:none}
 .links{display:flex;align-items:center;gap:4px;font-size:15px}
-.links a{text-decoration:none;color:var(--ink-2);padding:10px 12px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
+.links a{white-space:nowrap;text-decoration:none;color:var(--ink-2);padding:10px 12px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
 .links a:hover,.links a[aria-current="true"]{color:var(--ink)}
 .links a[aria-current="true"]{box-shadow:inset 0 -2px 0 var(--brass)}
 .menu-btn{display:none;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 15px/1 var(--text);cursor:pointer}
@@ -204,6 +205,9 @@ footer nav a:hover{color:var(--ink)}
 @media (max-width:1180px){
   .links .opt{display:none}
 }
+@media (max-width:1060px){
+  .links .opt2{display:none}
+}
 @media (max-width:1024px){
   .nets{grid-template-columns:repeat(2,minmax(0,1fr))}
   .flow{grid-template-columns:repeat(2,minmax(0,1fr));border-top:0;gap:0 32px}
@@ -251,8 +255,9 @@ footer nav a:hover{color:var(--ink)}
     <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>
     <nav class="links" aria-label="Main">
       <a href="#evidence">Evidence</a>
-      <a href="#networks">Networks</a>
+      <a class="opt2" href="#networks">Networks</a>
       <a href="#how">How it works</a>
+      <a href="/tokens/">Tokens</a>
       <a class="opt" href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
       <a href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
       <a class="opt" href="https://app.wearetheartmakers.com/partners">Partners</a>
@@ -273,7 +278,7 @@ footer nav a:hover{color:var(--ink)}
   <a href="#how">How it works</a>
   <a href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
   <a href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
-  <a href="https://app.wearetheartmakers.com/catalog">Token catalog</a>
+  <a href="/tokens/">Tokens</a>
   <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
   <a href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
   <a class="btn primary" href="/app/">Open the app</a>
@@ -514,11 +519,11 @@ footer nav a:hover{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <p>DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>
+    <p>Independent analytics; not affiliated with the projects or exchanges listed.<br>DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>
     <nav aria-label="Footer">
       <a href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
       <a href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
-      <a href="https://app.wearetheartmakers.com/catalog">Token catalog</a>
+      <a href="/tokens/">Tokens</a>
       <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
       <a href="https://wearetheartmakers.github.io/defi-intelligence/terms.html">Terms</a>
       <a href="https://wearetheartmakers.github.io/defi-intelligence/privacy.html">Privacy</a>

@@ -1,0 +1,72 @@
+name: Token pages
+
+# Regenerates tokens/, sitemap.xml and llms-full.txt from the public catalog
+# (https://app.wearetheartmakers.com/api/public/catalog, refreshed every 12 h),
+# commits only when the output changed, then pings IndexNow with the changed pages.
+on:
+  schedule:
+    - cron: "45 2,14 * * *"   # after the 02:30 and 14:30 UTC catalog refresh
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_token_pages.py
+      - index.html
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: token-pages
+  cancel-in-progress: false
+
+env:
+  INDEXNOW_KEY: 332d91a55f8381329073609eab90c9de
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build pages from the public catalog
+        run: python3 scripts/build_token_pages.py
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          git add -A tokens sitemap.xml llms-full.txt
+          if git diff --cached --quiet; then
+            echo "No changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Token pages: refresh from the public catalog"
+          git pull --rebase -q origin main
+          git push -q origin HEAD:main
+          git diff --name-only HEAD~1 HEAD > "$RUNNER_TEMP/changed.txt"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" --silent
+
+      - name: Ping IndexNow
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        run: |
+          sleep 120   # give GitHub Pages time to publish the new files
+          python3 scripts/build_token_pages.py indexnow < "$RUNNER_TEMP/changed.txt"
