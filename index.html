@@ -2,230 +2,634 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WATAM DeFi Intelligence</title>
-<meta name="description" content="On-chain analytics your team can verify: swaps decoded from Uniswap, Velodrome, Aerodrome and PancakeSwap, gated runs, and the SQL behind every anomaly finding.">
+<meta name="description" content="On-chain findings your team can check: swaps decoded on Ethereum, Arbitrum One, OP Mainnet, Base, BNB Smart Chain, Avalanche C-Chain, Monad, Solana and TON, with an Evidence Card behind every anomaly finding.">
+<link rel="canonical" href="https://defi.wearetheartmakers.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WATAM DeFi Intelligence">
+<meta property="og:url" content="https://defi.wearetheartmakers.com/">
 <meta property="og:title" content="WATAM DeFi Intelligence">
-<meta property="og:description" content="Every finding, traceable to the block.">
+<meta property="og:description" content="Every finding, traceable to the block. What was observed, where the evidence is, how it was computed, how far to trust it and how to check it yourself.">
 <meta property="og:image" content="https://wearetheartmakers.github.io/defi-intelligence/assets/img/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WATAM DeFi Intelligence: on-chain analytics your team can verify">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0A1020">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0A1020" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/ibm-plex-sans-condensed-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Plex Sans";font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/ibm-plex-sans-latin.woff2) format("woff2")}
 @font-face{font-family:"Plex Condensed";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/ibm-plex-sans-condensed-600-latin.woff2) format("woff2")}
 :root{
-  --night:#0A1020; --deep:#070C18; --surface:#111A2E; --line:#24314D;
+  --bg:#070C18; --bg-2:#0A1020; --surface:#111A2E; --raised:#17223B; --line:#24314D; --line-soft:#1B2640;
   --ink:#E8EDF6; --ink-2:#A7B2C6; --ink-3:#8590A8;
-  --blue:#7EA6FF; --brass:#E2B65E; --brass-ink:#1A1407; --amber:#E7A951;
+  --brass:#E2B65E; --brass-text:#E2B65E; --brass-ink:#1A1407; --blue:#7EA6FF; --ok:#6FD3A8; --code:#9DBBFF;
+  --rgb-bg:10,16,32; --rgb-ink:232,237,246; --rgb-ink3:133,144,168; --rgb-brass:226,182,95; --rgb-blue:126,166,255; --rgb-amber:231,169,81;
   --display:"Plex Condensed","Plex Sans",system-ui,sans-serif;
   --text:"Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --max:1240px; --gut:clamp(16px,4vw,48px); --nav:64px;
   color-scheme:dark;
 }
-*{box-sizing:border-box}
-html{background:var(--deep);-webkit-text-size-adjust:100%}
-body{margin:0;color:var(--ink);background:var(--deep);font:17px/1.6 var(--text);overflow-x:hidden}
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#F3F5F9; --bg-2:#E9EDF4; --surface:#FFFFFF; --raised:#F7F8FB; --line:#CDD5E3; --line-soft:#DEE4EE;
+    --ink:#0E1526; --ink-2:#3B4660; --ink-3:#56617A;
+    --brass-text:#8A5C0B; --blue:#2A55C4; --ok:#17704C; --code:#23479F;
+    --rgb-bg:243,245,249; --rgb-ink:14,21,38; --rgb-ink3:86,97,122; --rgb-brass:160,110,20; --rgb-blue:42,85,196; --rgb-amber:178,104,10;
+    color-scheme:light;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav) + 12px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;color:var(--ink);background:var(--bg);font:17px/1.6 var(--text);overflow-x:hidden}
 a{color:inherit}
+p a,li a,.fine a{color:var(--brass-text);text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
-#field{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;cursor:crosshair}
-.wrap{position:relative;z-index:1;pointer-events:none}
-.wrap a,.wrap button,.wrap [data-node]{pointer-events:auto}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(16px,4vw,48px)}
-.mark{font:600 19px/1 var(--display);letter-spacing:.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
-.mark i{width:10px;height:10px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px rgba(226,182,94,.18)}
-.bar nav{display:flex;align-items:center;gap:22px;font-size:15px}
-.bar nav a{text-decoration:none;color:var(--ink-2)}
-.bar nav a:hover{color:var(--ink)}
-.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid var(--line);background:rgba(17,26,46,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .2s,background .2s}
+.skip{position:absolute;left:12px;top:-60px;z-index:50;background:var(--brass);color:var(--brass-ink);padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- navigation */
+.bar{position:sticky;top:0;z-index:20;height:var(--nav);background:rgba(var(--rgb-bg),.82);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.bar.scrolled{border-bottom-color:var(--line)}
+.bar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mark{font:600 19px/1 var(--display);letter-spacing:.01em;text-decoration:none;display:flex;align-items:center;gap:10px;min-height:44px;white-space:nowrap}
+.mark i{width:10px;height:10px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px rgba(var(--rgb-brass),.2);flex:none}
+.links{display:flex;align-items:center;gap:4px;font-size:15px}
+.links a{text-decoration:none;color:var(--ink-2);padding:10px 12px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
+.links a:hover,.links a[aria-current="true"]{color:var(--ink)}
+.links a[aria-current="true"]{box-shadow:inset 0 -2px 0 var(--brass)}
+.menu-btn{display:none;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 15px/1 var(--text);cursor:pointer}
+.menu-btn svg{display:block}
+.menu-btn[aria-expanded="true"] .i-open,.menu-btn[aria-expanded="false"] .i-close{display:none}
+.panel{position:fixed;left:0;right:0;top:var(--nav);z-index:19;background:var(--bg);border-bottom:1px solid var(--line);padding:8px var(--gut) 20px;max-height:calc(100dvh - var(--nav));overflow:auto}
+.panel[hidden]{display:none}
+.panel a{display:flex;align-items:center;min-height:48px;padding:0 4px;border-bottom:1px solid var(--line-soft);text-decoration:none;font-size:17px}
+.panel a:last-child{border-bottom:0}
+.panel .btn{margin-top:14px;justify-content:center;border-bottom:1px solid var(--brass)}
+
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:16px;line-height:1.2;text-decoration:none;border:1px solid var(--line);background:rgba(var(--rgb-bg),.6);color:var(--ink);transition:border-color .2s,background-color .2s}
 .btn:hover{border-color:var(--ink-3)}
 .btn.primary{background:var(--brass);color:var(--brass-ink);border-color:var(--brass)}
 .btn.primary:hover{background:#ecc677}
-.bar .btn{padding:9px 16px;font-size:15px;color:var(--brass-ink)}
+.bar .btn{min-height:44px;padding:10px 18px;font-size:15px;margin-left:8px}
 
-.hero{min-height:calc(100svh - 76px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(16px,4vw,48px) clamp(40px,8vh,88px)}
-.hero .lede{max-width:600px}
+/* ---------- hero */
+.hero{position:relative;overflow:hidden;min-height:min(880px,calc(100svh - var(--nav)));display:flex;align-items:flex-end;border-bottom:1px solid var(--line-soft)}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:pan-y}
+.hero .wrap{position:relative;width:100%;pointer-events:none;padding-bottom:clamp(40px,7vh,80px);padding-top:clamp(120px,20vh,200px)}
+.hero a,.hero button{pointer-events:auto}
+.lede{max-width:620px}
 .kicker{color:var(--ink-2);font-size:16px;margin:0 0 14px}
-h1{font:600 clamp(46px,7.4vw,104px)/.94 var(--display);letter-spacing:-.015em;margin:0 0 26px;max-width:11ch;text-wrap:balance}
-h1 .line{display:block;overflow:hidden}
+h1{font:600 clamp(42px,6.4vw,92px)/.95 var(--display);letter-spacing:-.015em;margin:0 0 24px;max-width:11ch;text-wrap:balance}
+h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
 h1 .line span{display:block;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.7,.1,1) forwards}
 h1 .line:nth-child(2) span{animation-delay:.12s}
 @keyframes rise{to{transform:none}}
-.hero p.sub{font-size:clamp(17px,1.5vw,19px);color:var(--ink-2);max-width:54ch;margin:0 0 30px}
-.hero p.sub b{color:var(--ink);font-weight:500}
+.sub{font-size:clamp(17px,1.5vw,19px);color:var(--ink-2);max-width:54ch;margin:0 0 28px}
+.sub b{color:var(--ink);font-weight:500}
 .ctas{display:flex;gap:12px;flex-wrap:wrap}
-.hint{margin-top:26px;font-size:14px;color:var(--ink-3);display:flex;align-items:center;gap:10px}
+.hint{margin:24px 0 0;font-size:14px;color:var(--ink-3);display:flex;align-items:center;gap:10px}
 .hint svg{flex:none}
-.note{position:absolute;right:clamp(16px,4vw,48px);bottom:18px;font-size:12px;color:var(--ink-3)}
+.note{position:absolute;right:var(--gut);bottom:14px;margin:0;font-size:12px;color:var(--ink-3);pointer-events:none}
 
-section{position:relative;padding:clamp(72px,11vh,128px) clamp(16px,4vw,48px)}
-.veil{background:linear-gradient(180deg,rgba(7,12,24,0) 0,rgba(7,12,24,.88) 120px,rgba(7,12,24,.92) 100%)}
-.veil.see{background:linear-gradient(90deg,rgba(7,12,24,.86) 0,rgba(7,12,24,.5) 42%,rgba(7,12,24,.25) 100%)}
-h2{font:600 clamp(32px,4.2vw,56px)/1.02 var(--display);letter-spacing:-.01em;margin:0 0 14px;max-width:18ch}
-.intro{color:var(--ink-2);max-width:60ch;margin:0 0 48px}
+/* ---------- sections */
+section.band{padding:clamp(72px,11vh,128px) 0;border-bottom:1px solid var(--line-soft)}
+section.band.alt{background:var(--bg-2)}
+h2{font:600 clamp(32px,4.2vw,54px)/1.02 var(--display);letter-spacing:-.01em;margin:0 0 16px;max-width:20ch;text-wrap:balance}
+h3{font:600 23px/1.15 var(--display);margin:0 0 8px}
+.intro{color:var(--ink-2);max-width:62ch;margin:0 0 44px}
+.fine{color:var(--ink-3);font-size:14px;max-width:70ch;margin:28px 0 0}
 
-.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:s;border-top:1px solid var(--line)}
+/* five questions */
+.ev{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:clamp(32px,6vw,88px);align-items:start}
+.ev-side{position:sticky;top:calc(var(--nav) + 32px)}
+.ev-side .intro{margin-bottom:24px}
+.ev-side ul{margin:0;padding:0;list-style:none;color:var(--ink-2);font-size:15.5px}
+.ev-side li{padding:10px 0 10px 26px;border-top:1px solid var(--line-soft);position:relative}
+.ev-side li::before{content:"";position:absolute;left:2px;top:19px;width:12px;height:2px;background:var(--brass)}
+.card{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;padding:18px 22px;border-bottom:1px solid var(--line)}
+.card-head b{font:600 20px/1.2 var(--display)}
+.card-head code{font:13px/1 var(--mono);color:var(--ink-3)}
+.card details{border-bottom:1px solid var(--line-soft)}
+.card details:last-of-type{border-bottom:0}
+.card summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:34px 1fr 20px;gap:12px;align-items:center;padding:16px 22px;min-height:60px}
+.card summary::-webkit-details-marker{display:none}
+.card summary:hover{background:var(--raised)}
+.card .q-n{font:600 15px/1 var(--display);color:var(--brass-text);width:30px;height:30px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
+.card details[open] .q-n{background:var(--brass);border-color:var(--brass);color:var(--brass-ink)}
+.card .q{font:600 clamp(19px,2vw,22px)/1.2 var(--display)}
+.card .chev{transition:transform .2s;color:var(--ink-3)}
+.card details[open] .chev{transform:rotate(180deg)}
+.card .a{padding:0 22px 20px 68px;color:var(--ink-2);font-size:15.5px}
+.card .a p{margin:0 0 10px}
+.card dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:12px 0 0;font-size:14.5px}
+.card dt{color:var(--ink-3)}
+.card dd{margin:0;color:var(--ink)}
+.recipe{position:relative;margin:12px 0 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.recipe pre{margin:0;padding:14px 16px;overflow-x:auto;font:13px/1.55 var(--mono);color:var(--code);white-space:pre}
+.recipe pre .c{color:var(--ink-3)}
+.copy{position:absolute;top:4px;right:4px;min-height:44px;min-width:64px;padding:0 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font:500 13px/1 var(--text);cursor:pointer}
+.copy:hover{color:var(--ink)}
+.proof{margin-top:12px;padding:12px 14px;border-left:2px solid var(--ok);background:var(--raised);border-radius:0 8px 8px 0;font-size:14.5px;color:var(--ink-2)}
+
+/* pipeline */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));counter-reset:s;border-top:1px solid var(--line)}
 .flow li{position:relative;padding:26px 22px 8px 0;counter-increment:s}
 .flow li::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--brass);transition:width .5s cubic-bezier(.2,.7,.1,1)}
 .flow li:hover::before,.flow li.on::before{width:100%}
-.flow .n{font:600 15px/1 var(--display);color:var(--brass);margin-bottom:14px;display:block}
+.flow .n{font:600 15px/1 var(--display);color:var(--brass-text);margin-bottom:14px;display:block}
 .flow .n::before{content:counter(s)}
-.flow h3{font:600 24px/1.1 var(--display);margin:0 0 10px}
 .flow p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.55}
-.flow code{font:13.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue)}
+.flow code{font:13.5px/1.4 var(--mono);color:var(--code)}
 
-.reads{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(32px,6vw,96px);align-items:start}
-.names{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 26px}
-.names li{font:600 clamp(28px,3.4vw,46px)/1.18 var(--display);color:var(--ink-3);transition:color .2s;cursor:default}
-.names li:hover,.names li.on{color:var(--ink)}
-.names.dex li:hover,.names.dex li.on{color:var(--brass)}
-.group + .group{margin-top:40px}
-.group h3{font:500 15px/1 var(--text);color:var(--ink-2);margin:0 0 14px}
-.fine{color:var(--ink-3);font-size:14px;margin:28px 0 0;max-width:60ch}
+/* networks */
+.net-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.net-top .intro{margin:0}
+.legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;margin:0 0 32px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;font-size:15px;color:var(--ink-2)}
+.legend p{margin:0}
+.legend .badge{margin-right:8px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-2);font:500 15px/1 var(--text);cursor:pointer}
+.filters button:hover{color:var(--ink);border-color:var(--ink-3)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nets{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.net{display:flex;flex-direction:column;gap:14px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.net[hidden]{display:none}
+.net.collecting{border-style:dashed}
+.net-h{display:flex;align-items:center;gap:14px}
+.net-h svg{flex:none;width:44px;height:44px}
+.net-h .nm{flex:1;min-width:0}
+.net-h h3{margin:0;font-size:22px}
+.net-h .fam{display:block;font-size:13.5px;line-height:1.4;color:var(--ink-3);margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600;line-height:1.3;white-space:nowrap;border:1px solid}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.badge.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.badge.col{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 45%,transparent)}
+.badge.col::before{animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.venues{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.venues li{font-size:13.5px;padding:3px 9px;border-radius:6px;background:var(--raised);border:1px solid var(--line-soft);color:var(--ink-2)}
+.venues li.per{border-style:dashed}
+.net p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.net p.when{margin-top:auto;padding-top:12px;border-top:1px solid var(--line-soft);color:var(--ink-3);font-size:13.5px}
+.mk-shape{fill:none;stroke-width:1.5}
+.mk-txt{font:600 11px var(--display);letter-spacing:.02em}
 
-.close{text-align:left}
-.close h2{max-width:20ch}
-footer{position:relative;padding:28px clamp(16px,4vw,48px) 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--ink-3);border-top:1px solid var(--line);background:var(--deep)}
-footer nav{display:flex;gap:20px}
-footer a{color:var(--ink-3);text-decoration:none}
-footer a:hover{color:var(--ink)}
+/* value */
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(32px,5vw,72px);margin:0;padding:0;list-style:none}
+.why li{padding:24px 0;border-top:1px solid var(--line)}
+.why h3{display:flex;align-items:center;gap:12px}
+.why h3 svg{flex:none}
+.why p{margin:0;color:var(--ink-2);font-size:16px;max-width:52ch}
+.vs{margin:40px 0 0;max-width:72ch;color:var(--ink-2);font-size:16px;padding-left:18px;border-left:2px solid var(--brass)}
 
-@media (max-width:900px){
-  .flow{grid-template-columns:1fr;border-top:0}
-  .flow li{border-top:1px solid var(--line);padding:22px 0}
-  .reads{grid-template-columns:1fr}
-  .bar nav .txt{display:none}
+.close .ctas{margin-top:8px}
+footer{padding:36px 0 44px;font-size:14px;color:var(--ink-3);background:var(--bg)}
+footer .wrap{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px 40px}
+footer p{margin:0;max-width:44ch}
+footer nav{display:flex;flex-wrap:wrap;gap:4px 18px}
+footer nav a{color:var(--ink-3);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer nav a:hover{color:var(--ink)}
+
+/* ---------- responsive */
+@media (max-width:1180px){
+  .links .opt{display:none}
 }
-@media (max-width:420px){
-  .mark{font-size:16px}
-  .bar .btn{padding:8px 13px;font-size:14px}
+@media (max-width:1024px){
+  .nets{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flow{grid-template-columns:repeat(2,minmax(0,1fr));border-top:0;gap:0 32px}
+  .flow li{border-top:1px solid var(--line);padding:22px 0 24px}
+  .flow li:last-child{grid-column:1/-1}
 }
-@media (max-width:520px){
-  .note{position:static;padding:0 16px 16px}
+@media (max-width:1099px){
+  .hero .wrap{padding-top:340px}
+}
+@media (max-width:920px){
+  .links{display:none}
+  .menu-btn{display:inline-flex}
+  .ev{grid-template-columns:1fr}
+  .ev-side{position:static}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .nets,.why,.legend,.flow{grid-template-columns:1fr}
+  .flow li:last-child{grid-column:auto}
+  .card summary{padding:14px 16px;grid-template-columns:30px 1fr 18px}
+  .card .a{padding:0 16px 18px}
+  .card dl{grid-template-columns:1fr;gap:0}
+  .card dd{margin-bottom:8px}
   .hint{display:none}
+  .note{position:static;padding:0 var(--gut) 14px}
+  .hero{flex-direction:column;align-items:stretch;justify-content:flex-end}
+  .hero .wrap{padding-top:306px}
+  .ctas .btn{flex:1 1 100%}
+  .bar .menu-btn .lbl{display:none}
+}
+@media (max-width:380px){
+  .mark{font-size:16px}
 }
 @media (prefers-reduced-motion:reduce){
   h1 .line span{animation:none;transform:none}
-  .flow li::before{transition:none}
+  .flow li::before,.card .chev,.bar{transition:none}
+  .badge.col::before{animation:none}
 }
 </style>
 </head>
 <body>
-<canvas id="field" aria-hidden="true"></canvas>
-<div class="wrap">
-  <header class="bar">
-    <a class="mark" href="/"><i></i>WATAM DeFi Intelligence</a>
-    <nav>
-      <a class="txt" href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
-      <a class="txt" href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
-      <a class="txt" href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar" id="top">
+  <div class="wrap">
+    <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>
+    <nav class="links" aria-label="Main">
+      <a href="#evidence">Evidence</a>
+      <a href="#networks">Networks</a>
+      <a href="#how">How it works</a>
+      <a class="opt" href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
+      <a href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
+      <a class="opt" href="https://app.wearetheartmakers.com/partners">Partners</a>
+      <a href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
       <a class="btn primary" href="/app/">Open the app</a>
     </nav>
-  </header>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="lbl">Menu</span>
+      <svg class="i-open" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg class="i-close" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="sr">Open the menu</span>
+    </button>
+  </div>
+</header>
+<nav class="panel" id="menu" aria-label="Menu" hidden>
+  <a href="#evidence">Evidence</a>
+  <a href="#networks">Networks</a>
+  <a href="#how">How it works</a>
+  <a href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
+  <a href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
+  <a href="https://app.wearetheartmakers.com/catalog">Token catalog</a>
+  <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
+  <a href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
+  <a class="btn primary" href="/app/">Open the app</a>
+</nav>
 
-  <main>
-    <div class="hero">
+<main id="main">
+  <div class="hero">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="wrap">
       <div class="lede">
         <p class="kicker">On-chain analytics for protocol and token teams</p>
         <h1><span class="line"><span>Every finding,</span></span><span class="line"><span>traceable to the block.</span></span></h1>
-        <p class="sub">We decode swaps from <b>Uniswap</b>, <b>Velodrome</b>, <b>Aerodrome</b> and <b>PancakeSwap</b>, publish a run only when its coverage gates pass, and hand your team the SQL behind every anomaly.</p>
+        <p class="sub">We decode swaps on <b>nine networks</b>, from Ethereum and Base to Monad, Solana and TON, publish a run only when its coverage gates pass, and give your team the evidence behind every anomaly finding: the pools, the blocks, the SQL and a recipe to check it on a public node.</p>
         <div class="ctas">
           <a class="btn primary" href="/app/">Open the application</a>
           <a class="btn" href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
-          <a class="btn" href="https://wearetheartmakers.github.io/defi-intelligence/">See how it works</a>
+          <a class="btn" href="#evidence">See what a finding contains</a>
         </div>
-        <p class="hint"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.25" stroke="#E2B65E" stroke-width="1.5"/><path d="M9 4v2.5M9 11.5V14M4 9h2.5M11.5 9H14" stroke="#E2B65E" stroke-width="1.5" stroke-linecap="round"/></svg><span id="hintText">Move across the field to decode the raw logs. Click a venue to send a swap through the gates.</span></p>
+        <p class="hint"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.25" stroke="currentColor" stroke-width="1.5"/><path d="M9 4v2.5M9 11.5V14M4 9h2.5M11.5 9H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span id="hintText">Move across the field to decode the raw logs. Click a venue to send a swap through the gates.</span></p>
       </div>
-      <p class="note">Animated illustration of the pipeline, not live data.</p>
     </div>
+    <p class="note">Animated illustration of the pipeline, not live data.</p>
+  </div>
 
-    <section class="veil" aria-labelledby="h-flow">
+  <section class="band" id="evidence" aria-labelledby="h-ev">
+    <div class="wrap ev">
+      <div class="ev-side">
+        <h2 id="h-ev">Every finding answers five questions</h2>
+        <p class="intro">Each anomaly finding comes with an Evidence Card you can hand to your own team, auditor or decision maker. The application, the API and every report export show the same five sections, built only from stored data. A value we cannot determine is shown as unknown, with the reason, never guessed.</p>
+        <ul>
+          <li>Less research time: the pools, blocks and largest transactions are already gathered.</li>
+          <li>Quality checks first: coverage and gaps are part of the answer.</li>
+          <li>Reproducible: anyone can rerun it without access to our database.</li>
+        </ul>
+      </div>
+      <div class="card" role="group" aria-label="Evidence Card, five sections">
+        <div class="card-head"><b>Evidence Card</b><code>evidence/1.0</code></div>
+        <details name="ev" open>
+          <summary><span class="q-n" aria-hidden="true">1</span><span class="q">What was observed?</span><svg class="chev" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+          <div class="a">
+            <p>A plain-language statement of the anomaly: the metric and its unit, the observed value against the expected baseline, and the window in UTC.</p>
+            <dl><dt>Types</dt><dd>Volume, swap count and liquidity shifts, buy/sell imbalance, concentration and more</dd><dt>Window</dt><dd>Start and end in UTC, end exclusive</dd></dl>
+          </div>
+        </details>
+        <details name="ev">
+          <summary><span class="q-n" aria-hidden="true">2</span><span class="q">Where is the evidence?</span><svg class="chev" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+          <div class="a">
+            <p>On-chain, with explorer links.</p>
+            <dl><dt>Subject</dt><dd>Network, chain id and the token's contract</dd><dt>Blocks</dt><dd>The block range of the window's decoded swaps</dd><dt>Pools</dt><dd>Each measured pool with its protocol and decoder family</dd><dt>Transactions</dt><dd>Swap count and the five largest transactions</dd><dt>Sources</dt><dd>The RPC providers and the ingestion runs covering the window</dd></dl>
+          </div>
+        </details>
+        <details name="ev">
+          <summary><span class="q-n" aria-hidden="true">3</span><span class="q">How was it computed?</span><svg class="chev" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+          <div class="a">
+            <p>The method and its version, the calculation version, the baseline window and value, the parameters and the detector's facts. The baseline is frozen when the anomaly starts, so it cannot drift towards the spike it measures.</p>
+          </div>
+        </details>
+        <details name="ev">
+          <summary><span class="q-n" aria-hidden="true">4</span><span class="q">How much can we trust it?</span><svg class="chev" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+          <div class="a">
+            <p>Data quality and evidence strength, stated next to the finding rather than in a footnote.</p>
+            <dl><dt>Coverage</dt><dd>Hours expected against hours fully covered by successful runs, and every gap</dd><dt>Checks</dt><dd>Token identity, ingestion gates, data-quality audit, decoder family, pool identity</dd><dt>Caveats</dt><dd>Limitations, alternative explanations and uncertainties</dd></dl>
+          </div>
+        </details>
+        <details name="ev">
+          <summary><span class="q-n" aria-hidden="true">5</span><span class="q">How can it be checked independently?</span><svg class="chev" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></summary>
+          <div class="a">
+            <p>Ordered, self-contained steps: our detection SQL bound to its parameters with its SHA-256, and a recipe for any public JSON-RPC node that needs no access to our database.</p>
+            <div class="recipe">
+<pre id="recipe"><span class="c">// eth_getLogs over the measured pools, one Swap topic per decoder family</span>
+{"method": "eth_getLogs", "params": [{
+  "address":   ["&lt;measured pools&gt;"],
+  "topics":    ["0xc42079f9…"],
+  "fromBlock": "&lt;first block, hex&gt;",
+  "toBlock":   "&lt;last block, hex&gt;"
+}]}
+<span class="c">// decode, aggregate, compare: the card states the expected</span>
+<span class="c">// swap count and value, exact in raw token units</span></pre>
+              <button class="copy" type="button" data-copy="recipe">Copy</button>
+            </div>
+            <p>Where Dune covers the network (Ethereum, Arbitrum One, OP Mainnet, Base, BNB Smart Chain, Avalanche C-Chain, Monad), the card adds a <code>dex.trades</code> cross-check with its caveats, plus the methodology, versions and code commit.</p>
+            <p class="proof">Checked on 29 Oct 2026: for an LDO finding on Ethereum, the recipe run against a public endpoint returned the same 50 swaps and the same raw LDO total as our stored data.</p>
+            <p class="sr" aria-live="polite" id="copyStatus"></p>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div class="wrap"><p class="fine">Evidence Cards cover anomaly findings on the EVM networks. Solana and TON entries have coverage and verified swaps, but no anomaly findings yet. Findings describe the verified pools that were measured, never a token's whole market, and none is an accusation.</p></div>
+  </section>
+
+  <section class="band alt" id="networks" aria-labelledby="h-net">
+    <div class="wrap">
+      <div class="net-top">
+        <div>
+          <h2 id="h-net">Nine networks, three chain families</h2>
+          <p class="intro">EVM chains, Solana and TON, each with the venues whose contracts we decode. A venue is added only after its decoded swaps matched transaction receipts or token balances exactly.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter networks by status">
+          <button type="button" aria-pressed="true" data-f="all">All <span data-count="all"></span></button>
+          <button type="button" aria-pressed="false" data-f="available">Available <span data-count="available"></span></button>
+          <button type="button" aria-pressed="false" data-f="collecting">Collecting <span data-count="collecting"></span></button>
+        </div>
+      </div>
+      <div class="legend">
+        <p><span class="badge ok">Available</span>Catalog tokens have at least 3 days (72 hours) of continuous verified history and are refreshed on schedule.</p>
+        <p><span class="badge col">Collecting</span>Verified pools are being collected. Each token becomes available after the 72-hour verification period.</p>
+      </div>
+      <p class="sr" aria-live="polite" id="netStatus"></p>
+      <ul class="nets">
+        <li class="net" data-s="available">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">ETH</text></svg>
+            <div class="nm"><h3>Ethereum</h3><span class="fam">EVM, chain id 1</span></div>
+            <span class="badge ok">Available</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>Uniswap v2</li><li>Uniswap v3</li><li>PancakeSwap v3</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">Back-fill on request for an Evidence Snapshot.</p>
+        </li>
+        <li class="net" data-s="available">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">ARB</text></svg>
+            <div class="nm"><h3>Arbitrum One</h3><span class="fam">EVM, chain id 42161</span></div>
+            <span class="badge ok">Available</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>Uniswap v3</li><li>SushiSwap v2</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">Back-fill on request for an Evidence Snapshot.</p>
+        </li>
+        <li class="net" data-s="available">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">OP</text></svg>
+            <div class="nm"><h3>OP Mainnet</h3><span class="fam">EVM, chain id 10</span></div>
+            <span class="badge ok">Available</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>Uniswap v3</li><li>Velodrome v2</li><li>Velodrome Slipstream</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">Back-fill on request for an Evidence Snapshot.</p>
+        </li>
+        <li class="net" data-s="available">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">BASE</text></svg>
+            <div class="nm"><h3>Base</h3><span class="fam">EVM, chain id 8453</span></div>
+            <span class="badge ok">Available</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>Uniswap v3</li><li>Aerodrome v2</li><li>Aerodrome Slipstream</li><li>PancakeSwap v3</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">Back-fill on request for an Evidence Snapshot.</p>
+        </li>
+        <li class="net" data-s="available">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">BNB</text></svg>
+            <div class="nm"><h3>BNB Smart Chain</h3><span class="fam">EVM, chain id 56</span></div>
+            <span class="badge ok">Available</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>PancakeSwap v2</li><li>PancakeSwap v3</li><li>Uniswap v3</li><li class="per">PancakeSwap Infinity, per pool</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">Collected forward only: windows starting more than 8 days back are refused.</p>
+        </li>
+        <li class="net collecting" data-s="collecting">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)" stroke-dasharray="4 3"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">AVAX</text></svg>
+            <div class="nm"><h3>Avalanche C&#8209;Chain</h3><span class="fam">EVM, chain id 43114</span></div>
+            <span class="badge col">Collecting</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>LFJ v1</li><li>Pangolin v2</li><li>Uniswap v3</li><li>Pharaoh v3</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">New. Collecting since 29 Oct 2026; available after the verification period.</p>
+        </li>
+        <li class="net collecting" data-s="collecting">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)" stroke-dasharray="4 3"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">MON</text></svg>
+            <div class="nm"><h3>Monad</h3><span class="fam">EVM, chain id 143</span></div>
+            <span class="badge col">Collecting</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>Uniswap v2</li><li>Uniswap v3</li><li>PancakeSwap v3</li><li class="per">Uniswap v4, per pool</li></ul>
+          <p class="when">New. Collecting since 29 Oct 2026, with history back-filled from 23 Oct 2026; available after the verification period.</p>
+        </li>
+        <li class="net collecting" data-s="collecting">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><rect class="mk-shape" x="5" y="5" width="34" height="34" rx="9" stroke="var(--brass)" stroke-dasharray="4 3"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">SOL</text></svg>
+            <div class="nm"><h3>Solana</h3><span class="fam">SVM, refreshed hourly</span></div>
+            <span class="badge col">Collecting</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>Raydium CPMM</li><li>Raydium CLMM</li><li>Orca Whirlpool</li><li>Meteora DLMM</li><li>Meteora DAMM v2</li><li>PumpSwap</li></ul>
+          <p>Swaps reconciled exactly against the pools' token balances. Pinned pools only; no anomaly findings yet.</p>
+          <p class="when">Available after the verification period.</p>
+        </li>
+        <li class="net collecting" data-s="collecting">
+          <div class="net-h">
+            <svg viewBox="0 0 44 44" aria-hidden="true"><path class="mk-shape" d="M22 4l18 18-18 18L4 22z" stroke="var(--brass)" stroke-dasharray="4 3"/><text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">TON</text></svg>
+            <div class="nm"><h3>TON</h3><span class="fam">TVM, refreshed every 3 hours</span></div>
+            <span class="badge col">Collecting</span>
+          </div>
+          <ul class="venues" aria-label="Venues"><li>STON.fi v1</li><li>STON.fi v2</li><li>DeDust</li></ul>
+          <p>Two independent providers must agree on every window. Pinned pools only; no anomaly findings yet.</p>
+          <p class="when">New. Available after the verification period.</p>
+        </li>
+      </ul>
+      <p class="fine">Status of the catalog on 29 Oct 2026; each token's live status, history length and proof counts are in the <a href="https://app.wearetheartmakers.com/catalog">token catalog</a>. Dashed venues are verified pool by pool: only pools with an accepted verification record are counted. Venue and network names identify the contracts we decode; they do not imply a partnership or endorsement.</p>
+    </div>
+  </section>
+
+  <section class="band" id="how" aria-labelledby="h-flow">
+    <div class="wrap">
       <h2 id="h-flow">From a raw log to a finding you can check</h2>
       <p class="intro">Each step leaves evidence behind. Nothing reaches a report unless the step before it can be reproduced.</p>
       <ol class="flow">
-        <li data-node="ingest"><span class="n"></span><h3>Ingest</h3><p>Logs are read by block range for each network, with the RPC and range recorded for every run.</p></li>
-        <li data-node="decode"><span class="n"></span><h3>Decode</h3><p><code>Swap</code>, <code>Sync</code> and <code>Transfer</code> events are decoded per venue: Uniswap v2, v3 and v4, Solidly-style pools and PancakeSwap.</p></li>
-        <li data-node="gate"><span class="n"></span><h3>Gate</h3><p>A run is published only if coverage, decoding and uniqueness checks pass. Gaps are listed, never hidden.</p></li>
-        <li data-node="detect"><span class="n"></span><h3>Detect</h3><p>Volume, swap-count and liquidity shifts are measured against a frozen baseline, per token and pool.</p></li>
-        <li data-node="finding"><span class="n"></span><h3>Explain</h3><p>Every finding ships with its method, the alternative explanations and the SQL that reproduces it.</p></li>
+        <li><span class="n"></span><h3>Ingest</h3><p>Logs are read by block range for each network, with the RPC and range recorded for every run. Empty answers are confirmed by a second provider.</p></li>
+        <li><span class="n"></span><h3>Decode</h3><p><code>Swap</code>, <code>Sync</code> and <code>Transfer</code> events are decoded per venue family, from recorded factories only.</p></li>
+        <li><span class="n"></span><h3>Gate</h3><p>A run is published only if coverage, decoding and uniqueness checks pass. Gaps are listed, never filled with zeros.</p></li>
+        <li><span class="n"></span><h3>Detect</h3><p>Volume, swap-count and liquidity shifts are measured against a frozen baseline, per token and pool.</p></li>
+        <li><span class="n"></span><h3>Explain</h3><p>Every finding ships with its Evidence Card: method, alternative explanations, the SQL and the public-node recipe.</p></li>
       </ol>
-    </section>
+    </div>
+  </section>
 
-    <section class="veil see" aria-labelledby="h-reads">
-      <div class="reads">
-        <div>
-          <h2 id="h-reads">Where it reads</h2>
-          <p class="intro" style="margin-bottom:0">Five networks and the venues we decode on them. Hover a name to find it in the field.</p>
-          <p class="fine">Names identify the contracts we decode. They do not imply a partnership or endorsement.</p>
-        </div>
-        <div>
-          <div class="group">
-            <h3>Networks</h3>
-            <ul class="names">
-              <li data-node="eth">Ethereum</li><li data-node="arb">Arbitrum One</li><li data-node="base">Base</li><li data-node="op">OP Mainnet</li><li data-node="bnb">BNB Smart Chain</li>
-            </ul>
-          </div>
-          <div class="group">
-            <h3>Venues</h3>
-            <ul class="names dex">
-              <li data-node="uni2">Uniswap v2</li><li data-node="uni3">Uniswap v3</li><li data-node="uni4">Uniswap v4</li><li data-node="velo">Velodrome</li><li data-node="aero">Aerodrome</li><li data-node="cake">PancakeSwap</li><li data-node="sushi">SushiSwap</li><li data-node="oneinch">1inch</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="band alt" aria-labelledby="h-why">
+    <div class="wrap">
+      <h2 id="h-why">What you get without building it</h2>
+      <p class="intro">The work between raw chain data and an answer you can defend is the expensive part. That is the part we do.</p>
+      <ul class="why">
+        <li><h3><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8.5" fill="none" stroke="var(--brass)" stroke-width="1.5"/><path d="M11 6v5l3.5 2" fill="none" stroke="var(--brass)" stroke-width="1.5" stroke-linecap="round"/></svg>Shorter research</h3><p>A finding arrives with its pools, block range, largest transactions and method, so your analyst starts from the evidence instead of collecting it.</p></li>
+        <li><h3><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2.5l7.5 3v5.5c0 4.4-3.2 7.6-7.5 8.5-4.3-.9-7.5-4.1-7.5-8.5V5.5z" fill="none" stroke="var(--brass)" stroke-width="1.5"/><path d="M7.5 11l2.5 2.5 4.5-5" fill="none" stroke="var(--brass)" stroke-width="1.5" stroke-linecap="round"/></svg>Quality checks before numbers</h3><p>Coverage, decoding and uniqueness gates run before anything is published. Swaps without a usable price stay unvalued, never counted as zero.</p></li>
+        <li><h3><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 7h11l-3-3M18 15H7l3 3" fill="none" stroke="var(--brass)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Reproducible findings</h3><p>Detection SQL with its hash, a public-node recipe, method and code versions. Your team or auditor can arrive at the same numbers without us.</p></li>
+        <li><h3><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2.5 12h4l2-5 4 9 2-4h5" fill="none" stroke="var(--brass)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Monitoring that keeps running</h3><p>Catalog tokens are refreshed on a schedule (EVM every 12 hours, TON every 3, Solana hourly) and audited for data quality, with anomaly alerts by email on the EVM networks.</p></li>
+      </ul>
+      <p class="vs">With a query platform such as Dune you write and check the SQL yourself; with an in-house build you also run and maintain the pipeline. Here the checks, the evidence trail and the monitoring come with every finding, and Dune remains an optional cross-check.</p>
+    </div>
+  </section>
 
-    <section class="veil close" aria-labelledby="h-close">
+  <section class="band close" id="start" aria-labelledby="h-close">
+    <div class="wrap">
       <h2 id="h-close">Bring one question. Leave with evidence.</h2>
-      <p class="intro">Pilots start with one question, agreed pools and windows, and written success criteria. It runs on your infrastructure, with local AI models by default. The quickest start is a 7-day Evidence Snapshot (900 USD), credited in full to a pilot signed within 60 days — pay by stablecoin or bank transfer, and your access key arrives by email.</p>
+      <p class="intro">Pilots start with one question, agreed pools and windows, and written success criteria, hosted by WATAM or on your infrastructure, with local AI models by default. The quickest start is a 7-day Evidence Snapshot (900 USD), credited in full to a pilot signed within 60 days. Pay by stablecoin or bank transfer, and your access key arrives by email.</p>
       <div class="ctas">
         <a class="btn primary" href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
         <a class="btn" href="/app/">Open the application</a>
         <a class="btn" href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pilots and pricing</a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    <span>© 2026 WeAreTheArtMakers</span>
-    <nav><a href="https://wearetheartmakers.github.io/defi-intelligence/privacy.html">Privacy</a><a href="https://wearetheartmakers.github.io/defi-intelligence/legal.html">Legal</a><a href="mailto:admin@wearetheartmakers.com">Contact</a></nav>
-  </footer>
-</div>
+<footer>
+  <div class="wrap">
+    <p>DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>
+    <nav aria-label="Footer">
+      <a href="https://wearetheartmakers.github.io/defi-intelligence/">Method</a>
+      <a href="https://wearetheartmakers.github.io/defi-intelligence/pricing.html">Pricing</a>
+      <a href="https://app.wearetheartmakers.com/catalog">Token catalog</a>
+      <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
+      <a href="https://wearetheartmakers.github.io/defi-intelligence/terms.html">Terms</a>
+      <a href="https://wearetheartmakers.github.io/defi-intelligence/privacy.html">Privacy</a>
+      <a href="https://wearetheartmakers.github.io/defi-intelligence/legal.html">Legal</a>
+      <a href="mailto:admin@wearetheartmakers.com">Contact</a>
+    </nav>
+  </div>
+</footer>
 
 <script>
 (() => {
-  const cv = document.getElementById("field"), cx = cv.getContext("2d");
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const C = { night:"#0A1020", ink:"232,237,246", ink3:"133,144,168", brass:"226,182,95", blue:"126,166,255", amber:"231,169,81", line:"36,49,77" };
+  // ---------- navigation: shadow on scroll, mobile menu, current section
+  const bar = document.querySelector(".bar"), btn = document.querySelector(".menu-btn"), panel = document.getElementById("menu");
+  const sr = btn.querySelector(".sr");
+  const setMenu = open => {
+    btn.setAttribute("aria-expanded", String(open)); panel.hidden = !open;
+    sr.textContent = open ? "Close the menu" : "Open the menu";
+  };
+  btn.addEventListener("click", () => { const open = btn.getAttribute("aria-expanded") !== "true"; setMenu(open); if (open) panel.querySelector("a").focus(); });
+  panel.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) { setMenu(false); btn.focus(); } });
+  matchMedia("(min-width: 921px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
+  const onScroll = () => bar.classList.toggle("scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  if ("IntersectionObserver" in window) {
+    const navLinks = [...document.querySelectorAll('.links a[href^="#"]')];
+    const spy = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      navLinks.forEach(a => a.getAttribute("href") === "#" + en.target.id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current"));
+    }), { rootMargin: "-40% 0px -55% 0px" });
+    ["evidence", "networks", "how"].forEach(id => spy.observe(document.getElementById(id)));
+    const steps = document.querySelectorAll(".flow li");
+    const io = new IntersectionObserver(es => es.forEach(en => en.target.classList.toggle("on", en.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
+    steps.forEach(s => io.observe(s));
+  }
 
-  // The pipeline graph. Venues feed networks; networks feed ingest → decode → gate → detect → finding.
-  // Positions are fractions of the viewport (desktop); on narrow screens they are re-spread.
+  // ---------- network filter
+  const cards = [...document.querySelectorAll(".net")], status = document.getElementById("netStatus");
+  const count = f => cards.filter(c => f === "all" || c.dataset.s === f).length;
+  document.querySelectorAll("[data-count]").forEach(s => { s.textContent = "(" + count(s.dataset.count) + ")"; });
+  document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
+    const f = b.dataset.f;
+    document.querySelectorAll(".filters button").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    cards.forEach(c => { c.hidden = !(f === "all" || c.dataset.s === f); });
+    status.textContent = "Showing " + count(f) + " networks";
+  }));
+
+  // ---------- copy the public-node recipe
+  document.querySelectorAll(".copy").forEach(b => b.addEventListener("click", async () => {
+    const text = document.getElementById(b.dataset.copy).textContent, out = document.getElementById("copyStatus");
+    try { await navigator.clipboard.writeText(text); b.textContent = "Copied"; out.textContent = "Recipe copied"; }
+    catch (e) { b.textContent = "Select it"; out.textContent = "Copy is not available; select the text instead"; }
+    setTimeout(() => { b.textContent = "Copy"; }, 1800);
+  }));
+
+  // ---------- the pipeline field (illustration, not live data)
+  const cv = document.getElementById("field"), cx = cv.getContext("2d"), hero = document.querySelector(".hero");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let C = {};
+  function palette() {
+    const s = getComputedStyle(document.documentElement), v = n => s.getPropertyValue(n).trim();
+    C = { bg: `rgb(${v("--rgb-bg")})`, ink: v("--rgb-ink"), ink3: v("--rgb-ink3"), brass: v("--rgb-brass"), blue: v("--rgb-blue"), amber: v("--rgb-amber") };
+  }
+  palette();
+
+  // Venues feed networks; networks feed ingest → decode → gate → detect → finding. Positions are fractions of the hero.
   const N = [
-    { id:"uni2", label:"Uniswap v2", kind:"dex", x:.56, y:.14, on:["eth","arb","base","op","bnb"] },
-    { id:"uni3", label:"Uniswap v3", kind:"dex", x:.70, y:.09, on:["eth","arb","base","op","bnb"] },
-    { id:"uni4", label:"Uniswap v4", kind:"dex", x:.85, y:.13, on:["eth","arb","base","op"] },
-    { id:"velo", label:"Velodrome", kind:"dex", x:.95, y:.30, on:["op"] },
-    { id:"aero", label:"Aerodrome", kind:"dex", x:.50, y:.33, on:["base"] },
-    { id:"cake", label:"PancakeSwap", kind:"dex", x:.93, y:.52, on:["bnb","eth","arb","base"] },
-    { id:"sushi", label:"SushiSwap", kind:"dex", x:.47, y:.55, on:["eth","arb"] },
-    { id:"oneinch", label:"1inch", kind:"dex", x:.96, y:.72, on:["eth","arb","base","op","bnb"] },
-    { id:"eth", label:"Ethereum", kind:"chain", x:.63, y:.27 },
-    { id:"arb", label:"Arbitrum One", kind:"chain", x:.78, y:.25 },
-    { id:"base", label:"Base", kind:"chain", x:.60, y:.45 },
-    { id:"op", label:"OP Mainnet", kind:"chain", x:.84, y:.38 },
-    { id:"bnb", label:"BNB Smart Chain", kind:"chain", x:.82, y:.55 },
-    { id:"ingest", label:"Ingest", kind:"stage", x:.70, y:.52 },
-    { id:"decode", label:"Decode", kind:"stage", x:.66, y:.66 },
-    { id:"gate", label:"Gate", kind:"stage", x:.74, y:.76 },
-    { id:"detect", label:"Detect", kind:"stage", x:.84, y:.84 },
+    { id:"uni2", label:"Uniswap v2", kind:"dex", x:.53, y:.08, on:["eth","monad"] },
+    { id:"uni3", label:"Uniswap v3", kind:"dex", x:.65, y:.05, on:["eth","arb","op","base","bnb","avax","monad"] },
+    { id:"uni4", label:"Uniswap v4", kind:"dex", x:.77, y:.09, on:["eth","arb","op","base","bnb","avax","monad"] },
+    { id:"sushi", label:"SushiSwap", kind:"dex", x:.89, y:.05, on:["arb"] },
+    { id:"velo", label:"Velodrome", kind:"dex", x:.97, y:.15, on:["op"] },
+    { id:"cake", label:"PancakeSwap", kind:"dex", x:.51, y:.19, on:["bnb","eth","base","monad"] },
+    { id:"aero", label:"Aerodrome", kind:"dex", x:.63, y:.18, on:["base"] },
+    { id:"pharaoh", label:"Pharaoh", kind:"dex", x:.74, y:.21, on:["avax"] },
+    { id:"lfj", label:"LFJ", kind:"dex", x:.85, y:.18, on:["avax"] },
+    { id:"pangolin", label:"Pangolin", kind:"dex", x:.93, y:.26, on:["avax"] },
+    { id:"raydium", label:"Raydium", kind:"dex", x:.27, y:.08, on:["sol"] },
+    { id:"orca", label:"Orca", kind:"dex", x:.37, y:.05, on:["sol"] },
+    { id:"meteora", label:"Meteora", kind:"dex", x:.30, y:.20, on:["sol"] },
+    { id:"pump", label:"PumpSwap", kind:"dex", x:.42, y:.14, on:["sol"] },
+    { id:"ston", label:"STON.fi", kind:"dex", x:.97, y:.50, on:["ton"] },
+    { id:"dedust", label:"DeDust", kind:"dex", x:.91, y:.62, on:["ton"] },
+    { id:"eth", label:"Ethereum", kind:"chain", x:.57, y:.31 },
+    { id:"arb", label:"Arbitrum One", kind:"chain", x:.68, y:.30 },
+    { id:"op", label:"OP Mainnet", kind:"chain", x:.80, y:.32 },
+    { id:"base", label:"Base", kind:"chain", x:.61, y:.42 },
+    { id:"bnb", label:"BNB Smart Chain", kind:"chain", x:.89, y:.37 },
+    { id:"avax", label:"Avalanche C-Chain", kind:"chain", x:.80, y:.44, collecting:true },
+    { id:"monad", label:"Monad", kind:"chain", x:.70, y:.42, collecting:true },
+    { id:"sol", label:"Solana", kind:"chain", x:.43, y:.27, collecting:true },
+    { id:"ton", label:"TON", kind:"chain", x:.90, y:.53, collecting:true },
+    { id:"ingest", label:"Ingest", kind:"stage", x:.72, y:.56 },
+    { id:"decode", label:"Decode", kind:"stage", x:.68, y:.68 },
+    { id:"gate", label:"Gate", kind:"stage", x:.76, y:.77 },
+    { id:"detect", label:"Detect", kind:"stage", x:.85, y:.85 },
     { id:"finding", label:"Finding", kind:"stage", x:.93, y:.92 },
   ];
   const byId = Object.fromEntries(N.map(n => [n.id, n]));
+  // Narrow screens: venues in two staggered rows, networks in a 3 × 3 grid, the stages as a diagonal below.
+  const NARROW = {
+    eth:[.05,.30], arb:[.37,.30], op:[.66,.30], base:[.05,.46], bnb:[.30,.46], avax:[.60,.46],
+    monad:[.05,.62], sol:[.37,.62], ton:[.66,.62],
+    ingest:[.50,.76], decode:[.40,.86], gate:[.56,.94], detect:[.72,1.0], finding:[.86,1.06],
+  };
+  const VENUES = N.filter(n => n.kind === "dex").map(n => n.id);
+  const venueSlot = n => { const i = VENUES.indexOf(n.id), row = i % 2; return [.05 + Math.floor(i / 2) * .125 + row * .06, row ? .15 : .04]; };
+  const CHAINS = N.filter(n => n.kind === "chain").map(n => n.id);
   const E = [];
   N.filter(n => n.kind === "dex").forEach(d => d.on.forEach(c => E.push([d.id, c])));
-  ["eth","arb","base","op","bnb"].forEach(c => E.push([c, "ingest"]));
+  CHAINS.forEach(c => E.push([c, "ingest"]));
   E.push(["ingest","decode"],["decode","gate"],["gate","detect"],["detect","finding"]);
 
   // Real topic hashes and the event signatures they stand for.
@@ -242,28 +646,28 @@ footer a:hover{color:var(--ink)}
   ];
   const EV = ["Swap","Swap","Swap","Sync","Transfer"];
 
-  let W = 0, H = 0, dpr = 1, narrow = false, frags = [], parts = [], rings = [];
+  let W = 0, H = 0, dpr = 1, narrow = false, frags = [], parts = [], rings = [], visible = true;
   const mouse = { x:-9999, y:-9999, tx:-9999, ty:-9999, in:false };
-  let focus = null, hover = null;
 
   function layout() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = innerWidth; H = innerHeight; narrow = W < 900;
+    const r = hero.getBoundingClientRect();
+    W = r.width; H = r.height; narrow = W < 1100;
     cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // narrow screens: the whole graph moves to the band above the headline
+    const band = W < 700 ? 270 : 300;
     N.forEach(n => {
-      const x = narrow ? .05 + (n.x - .45) / .53 * .72 : n.x, y = narrow ? .10 + n.y * .21 : n.y;
-      n.bx = x * W; n.by = y * H; if (n.px === undefined) { n.px = n.bx; n.py = n.by; }
+      const q = narrow ? NARROW[n.id] || venueSlot(n) : [n.x, n.y];
+      n.bx = q[0] * W; n.by = narrow ? 18 + q[1] * band : q[1] * H; if (n.px === undefined) { n.px = n.bx; n.py = n.by; }
     });
     const count = Math.round(Math.min(70, W * H / 21000));
-    frags = Array.from({ length: count }, (_, i) => mkFrag(Math.random() * H));
+    frags = Array.from({ length: count }, () => mkFrag(Math.random() * H));
   }
   function mkFrag(y) {
     const [raw, dec] = LOGS[Math.floor(Math.random() * LOGS.length)];
     return { x: Math.random() * W, y, v: 6 + Math.random() * 10, raw, dec, a: .05 + Math.random() * .06, t: 0 };
   }
-
   function route(from) {
-    // venue → one of its networks → ingest → decode → gate → (detect → finding, rarely)
     const d = byId[from], c = d.on[Math.floor(Math.random() * d.on.length)];
     const path = [from, c, "ingest", "decode", "gate"], r = Math.random();
     const fate = r < .07 ? "finding" : r < .16 ? "gap" : "pass";
@@ -274,73 +678,58 @@ footer a:hover{color:var(--ink)}
     const dex = N.filter(n => n.kind === "dex");
     parts.push(route(from || dex[Math.floor(Math.random() * dex.length)].id));
   }
-
   const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  const lit = id => focus === id || hover === id;
   const R = () => narrow ? 90 : 140;
+  const lensK = (x, y) => Math.max(0, 1 - Math.hypot(x - mouse.x, y - mouse.y) / R());
 
-  function lensK(x, y) { const d = Math.hypot(x - mouse.x, y - mouse.y); return Math.max(0, 1 - d / R()); }
-
-  let last = performance.now(), acc = 0;
+  let last = performance.now(), acc = 0, running = false;
   function frame(now) {
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     mouse.x += (mouse.tx - mouse.x) * .18; mouse.y += (mouse.ty - mouse.y) * .18;
     acc += dt; if (acc > (narrow ? .5 : .28)) { acc = 0; if (parts.length < 60) spawn(); }
     draw(dt);
-    if (!reduce && !document.hidden) requestAnimationFrame(frame); else running = false;
+    if (!reduce && !document.hidden && visible) requestAnimationFrame(frame); else running = false;
   }
-  let running = false;
-  function start() { if (!running && !reduce) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
+  function start() { if (!running && !reduce && visible) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
 
-  const hero = document.querySelector(".hero");
-  let dim = 1;
   function draw(dt) {
-    const hb = hero.getBoundingClientRect().bottom;
-    dim = hb > H * .55 ? 1 : .3;
-    cx.globalAlpha = 1;
-    cx.fillStyle = C.night; cx.fillRect(0, 0, W, H);
+    cx.globalAlpha = 1; cx.fillStyle = C.bg; cx.fillRect(0, 0, W, H);
     const g = cx.createRadialGradient(W * .78, H * .45, 0, W * .78, H * .45, Math.max(W, H) * .7);
-    g.addColorStop(0, "rgba(126,166,255,.07)"); g.addColorStop(1, "rgba(7,12,24,0)"); cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+    g.addColorStop(0, `rgba(${C.blue},.07)`); g.addColorStop(1, `rgba(${C.blue},0)`); cx.fillStyle = g; cx.fillRect(0, 0, W, H);
 
     // raw log fragments drifting up; inside the lens they resolve into what they mean
     cx.textBaseline = "middle";
-    cx.globalAlpha = dim;
     frags.forEach((f, i) => {
       f.y -= f.v * dt; if (f.y < -20) frags[i] = mkFrag(H + 20);
       const k = mouse.in ? lensK(f.x, f.y) : 0;
       f.t += ((k > 0 ? 1 : 0) - f.t) * Math.min(1, dt * 6);
       if (f.t < .98) {
         cx.font = "12px ui-monospace, SFMono-Regular, Menlo, monospace";
-        cx.fillStyle = `rgba(${C.ink3},${f.a * (1 - f.t)})`; cx.fillText(f.raw, f.x, f.y);
+        cx.fillStyle = `rgba(${C.ink3},${f.a * 1.4 * (1 - f.t)})`; cx.fillText(f.raw, f.x, f.y);
       }
       if (f.t > .02) {
         cx.font = "500 13px 'Plex Sans', system-ui, sans-serif";
         const dw = cx.measureText(f.dec).width, dx = Math.max(8, Math.min(f.x, W - dw - 12));
-        cx.fillStyle = `rgba(${C.brass},${.85 * f.t * Math.max(.35, k)})`; cx.fillText(f.dec, dx, f.y);
+        cx.fillStyle = `rgba(${C.brass},${.9 * f.t * Math.max(.35, k)})`; cx.fillText(f.dec, dx, f.y);
       }
     });
 
-    // nodes drift a little away from the cursor
     N.forEach(n => {
       let tx = n.bx, ty = n.by;
       if (mouse.in) {
         const dx = n.bx - mouse.x, dy = n.by - mouse.y, d = Math.hypot(dx, dy) || 1, k = Math.max(0, 1 - d / (R() * 1.6));
         tx += dx / d * k * 26; ty += dy / d * k * 26;
       }
-      n.px += (tx - n.px) * Math.min(1, dt * 5); n.py += (ty - n.py) * Math.min(1, dt * 5);
+      n.px += (tx - n.px) * Math.min(1, dt * 5 || 1); n.py += (ty - n.py) * Math.min(1, dt * 5 || 1);
     });
 
-    // edges
     E.forEach(([a, b]) => {
-      const A = byId[a], B = byId[b], hot = lit(a) || lit(b);
+      const A = byId[a], B = byId[b];
       const k = mouse.in ? Math.max(lensK(A.px, A.py), lensK(B.px, B.py)) : 0;
-      cx.strokeStyle = hot ? `rgba(${C.brass},.55)` : `rgba(${C.blue},${.07 + k * .25})`;
-      cx.lineWidth = hot ? 1.4 : 1; cx.globalAlpha = hot ? 1 : dim;
+      cx.strokeStyle = `rgba(${C.blue},${.09 + k * .25})`; cx.lineWidth = 1;
       cx.beginPath(); cx.moveTo(A.px, A.py); cx.lineTo(B.px, B.py); cx.stroke();
     });
 
-    // events moving through the pipeline
-    cx.globalAlpha = dim;
     for (let i = parts.length - 1; i >= 0; i--) {
       const p = parts[i], A = byId[p.path[p.seg]], B = byId[p.path[p.seg + 1]];
       const slow = mouse.in ? 1 - .75 * lensK(A.px + (B.px - A.px) * p.t, A.py + (B.py - A.py) * p.t) : 1;
@@ -349,21 +738,15 @@ footer a:hover{color:var(--ink)}
         p.t = 0; p.seg++;
         const at = p.path[p.seg];
         if (at === "gate" && p.fate === "gap") { rings.push({ id:"gate", r:0, c:C.ink3, life:1 }); parts.splice(i, 1); continue; }
-        if (p.seg >= p.path.length - 1) {
-          rings.push({ id: at, r: 0, c: at === "finding" ? C.amber : C.brass, life: 1 });
-          parts.splice(i, 1); continue;
-        }
+        if (p.seg >= p.path.length - 1) { rings.push({ id: at, r: 0, c: at === "finding" ? C.amber : C.brass, life: 1 }); parts.splice(i, 1); }
         continue;
       }
       const t = ease(p.t), x = A.px + (B.px - A.px) * t, y = A.py + (B.py - A.py) * t;
-      const col = p.fate === "finding" && p.seg >= 4 ? C.amber : p.ev === "Transfer" ? C.blue : C.brass;
-      cx.fillStyle = `rgba(${col},.95)`; cx.beginPath(); cx.arc(x, y, p.fate === "finding" && p.seg >= 4 ? 3.2 : 2.2, 0, 7); cx.fill();
+      const hot = p.fate === "finding" && p.seg >= 4, col = hot ? C.amber : p.ev === "Transfer" ? C.blue : C.brass;
+      cx.fillStyle = `rgba(${col},.95)`; cx.beginPath(); cx.arc(x, y, hot ? 3.2 : 2.2, 0, 7); cx.fill();
       cx.fillStyle = `rgba(${col},.18)`; cx.beginPath(); cx.arc(x, y, 7, 0, 7); cx.fill();
       const k = mouse.in ? lensK(x, y) : 0;
-      if (k > .15) {
-        cx.font = "500 11px 'Plex Sans', system-ui, sans-serif";
-        cx.fillStyle = `rgba(${C.ink},${k})`; cx.fillText(p.ev, x + 9, y - 9);
-      }
+      if (k > .15) { cx.font = "500 11px 'Plex Sans', system-ui, sans-serif"; cx.fillStyle = `rgba(${C.ink},${k})`; cx.fillText(p.ev, x + 9, y - 9); }
     }
 
     // pulses where an event lands: brass = published, grey = listed as a gap, amber = a finding
@@ -374,81 +757,64 @@ footer a:hover{color:var(--ink)}
       cx.beginPath(); cx.arc(n.px, n.py, 6 + r.r, 0, 7); cx.stroke();
     }
 
-    // nodes and labels
+    // nodes and labels; collecting networks are drawn with a dashed ring
     N.forEach(n => {
-      const k = mouse.in ? lensK(n.px, n.py) : 0, hot = lit(n.id);
-      cx.globalAlpha = hot ? 1 : dim;
-      if (hot) {                                   // a steady beacon on the node named on the page
-        const ph = (performance.now() / 1400) % 1;
-        cx.strokeStyle = `rgba(${C.brass},${.9 * (1 - ph)})`; cx.lineWidth = 2;
-        cx.beginPath(); cx.arc(n.px, n.py, 10 + ph * 34, 0, 7); cx.stroke();
-      }
+      const k = mouse.in ? lensK(n.px, n.py) : 0;
       if (n.kind === "chain") {
-        cx.strokeStyle = `rgba(${C.blue},${hot ? 1 : .55 + k * .45})`; cx.lineWidth = 1.5;
-        cx.beginPath(); cx.arc(n.px, n.py, hot ? 9 : 7, 0, 7); cx.stroke();
+        cx.strokeStyle = `rgba(${C.blue},${.6 + k * .4})`; cx.lineWidth = 1.5;
+        if (n.collecting) cx.setLineDash([3, 3]);
+        cx.beginPath(); cx.arc(n.px, n.py, 7, 0, 7); cx.stroke(); cx.setLineDash([]);
       } else if (n.kind === "stage") {
-        cx.fillStyle = `rgba(${n.id === "finding" ? C.amber : C.brass},${hot ? 1 : .8})`;
-        cx.fillRect(n.px - 5, n.py - 5, 10, 10);
+        cx.fillStyle = `rgba(${n.id === "finding" ? C.amber : C.brass},.85)`; cx.fillRect(n.px - 5, n.py - 5, 10, 10);
       } else {
-        cx.fillStyle = `rgba(${C.ink},${hot ? 1 : .55 + k * .45})`;
-        cx.beginPath(); cx.arc(n.px, n.py, hot ? 5 : 3.5, 0, 7); cx.fill();
+        cx.fillStyle = `rgba(${C.ink},${.55 + k * .45})`; cx.beginPath(); cx.arc(n.px, n.py, 3.5, 0, 7); cx.fill();
       }
-      const show = hot ? 1 : n.kind === "stage" ? .75 : narrow ? .35 + k * .65 : .42 + k * .58;
+      const show = n.kind === "stage" ? .8 : narrow ? (n.kind === "dex" ? k : .4 + k * .6) : .45 + k * .55;
+      if (show < .03) return;
       cx.font = n.kind === "dex" ? `600 ${narrow ? 12.5 : 14}px 'Plex Condensed', 'Plex Sans', sans-serif` : `500 ${narrow ? 11 : 12.5}px 'Plex Sans', system-ui, sans-serif`;
-      cx.fillStyle = hot ? `rgba(${n.kind === "dex" ? C.brass : C.ink},1)` : `rgba(${n.kind === "stage" ? C.brass : C.ink},${show})`;
-      const lw = cx.measureText(n.label).width, left = n.px + 11 + lw > W - 12;
-      cx.fillText(n.label, left ? n.px - 11 - lw : n.px + 11, n.py + 1);
+      cx.fillStyle = `rgba(${n.kind === "stage" ? C.brass : C.ink},${show})`;
+      const label = n.collecting && !narrow ? n.label + " · collecting" : n.label;
+      const lw = cx.measureText(label).width, left = n.px + 11 + lw > W - 12;
+      cx.fillText(label, left ? n.px - 11 - lw : n.px + 11, n.py + 1);
     });
 
-    // the decoding lens
-    cx.globalAlpha = 1;
     if (mouse.in) {
       const r = R();
-      cx.strokeStyle = `rgba(${C.brass},.5)`; cx.lineWidth = 1;
+      cx.strokeStyle = `rgba(${C.brass},.55)`; cx.lineWidth = 1;
       cx.beginPath(); cx.arc(mouse.x, mouse.y, r, 0, 7); cx.stroke();
       cx.setLineDash([2, 6]); cx.beginPath(); cx.arc(mouse.x, mouse.y, r + 8, 0, 7); cx.stroke(); cx.setLineDash([]);
       for (let a = 0; a < 4; a++) {
         const ang = a * Math.PI / 2, c1 = Math.cos(ang), s1 = Math.sin(ang);
         cx.beginPath(); cx.moveTo(mouse.x + c1 * (r - 6), mouse.y + s1 * (r - 6)); cx.lineTo(mouse.x + c1 * (r + 6), mouse.y + s1 * (r + 6)); cx.stroke();
       }
-      cx.font = "500 11px 'Plex Sans', system-ui, sans-serif"; cx.fillStyle = `rgba(${C.brass},.8)`;
+      cx.font = "500 11px 'Plex Sans', system-ui, sans-serif"; cx.fillStyle = `rgba(${C.brass},.85)`;
       cx.fillText("decoding", mouse.x + r * .72 + 10, mouse.y - r * .72 - 4);
     }
   }
 
+  function local(e) { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
   function nearestDex(x, y) {
     let best = null, bd = 1e9;
     N.forEach(n => { if (n.kind !== "dex") return; const d = Math.hypot(n.px - x, n.py - y); if (d < bd) { bd = d; best = n; } });
     return bd < 120 ? best : null;
   }
-
-  addEventListener("pointermove", e => {
-    mouse.tx = e.clientX; mouse.ty = e.clientY;
+  hero.addEventListener("pointermove", e => {
+    [mouse.tx, mouse.ty] = local(e);
     if (!mouse.in) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
-    const t = e.target, busy = t.closest && t.closest("[data-node], a, button, footer");
-    mouse.in = !busy && e.clientY < hero.getBoundingClientRect().bottom; if (reduce) draw(0);
+    mouse.in = !(e.target.closest && e.target.closest("a, button"));
+    if (reduce) { mouse.x = mouse.tx; mouse.y = mouse.ty; draw(0); }
   }, { passive: true });
-  document.addEventListener("pointerleave", () => { mouse.in = false; if (reduce) draw(0); });
-  addEventListener("blur", () => { mouse.in = false; });
+  hero.addEventListener("pointerleave", () => { mouse.in = false; if (reduce) draw(0); });
   cv.addEventListener("click", e => {
-    const d = nearestDex(e.clientX, e.clientY);
-    if (d) { for (let i = 0; i < 6; i++) setTimeout(() => spawn(d.id), i * 90); rings.push({ id:d.id, r:0, c:C.brass, life:1 }); }
+    const [x, y] = local(e), d = nearestDex(x, y);
+    if (d) { for (let i = 0; i < 6; i++) setTimeout(() => spawn(d.id), i * 90); rings.push({ id:d.id, r:0, c:C.brass, life:1 }); if (reduce) draw(0); }
   });
-
-  // names and steps on the page light up their node in the field
-  document.querySelectorAll("[data-node]").forEach(el => {
-    el.addEventListener("pointerenter", () => { hover = el.dataset.node; if (reduce) draw(0); });
-    el.addEventListener("pointerleave", () => { hover = null; if (reduce) draw(0); });
-  });
-  const steps = [...document.querySelectorAll(".flow li")];
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(es => es.forEach(en => en.target.classList.toggle("on", en.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
-    steps.forEach(s => io.observe(s));
-  }
 
   if (matchMedia("(hover: none)").matches) document.getElementById("hintText").textContent = "Touch the field to decode the raw logs. Tap a venue to send a swap through the gates.";
-  addEventListener("resize", () => { layout(); if (reduce) draw(0); });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { layout(); if (reduce) draw(0); }, 120); });
+  matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => { palette(); if (reduce) draw(0); });
   document.addEventListener("visibilitychange", () => { if (!document.hidden) start(); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) start(); }).observe(hero);
   layout();
   if (reduce) { for (let i = 0; i < 24; i++) { spawn(); parts[i].seg = Math.floor(Math.random() * 3); parts[i].t = Math.random(); } draw(0); }
   else { for (let i = 0; i < 14; i++) { spawn(); parts[i].t = Math.random(); } start(); }
