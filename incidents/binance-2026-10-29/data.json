@@ -1,8 +1,8 @@
 {
  "version": "incident-note/1.0",
  "incident_id": "binance-2026-10-29",
- "generated_at": "2026-10-29T22:03:53Z",
- "catalog_generated_at": "2026-10-29T22:03:53.170882+00:00",
+ "generated_at": "2026-10-29T22:08:50Z",
+ "catalog_generated_at": "2026-10-29T22:08:50.453917+00:00",
  "network": {
   "key": "ethereum",
   "name": "Ethereum",
@@ -45,7 +45,7 @@
    {
     "address": "0x42cdf00c85005630cc8605731b9364f712077810",
     "role": "receiver",
-    "label": "reported receiving address",
+    "label": "received 7,018,792 UNI from the reported receiving address (on-chain)",
     "source": null,
     "source_url": null
    }
@@ -53,7 +53,14 @@
   "sources": [],
   "rejected": 0
  },
- "address_matches_truncated": false,
+ "tx_origin_lookup": {
+  "rpc": "https://ethereum-rpc.publicnode.com",
+  "transactions": 349,
+  "resolved": 349,
+  "fetched_this_run": 0,
+  "failed_this_run": 0,
+  "cap": 5000
+ },
  "tokens": [
   {
    "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
@@ -115,9 +122,113 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 222,
+    "transactions": 188,
+    "transactions_checked": 188,
+    "attributed": [
+     {
+      "tx_hash": "0xe4430dd3235cfe335a7589686b3522dbd9e65bfb0dd155fd60986ecf6860697d",
+      "block_number": 26301235,
+      "block_time": "2026-10-29T21:57:47Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 40826.384667286504,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xe4430dd3235cfe335a7589686b3522dbd9e65bfb0dd155fd60986ecf6860697d",
+      "block_number": 26301235,
+      "block_time": "2026-10-29T21:57:47Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 2399.8387807946456,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0x3070929607a40573ffe9c5ec88d862bb00bb049b1b176092b5480c9098e2660a",
+      "block_number": 26301239,
+      "block_time": "2026-10-29T21:58:35Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 73390.70551131814,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0x3070929607a40573ffe9c5ec88d862bb00bb049b1b176092b5480c9098e2660a",
+      "block_number": 26301239,
+      "block_time": "2026-10-29T21:58:35Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 4560.992800632419,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xfa2971c6a84d924cd0b6fd017d62f1a0d9dd8b8471e18d0d437b952a5e8a0a68",
+      "block_number": 26301244,
+      "block_time": "2026-10-29T21:59:35Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 113331.92297173708,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xfa2971c6a84d924cd0b6fd017d62f1a0d9dd8b8471e18d0d437b952a5e8a0a68",
+      "block_number": 26301244,
+      "block_time": "2026-10-29T21:59:35Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 5878.554328547441,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xa3bb7a102abeb8c4c06cc0842c389758e70a69d7c0741f999856c8ab7ebf4616",
+      "block_number": 26301248,
+      "block_time": "2026-10-29T22:00:23Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 172019.80330306824,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xa3bb7a102abeb8c4c06cc0842c389758e70a69d7c0741f999856c8ab7ebf4616",
+      "block_number": 26301248,
+      "block_time": "2026-10-29T22:00:23Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 11436.262758119898,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     }
+    ],
+    "attributed_sold": 423844.4651215044,
+    "blocks": [
+     26301235,
+     26301248
+    ]
    }
   },
   {
@@ -180,9 +291,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 119,
+    "transactions": 97,
+    "transactions_checked": 97,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -244,9 +367,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 5,
+    "transactions": 5,
+    "transactions_checked": 5,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -306,9 +441,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 13,
+    "transactions": 13,
+    "transactions_checked": 13,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -369,9 +516,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 24,
+    "transactions": 23,
+    "transactions_checked": 23,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -432,9 +591,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 1,
+    "transactions": 1,
+    "transactions_checked": 1,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -493,9 +664,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 12,
+    "transactions": 12,
+    "transactions_checked": 12,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -560,9 +743,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 59,
+    "transactions": 46,
+    "transactions_checked": 46,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -622,9 +817,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -684,9 +891,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -745,9 +964,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -808,9 +1039,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 4,
+    "transactions": 4,
+    "transactions_checked": 4,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -867,9 +1110,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -926,9 +1181,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -985,9 +1252,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -1044,9 +1323,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   },
   {
@@ -1103,9 +1394,21 @@
    "findings": [],
    "address_check": {
     "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
     "matches": 0,
+    "field_only_not_attributed": 0,
     "blocks": null,
     "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
    }
   }
  ]

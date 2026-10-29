@@ -9,7 +9,10 @@ the GitHub Action does NOT run it. For every tracked Ethereum token (plus tokens
   * verified anomaly findings whose window overlaps the incident window, with Evidence Card links and block ranges;
   * swaps per hour and token volume per hour in the window against the median of the covered hours of the 24 h
     (and the N days) before the window;
-  * if reported addresses are given: swaps in our tracked pools with such an address as Swap sender or recipient.
+  * if reported addresses are given: swaps in our tracked pools whose transaction was SENT by such an address (origin read
+    with eth_getTransactionByHash from a public node, batched, capped and cached); a router / solver in between = "not
+    attributed". Near-real-time rows of defi_chain.live_swaps for hours verified data does not cover yet are shown apart
+    as "live, unverified".
 
   python3 scripts/build_incident_note.py \\
       --incident binance-2026-10-29 --window-start 2026-10-29T20:00Z --window-end 2026-10-30T00:00Z \\
@@ -30,6 +33,8 @@ import re
 import statistics
 import subprocess
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -49,7 +54,6 @@ ID_RE = re.compile(r"[a-z0-9][a-z0-9-]{2,63}")
 URL_RE = re.compile(r"https://[^\s\"'<>]{4,300}")
 DEFAULT_ENV = "/Users/bg/Desktop/1inch/1inch-defi-intelligence/.env"
 DEFAULT_ADDRESSES = "/Users/bg/Desktop/1inch/commercial-audit/plans/incident-binance-addresses.json"
-MAX_MATCH_ROWS = 2000
 SHOW_TX = 10
 SWAP_TOPICS = [
     ("Uniswap v3-like Swap", "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67", "topic1 = sender, topic2 = recipient"),
@@ -63,24 +67,38 @@ INCIDENTS = {
         "title": "Reported Binance hot-wallet outflow, 29 October 2026: DEX data note",
         "short": "reported Binance hot-wallet outflow of 29 October 2026",
         "reported_at": "2026-10-29T20:24:00Z",
+        # text + optional on-chain links (label, url); third-party claims stay "reported"
         "facts": [
-            "At about 20:24 UTC on 29 October 2026 a hot wallet labelled “Binance 14” was reported to have sent about 167.5k ETH, "
-            "about 1.6 billion USDT and more than 60 other tokens (reported examples: RLUSD, wBETH, XAUt, UNI, USD1) to a newly "
-            "created address in one transaction.",
-            "A later transfer of about 780 million USDC was reported. Reported totals differ between outlets, from about "
-            "$2.5 billion upward.",
-            "Reports say the address that initiated the transaction (reported as 0x7C86…5CA0) had been funded through Tornado Cash.",
-            "Tether was reported to have frozen about 971 million USDT and Circle about 823 million USDC; later reports give higher "
-            "USDT figures.",
-            "Binance was reported to be investigating; statements quoted in the reports said user funds were safe. At the time of "
-            "these reports Binance had not formally confirmed the cause.",
+            ("At about 20:24 UTC on 29 October 2026 a hot wallet labelled “Binance 14” was reported to have sent about 167.5k ETH, "
+             "about 1.6 billion USDT and more than 60 other tokens (reported examples: RLUSD, wBETH, XAUt, UNI, USD1) to a newly "
+             "created address in one transaction.",
+             [("main transaction, block 26,300,770", f"{EXPLORER}/tx/0x53bd38b816c23e74134786c29a8c18d792777998a3b9326047b583100e88e2f3")]),
+            ("A later transfer of about 780 million USDC was reported. Reported totals differ between outlets, from about "
+             "$2.5 billion upward.", []),
+            ("Reports say the address that initiated the transaction had been funded through Tornado Cash; this comes from a "
+             "single researcher's alert and was reported as not independently confirmed.", []),
+            ("Tether was reported to have frozen about 971 million USDT and Circle about 823 million USDC; other reports give "
+             "different totals.", []),
+            ("Binance was reported to be investigating; statements quoted in the reports said user funds were safe. At the time of "
+             "these reports Binance had not formally confirmed the cause.", []),
+            ("On-chain, the reported receiving address sent 7,018,792 UNI to address 0x42cd…7810 in block 26,301,181. Public "
+             "on-chain research reported that this address then sold about 700k UNI into Uniswap pools between blocks "
+             "26,301,203 and 26,301,244; our own observation of tracked pools is in the table below.",
+             [("UNI transfer", f"{EXPLORER}/tx/0x028bdd8b5f0bda6503a760b734090f1cdbc213e90b71394b8a089b3d66eada74"),
+              ("address 0x42cd…7810", f"{EXPLORER}/address/0x42cdf00c85005630cc8605731b9364f712077810")]),
         ],
+        # labels for addresses whose role in the addresses file is broader than "initiator" / "receiver"
+        "address_labels": {
+            "0x42cdf00c85005630cc8605731b9364f712077810": "received 7,018,792 UNI from the reported receiving address (on-chain)",
+        },
         "sources": [
-            {"name": "PANews", "url": None},
+            {"name": "PANews", "url": "https://panews.io/articles/01a1896e-ed91-7224-8d9d-9d2d87e87522"},
             {"name": "BeInCrypto", "url": "https://beincrypto.com/is-binance-being-hacked-customer-funds/"},
             {"name": "Cointelegraph", "url": "https://cointelegraph.com/news/binance-linked-wallet-faces-possible-exploit-blockchain-researcher-warns"},
             {"name": "Crypto Briefing (stablecoin freezes)", "url": "https://cryptobriefing.com/tether-freezes-971m-usdt-binance-hack/"},
+            {"name": "Crypto Briefing (funding report)", "url": "https://cryptobriefing.com/binance-outflows-tornado-cash-funded-wallets/"},
             {"name": "Crypto Briefing (statements)", "url": "https://cryptobriefing.com/binance-suspected-hack-user-funds-safe/"},
+            {"name": "Blockchain Reporter", "url": "https://blockchainreporter.net/binance-hot-wallet-hack-2-5-billion/"},
         ],
     },
 }
@@ -160,8 +178,16 @@ class Backend:
         if self.token:
             headers["Authorization"] = f"Bearer {self.token}"
         req = urllib.request.Request(f"{self.base}{path}{'?' + q if q else ''}", headers=headers)
-        with self.opener.open(req, timeout=120) as resp:
-            return json.load(resp)
+        for attempt in range(6):
+            try:
+                with self.opener.open(req, timeout=120) as resp:
+                    return json.load(resp)
+            except urllib.error.HTTPError as exc:   # the backend rate-limits per minute: wait and retry
+                if exc.code != 429 or attempt == 5:
+                    raise
+                wait = exc.headers.get("Retry-After")
+                time.sleep(min(int(wait) if wait and wait.isdigit() else 10 * (attempt + 1), 60))
+        raise RuntimeError("unreachable")
 
 
 def clickhouse(cmd: list[str], sql: str, params: dict[str, str]) -> list[dict]:
@@ -171,6 +197,59 @@ def clickhouse(cmd: list[str], sql: str, params: dict[str, str]) -> list[dict]:
         raise RuntimeError(f"clickhouse query failed ({res.returncode}): {res.stderr.strip()[:500]}")
     out = res.stdout
     return [json.loads(line) for line in out.splitlines() if line.strip()]
+
+
+
+class TxOrigin:
+    """Transaction hash -> transaction origin (`from`) via eth_getTransactionByHash on a public node: batched, capped, cached.
+
+    A transaction's `from` never changes, so resolved origins are cached on disk between runs (outside the site repo)."""
+
+    def __init__(self, rpc: str, cache_file: str, cap: int, batch: int = 50):
+        self.rpc, self.cap, self.batch = rpc, cap, batch
+        self.cache_path = Path(cache_file).expanduser()
+        try:
+            self.cache: dict[str, str] = json.loads(self.cache_path.read_text())
+        except (OSError, ValueError):
+            self.cache = {}
+        self.fetched = 0
+        self.failed = 0
+
+    def _call(self, hashes: list[str]) -> dict[str, str]:
+        body = json.dumps([{"jsonrpc": "2.0", "id": i, "method": "eth_getTransactionByHash", "params": [h]}
+                           for i, h in enumerate(hashes)]).encode()
+        req = urllib.request.Request(self.rpc, data=body, headers={"Content-Type": "application/json",
+                                                                   "User-Agent": "watam-incident-note/1.0"})
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(req, timeout=60) as resp:  # noqa: S310 (fixed https RPC URL)
+                    out = json.load(resp)
+                break
+            except (urllib.error.URLError, TimeoutError, ValueError):
+                if attempt == 3:
+                    return {}
+                time.sleep(2 * (attempt + 1))
+        res = {}
+        for item in out if isinstance(out, list) else []:
+            tx = item.get("result") or {}
+            frm, h = str(tx.get("from") or ""), str(tx.get("hash") or "").lower()
+            if EVM_RE.fullmatch(frm) and h in hashes:
+                res[h] = frm.lower()
+        return res
+
+    def resolve(self, hashes: list[str]) -> dict[str, str]:
+        todo = [h for h in dict.fromkeys(hashes) if h not in self.cache][: max(self.cap, 0)]
+        for i in range(0, len(todo), self.batch):
+            chunk = todo[i:i + self.batch]
+            got = self._call(chunk)
+            self.cache.update(got)
+            self.fetched += len(got)
+            self.failed += len(chunk) - len(got)
+            time.sleep(0.2)
+        if todo:
+            self.cache_path.parent.mkdir(parents=True, exist_ok=True)
+            self.cache_path.write_text(json.dumps(self.cache))
+        return {h: self.cache[h] for h in hashes if h in self.cache}
 
 
 # ---------------------------------------------------------------- inputs
@@ -226,6 +305,9 @@ def collect(args, incident: dict) -> dict:
     be = Backend(args.backend, read_token(args.env_file))
     ch_cmd = args.clickhouse_cmd.split()
     addrs = load_addresses(args.addresses)
+    for a in addrs["addresses"]:
+        if a["label"] == ROLE_LABEL[a["role"]] and a["address"] in incident.get("address_labels", {}):
+            a["label"] = incident["address_labels"][a["address"]]
     catalog = be.get("/api/public/catalog")
 
     tokens: list[dict] = []
@@ -265,37 +347,57 @@ def collect(args, incident: dict) -> dict:
         window_blocks = {"from": int(rows[0]["lo"]), "to": int(rows[0]["hi"]),
                          "source": "first and last block of decoded swaps in tracked pools inside the window"}
 
-    matches: list[dict] = []
-    if addrs["addresses"]:
-        alist = [a["address"] for a in addrs["addresses"]]
-        matches = clickhouse(ch_cmd,
-                             "SELECT pool, family, block_number, toString(block_time) AS bt, tx_hash, lower(sender) AS sender, "
-                             "lower(recipient) AS recipient, token0, token1 FROM defi_chain.decoded_swaps FINAL "
-                             "WHERE chain_id = {chain:UInt32} AND block_time >= {f:DateTime('UTC')} AND block_time < {t:DateTime('UTC')} "
-                             "AND (has({a:Array(String)}, lower(sender)) OR has({a:Array(String)}, lower(recipient))) "
-                             f"ORDER BY block_number, tx_hash LIMIT {MAX_MATCH_ROWS}",
-                             {"chain": str(CHAIN_ID), "a": ch_array(alist), "f": ch_ts(ws), "t": ch_ts(we)})
-        role = {a["address"]: a["role"] for a in addrs["addresses"]}
-        for m in matches:
-            m["block_number"] = int(m["block_number"])
-            m["block_time"] = m.pop("bt").replace(" ", "T") + "Z"
-            m["roles"] = sorted({f"{'sender' if a == m['sender'] else 'recipient'}: {role[a]}"
-                                 for a in (m["sender"], m["recipient"]) if a in role})
-
     window_hours = hours(ws, we)
     elapsed = [h for h in window_hours if h + timedelta(hours=1) <= now]
+    cov_sets: dict[str, set[datetime]] = {}
+    cov_errors: dict[str, str] = {}
+    for a in tracked:
+        try:
+            cov = be.get(f"/api/platform/explorer/{CHAIN_ID}/{a}/coverage", from_time=iso(b7), to_time=iso(we))
+            cov_sets[a] = covered_hours(cov, b7, we)
+        except Exception as exc:  # noqa: BLE001 — reported as missing coverage, never guessed
+            cov_sets[a], cov_errors[a] = set(), type(exc).__name__
+
+    # Reported addresses: a swap is attributed only when the transaction origin (`from`) is a reported address. Swap
+    # sender / recipient are usually a router, aggregator or solver, so a field match alone is "not attributed".
+    verified_rows: list[dict] = []
+    live_rows: list[dict] = []
+    origins: dict[str, str] = {}
+    origin_stats = None
+    if addrs["addresses"] and tracked:
+        p = {"chain": str(CHAIN_ID), "tokens": ch_array(tracked), "f": ch_ts(ws), "t": ch_ts(we)}
+        verified_rows = clickhouse(ch_cmd,
+                                   "SELECT pool, family, block_number, toString(block_time) AS bt, tx_hash, lower(sender) AS sender, "
+                                   "lower(recipient) AS recipient, token0, token1, toString(amount0_raw) AS a0, toString(amount1_raw) AS a1 "
+                                   "FROM defi_chain.decoded_swaps FINAL WHERE chain_id = {chain:UInt32} "
+                                   "AND block_time >= {f:DateTime('UTC')} AND block_time < {t:DateTime('UTC')} "
+                                   "AND (has({tokens:Array(String)}, token0) OR has({tokens:Array(String)}, token1)) "
+                                   "ORDER BY block_number, tx_hash, log_index", p)
+        live_rows = clickhouse(ch_cmd,
+                               "SELECT token, pool, family, block_number, toString(block_time) AS bt, tx_hash, side, token_amount, "
+                               "lower(sender) AS sender, lower(recipient) AS recipient FROM defi_chain.live_swaps FINAL "
+                               "WHERE chain_id = {chain:UInt32} AND block_time >= {f:DateTime('UTC')} AND block_time < {t:DateTime('UTC')} "
+                               "AND has({tokens:Array(String)}, token) ORDER BY block_number, tx_hash, log_index", p)
+        for r in verified_rows + live_rows:
+            r["block_number"] = int(r["block_number"])
+            r["block_time"] = r.pop("bt").replace(" ", "T") + "Z"
+            r["hour"] = utc(r["block_time"]).replace(minute=0, second=0)
+            r["tx_hash"] = str(r["tx_hash"]).lower()
+        # verified swaps count only inside covered hours; live rows only where verified data does not cover the hour yet
+        verified_rows = [r for r in verified_rows if any(r["hour"] in cov_sets.get(tk, set()) for tk in (r["token0"], r["token1"]))]
+        live_rows = [r for r in live_rows if r["hour"] not in cov_sets.get(r["token"], set())]
+        resolver = TxOrigin(args.rpc, args.tx_cache, args.max_tx_lookups)
+        wanted = [r["tx_hash"] for r in verified_rows + live_rows if HASH_RE.fullmatch(r["tx_hash"])]
+        origins = resolver.resolve(wanted)
+        origin_stats = {"rpc": args.rpc, "transactions": len(set(wanted)), "resolved": len(set(wanted) & set(origins)),
+                        "fetched_this_run": resolver.fetched, "failed_this_run": resolver.failed, "cap": args.max_tx_lookups}
+    reported = {a["address"]: a for a in addrs["addresses"]}
+
     out_tokens = []
     for t in tokens:
         a = t["address"]
-        row = dict(t, pools=pools.get(a, []), coverage_error=None)
-        if t["tracked"]:
-            try:
-                cov = be.get(f"/api/platform/explorer/{CHAIN_ID}/{a}/coverage", from_time=iso(b7), to_time=iso(we))
-                cov_set = covered_hours(cov, b7, we)
-            except Exception as exc:  # noqa: BLE001 — reported as missing coverage, never guessed
-                cov_set, row["coverage_error"] = set(), type(exc).__name__
-        else:
-            cov_set = set()
+        row = dict(t, pools=pools.get(a, []), coverage_error=cov_errors.get(a))
+        cov_set = cov_sets.get(a, set())
 
         def series(hs: list[datetime]) -> list[dict]:
             res = []
@@ -354,11 +456,36 @@ def collect(args, incident: dict) -> dict:
                     "public_rpc": {k: rpc.get(k) for k in ("method", "address", "topics", "fromBlock", "toBlock") if k in rpc},
                 })
 
-        tm = [m for m in matches if a in (m["token0"], m["token1"])]
+        vr = [r for r in verified_rows if a in (r["token0"], r["token1"])]
+        txs = {r["tx_hash"] for r in vr}
+        attributed, field_only = [], 0
+        for r in vr:
+            origin = origins.get(r["tx_hash"])
+            raw = int(r["a0"] if r["token0"] == a else r["a1"])
+            item = {"tx_hash": r["tx_hash"], "block_number": r["block_number"], "block_time": r["block_time"], "pool": r["pool"],
+                    "family": r["family"], "side": "sell" if raw > 0 else "buy"}
+            if origin in reported:
+                attributed.append(dict(item, origin=origin, origin_label=reported[origin]["label"]))
+            elif r["sender"] in reported or r["recipient"] in reported:
+                field_only += 1
+        lr = [r for r in live_rows if r["token"] == a]
+        live_attr = [{"tx_hash": r["tx_hash"], "block_number": r["block_number"], "block_time": r["block_time"], "pool": r["pool"],
+                      "family": r["family"], "side": r["side"], "token_amount": float(r["token_amount"] or 0),
+                      "origin": origins[r["tx_hash"]], "origin_label": reported[origins[r["tx_hash"]]]["label"]}
+                     for r in lr if origins.get(r["tx_hash"]) in reported]
         row["address_check"] = {
-            "run": bool(addrs["addresses"]), "matches": len(tm),
-            "blocks": [tm[0]["block_number"], tm[-1]["block_number"]] if tm else None,
-            "swaps": [{k: m[k] for k in ("tx_hash", "block_number", "block_time", "pool", "family", "roles")} for m in tm],
+            "run": bool(addrs["addresses"]), "method": "transaction origin (from) via eth_getTransactionByHash",
+            "transactions": len(txs), "transactions_checked": len(txs & set(origins)),
+            "matches": len(attributed), "field_only_not_attributed": field_only,
+            "blocks": [attributed[0]["block_number"], attributed[-1]["block_number"]] if attributed else None,
+            "swaps": attributed,
+        }
+        row["live_unverified"] = {
+            "swaps": len(lr), "transactions": len({r["tx_hash"] for r in lr}),
+            "transactions_checked": len({r["tx_hash"] for r in lr} & set(origins)),
+            "attributed": live_attr,
+            "attributed_sold": sum(x["token_amount"] for x in live_attr if x["side"] == "sell"),
+            "blocks": [live_attr[0]["block_number"], live_attr[-1]["block_number"]] if live_attr else None,
         }
         out_tokens.append(row)
 
@@ -372,7 +499,7 @@ def collect(args, incident: dict) -> dict:
         "baseline": {"h24": [iso(b24), iso(ws)], "days": args.baseline_days, "range": [iso(b7), iso(ws)]},
         "window_blocks": window_blocks,
         "addresses": {k: addrs[k] for k in ("file", "addresses", "sources", "rejected")},
-        "address_matches_truncated": len(matches) >= MAX_MATCH_ROWS,
+        "tx_origin_lookup": origin_stats,
         "tokens": out_tokens,
     }
 
@@ -395,18 +522,30 @@ def cov_cell(t: dict) -> str:
 
 
 def addr_cell(t: dict) -> str:
+    txt = _addr_cell(t)
+    lv = (t.get("live_unverified") or {}).get("attributed") or []
+    if lv:
+        txt += f" · live, unverified: {len(lv)} swap(s) in transactions sent by a reported address"
+    return txt
+
+
+def _addr_cell(t: dict) -> str:
     ac, w = t["address_check"], t["window"]
     if not t["tracked"]:
         return "n/a"
     if not ac["run"]:
         return "Not checked: no confirmed addresses yet"
     if ac["matches"]:
-        return f"Observed: {ac['matches']} swap(s), blocks {fnum(ac['blocks'][0])}–{fnum(ac['blocks'][1])}"
+        return (f"Observed: {ac['matches']} swap(s) in transactions sent by a reported address, "
+                f"blocks {fnum(ac['blocks'][0])}–{fnum(ac['blocks'][1])}")
     if w["hours_covered"] == 0:
         return "Not covered yet"
-    if w["hours_covered"] == w["hours_expected"]:
-        return f"Not observed in {w['hours_covered']} covered hours"
-    return f"Not observed in {w['hours_covered']} covered hours; {w['hours_expected'] - w['hours_covered']} not covered yet"
+    unchecked = ac["transactions"] - ac["transactions_checked"]
+    txt = (f"Not attributed: none of {fnum(ac['transactions_checked'])} checked transaction(s) was sent by a reported address"
+           + (f"; {fnum(unchecked)} not checked" if unchecked else ""))
+    if w["hours_covered"] < w["hours_expected"]:
+        txt += f"; {w['hours_expected'] - w['hours_covered']} h not covered yet"
+    return txt
 
 
 def mult(x: float | None) -> str:
@@ -440,7 +579,9 @@ def render(data: dict, incident: dict, index: bool) -> str:
         "customer impact or recovery of funds.</p>\n",
         '<h2 id="reported">What was reported</h2>\n<ul class="doc">\n',
     ]
-    body += [f"  <li>{esc(f)}</li>\n" for f in incident["facts"]]
+    for text, flinks in incident["facts"]:
+        extra = " ".join(f'(<a href="{esc(u)}" rel="nofollow noopener">{esc(lbl)}</a>)' for lbl, u in flinks)
+        body.append(f"  <li>{esc(text)}{' ' + extra if extra else ''}</li>\n")
     body.append("</ul>\n")
     srcs = incident["sources"] + [s for s in data["addresses"].get("sources") or [] if s.get("name")]
     links = [f'<a href="{esc(s["url"])}" rel="nofollow noopener">{esc(s["name"])}</a>' if s.get("url") else f"{esc(s['name'])} (link pending review)"
@@ -471,25 +612,36 @@ def render(data: dict, incident: dict, index: bool) -> str:
         v_detail = "Swaps per hour at least 2× the 24 h median: " + ", ".join(f"{esc(tok_label(t))} ({mult(t['multiple_swaps_vs_24h'])})" for t in high) + "."
     else:
         v_status, v_detail = "Not observed", "No tracked token reached 2× its 24 h median of swaps per hour in the covered window hours."
+    n_tx = sum(t["address_check"]["transactions"] for t in tracked)
+    n_chk = sum(t["address_check"]["transactions_checked"] for t in tracked)
+    n_live = sum(len((t.get("live_unverified") or {}).get("attributed") or []) for t in tracked)
     if not addr_run:
         a_status, a_detail = "Not checked yet", "No reported address has been confirmed from public sources yet; the check runs once they are."
     elif n_match:
-        a_status, a_detail = "Observed", f"{n_match} swap(s) in tracked pools with a reported address as Swap sender or recipient (details below)."
+        a_status = "Observed"
+        a_detail = (f"{n_match} swap(s) in tracked pools in transactions whose origin (the transaction's from address) is a reported "
+                    "address (details below).")
     elif cov == 0:
         a_status, a_detail = "Not covered yet", f"{len(data['addresses']['addresses'])} reported address(es) to check; no covered hours yet."
     else:
-        a_status = "Not observed"
-        a_detail = (f"No swap in tracked pools with a reported address as Swap sender or recipient in {cov} covered token-hours"
+        a_status = "Not attributed"
+        a_detail = (f"None of {n_chk} checked transaction(s) with swaps in tracked pools was sent by a reported address"
+                    + (f"; {n_tx - n_chk} transaction(s) not checked" if n_tx > n_chk else "")
                     + ("." if cov == exp else f"; {exp - cov} token-hours not covered yet."))
+    if addr_run and n_live:
+        a_detail += (f" Live, unverified: {n_live} swap(s) in transactions sent by a reported address, shown separately below until the "
+                     "next scheduled run verifies them.")
     body += [
         '<h2 id="observed">What we observed and did not observe</h2>\n<div class="tbl"><table>\n',
         '<thead><tr><th scope="col">Question</th><th scope="col">Status</th><th scope="col">Detail</th></tr></thead>\n<tbody>\n',
         row("Coverage of the window", esc(cov_status), esc(cov_detail)),
         row("Verified anomaly findings in the window", esc(f_status), esc(f_detail)),
         row("Swap activity against the 24 h baseline", esc(v_status), v_detail if v_status == "Observed" else esc(v_detail)),
-        row("Swaps by reported addresses in tracked pools", esc(a_status), esc(a_detail)),
+        row("Swaps sent by reported addresses in tracked pools", esc(a_status), esc(a_detail)),
         "</tbody></table></div>\n",
-        '<p class="fine">“Not observed” is stated only for hours that are fully covered. Scope: the verified pools we ingest for each '
+        '<p class="fine">“Not observed” is stated only for hours that are fully covered. A swap is attributed to a reported address '
+        "only when that address sent the transaction; a router, aggregator or solver in between is “not attributed”. "
+        "Scope: the verified pools we ingest for each "
         "token on Ethereum; other venues, other chains and centralised exchanges are not counted.</p>\n",
     ]
 
@@ -563,18 +715,42 @@ def render(data: dict, incident: dict, index: bool) -> str:
             body.append(f'<tr><td><a href="{EXPLORER}/address/{esc(a["address"])}"><code>{esc(a["address"])}</code></a></td>'
                         f"<td>{esc(a['label'])}</td><td>{src or 'as reported in the sources above'}</td></tr>\n")
         body.append("</tbody></table></div>\n")
-        ms = [(t, s) for t in tracked for s in t["address_check"]["swaps"]]
-        if ms:
+        def swap_table(items: list, live: bool) -> None:
+            amt = '<th scope="col" class="n">Token amount</th>' if live else ""
             body.append('<div class="tbl"><table>\n<thead><tr><th scope="col">Token</th><th scope="col" class="n">Block</th>'
-                        '<th scope="col">Time (UTC)</th><th scope="col">Transaction</th><th scope="col">Pool</th><th scope="col">Match</th></tr></thead>\n<tbody>\n')
-            for t, s in ms[: SHOW_TX * 5]:
-                tx = s["tx_hash"] if HASH_RE.fullmatch(str(s["tx_hash"])) else ""
-                body.append(f'<tr><td>{esc(tok_label(t))}</td><td class="n">{fnum(s["block_number"])}</td><td>{esc(s["block_time"])}</td>'
+                        '<th scope="col">Time (UTC)</th><th scope="col">Transaction</th><th scope="col">Pool</th>'
+                        f'<th scope="col">Side</th>{amt}<th scope="col">Transaction sent by</th></tr></thead>\n<tbody>\n')
+            for t, x in items[: SHOW_TX * 5]:
+                tx = x["tx_hash"] if HASH_RE.fullmatch(str(x["tx_hash"])) else ""
+                a_cell = f'<td class="n">{fnum(x.get("token_amount"))}</td>' if live else ""
+                body.append(f'<tr><td>{esc(tok_label(t))}</td><td class="n">{fnum(x["block_number"])}</td><td>{esc(x["block_time"])}</td>'
                             f'<td><a href="{EXPLORER}/tx/{esc(tx)}"><code>{esc(short(tx))}</code></a></td>'
-                            f'<td><code>{esc(short(str(s["pool"])))}</code></td><td>{esc("; ".join(s["roles"]))}</td></tr>\n')
+                            f'<td><code>{esc(short(str(x["pool"])))}</code></td><td>{esc(x["side"])}</td>{a_cell}'
+                            f'<td><code>{esc(short(x["origin"]))}</code> ({esc(x["origin_label"])})</td></tr>\n')
             body.append("</tbody></table></div>\n")
-            if len(ms) > SHOW_TX * 5 or data.get("address_matches_truncated"):
-                body.append('<p class="fine">More matches are listed in the JSON data file.</p>\n')
+            if len(items) > SHOW_TX * 5:
+                body.append('<p class="fine">More rows are listed in the JSON data file.</p>\n')
+
+        ms = [(t, x) for t in tracked for x in t["address_check"]["swaps"]]
+        if ms:
+            body.append('<h3 id="attributed">Verified swaps in transactions sent by a reported address</h3>\n')
+            swap_table(ms, live=False)
+        ol = data.get("tx_origin_lookup") or {}
+        if ol:
+            body.append(f'<p class="fine">Transaction origins resolved with eth_getTransactionByHash: {fnum(ol.get("resolved"))} of '
+                        f'{fnum(ol.get("transactions"))} transaction(s). Swap rows whose sender or recipient field is a reported address but '
+                        f'whose transaction was sent by another address: {fnum(sum(t["address_check"]["field_only_not_attributed"] for t in tracked))} '
+                        "(not attributed).</p>\n")
+        lv = [(t, x) for t in tracked for x in (t.get("live_unverified") or {}).get("attributed") or []]
+        if lv:
+            body.append('<h3 id="live">Live data, unverified (confirmed after the next 12-hour run)</h3>\n')
+            body.append('<p class="note">Near-real-time swaps from our live feed, for hours that verified data does not cover yet. They are '
+                        "not verified and carry no Evidence Card; they are replaced by verified data after the next scheduled run.</p>\n")
+            sold = ", ".join(f"{esc(tok_label(t))}: {fnum(t['live_unverified']['attributed_sold'])} sold in "
+                             f"{len(t['live_unverified']['attributed'])} swap(s), blocks {fnum(t['live_unverified']['blocks'][0])}–"
+                             f"{fnum(t['live_unverified']['blocks'][1])}" for t in tracked if (t.get("live_unverified") or {}).get("attributed"))
+            body.append(f'<p class="intro">{sold}.</p>\n')
+            swap_table(lv, live=True)
 
     # method + verify
     wb = data.get("window_blocks")
@@ -590,9 +766,10 @@ def render(data: dict, incident: dict, index: bool) -> str:
         f"{days} days before it, for swaps per hour and token volume per hour.</li>\n",
         "  <li>Findings: verified anomaly findings whose observation window overlaps the incident window. A finding is a "
         "statistical change in the measured pools; it does not identify a cause.</li>\n",
-        "  <li>Reported addresses: matched against the sender and recipient fields of decoded Swap events. A trade routed through "
-        "an aggregator or router shows the router as sender, and the transaction signer is not checked, so “not observed” "
-        "means not observed in these fields of these pools only.</li>\n",
+        "  <li>Reported addresses: for every transaction with a swap in a tracked pool inside covered hours, the transaction's "
+        "origin (its from address) is read with eth_getTransactionByHash from a public node. A swap counts as observed only "
+        "when that origin is a reported address. Swaps filled by a solver or relayer on someone's behalf are sent by the "
+        "solver, so they are “not attributed” even when the tokens came from a reported address.</li>\n",
         "</ul>\n",
         '<h2 id="verify">How to verify</h2>\n',
         f'<p class="intro">Anyone can re-read the same logs from a public {esc(NETWORK_NAME)} JSON-RPC node, without access to our database. {esc(wb_txt)}</p>\n',
@@ -604,6 +781,8 @@ def render(data: dict, incident: dict, index: bool) -> str:
         '  "fromBlock": "&lt;first block of the window, hex&gt;",\n'
         '  "toBlock":   "&lt;last block of the window, hex&gt;"\n'
         "}]}</pre>\n",
+        '<p class="intro">To check who sent a listed transaction: <code>{"method": "eth_getTransactionByHash", "params": ["&lt;tx hash&gt;"]}</code> '
+        "returns its <code>from</code> address.</p>\n",
         '<div class="tbl"><table>\n<thead><tr><th scope="col">Event</th><th scope="col">topic0</th><th scope="col">Indexed fields</th></tr></thead>\n<tbody>\n',
     ]
     body += [f"<tr><td>{esc(n)}</td><td><code>{esc(t0)}</code></td><td>{esc(d)}</td></tr>\n" for n, t0, d in SWAP_TOPICS]
@@ -640,6 +819,9 @@ def main() -> int:
     p.add_argument("--backend", default="http://127.0.0.1:8010")
     p.add_argument("--env-file", default=DEFAULT_ENV, help="file with APP_ACCESS_TOKEN (never printed)")
     p.add_argument("--clickhouse-cmd", default="docker exec defi-clickhouse clickhouse-client")
+    p.add_argument("--rpc", default="https://ethereum-rpc.publicnode.com", help="public JSON-RPC for transaction origins")
+    p.add_argument("--max-tx-lookups", type=int, default=5000, help="cap on new eth_getTransactionByHash lookups per run")
+    p.add_argument("--tx-cache", default="~/.cache/watam-incident/tx-origin-ethereum.json")
     p.add_argument("--out", default=str(Path(__file__).resolve().parent.parent))
     p.add_argument("--index", action="store_true", help="allow indexing (default: noindex until reviewed)")
     p.add_argument("--render-only", action="store_true", help="re-render index.html from the existing data.json")
@@ -660,10 +842,14 @@ def main() -> int:
         data_file.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n")
     (out_dir / "index.html").write_text(render(data, incident, args.index))
     tracked = [t for t in data["tokens"] if t["tracked"]]
+    errs = [t["symbol"] or t["address"] for t in tracked if t.get("coverage_error")]
+    if errs:
+        print(f"warning: coverage unavailable (shown as not covered yet) for: {', '.join(errs)}", file=sys.stderr)
     print(f"{out_dir}/index.html: {len(tracked)} tracked tokens, "
           f"{sum(t['window']['hours_covered'] for t in tracked)}/{sum(t['window']['hours_expected'] for t in tracked)} token-hours covered, "
           f"{sum(len(t['findings']) for t in tracked)} findings, {len(data['addresses']['addresses'])} addresses, "
-          f"{sum(t['address_check']['matches'] for t in tracked)} address matches, robots={'index' if args.index else 'noindex'}")
+          f"{sum(t['address_check']['matches'] for t in tracked)} attributed swaps, "
+          f"{sum(len((t.get('live_unverified') or {}).get('attributed') or []) for t in tracked)} live unverified attributed, robots={'index' if args.index else 'noindex'}")
     return 0
 
 
