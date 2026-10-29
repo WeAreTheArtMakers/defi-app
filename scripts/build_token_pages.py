@@ -21,6 +21,7 @@ import argparse
 import html
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -92,6 +93,23 @@ def iso_z(value: str | None) -> str | None:
 
 def num(n) -> str:
     return f"{n:,}" if isinstance(n, int) else "n/a"
+
+
+# Catalog fields that become file paths must look like a network key and a contract / mint / TON raw address: anything else
+# (e.g. "../") is skipped rather than written outside tokens/.
+NETWORK_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,31}$")
+ADDRESS_RE = re.compile(r"^(0x[0-9a-fA-F]{40}|-?[0-9]{1,3}:[0-9a-fA-F]{64}|[1-9A-HJ-NP-Za-km-z]{32,44})$")
+MAX_SHRINK = 0.8          # refuse a catalog with fewer than 80 % of the pages already built (a partial API answer)
+
+
+def valid_entry(entry: dict) -> bool:
+    return bool(NETWORK_RE.match(str(entry.get("network") or "")) and ADDRESS_RE.match(str(entry.get("address") or "")))
+
+
+def plain(s: object, limit: int = 48) -> str:
+    """On-chain names / symbols as inert text for llms-full.txt: no markdown, links or line breaks."""
+    s = re.sub(r"[^\w .,+&'/-]", "", str(s or ""), flags=re.UNICODE)
+    return re.sub(r"\s+", " ", s).strip()[:limit]
 
 
 def vm_of(entry: dict) -> str:
@@ -270,7 +288,7 @@ def facts_rows(entry: dict, catalog: dict) -> list[tuple[str, str]]:
         (ADDRESS_LABEL.get(vm, "Address"), f"<code>{esc(entry['address'])}</code>"),
     ]
     if entry.get("name"):
-        rows.insert(0, ("Token", f"{esc(entry.get('symbol') or '')} ({esc(entry['name'])})"))
+        rows.insert(0, ("Token", f"{esc(display_symbol(entry))} ({esc(entry['name'])})"))
     badge = STATUS_BADGE.get(entry.get("status"), "col")
     rows.append(("Status", f'<span class="badge {badge}">{esc(STATUS_LABEL.get(entry.get("status"), str(entry.get("status"))))}</span> {esc(status_text(entry, catalog))}'))
     if entry.get("history_from"):
@@ -583,7 +601,8 @@ def llms_full(catalog: dict, entries: list[dict]) -> str:
         out.append("")
         for e in rows:
             p = e.get("proof") or {}
-            line = (f"- [{display_symbol(e)} ({e.get('name') or ''}) on {n['name']}]({SITE}{page_path(e)}): {num(p.get('verified_swaps'))} verified swaps, "
+            name = plain(e.get("name"))
+            line = (f"- [{plain(display_symbol(e))}{f' ({name})' if name else ''} on {n['name']}]({SITE}{page_path(e)}): {num(p.get('verified_swaps'))} verified swaps, "
                     f"{num(p.get('pools'))} pools, history from {fmt_day(e.get('history_from'))}")
             if "findings" in p:
                 line += f", {num(p['findings'])} anomaly findings"
@@ -611,10 +630,17 @@ def build(args) -> int:
     else:
         catalog = fetch_catalog(CATALOG_URL)
     entries = [e for e in catalog.get("entries") or [] if e.get("address") and e.get("network")]
+    for e in [e for e in entries if not valid_entry(e)]:
+        print(f"skipping an entry with an unexpected network / address: {e.get('network')!r} {e.get('address')!r}", file=sys.stderr)
+    entries = [e for e in entries if valid_entry(e)]
     if catalog.get("status_source") != "ok" or len(entries) < 10 or not catalog.get("generated_at"):
         print(f"refusing to build: status_source={catalog.get('status_source')!r}, entries={len(entries)}", file=sys.stderr)
         return 2
     out = Path(args.out).resolve()
+    built = len(list((out / "tokens").glob("*/*/index.html")))
+    if built and len(entries) < MAX_SHRINK * built:
+        print(f"refusing to build: {len(entries)} entries against {built} pages already built (a partial catalog?)", file=sys.stderr)
+        return 2
     seen: dict[str, dict] = {}
     for e in entries:
         key = page_path(e).lower()
