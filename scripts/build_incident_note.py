@@ -561,7 +561,7 @@ def render(data: dict, incident: dict, index: bool) -> str:
             if a.get("source_url"):
                 src = f'<a href="{esc(a["source_url"])}" rel="nofollow noopener">{src or "source"}</a>'
             body.append(f'<tr><td><a href="{EXPLORER}/address/{esc(a["address"])}"><code>{esc(a["address"])}</code></a></td>'
-                        f"<td>{esc(a['label'])}</td><td>{src or 'n/a'}</td></tr>\n")
+                        f"<td>{esc(a['label'])}</td><td>{src or 'as reported in the sources above'}</td></tr>\n")
         body.append("</tbody></table></div>\n")
         ms = [(t, s) for t in tracked for s in t["address_check"]["swaps"]]
         if ms:
