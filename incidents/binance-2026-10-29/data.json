@@ -1,0 +1,1415 @@
+{
+ "version": "incident-note/1.0",
+ "incident_id": "binance-2026-10-29",
+ "generated_at": "2026-10-29T22:08:50Z",
+ "catalog_generated_at": "2026-10-29T22:08:50.453917+00:00",
+ "network": {
+  "key": "ethereum",
+  "name": "Ethereum",
+  "chain_id": 1
+ },
+ "window": {
+  "start": "2026-10-29T20:00:00Z",
+  "end": "2026-10-30T00:00:00Z",
+  "hours": 4
+ },
+ "baseline": {
+  "h24": [
+   "2026-10-28T20:00:00Z",
+   "2026-10-29T20:00:00Z"
+  ],
+  "days": 7,
+  "range": [
+   "2026-10-22T20:00:00Z",
+   "2026-10-29T20:00:00Z"
+  ]
+ },
+ "window_blocks": null,
+ "addresses": {
+  "file": "incident-binance-addresses.json",
+  "addresses": [
+   {
+    "address": "0x7c8601d4645b93cea45f71e118a729332e6b5ca0",
+    "role": "initiator",
+    "label": "reported initiating address",
+    "source": null,
+    "source_url": null
+   },
+   {
+    "address": "0x5227f603c1ee34ce3c06efe6477003bdfccb2f8c",
+    "role": "receiver",
+    "label": "reported receiving address",
+    "source": null,
+    "source_url": null
+   },
+   {
+    "address": "0x42cdf00c85005630cc8605731b9364f712077810",
+    "role": "receiver",
+    "label": "received 7,018,792 UNI from the reported receiving address (on-chain)",
+    "source": null,
+    "source_url": null
+   }
+  ],
+  "sources": [],
+  "rejected": 0
+ },
+ "tx_origin_lookup": {
+  "rpc": "https://ethereum-rpc.publicnode.com",
+  "transactions": 349,
+  "resolved": 349,
+  "fetched_this_run": 0,
+  "failed_this_run": 0,
+  "cap": 5000
+ },
+ "tokens": [
+  {
+   "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+   "symbol": "UNI",
+   "name": "Uniswap",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T13:00:00+00:00",
+   "pools": [
+    "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+    "0x3470447f3cecffac709d3e783a307790b0208d60",
+    "0x360b9726186c0f62cc719450685ce70280774dc8",
+    "0x59c38b6775ded821f010dbd30ecabdcf84e04756",
+    "0x9f178e86e42ddf2379cb3d2acf9ed67a1ed2550a"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 17,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 52.0,
+    "median_token_volume_per_hour": 26112.796449752244
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 161,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 36.0,
+    "median_token_volume_per_hour": 11219.77358850595
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 222,
+    "transactions": 188,
+    "transactions_checked": 188,
+    "attributed": [
+     {
+      "tx_hash": "0xe4430dd3235cfe335a7589686b3522dbd9e65bfb0dd155fd60986ecf6860697d",
+      "block_number": 26301235,
+      "block_time": "2026-10-29T21:57:47Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 40826.384667286504,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xe4430dd3235cfe335a7589686b3522dbd9e65bfb0dd155fd60986ecf6860697d",
+      "block_number": 26301235,
+      "block_time": "2026-10-29T21:57:47Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 2399.8387807946456,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0x3070929607a40573ffe9c5ec88d862bb00bb049b1b176092b5480c9098e2660a",
+      "block_number": 26301239,
+      "block_time": "2026-10-29T21:58:35Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 73390.70551131814,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0x3070929607a40573ffe9c5ec88d862bb00bb049b1b176092b5480c9098e2660a",
+      "block_number": 26301239,
+      "block_time": "2026-10-29T21:58:35Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 4560.992800632419,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xfa2971c6a84d924cd0b6fd017d62f1a0d9dd8b8471e18d0d437b952a5e8a0a68",
+      "block_number": 26301244,
+      "block_time": "2026-10-29T21:59:35Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 113331.92297173708,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xfa2971c6a84d924cd0b6fd017d62f1a0d9dd8b8471e18d0d437b952a5e8a0a68",
+      "block_number": 26301244,
+      "block_time": "2026-10-29T21:59:35Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 5878.554328547441,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xa3bb7a102abeb8c4c06cc0842c389758e70a69d7c0741f999856c8ab7ebf4616",
+      "block_number": 26301248,
+      "block_time": "2026-10-29T22:00:23Z",
+      "pool": "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 172019.80330306824,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     },
+     {
+      "tx_hash": "0xa3bb7a102abeb8c4c06cc0842c389758e70a69d7c0741f999856c8ab7ebf4616",
+      "block_number": 26301248,
+      "block_time": "2026-10-29T22:00:23Z",
+      "pool": "0x3470447f3cecffac709d3e783a307790b0208d60",
+      "family": "uniswap-v3-like",
+      "side": "sell",
+      "token_amount": 11436.262758119898,
+      "origin": "0x42cdf00c85005630cc8605731b9364f712077810",
+      "origin_label": "received 7,018,792 UNI from the reported receiving address (on-chain)"
+     }
+    ],
+    "attributed_sold": 423844.4651215044,
+    "blocks": [
+     26301235,
+     26301248
+    ]
+   }
+  },
+  {
+   "address": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+   "symbol": "AAVE",
+   "name": "Aave Token",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x14243ea6bb3d64c8d54a1f47b077e23394d6528a",
+    "0x4674abc5796e1334b5075326b39b748bee9eaa34",
+    "0x4d1ad4a9e61bc0e5529d64f38199ccfca56f5a42",
+    "0x59c38b6775ded821f010dbd30ecabdcf84e04756",
+    "0x5ab53ee1d50eef2c1dd3d5402789cd27bb52c1bb"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 85.0,
+    "median_token_volume_per_hour": 594.0511590017321
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 68.0,
+    "median_token_volume_per_hour": 264.3824503264208
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 119,
+    "transactions": 97,
+    "transactions_checked": 97,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+   "symbol": "LDO",
+   "name": "Lido DAO Token",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x78235d08b2ae7a3e00184329212a4d7acd2f9985",
+    "0xa3f558aebaecaf0e11ca4b2199cc5ed341edfd74",
+    "0xcfecc1c9f3cb6190cb1ff7f65a130bfbe5107d38",
+    "0xf4ad61db72f114be877e87d62dc5e7bd52df4d9b"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 32.0,
+    "median_token_volume_per_hour": 14850.652940856138
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 21.0,
+    "median_token_volume_per_hour": 7320.814323147882
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 5,
+    "transactions": 5,
+    "transactions_checked": 5,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x808507121b80c02388fad14726482e061b8da827",
+   "symbol": "PENDLE",
+   "name": "Pendle",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x57af956d3e2cca3b86f3d8c6772c03ddca3eaacb",
+    "0xeabd8ac13aebe63492ea6520f94e0d2f015e7904"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 15.0,
+    "median_token_volume_per_hour": 2457.185755948609
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 12.0,
+    "median_token_volume_per_hour": 1913.4789329167877
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 13,
+    "transactions": 13,
+    "transactions_checked": 13,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x57e114b691db790c35207b2e685d4a43181e6061",
+   "symbol": "ENA",
+   "name": "ENA",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x6bbb0289dfda178555dd1ce4aaa8f1bdbfb1bcde",
+    "0xae4045ffeddf61d570e6d1fe2d71ded1a2e85a88",
+    "0xc3db44adc1fcdfd5671f555236eae49f4a8eea18"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 45.0,
+    "median_token_volume_per_hour": 429379.4005662538
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 40.5,
+    "median_token_volume_per_hour": 348287.536891933
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 24,
+    "transactions": 23,
+    "transactions_checked": 23,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+   "symbol": "ETHFI",
+   "name": "ether.fi governance token",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x06f00544c0bc62e6db10f46d370dfccdc23d8189",
+    "0x80fa4c1fd0fbb9a4f071999af69531dee1016644",
+    "0xdefdac77a9a767a2c4eed826e1aead2dace53e1c"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 28.0,
+    "median_token_volume_per_hour": 14008.670209165464
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 21.5,
+    "median_token_volume_per_hour": 9776.404786598081
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 1,
+    "transactions": 1,
+    "transactions_checked": 1,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3",
+   "symbol": "ONDO",
+   "name": "Ondo",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x7b1e5d984a43ee732de195628d20d05cfabc3cc7"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 10.0,
+    "median_token_volume_per_hour": 29728.884663070196
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 8.0,
+    "median_token_volume_per_hour": 15852.302576224745
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 12,
+    "transactions": 12,
+    "transactions_checked": 12,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x514910771af9ca656af840dff83e8264ecf986ca",
+   "symbol": "LINK",
+   "name": "ChainLink Token",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x14243ea6bb3d64c8d54a1f47b077e23394d6528a",
+    "0x5d4f3c6fa16908609bac31ff148bd002aa6b8c83",
+    "0x9f178e86e42ddf2379cb3d2acf9ed67a1ed2550a",
+    "0xa2107fa5b38d9bbd2c461d6edf11b11a50f6b974",
+    "0xa6cc3c2531fdaa6ae1a3ca84c2855806728693e8",
+    "0xac5a2c404ebba22a869998089ac7893ff4e1f0a7",
+    "0xfad57d2039c21811c8f2b5d5b65308aa99d31559"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 96.0,
+    "median_token_volume_per_hour": 9275.378371054672
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 64.5,
+    "median_token_volume_per_hour": 4477.6226944064465
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 59,
+    "transactions": 46,
+    "transactions_checked": 46,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x163f8c2467924be0ae7b5347228cabf260318753",
+   "symbol": "WLD",
+   "name": "Worldcoin",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x76a8f514fcd9ea5b2a0daa4d2550a229da98dd13",
+    "0x841820459769cd629b10a36fd12e603938cc2679"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 1.0,
+    "median_token_volume_per_hour": 686.5319554296607
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 7.0,
+    "median_token_volume_per_hour": 1094.4194471762867
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+   "symbol": "EIGEN",
+   "name": "Eigen",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0xc2c390c6cd3c4e6c2b70727d35a45e8a072f18ca",
+    "0xd640333b71b015092d9b3afcff3e427036304370"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 13.0,
+    "median_token_volume_per_hour": 2716.0604638842356
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 7.0,
+    "median_token_volume_per_hour": 1055.0066130090313
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x6985884c4392d348587b19cb9eaaf157f13271cd",
+   "symbol": "ZRO",
+   "name": "LayerZero",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x360acf12e72044ba3eaaa654e51e4725c699dcb1"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 11.0,
+    "median_token_volume_per_hour": 623.3325480094114
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 11.0,
+    "median_token_volume_per_hour": 670.331457610801
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0xc00e94cb662c3520282e6f5717214004a7f26888",
+   "symbol": "COMP",
+   "name": "Compound",
+   "tracked": true,
+   "catalog_status": "available",
+   "catalog_covered_until": "2026-10-29T15:00:00+00:00",
+   "pools": [
+    "0x4786bb29a1589854204a4e62dcbe26a571224c0f",
+    "0xcffdded873554f362ac02f8fb1f02e5ada10516f",
+    "0xea4ba4ce14fdd287f380b55419b1c5b6c3f22ab6"
+   ],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 19,
+    "hours_expected": 24,
+    "median_swaps_per_hour": 5.0,
+    "median_token_volume_per_hour": 14.55665184047118
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 138,
+    "hours_expected": 168,
+    "median_swaps_per_hour": 8.5,
+    "median_token_volume_per_hour": 24.520271578498797
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 4,
+    "transactions": 4,
+    "transactions_checked": 4,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x111111111117dc0aa78b770fa6a738034120c302",
+   "symbol": "1INCH",
+   "name": "1INCH Token",
+   "tracked": true,
+   "catalog_status": "stale",
+   "catalog_covered_until": "2026-10-17T19:00:00+00:00",
+   "pools": [],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 0,
+    "hours_expected": 24,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 0,
+    "hours_expected": 168,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
+   "symbol": null,
+   "name": null,
+   "tracked": true,
+   "catalog_status": "collecting",
+   "catalog_covered_until": null,
+   "pools": [],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 0,
+    "hours_expected": 24,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 0,
+    "hours_expected": 168,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab",
+   "symbol": null,
+   "name": null,
+   "tracked": true,
+   "catalog_status": "collecting",
+   "catalog_covered_until": null,
+   "pools": [],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 0,
+    "hours_expected": 24,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 0,
+    "hours_expected": 168,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x6f40d4a6237c257fff2db00fa0510deeecd303eb",
+   "symbol": null,
+   "name": null,
+   "tracked": true,
+   "catalog_status": "collecting",
+   "catalog_covered_until": null,
+   "pools": [],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 0,
+    "hours_expected": 24,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 0,
+    "hours_expected": 168,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  },
+  {
+   "address": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+   "symbol": null,
+   "name": null,
+   "tracked": true,
+   "catalog_status": "collecting",
+   "catalog_covered_until": null,
+   "pools": [],
+   "coverage_error": null,
+   "window": {
+    "hours_expected": 4,
+    "hours_elapsed": 2,
+    "hours_covered": 0,
+    "hourly": [
+     {
+      "hour": "2026-10-29T20:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T21:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T22:00:00Z",
+      "covered": false
+     },
+     {
+      "hour": "2026-10-29T23:00:00Z",
+      "covered": false
+     }
+    ],
+    "pool_swaps": null,
+    "swaps_per_hour": null,
+    "max_swaps_per_hour": null,
+    "token_volume_per_hour": null
+   },
+   "baseline_24h": {
+    "hours_covered": 0,
+    "hours_expected": 24,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "baseline_days": {
+    "days": 7,
+    "hours_covered": 0,
+    "hours_expected": 168,
+    "median_swaps_per_hour": null,
+    "median_token_volume_per_hour": null
+   },
+   "multiple_swaps_vs_24h": null,
+   "multiple_volume_vs_24h": null,
+   "findings": [],
+   "address_check": {
+    "run": true,
+    "method": "transaction origin (from) via eth_getTransactionByHash",
+    "transactions": 0,
+    "transactions_checked": 0,
+    "matches": 0,
+    "field_only_not_attributed": 0,
+    "blocks": null,
+    "swaps": []
+   },
+   "live_unverified": {
+    "swaps": 0,
+    "transactions": 0,
+    "transactions_checked": 0,
+    "attributed": [],
+    "attributed_sold": 0,
+    "blocks": null
+   }
+  }
+ ]
+}
