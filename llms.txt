@@ -15,7 +15,7 @@ is an accusation.
 ## Product
 - [Overview](https://defi.wearetheartmakers.com/): what a finding contains, the nine networks, how the pipeline works
 - [Token catalog](https://defi.wearetheartmakers.com/tokens/): every tracked token with status, coverage window, verified swaps, pools and anomaly findings
-- [Pricing](https://wearetheartmakers.github.io/defi-intelligence/pricing.html): Evidence Snapshot $900 (7 days, one token, credited to a pilot); pilots; subscriptions from $1,500/month; stablecoin or bank transfer
+- [Pricing](https://defi.wearetheartmakers.com/pricing/): Evidence Snapshot $900 (7 days, one token, credited to a pilot); pilots; subscriptions from $1,500/month; stablecoin or bank transfer
 - [Buy online](https://app.wearetheartmakers.com/checkout): self-serve checkout
 - [Application](https://app.wearetheartmakers.com/)
 

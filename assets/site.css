@@ -115,3 +115,94 @@ footer nav a:hover{color:var(--ink)}
   .mark{font-size:16px}
 }
 .h-sub{display:block;font:500 15px/1.4 var(--text);color:var(--ink-3);margin-top:6px}
+
+/* pricing, terms, privacy and legal pages (moved from the defi-intelligence GitHub Pages site) */
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.btn-sm{min-height:44px;padding:10px 18px;font-size:15px}
+.doc{max-width:72ch}
+.doc .meta{color:var(--ink-3);font-size:15px;margin:0 0 36px}
+.doc h2{font-size:clamp(22px,2.4vw,26px);margin:40px 0 12px}
+.doc h3{font:600 18px/1.3 var(--text);margin:24px 0 8px}
+.doc p,.doc li{color:var(--ink-2)}
+.doc p{margin:0 0 14px}
+.doc ul{margin:0 0 16px;padding-left:22px}
+.doc li{margin:0 0 6px}
+.doc strong{color:var(--ink);font-weight:600}
+.doc dl{display:grid;grid-template-columns:minmax(0,15ch) minmax(0,1fr);gap:8px 20px;margin:0 0 18px}
+.doc dt{color:var(--ink-3)}
+.doc dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
+.doc .lead{font-size:19px;color:var(--ink-2)}
+main.pricing{padding:0}
+.pricing p{margin:0 0 14px;color:var(--ink-2)}
+.pricing h2,.pricing h3{margin:0}
+.pricing .hero{padding:clamp(36px,6vh,64px) 0 56px}
+.pricing .hero h1{max-width:16ch}
+.pricing .lede{font-size:clamp(18px,1.6vw,20px);line-height:1.55;max-width:60ch;margin-top:20px}
+.pricing .terms{color:var(--ink-3);font-size:15px;margin-top:6px;max-width:70ch}
+.path{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--surface)}
+.path li{position:relative;padding:26px 24px 24px;border-right:1px solid var(--line-soft);display:flex;flex-direction:column;gap:6px}
+.path li:last-child{border-right:none}
+.path .step{font:600 13px/1 var(--text);color:var(--ink-3);letter-spacing:.02em}
+.path .what{font:600 21px/1.2 var(--display);color:var(--ink)}
+.path .price{font:600 30px/1.1 var(--display);color:var(--brass-text);margin-top:6px}
+.path .price small{font:400 15px/1 var(--text);color:var(--ink-3);margin-left:4px}
+.path .sub{font-size:15px;color:var(--ink-2)}
+.path li:not(:last-child)::after{content:"";position:absolute;right:-7px;top:34px;width:12px;height:12px;background:var(--surface);border-top:1px solid var(--line);border-right:1px solid var(--line);transform:rotate(45deg);z-index:1}
+.band{padding:clamp(56px,9vh,80px) 0;border-top:1px solid var(--line-soft)}
+.band.alt{background:var(--bg-2)}
+.band h2{font-size:clamp(28px,3vw,40px);line-height:1.1;max-width:24ch}
+.pricing .band .intro{max-width:66ch;margin:14px 0 36px}
+.offers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.offer{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px;display:flex;flex-direction:column}
+.offer.key{border-color:color-mix(in srgb,var(--brass) 45%,var(--line))}
+.offer h3{font-size:24px;line-height:1.2}
+.offer .amount{font:600 40px/1.05 var(--display);color:var(--ink);margin:14px 0 2px}
+.offer .amount span{font:400 16px/1 var(--text);color:var(--ink-3);margin-left:6px}
+.offer .partner{font-size:15px;color:var(--brass-text);margin:0 0 12px}
+.offer .fit{color:var(--ink-2);margin:0 0 16px}
+.offer ul{margin:0 0 22px;padding:0;list-style:none;display:grid;gap:9px}
+.offer li{position:relative;padding-left:22px;color:var(--ink-2);font-size:16px}
+.offer li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;border:1px solid var(--blue)}
+.offer .cta{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.offer .small{font-size:14.5px;color:var(--ink-3);margin:12px 0 0}
+.pricing .fine{max-width:80ch;margin:14px 0 0}
+.pricing caption{text-align:left;padding:16px 14px 0;color:var(--ink-3);font-size:14.5px}
+.pricing tbody th{color:var(--ink);font-weight:500}
+.pricing td{color:var(--ink-2)}
+.pricing td.strong{color:var(--ink);font-weight:600}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.split > div{border:1px solid var(--line);border-radius:22px;padding:26px 28px;background:var(--surface)}
+.split h3{font-size:20px;margin-bottom:12px}
+.split ul{margin:0;padding-left:20px}
+.split li{color:var(--ink-2);margin:0 0 8px}
+.faq{max-width:80ch}
+.faq details{border-bottom:1px solid var(--line-soft)}
+.faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;font:600 18px/1.35 var(--text);color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:14px;font:400 26px/1 var(--text);color:var(--ink-3)}
+.faq details[open] summary::after{content:"–"}
+.faq .a{padding:0 0 18px}
+.faq ol{margin:0 0 14px;padding-left:22px}
+.faq li{color:var(--ink-2);margin:0 0 6px}
+.closing{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;border:1px solid var(--line);border-radius:28px;padding:40px;background:var(--surface)}
+.closing h2{max-width:20ch}
+.closing .acts{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:980px){
+  .path{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .path li:nth-child(2){border-right:none}
+  .path li:nth-child(-n+2){border-bottom:1px solid var(--line-soft)}
+  .path li:nth-child(2)::after{display:none}
+  .offers,.split{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .path{grid-template-columns:minmax(0,1fr)}
+  .path li{border-right:none;border-bottom:1px solid var(--line-soft)}
+  .path li:last-child{border-bottom:none}
+  .path li::after{display:none}
+  .offer{padding:24px 20px}
+  .offer .cta .btn,.closing .acts .btn{width:100%;white-space:normal;text-align:center}
+  .closing{padding:28px 22px;border-radius:22px}
+  .plans{min-width:620px}
+  .doc dl{grid-template-columns:1fr;gap:2px}
+  .doc dd{margin-bottom:10px}
+}

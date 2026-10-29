@@ -5,7 +5,7 @@ Standard library only. Reads https://app.wearetheartmakers.com/api/public/catalo
 
   tokens/index.html                       list of every catalog entry, grouped by network
   tokens/<network>/<address>/index.html   one page per entry (TON "0:…" addresses use "0-…" in the path)
-  sitemap.xml                             home + indexable pages, lastmod from the catalog
+  sitemap.xml                             home, pricing / terms / privacy / legal and the indexable token pages
   llms-full.txt                           long-form summary for LLM tools, with the indexable token list
 
 Only fields of our own public catalog are used. Third-party-derived fields (for example the TON
@@ -34,11 +34,12 @@ from pathlib import Path
 SITE = "https://defi.wearetheartmakers.com"
 APP = "https://app.wearetheartmakers.com"
 CATALOG_URL = f"{APP}/api/public/catalog"
-PRICING_URL = "https://wearetheartmakers.github.io/defi-intelligence/pricing.html"
+PRICING_URL = f"{SITE}/pricing/"
 METHOD_URL = "https://wearetheartmakers.github.io/defi-intelligence/"
-TERMS_URL = "https://wearetheartmakers.github.io/defi-intelligence/terms.html"
-PRIVACY_URL = "https://wearetheartmakers.github.io/defi-intelligence/privacy.html"
-LEGAL_URL = "https://wearetheartmakers.github.io/defi-intelligence/legal.html"
+TERMS_URL = f"{SITE}/terms/"
+PRIVACY_URL = f"{SITE}/privacy/"
+LEGAL_URL = f"{SITE}/legal/"
+STATIC_PAGES = (PRICING_URL, TERMS_URL, PRIVACY_URL, LEGAL_URL)  # hand-written pages listed in sitemap.xml
 REPO_URL = "https://github.com/WeAreTheArtMakers/defi-intelligence"
 EMAIL = "admin@wearetheartmakers.com"
 INDEPENDENCE = "Independent analytics; not affiliated with the projects or exchanges listed."
@@ -97,13 +98,14 @@ def num(n) -> str:
 
 # Catalog fields that become file paths must look like a network key and a contract / mint / TON raw address: anything else
 # (e.g. "../") is skipped rather than written outside tokens/.
-NETWORK_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,31}$")
-ADDRESS_RE = re.compile(r"^(0x[0-9a-fA-F]{40}|-?[0-9]{1,3}:[0-9a-fA-F]{64}|[1-9A-HJ-NP-Za-km-z]{32,44})$")
+NETWORK_RE = re.compile(r"[a-z0-9][a-z0-9-]{0,31}")
+ADDRESS_RE = re.compile(r"0x[0-9a-fA-F]{40}|-?[0-9]{1,3}:[0-9a-fA-F]{64}|[1-9A-HJ-NP-Za-km-z]{32,44}")
 MAX_SHRINK = 0.8          # refuse a catalog with fewer than 80 % of the pages already built (a partial API answer)
+# A deliberate removal of more than 20 % of the token pages needs a manual `rm -r tokens` before the build.
 
 
 def valid_entry(entry: dict) -> bool:
-    return bool(NETWORK_RE.match(str(entry.get("network") or "")) and ADDRESS_RE.match(str(entry.get("address") or "")))
+    return bool(NETWORK_RE.fullmatch(str(entry.get("network") or "")) and ADDRESS_RE.fullmatch(str(entry.get("address") or "")))
 
 
 def plain(s: object, limit: int = 48) -> str:
@@ -553,6 +555,8 @@ def sitemap(catalog: dict, entries: list[dict], out: Path) -> str:
     home_mod = git_lastmod(out / "index.html")
     urls.append((f"{SITE}/", home_mod))
     urls.append((f"{SITE}/tokens/", iso_z(catalog["generated_at"])))
+    for url in STATIC_PAGES:
+        urls.append((url, git_lastmod(out / url[len(SITE):].strip("/") / "index.html")))
     for e in sorted(entries, key=lambda x: page_path(x)):
         if indexable(e, catalog):
             urls.append((SITE + page_path(e), iso_z(e.get("covered_until")) or iso_z(catalog["generated_at"])))

@@ -3,7 +3,7 @@
 > On-chain DEX analytics for token teams, exchange listing and risk teams and funds. Swaps are decoded directly from the
 > chain on Arbitrum One, OP Mainnet, Ethereum, Base, BNB Smart Chain, Monad, Avalanche C-Chain, Solana, TON. Every anomaly finding carries an Evidence Card that answers five questions. Independent analytics; not affiliated with the projects or exchanges listed.
 
-Data as of 29 Oct 2026, 18:01 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
+Data as of 29 Oct 2026, 18:55 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
 
 ## The five evidence questions
 
@@ -123,7 +123,7 @@ USD values are not part of the evidence.
 
 - [Overview](https://defi.wearetheartmakers.com/)
 - [Token catalog](https://defi.wearetheartmakers.com/tokens/)
-- [Pricing](https://wearetheartmakers.github.io/defi-intelligence/pricing.html): Evidence Snapshot $900 (7 days, one token); subscriptions from $1,500/month
+- [Pricing](https://defi.wearetheartmakers.com/pricing/): Evidence Snapshot $900 (7 days, one token); subscriptions from $1,500/month
 - [Buy online](https://app.wearetheartmakers.com/checkout): stablecoin or bank transfer
 - [Become a partner](https://app.wearetheartmakers.com/partners)
 - Contact: admin@wearetheartmakers.com
