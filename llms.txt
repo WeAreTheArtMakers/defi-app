@@ -1,0 +1,33 @@
+# WATAM DeFi Intelligence
+
+> On-chain DEX analytics for protocol and token teams, exchange listing and risk teams and funds. Swaps are decoded
+> directly from the chain on Ethereum, Arbitrum One, OP Mainnet, Base, BNB Smart Chain, Avalanche C-Chain, Monad, Solana
+> and TON. Every anomaly finding carries an Evidence Card that answers five questions: what was observed; where the
+> evidence is (network, blocks, pools, transactions); how it was computed (method, frozen baseline); how much it can be
+> trusted (coverage, gaps, checks, caveats); and how to check it independently (detection SQL with its hash and an
+> eth_getLogs recipe for any public node). Independent analytics by WATAM Intelligence (We Are The Art Makers); not
+> affiliated with the projects or exchanges listed. USD values are not part of the evidence.
+
+Evidence Cards cover anomaly findings on the EVM networks. Solana and TON entries have coverage and verified swaps, but
+no anomaly findings yet. Findings describe the verified pools that were measured, never a token's whole market, and none
+is an accusation.
+
+## Product
+- [Overview](https://defi.wearetheartmakers.com/): what a finding contains, the nine networks, how the pipeline works
+- [Token catalog](https://defi.wearetheartmakers.com/tokens/): every tracked token with status, coverage window, verified swaps, pools and anomaly findings
+- [Pricing](https://wearetheartmakers.github.io/defi-intelligence/pricing.html): Evidence Snapshot $900 (7 days, one token, credited to a pilot); pilots; subscriptions from $1,500/month; stablecoin or bank transfer
+- [Buy online](https://app.wearetheartmakers.com/checkout): self-serve checkout
+- [Application](https://app.wearetheartmakers.com/)
+
+## Data (machine-readable)
+- [Public catalog API (JSON)](https://app.wearetheartmakers.com/api/public/catalog): tracked tokens with network, contract address, status, history window, verified swaps, pools and findings counts; EVM refreshed every 12 h, TON every 3 h, Solana hourly
+- [Full summary with the token list](https://defi.wearetheartmakers.com/llms-full.txt)
+- [Sitemap](https://defi.wearetheartmakers.com/sitemap.xml)
+
+## Method
+- [Method and documentation](https://wearetheartmakers.github.io/defi-intelligence/)
+- [Public repository](https://github.com/WeAreTheArtMakers/defi-intelligence): overview and reviewed historical examples
+
+## Contact
+- admin@wearetheartmakers.com
+- [Become a partner](https://app.wearetheartmakers.com/partners)

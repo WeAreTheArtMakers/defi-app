@@ -1,0 +1,35 @@
+# WATAM DeFi Intelligence — https://defi.wearetheartmakers.com
+# Public marketing site: no paid content. /app/ is only a redirect stub to the application.
+
+User-agent: *
+Allow: /
+Disallow: /app/
+
+# Search engines
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /app/
+
+# AI search and user-triggered fetchers (answers that cite sources)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /app/
+
+# Model training (allowed: the public site holds no paid content)
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /app/
+
+Sitemap: https://defi.wearetheartmakers.com/sitemap.xml
