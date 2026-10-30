@@ -206,3 +206,18 @@ main.pricing{padding:0}
   .doc dl{grid-template-columns:1fr;gap:2px}
   .doc dd{margin-bottom:10px}
 }
+/* "Get the free 7-day report" form on the token pages (scripts/build_token_pages.py, assets/free-report.js) */
+.frq{margin:28px 0 0;padding:18px 20px;border:1px solid rgba(var(--rgb-brass),.55);border-radius:14px;background:var(--surface);max-width:880px}
+.frq h2{margin-top:0}
+.frq-form{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin:14px 0 0}
+.frq-form label{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--ink-2)}
+.frq-form input[type=email],.frq-form input[type=text]{min-height:46px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg-2);color:var(--ink);font:16px var(--text)}
+.frq-form .consent{grid-column:1/-1;flex-direction:row;align-items:flex-start;gap:10px;font-size:14px}
+.frq-form .consent input{margin-top:4px;width:18px;height:18px;flex:none}
+.frq-form .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.frq-form .frq-ts,.frq-form .frq-msg{grid-column:1/-1}
+.frq-form button{justify-self:start}
+.frq-msg{margin:0;font-size:15px;color:var(--ink-2);min-height:1.4em}
+.frq-msg.ok{color:var(--ok)} .frq-msg.err{color:var(--warn)}
+.opt-l{color:var(--ink-3)}
+@media (max-width:640px){.frq-form{grid-template-columns:1fr}.frq-form button{justify-self:stretch}}

@@ -13,4 +13,9 @@ DNS: `defi` CNAME `wearetheartmakers.github.io`.
   https://app.wearetheartmakers.com/api/public/catalog. Entries that are not yet `available` get `noindex` and stay out of the
   sitemap. The `Token pages` workflow regenerates them at 02:45 and 14:45 UTC, commits only when something changed, and pings
   IndexNow (key file `332d91a55f8381329073609eab90c9de.txt`). Do not edit `tokens/` by hand.
+- Available EVM token pages carry a "Get the free 7-day report" form (`assets/free-report.js`, styles in `assets/site.css`).
+  It stays hidden unless https://app.wearetheartmakers.com/api/public/free-reports/options answers (the app's
+  `FREE_REPORTS_ENABLED`; core repo `docs/free-reports.md`), takes the consent text and the Cloudflare Turnstile site key
+  from that answer (the Turnstile widget's hostnames must include `defi.wearetheartmakers.com`), and posts text/plain JSON
+  (no CORS preflight). The report link is emailed by the app, never shown on the page. No cookies or tracking.
 - `robots.txt`, `llms.txt` — crawler rules (search, AI search and user-triggered fetchers allowed) and the LLM-readable summary.
