@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Method — WATAM DeFi Intelligence</title>
+<meta name="description" content="How WATAM DeFi Intelligence collects swaps from the chain, verifies them, builds Evidence Cards, what is covered, its limitations and how to reproduce a finding.">
+<link rel="canonical" href="https://defi.wearetheartmakers.com/method/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WATAM DeFi Intelligence">
+<meta property="og:url" content="https://defi.wearetheartmakers.com/method/">
+<meta property="og:title" content="Method — WATAM DeFi Intelligence">
+<meta property="og:description" content="How WATAM DeFi Intelligence collects swaps from the chain, verifies them, builds Evidence Cards, what is covered, its limitations and how to reproduce a finding.">
+<meta property="og:image" content="https://defi.wearetheartmakers.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://defi.wearetheartmakers.com/assets/og-card.png">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0A1020" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://defi.wearetheartmakers.com/#org","name":"WATAM Intelligence","alternateName":["WATAM","We Are The Art Makers"],"url":"https://defi.wearetheartmakers.com/","email":"admin@wearetheartmakers.com","logo":"https://defi.wearetheartmakers.com/assets/favicon.svg"},{"@type":"WebPage","@id":"https://defi.wearetheartmakers.com/method/#page","url":"https://defi.wearetheartmakers.com/method/","name":"Method — WATAM DeFi Intelligence","description":"How WATAM DeFi Intelligence collects swaps from the chain, verifies them, builds Evidence Cards, what is covered, its limitations and how to reproduce a finding.","isPartOf":{"@type":"WebSite","name":"WATAM DeFi Intelligence","url":"https://defi.wearetheartmakers.com/"},"publisher":{"@id":"https://defi.wearetheartmakers.com/#org"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>
+    <nav class="links" aria-label="Main">
+      <a href="/tokens/">Tokens</a>
+      <a class="opt" href="/method/" aria-current="page">Method</a>
+      <a href="https://defi.wearetheartmakers.com/pricing/">Pricing</a>
+      <a class="opt" href="https://app.wearetheartmakers.com/partners">Partners</a>
+      <a class="btn primary" href="/app/">Open the app</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+    <article class="doc" style="max-width:none">
+      <div style="max-width:72ch">
+      <p class="kicker">Method</p>
+      <h1>How the data is collected, verified and checked</h1>
+      <p class="lead">Swaps are read from public JSON-RPC or your own endpoints, proven complete for every block range and cross-checked before anything is published.</p>
+      <p class="meta">On this page: <a href="#collection">Collection and verification</a> · <a href="#pipeline">Three stages</a> · <a href="#evidence">Five evidence questions</a> · <a href="#coverage">Coverage</a> · <a href="#status">What is verified</a> · <a href="#limits">Limitations</a> · <a href="#reproduce">Reproducibility</a></p>
+
+      <h2 id="collection">Collection and verification</h2>
+      <p>A protocol family is supported only after its decoded swaps matched transaction receipts exactly on several networks. Uniswap v4 is verified differently: its pools share one contract and can carry hooks, so each pool is verified on its own, and only individually verified pools are ingested. PancakeSwap Infinity pools on BNB Smart Chain are verified the same way. A pool is ingested only if its factory is one we have recorded with receipt evidence.</p>
+      <p>On BNB Smart Chain, collection runs forward only: windows starting more than 8 days (192 hours) ago are refused, and every window needs two endpoints serving its first block. On Solana and TON, swaps from pinned pools are reconciled exactly against the pools' token balances or reserves.</p>
+
+      <h2 id="pipeline">Three stages</h2>
+      <p>Each stage has its own checks. Nothing reaches a report or an AI answer without passing the stage before it.</p>
+      <h3>1. Verified data</h3>
+      <p>Ingestion runs prove block coverage, confirm empty answers with a second provider and publish to ClickHouse only after quality gates pass. USD comes from stablecoin legs or an hourly price feed configured for the installation; unvalued swaps are never counted as $0.</p>
+      <h3>2. Analytics and findings</h3>
+      <p>Covered-hour metrics, window comparisons and an anomaly engine with frozen baselines. Reports state exactly which pools and hours they cover.</p>
+      <h3>3. Evidence-grounded AI</h3>
+      <p>The AI phrases answers from the verified facts of each question. Every number must match a fact the sentence cites; anything unproven is replaced by a clearly labelled deterministic answer.</p>
+      </div>
+
+      <div style="max-width:72ch">
+      <h2 id="evidence">Every finding answers five questions</h2>
+      <p>Each anomaly finding comes with an Evidence Card built only from stored data, with the same five sections in the application, the API and every report export.</p>
+      </div>
+      <ol class="q"><li><b>What was observed?</b> The metric and its unit, the observed value against the expected baseline, and the window in UTC.</li><li><b>Where is the evidence?</b> Network, chain id and the token&#x27;s contract; the block range; each measured pool with its protocol and decoder family; the swap count and the five largest transactions; the RPC providers and ingestion runs covering the window.</li><li><b>How was it computed?</b> The method and its version, the baseline window and value (frozen when the anomaly starts), the parameters and the detector&#x27;s facts.</li><li><b>How much can we trust it?</b> Hours expected against hours fully covered, every gap, the checks that passed, and the caveats and alternative explanations.</li><li><b>How can it be checked independently?</b> The detection SQL with its SHA-256, and a recipe for any public JSON-RPC node that needs no access to our database.</li></ol>
+
+      <p class="note">Evidence Cards cover anomaly findings on the EVM networks. Solana and TON entries have coverage and verified swaps, but no anomaly findings yet. Findings describe the verified pools that were measured, never a token's whole market, and none is an accusation.</p>
+
+      <div style="max-width:72ch">
+      <h2 id="coverage">Coverage</h2>
+      <h3>Networks</h3>
+      <p>Ethereum, Arbitrum One, OP Mainnet, Base and BNB Smart Chain; collecting: Avalanche C-Chain, Monad, Solana and TON.</p>
+      <h3>Verified protocol families</h3>
+      <ul><li>Uniswap v3-style</li><li>Uniswap v2-style, including PancakeSwap v2</li><li>Solidly (Velodrome/Aerodrome v2)</li><li>PancakeSwap v3</li><li>Recorded factories only</li></ul>
+      <h3>Solana and TON venues</h3>
+      <ul><li>Raydium CPMM and CLMM, Orca Whirlpool, Meteora DLMM and DAMM v2, PumpSwap (Solana)</li><li>STON.fi v1 and v2, DeDust (TON)</li><li>Pinned pools only; no anomaly findings yet</li></ul>
+      <h3>Individually verified pools</h3>
+      <ul><li>Uniswap v4: each pool verified on its own</li><li>PancakeSwap Infinity (BNB Smart Chain): each pool verified on its own</li></ul>
+      <h3>Not counted</h3>
+      <ul><li>Unrecorded factories and forks</li><li>v4 and Infinity pools without a verification record</li><li>v4 pools with native currencies or swap-changing hooks</li><li>Infinity pools with native BNB, any hook or a dynamic fee</li><li>Other networks and venues</li></ul>
+      </div>
+
+      <div style="max-width:72ch">
+      <h2 id="status">What is verified, and what is not yet</h2>
+      <p>We separate what has been tested on real data from what is integrated, experimental or not supported.</p>
+      </div>
+      <div class="tbl"><table><tr><th scope="col">Capability</th><th scope="col">Status</th></tr><tr><td>Ingestion, token explorer, anomaly engine, reports and window comparisons on Ethereum, Arbitrum One, OP Mainnet and Base</td><td>Tested on real data</td></tr><tr><td>Ingestion and token analysis on BNB Smart Chain, collected forward only (windows starting more than 8 days ago are refused)</td><td>Tested on real data</td></tr><tr><td>Uniswap v3-style, Uniswap v2-style (including PancakeSwap v2), Solidly-style and PancakeSwap v3 decoders, for recorded factories only (decoded swaps matched transaction receipts exactly)</td><td>Tested on real data</td></tr><tr><td>Uniswap v4 and PancakeSwap Infinity (BNB Smart Chain): only pools with an accepted verification record (PoolId/PoolKey match, accounting rules, two-provider agreement, exact receipt or settlement reconciliation)</td><td>Tested on real data, per pool</td></tr><tr><td>Solana: catalog collection of pinned Raydium, Orca, Meteora and PumpSwap pools (swaps reconciled exactly against token balances); no anomaly findings yet</td><td>Collecting; experimental</td></tr><tr><td>TON: catalog collection of pinned STON.fi v1/v2 and DeDust pools (two independent providers per window, reconciled against pool reserves); no anomaly findings yet</td><td>Collecting; experimental</td></tr><tr><td>Avalanche C-Chain: Uniswap v3, LFJ v1, Pangolin v2 and Pharaoh v3 factories recorded with receipt evidence; catalog tokens collecting since 29 Oct 2026</td><td>Collecting; available after the 72-hour verification period</td></tr><tr><td>Monad: Uniswap v2, Uniswap v3 and PancakeSwap v3 factories recorded with receipt evidence, Uniswap v4 per pool; catalog tokens collecting since 29 Oct 2026, with history from 23 Oct 2026</td><td>Collecting; available after the 72-hour verification period</td></tr><tr><td>Uniswap v4 and PancakeSwap Infinity pools without a verification record; v4 pools with native currencies or hooks that change swap amounts; Infinity pools with native BNB, any hook or a dynamic fee; unrecorded factories and forks</td><td>Not supported</td></tr><tr><td>Other networks</td><td>Not offered</td></tr></table></div>
+
+      <div style="max-width:72ch">
+      <h2 id="limits">Limitations</h2>
+      <ul><li>Only the listed networks, verified protocol families and individually verified pools are analysed, and only pools that were discovered and ingested. Other venues are not counted, so no figure covers every venue where a token trades.</li><li>Pool-event volume counts a routed trade in every ingested pool it passes through. Transaction-net volume is reported separately.</li><li>The research examples use public blockchain data collected by the application; USD values are omitted because they depend on an external price feed. Protocol, token and network names describe the data analysed; they do not imply any affiliation or endorsement.</li><li>WATAM DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li></ul>
+      <p>The public catalog lists each tracked token with its coverage window; EVM entries are refreshed every 12 h, TON every 3 h and Solana hourly. See the <a href="/tokens/">token catalog</a>.</p>
+
+      <h2 id="reproduce">Reproducibility</h2>
+      <p>Every figure carries its coverage, its valuation method and the SQL behind it, so analysis can be reproduced, reviewed and shared. For an anomaly finding, the Evidence Card gives the detection SQL with its SHA-256, and a recipe for any public JSON-RPC node that needs no access to our database.</p>
+      <p>USD values are not part of the evidence.</p>
+      <p><a class="btn primary" href="/tokens/">Browse the token catalog</a> <a class="btn" href="mailto:admin@wearetheartmakers.com">Contact</a></p>
+      </div>
+    </article>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Independent analytics; not affiliated with the projects or exchanges listed. Token and network names are trademarks of their owners. USD values are not part of the evidence.<br>DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/tokens/">Tokens</a>
+      <a href="/method/" aria-current="page">Method</a>
+      <a href="https://defi.wearetheartmakers.com/pricing/">Pricing</a>
+      <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
+      <a href="https://defi.wearetheartmakers.com/terms/">Terms</a>
+      <a href="https://defi.wearetheartmakers.com/privacy/">Privacy</a>
+      <a href="https://defi.wearetheartmakers.com/legal/">Legal</a>
+      <a href="mailto:admin@wearetheartmakers.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

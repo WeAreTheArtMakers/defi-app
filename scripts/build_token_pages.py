@@ -5,7 +5,7 @@ Standard library only. Reads https://app.wearetheartmakers.com/api/public/catalo
 
   tokens/index.html                       list of every catalog entry, grouped by network
   tokens/<network>/<address>/index.html   one page per entry (TON "0:…" addresses use "0-…" in the path)
-  sitemap.xml                             home, pricing / terms / privacy / legal and the indexable token pages
+  sitemap.xml                             home, method, pricing / terms / privacy / legal and the indexable token pages
   llms-full.txt                           long-form summary for LLM tools, with the indexable token list
 
 Only fields of our own public catalog are used. Third-party-derived fields (for example the TON
@@ -35,11 +35,12 @@ SITE = "https://defi.wearetheartmakers.com"
 APP = "https://app.wearetheartmakers.com"
 CATALOG_URL = f"{APP}/api/public/catalog"
 PRICING_URL = f"{SITE}/pricing/"
-METHOD_URL = "https://wearetheartmakers.github.io/defi-intelligence/"
+METHOD_URL = f"{SITE}/method/"
+OG_IMAGE = f"{SITE}/assets/og-card.png"
 TERMS_URL = f"{SITE}/terms/"
 PRIVACY_URL = f"{SITE}/privacy/"
 LEGAL_URL = f"{SITE}/legal/"
-STATIC_PAGES = (PRICING_URL, TERMS_URL, PRIVACY_URL, LEGAL_URL)  # hand-written pages listed in sitemap.xml
+STATIC_PAGES = (METHOD_URL, PRICING_URL, TERMS_URL, PRIVACY_URL, LEGAL_URL)  # hand-written pages listed in sitemap.xml
 REPO_URL = "https://github.com/WeAreTheArtMakers/defi-intelligence"
 EMAIL = "admin@wearetheartmakers.com"
 INDEPENDENCE = "Independent analytics; not affiliated with the projects or exchanges listed."
@@ -178,7 +179,7 @@ def header(current: str) -> str:
         '    <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>\n'
         '    <nav class="links" aria-label="Main">\n'
         f'      {link("/tokens/", "Tokens", "tokens")}\n'
-        f'      {link(METHOD_URL, "Method", "method", "opt")}\n'
+        f'      {link("/method/", "Method", "method", "opt")}\n'
         f'      {link(PRICING_URL, "Pricing", "pricing")}\n'
         f'      {link(APP + "/partners", "Partners", "partners", "opt")}\n'
         f'      <a class="btn primary" href="/app/">Open the app</a>\n'
@@ -194,7 +195,7 @@ def footer() -> str:
         '    <nav aria-label="Footer">\n'
         '      <a href="/">Home</a>\n'
         '      <a href="/tokens/">Tokens</a>\n'
-        f'      <a href="{METHOD_URL}">Method</a>\n'
+        f'      <a href="/method/">Method</a>\n'
         f'      <a href="{PRICING_URL}">Pricing</a>\n'
         f'      <a href="{APP}/partners">Become a partner</a>\n'
         f'      <a href="{TERMS_URL}">Terms</a>\n'
@@ -219,7 +220,10 @@ def document(*, title: str, description: str, canonical: str, robots: str | None
         f'<meta property="og:url" content="{canonical}">\n'
         f'<meta property="og:title" content="{esc(title)}">\n'
         f'<meta property="og:description" content="{esc(description)}">\n'
-        '<meta name="twitter:card" content="summary">\n'
+        f'<meta property="og:image" content="{OG_IMAGE}">\n'
+        '<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
+        '<meta name="twitter:card" content="summary_large_image">\n'
+        f'<meta name="twitter:image" content="{OG_IMAGE}">\n'
         '<meta name="color-scheme" content="dark light">\n'
         '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n'
         '<link rel="stylesheet" href="/assets/site.css">\n'

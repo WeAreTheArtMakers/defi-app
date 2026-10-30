@@ -25,7 +25,7 @@ is an accusation.
 - [Sitemap](https://defi.wearetheartmakers.com/sitemap.xml)
 
 ## Method
-- [Method and documentation](https://wearetheartmakers.github.io/defi-intelligence/)
+- [Method](https://defi.wearetheartmakers.com/method/): how swaps are collected and verified, the five evidence questions, coverage, limitations and how to reproduce a finding
 - [Public repository](https://github.com/WeAreTheArtMakers/defi-intelligence): overview and reviewed historical examples
 
 ## Contact
