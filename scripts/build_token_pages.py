@@ -250,6 +250,36 @@ def five_questions_html() -> str:
     return f'<ol class="q">{items}</ol>\n'
 
 
+# ---------------------------------------------------------------- free 7-day report form
+
+FREE_REPORT_JS = "/assets/free-report.js"
+
+
+def free_report_form(entry: dict) -> str:
+    """The "Get the free 7-day report" form (available EVM tokens only). Hidden until assets/free-report.js gets an answer from
+    GET {APP}/api/public/free-reports/options (404 while the server's FREE_REPORTS_ENABLED is off), so the page never shows a
+    form that cannot work. The consent text and the Turnstile site key come from that answer; the link is emailed, never shown."""
+    sym = esc(display_symbol(entry))
+    return (
+        f'<section class="frq" id="free-report" hidden aria-labelledby="frq-h" data-api="{APP}" '
+        f'data-chain-id="{int(entry["chain_id"])}" data-token="{esc(entry["address"].lower())}">\n'
+        f'<h2 id="frq-h">Get the free 7-day report for {sym}</h2>\n'
+        '<p class="intro">Coverage, verified swaps, pools and the top findings of the last 7 covered days, each with its Evidence '
+        "Card and a public eth_getLogs recipe. We email you a private link; no call needed.</p>\n"
+        '<form class="frq-form" novalidate>\n'
+        '  <label><span>Work email</span><input type="email" name="email" required maxlength="200" autocomplete="email" inputmode="email"></label>\n'
+        '  <label><span>Company <span class="opt-l">(optional)</span></span><input type="text" name="company" maxlength="120" autocomplete="organization"></label>\n'
+        '  <label class="hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>\n'
+        '  <label class="consent"><input type="checkbox" name="consent" required> <span class="frq-consent"></span></label>\n'
+        '  <div class="frq-ts"></div>\n'
+        '  <button class="btn primary" type="submit">Email me the free report</button>\n'
+        '  <p class="frq-msg" role="status" aria-live="polite"></p>\n'
+        "</form>\n"
+        f'<script src="{FREE_REPORT_JS}" defer></script>\n'
+        "</section>\n"
+    )
+
+
 # ---------------------------------------------------------------- per-token page
 
 def status_text(entry: dict, catalog: dict) -> str:
@@ -374,6 +404,8 @@ def token_page(entry: dict, catalog: dict) -> str:
         body.append('<p class="intro">Evidence Cards cover anomaly findings on the EVM networks; anomaly detection is not yet available on this network, so the catalog reports coverage, verified swaps and pools only. For reference, an Evidence Card answers five questions:</p>\n')
         body.append(five_questions_html())
 
+    if is_index and vm == "evm":
+        body.append(free_report_form(entry))
     body.append('<h2 id="next">Get the evidence</h2>\n<div class="ctas">\n')
     mail = f"mailto:{EMAIL}?subject={urllib.parse.quote(f'{sym} on {net}')}"
     if is_index and vm == "evm":
