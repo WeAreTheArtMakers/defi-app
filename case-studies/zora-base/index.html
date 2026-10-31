@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZORA on Base: a week of DEX activity, checked on a public node — WATAM DeFi Intelligence</title>
+<meta name="description" content="Case study: 7 days of ZORA swaps on Base (29,641 verified swaps, 6 pools, 168 of 168 hours covered, 5 events). One event re-run on a public Base RPC node gives the same 156 swaps and the same value.">
+<link rel="canonical" href="https://defi.wearetheartmakers.com/case-studies/zora-base/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WATAM DeFi Intelligence">
+<meta property="og:url" content="https://defi.wearetheartmakers.com/case-studies/zora-base/">
+<meta property="og:title" content="ZORA on Base: a week of DEX activity, checked on a public node — WATAM DeFi Intelligence">
+<meta property="og:description" content="Case study: 7 days of ZORA swaps on Base (29,641 verified swaps, 6 pools, 168 of 168 hours covered, 5 events). One event re-run on a public Base RPC node gives the same 156 swaps and the same value.">
+<meta property="og:image" content="https://defi.wearetheartmakers.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://defi.wearetheartmakers.com/assets/og-card.png">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0A1020" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://defi.wearetheartmakers.com/#org","name":"WATAM Intelligence","alternateName":["WATAM","We Are The Art Makers"],"url":"https://defi.wearetheartmakers.com/","email":"admin@wearetheartmakers.com","logo":"https://defi.wearetheartmakers.com/assets/favicon.svg"},{"@type":"Article","@id":"https://defi.wearetheartmakers.com/case-studies/zora-base/#page","url":"https://defi.wearetheartmakers.com/case-studies/zora-base/","headline":"ZORA on Base: a week of DEX activity, checked on a public node","description":"Case study: 7 days of ZORA swaps on Base (29,641 verified swaps, 6 pools, 168 of 168 hours covered, 5 events). One event re-run on a public Base RPC node gives the same 156 swaps and the same value.","datePublished":"2026-10-31","author":{"@id":"https://defi.wearetheartmakers.com/#org"},"isPartOf":{"@type":"WebSite","name":"WATAM DeFi Intelligence","url":"https://defi.wearetheartmakers.com/"},"publisher":{"@id":"https://defi.wearetheartmakers.com/#org"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>
+    <nav class="links" aria-label="Main">
+      <a href="/tokens/">Tokens</a>
+      <a class="opt" href="/method/">Method</a>
+      <a href="https://defi.wearetheartmakers.com/pricing/">Pricing</a>
+      <a class="opt" href="https://app.wearetheartmakers.com/partners">Partners</a>
+      <a class="btn primary" href="/app/">Open the app</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+    <article class="doc" style="max-width:none">
+      <div style="max-width:72ch">
+      <p class="kicker">Case study · 31 Oct 2026</p>
+      <h1>ZORA on Base: a week of DEX activity, checked on a public node</h1>
+      <p class="lead">We followed ZORA&#x27;s measured pools on Base for seven days. Every number below comes from the chain, and we re-ran one of the findings on a public node to show you get the same answer without us.</p>
+      <p class="meta">Window 24 Oct 2026 14:00 → 31 Oct 2026 14:00 UTC · token <code>0x1111111111166b7fe7bd91427724b487980afc69</code> (Base, chain id 8453)</p>
+      </div>
+
+      <div class="tbl"><table><tr><th scope="col">Coverage</th><th scope="col">Verified swaps</th><th scope="col">Pools with swaps</th><th scope="col">Volume (token units)</th><th scope="col">Events</th></tr>
+      <tr><td>168 of 168 hours (100%)</td><td>29,641 (17,058 buys · 12,583 sells)</td><td>6</td><td>128,747,271 ZORA</td><td>5 (from 19 findings)</td></tr></table></div>
+
+      <figure style="margin:28px 0;max-width:960px">
+        <img src="/assets/case-zora-week.svg" width="960" height="414" alt="ZORA volume per hour on Base over the week with its 24-hour baseline; five shaded events: an 85% drop in active liquidity on 26 Oct, an 82% drop from 29 to 31 Oct, a volume surge to 5 times normal on 29 to 30 Oct, a 86% volume drop and a 70% liquidity drop on 28 Oct" style="width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <figcaption class="meta" style="margin-top:8px">ZORA per hour in token units (no USD), the 24-hour baseline and the five events of the week. Hatched hours would mean missing data; there were none.</figcaption>
+      </figure>
+
+      <div style="max-width:72ch">
+      <h2 id="events">The five events of the week</h2>
+      <ol>
+        <li><b>Active liquidity −85%</b> on pool <code>0xadb8…0ea3</code> (Aerodrome Slipstream), 26 Oct 09:00–17:00 UTC.</li>
+        <li><b>Active liquidity −82%</b> on pool <code>0xa0ca…0fc7</code>, 29 Oct 21:00 → 31 Oct 09:00 UTC (6 findings grouped into one event).</li>
+        <li><b>Volume 5× normal</b>, 29 Oct 20:00 → 30 Oct 03:00 UTC.</li>
+        <li><b>Volume −86%</b>, 28 Oct 23:00–00:00 UTC.</li>
+        <li><b>Active liquidity −70%</b> on pool <code>0xa0ca…0fc7</code>, 28 Oct 23:00–00:00 UTC.</li>
+      </ol>
+      <p>Active liquidity is the in-range liquidity that a concentrated-liquidity pool reports in its own <code>Swap</code> events. It is not TVL and not a USD amount, and it is compared only with the same pool&#x27;s earlier hours.</p>
+
+      <h2 id="check">Event 1, checked without us</h2>
+      <p>The Evidence Card of event 1 says: the median active liquidity of pool <code>0xadb8…0ea3</code> averaged <b>0.15×</b> its 24-hour baseline from 26 Oct 09:00 to 17:00 UTC, measured over <b>156 swaps</b> in blocks 53,108,021 → 53,121,621. The card also gives the exact request to check it:</p>
+      </div>
+<pre>curl -s -X POST https://base-rpc.publicnode.com -H 'Content-Type: application/json' -d '{
+  "jsonrpc": "2.0", "id": 1, "method": "eth_getLogs",
+  "params": [{
+    "address": ["0xadb8fb846dbd3bd6a23335cee65bb610c1cf0ea3"],
+    "topics": [["0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67"]],
+    "fromBlock": "0x32a5d35", "toBlock": "0x32a9255"
+  }]}'</pre>
+      <div style="max-width:72ch">
+      <p>We ran it on a free public Base node on 31 Oct 2026. It returned <b>156 Swap logs</b>, the same count as the card. Taking the liquidity word of each log (word 3 of the data), the median per hour and the mean of the eight hourly medians gives <b>1,670,996,608,073,519,071,232</b> — exactly the card&#x27;s value. The script we used:</p>
+      </div>
+<pre>import json, statistics, urllib.request
+RPC = "https://base-rpc.publicnode.com"
+def call(method, params):
+    req = urllib.request.Request(RPC, json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(),
+                                 {"Content-Type": "application/json", "User-Agent": "check"})
+    return json.load(urllib.request.urlopen(req))["result"]
+logs = call("eth_getLogs", [{"address": ["0xadb8fb846dbd3bd6a23335cee65bb610c1cf0ea3"],
+             "topics": [["0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67"]],
+             "fromBlock": "0x32a5d35", "toBlock": "0x32a9255"}])
+t0 = int(call("eth_getBlockByNumber", ["0x32a5d35", False])["timestamp"], 16)   # Base: one block every 2 s
+hours = {}
+for log in logs:
+    ts = t0 + 2 * (int(log["blockNumber"], 16) - 0x32a5d35)
+    hours.setdefault(ts // 3600, []).append(int(log["data"][2 + 64 * 3:2 + 64 * 4], 16))
+medians = [statistics.median(v) for _, v in sorted(hours.items())]
+print(len(logs), "swaps;", f"{sum(medians) / len(medians):,.0f}")   # 156 swaps; 1,670,996,608,073,519,071,232</pre>
+
+      <div style="max-width:72ch">
+      <h2 id="limits">What this does and does not say</h2>
+      <ul>
+        <li>It is a statistical change in the measured pools. It does not identify a cause. The card lists other possible explanations: a market-wide move, a new or removed venue or routing change, one large participant or automated strategy, or a listing, incentive or news event.</li>
+        <li>Only the measured pools are counted, not ZORA&#x27;s whole market.</li>
+        <li>14 of 16 checks passed. The two warnings are about USD valuation (two price estimates differed by up to 6.9% in some hours). This report uses no USD value, so swap counts, token amounts and liquidity are not affected.</li>
+        <li>WATAM is independent and not affiliated with Zora. This is not investment advice.</li>
+      </ul>
+
+      <h2 id="why">Why it matters</h2>
+      <p>A token team can show its community, market makers or an exchange what happened in its pools, with a query anyone can re-run. A listing or risk desk can check a token&#x27;s DEX activity before a decision instead of trusting a chart. A fund can see liquidity being pulled while it happens, not after.</p>
+
+      <h2 id="yours">Get the same report for your token</h2>
+      <p>The free 7-day evidence report is available for every available EVM token in our <a href="/tokens/">catalog</a> — open your token&#x27;s page and request it with your work email. If your token is not listed yet, write to <a href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a>.</p>
+      <p class="ctas" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn primary" href="/tokens/">Find your token</a> <a class="btn" href="https://defi.wearetheartmakers.com/pricing/">See plans and pricing</a> <a class="btn" href="/method/">Read the method</a></p>
+      </div>
+    </article>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Independent analytics; not affiliated with the projects or exchanges listed. Token and network names are trademarks of their owners. USD values are not part of the evidence.<br>DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/tokens/">Tokens</a>
+      <a href="/method/">Method</a>
+      <a href="https://defi.wearetheartmakers.com/pricing/">Pricing</a>
+      <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
+      <a href="https://defi.wearetheartmakers.com/terms/">Terms</a>
+      <a href="https://defi.wearetheartmakers.com/privacy/">Privacy</a>
+      <a href="https://defi.wearetheartmakers.com/legal/">Legal</a>
+      <a href="mailto:admin@wearetheartmakers.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

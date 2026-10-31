@@ -26,6 +26,7 @@ is an accusation.
 
 ## Method
 - [Method](https://defi.wearetheartmakers.com/method/): how swaps are collected and verified, the five evidence questions, coverage, limitations and how to reproduce a finding
+- [Case study: ZORA on Base](https://defi.wearetheartmakers.com/case-studies/zora-base/): one week of verified swaps and five events; one finding re-run on a public Base node with the same 156 swaps and value
 - [Public repository](https://github.com/WeAreTheArtMakers/defi-intelligence): overview and reviewed historical examples
 
 ## Contact
