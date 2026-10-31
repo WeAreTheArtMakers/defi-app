@@ -247,6 +247,14 @@ footer nav a:hover{color:var(--ink)}
   .flow li::before,.card .chev,.bar{transition:none}
   .badge.col::before{animation:none}
 }
+/* click-to-load demo video */
+.demo-video{margin:28px 0 0;max-width:880px}
+.demo-video .yt,.demo-video .yt-frame{position:relative;display:block;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg-2)}
+.demo-video .yt img{display:block;width:100%;height:100%;object-fit:cover}
+.demo-video .yt .play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--brass);box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.demo-video .yt .play::after{content:"";position:absolute;left:31px;top:23px;border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent var(--brass-ink)}
+.demo-video .yt:hover .play,.demo-video .yt:focus-visible .play{transform:scale(1.06)}
+.demo-video figcaption{margin-top:10px;color:var(--ink-3);font-size:15px}
 </style>
 </head>
 <body>
@@ -488,7 +496,14 @@ footer nav a:hover{color:var(--ink)}
         <li><span class="n"></span><h3>Detect</h3><p>Volume, swap-count and liquidity shifts are measured against a frozen baseline, per token and pool.</p></li>
         <li><span class="n"></span><h3>Explain</h3><p>Every finding ships with its Evidence Card: method, alternative explanations, the SQL and the public-node recipe.</p></li>
       </ol>
-      <p class="intro" style="margin-top:24px">See it on real data: <a href="/case-studies/zora-base/">ZORA on Base — a week of DEX activity, checked on a public node</a>.</p>
+      <figure class="demo-video">
+        <a class="yt" href="https://youtu.be/Jq4_aY7Q6Gw" data-yt="Jq4_aY7Q6Gw" aria-label="Play the 82-second WATAM DeFi Intelligence demo">
+          <img src="/assets/demo-video-thumb.jpg" width="1280" height="720" loading="lazy" alt="Demo video: a real free report, an Evidence Card, and the same 156 swaps re-counted on a public node">
+          <span class="play" aria-hidden="true"></span>
+        </a>
+        <figcaption>82 seconds: a real free report, an Evidence Card, and its numbers re-run on a free public node. The video loads from YouTube only when you press play.</figcaption>
+      </figure>
+      <p class="intro" style="margin-top:24px">See it on real data: <a href="/case-studies/zora-base/">ZORA on Base — a week of DEX activity, checked on a public node</a> · <a href="/research/binance-14-outflow-2026-10-29/">the 29 Oct “Binance 14” outflow on DEX pools, block by block</a>.</p>
     </div>
   </section>
 
@@ -828,5 +843,6 @@ footer nav a:hover{color:var(--ink)}
   document.fonts && document.fonts.ready.then(() => reduce && draw(0));
 })();
 </script>
+<script src="/assets/video.js" defer></script>
 </body>
 </html>
