@@ -1,0 +1,51 @@
+/* Research page: "Binance 14" outflow (charts are inline SVG; colours follow the site's light/dark scheme) */
+.rs{max-width:960px}
+.rs .narrow{max-width:72ch}
+.rs .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:8px 0 28px}
+.rs .tile{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:14px 16px}
+.rs .tile b{display:block;font:600 28px/1.15 var(--text);color:var(--ink);margin:0 0 6px}
+.rs .tile span{display:block;color:var(--ink-2);font-size:14px;line-height:1.4}
+.rs .tile small{display:block;color:var(--ink-3);font-size:13px;margin-top:6px}
+.rs figure.viz{margin:20px 0 28px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px 16px 12px}
+.rs figure.viz figcaption{color:var(--ink-3);font-size:14px;line-height:1.5;margin-top:8px}
+.rs .viz h3{font:600 16px/1.35 var(--text);color:var(--ink);margin:0 0 4px}
+.rs .viz .sub-t{color:var(--ink-3);font-size:14px;margin:0 0 10px}
+.rs .legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 8px;padding:0;list-style:none;font-size:14px;color:var(--ink-2)}
+.rs .legend li{display:flex;align-items:center;gap:8px;margin:0}
+.rs .legend i{display:inline-block;flex:none}
+.rs .legend .k-line{width:18px;height:2px;background:var(--v-b);border-radius:1px}
+.rs .legend .k-dot{width:10px;height:10px;border-radius:50%;background:var(--v-a)}
+.rs .legend .k-sq{width:12px;height:12px;border-radius:3px}
+.rs .k-sq.c-a{background:var(--v-a)}.rs .k-sq.c-b{background:var(--v-b)}.rs .k-sq.c-c{background:var(--v-c)}.rs .k-sq.c-n{background:var(--v-n)}
+.viz{--v-a:#d95926;--v-b:#3987e5;--v-c:#199e70;--v-n:#56617c;--v-grid:#1f2b45;--v-axis:#33415f}
+@media (prefers-color-scheme:light){.viz{--v-a:#eb6834;--v-b:#2a78d6;--v-c:#1baf7a;--v-n:#a9b1bf;--v-grid:#e3e8f0;--v-axis:#c3cad6}}
+.viz svg.chart{display:block;width:100%;height:auto;overflow:visible;font-family:var(--text)}
+.viz svg text{fill:var(--ink-3);font-size:13px}
+.viz svg .tick{font-variant-numeric:tabular-nums;font-size:12px}
+.viz svg .axlab{font-size:12px}
+.viz svg .lab{fill:var(--ink);font-size:14px;font-weight:600}
+.viz svg .sub{fill:var(--ink-3);font-size:12.5px;font-weight:400}
+.viz svg .val{fill:var(--ink-2);font-size:13px;font-variant-numeric:tabular-nums}
+.viz svg .ann{fill:var(--ink);font-size:13.5px;font-weight:600}
+.viz svg .ann2{fill:var(--ink-2);font-size:12.5px}
+.viz svg .grid{stroke:var(--v-grid);stroke-width:1}
+.viz svg .axis{stroke:var(--v-axis);stroke-width:1}
+.viz svg .lead{stroke:var(--ink-3);stroke-width:1}
+.viz svg .line{fill:none;stroke:var(--v-b);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.viz svg .stem{stroke:var(--v-a);stroke-width:2;stroke-linecap:round;opacity:.75}
+.viz svg .dot{fill:var(--v-a);stroke:var(--surface);stroke-width:2}
+.viz svg .bar{fill:var(--v-a)}
+.viz svg .seg.c-a{fill:var(--v-a)}.viz svg .seg.c-b{fill:var(--v-b)}.viz svg .seg.c-c{fill:var(--v-c)}.viz svg .seg.c-n{fill:var(--v-n)}
+.viz svg .hitarea{fill:transparent}
+.viz svg .hit:hover .dot{stroke:var(--ink)}
+.viz svg .hit:hover .bar,.viz svg .hit:hover .seg{opacity:.85}
+.viz .v-w{display:block}.viz .v-n{display:none}
+@media (max-width:640px){.viz .v-w{display:none}.viz .v-n{display:block}.rs figure.viz{padding:12px 10px 10px}}
+.rs .tbl td,.rs .tbl th{font-size:14px}
+.rs .tbl td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rs .tbl code{font-size:12.5px}
+.rs .mini{display:inline-block;height:10px;border-radius:0 3px 3px 0;background:var(--v-a);vertical-align:middle;margin-right:8px}
+.rs details{margin:10px 0 18px}
+.rs details summary{cursor:pointer;color:var(--ink-2)}
+.rs .note{border-left:3px solid var(--line);padding:2px 0 2px 14px;color:var(--ink-2)}
+.rs a.tx{font-family:var(--mono);font-size:13px}

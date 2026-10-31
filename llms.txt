@@ -27,6 +27,7 @@ is an accusation.
 ## Method
 - [Method](https://defi.wearetheartmakers.com/method/): how swaps are collected and verified, the five evidence questions, coverage, limitations and how to reproduce a finding
 - [Case study: ZORA on Base](https://defi.wearetheartmakers.com/case-studies/zora-base/): one week of verified swaps and five events; one finding re-run on a public Base node with the same 156 swaps and value
+- [Research: the 29 Oct 2026 "Binance 14" outflow on DEX pools](https://defi.wearetheartmakers.com/research/binance-14-outflow-2026-10-29/): block-by-block pool prices, 13 of 14 tracked tokens sold into Uniswap pools, how to reproduce
 - [Public repository](https://github.com/WeAreTheArtMakers/defi-intelligence): overview and reviewed historical examples
 
 ## Contact
