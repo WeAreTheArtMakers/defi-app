@@ -44,7 +44,7 @@
       <div class="narrow">
       <p class="kicker">Research · 31 Oct 2026</p>
       <h1>The 29 Oct “Binance 14” outflow on DEX pools, block by block</h1>
-      <p class="lead">On 29 Oct 2026 the wallet labelled “Binance 14” sent ETH, stablecoins and 60+ tokens to a fresh address. We did not look at who or why. We looked at what happened next in the DEX pools of the tokens that left it — every number below links to the block or transaction it comes from.</p>
+      <p class="lead">On 29 Oct 2026 the wallet labelled “Binance 14” on Etherscan sent ETH, stablecoins and 60+ tokens to a fresh address. We did not look at who or why. We looked at what happened next in the DEX pools of the tokens that left it — every number below links to the block or transaction it comes from.</p>
       <p class="meta">Ethereum mainnet · first snapshot at block ≈ 26,301,760 (29 Oct, 23:43 UTC) · all figures re-derived on public nodes on 31 Oct 2026, up to block 26,315,134 · token units, blocks and pool prices only; no USD values</p>
       </div>
 
@@ -67,7 +67,7 @@
 
       <h2 id="ondo">ONDO: one seller, one pool, −91% inside one block</h2>
       <p>The receiver sent <strong>21,851,871 ONDO</strong> to <a href="https://etherscan.io/address/0x42cdf00c85005630cc8605731b9364f712077810"><code>0x42cd…7810</code></a> (block <a href="https://etherscan.io/block/26301515">26,301,515</a>, tx <a class="tx" href="https://etherscan.io/tx/0x6bf04dd89cd7fb70b2eb02762c8515f67dbdff0d9101507fa3cc01a7120ea023">0x6bf04dd8…</a>). That address sold all of it into one pool, Uniswap v3 ONDO/WETH 0.3% (<a href="https://etherscan.io/address/0x7b1e5d984a43ee732de195628d20d05cfabc3cc7"><code>0x7b1e…3cc7</code></a>), in <strong>29 sales</strong> between blocks 26,301,556 and 26,301,642 (23:01–23:19 UTC) — about one sale every three blocks.</p>
-      <p>Each sale pushed the pool price down, by 8% to 91% inside its block. Arbitrage traders then bought the cheap ONDO in the same block, so at the end of every block the price was at most about 20% below where it started. The deepest sale was in block <a href="https://etherscan.io/block/26301597">26,301,597</a> (tx <a class="tx" href="https://etherscan.io/tx/0x03fcad039124f8d867d7d149a04ebd91e3888e08d2930b24c567b62848efbc6c">0x03fcad03…</a>): <strong>−90.8%</strong>. From the first sale to block 26,301,760, about 72% of all ONDO sold into this pool came from this one address.</p>
+      <p>Each sale pushed the pool price down, by 8% to 91% inside its block. Other swaps in the same block, most likely arbitrage, bought ONDO back, so at the end of every block the price was at most about 20% below where it started. The deepest sale was in block <a href="https://etherscan.io/block/26301597">26,301,597</a> (tx <a class="tx" href="https://etherscan.io/tx/0x03fcad039124f8d867d7d149a04ebd91e3888e08d2930b24c567b62848efbc6c">0x03fcad03…</a>): <strong>−90.8%</strong>. From the first sale to block 26,301,760, about 72% of all ONDO sold into this pool came from this one address.</p>
       </div>
       
       <figure class="viz" aria-label="ONDO/WETH 0.3% pool price, block by block">
@@ -574,7 +574,7 @@
       <p>Our near-real-time large-trade monitor (part of Live Pro) raised <strong>99 alerts on Ethereum</strong> for these tokens between blocks 26,301,184 and 26,301,696 (21:47–23:30 UTC). Afterwards we matched each alert’s transaction against the addresses on this page. The alert list comes from our internal alert history; the transactions behind each alert are public.</p>
       <ul>
         <li><strong>23</strong> were the sells by outflow-linked addresses themselves: UNI 8, AAVE 5, ONDO 4, ENA 3, LINK 2, WLD 1.</li>
-        <li><strong>20</strong> were reaction trades right after them, mostly arbitrage and buybacks; <strong>4</strong> were volume bursts that overlap the sells.</li>
+        <li><strong>20</strong> were reaction trades right after them, most likely arbitrage or buybacks (our reading of the flow); <strong>4</strong> were volume bursts that overlap the sells.</li>
         <li><strong>52</strong> were market-wide moves with no link we could find — including every PENDLE, LDO, ETHFI and COMP alert. Those tokens had not left the receiver yet at that time.</li>
       </ul>
       </div>
@@ -794,7 +794,7 @@
         <tr><td>SNX</td><td class="num">8,405,742</td><td>—</td><td>still at <a href="https://etherscan.io/address/0xeb3107117fead7de89cd14d463d340a2e6917769"><code>0xeb31…7769</code></a> (a 170-byte contract); no transfer out up to block 26,315,134</td><td>no</td><td>—</td></tr>
       </tbody></table></div>
       <div class="narrow">
-      <p class="meta" style="margin-top:8px">Also after the snapshot, the receiver sold small leftovers into the same pools: 6,590.78 LINK (<a class="tx" href="https://etherscan.io/tx/0x3a9e765c8bb4ea34e42fb01f9b4fa96a8a84fbaa4a31ce9a6d65061aa2c19014">0x3a9e765c…</a>) and 81.57 AAVE (blocks 26,302,874–26,302,882), plus the last 735 ETHFI and 725 LDO included above. Its ETH balance went from 2,072.9 ETH at block 26,301,760 to 0.0015 ETH; we have not traced that ETH here. A zero-value LINK transfer to the look-alike address <code>0xcf4c3997…23e0</code> (block 26,308,274) looks like address poisoning, not a sale.</p>
+      <p class="meta" style="margin-top:8px">Also after the snapshot, the receiver sold small leftovers into the same pools: 6,590.78 LINK (<a class="tx" href="https://etherscan.io/tx/0x3a9e765c8bb4ea34e42fb01f9b4fa96a8a84fbaa4a31ce9a6d65061aa2c19014">0x3a9e765c…</a>) and 81.57 AAVE (blocks 26,302,874–26,302,882), plus the last 735 ETHFI and 725 LDO included above. Its ETH balance went from 2,072.9 ETH at block 26,301,760 to 0.0015 ETH; we have not traced that ETH here. A zero-value LINK transfer to the look-alike address <code>0xcf4c3997…23e0</code> (block 26,308,274) is a look-alike transfer, not a sale.</p>
 
       <h2 id="check">How to check it yourself</h2>
       <p>Everything above comes from public Ethereum logs. Here is the ONDO finding, end to end. One request returns every swap in the ONDO/WETH 0.3% pool from block 26,301,550 to 26,301,650:</p>
