@@ -15,6 +15,7 @@ is an accusation.
 ## Product
 - [Overview](https://defi.wearetheartmakers.com/): what a finding contains, the nine networks, how the pipeline works
 - [Token catalog](https://defi.wearetheartmakers.com/tokens/): every tracked token with status, coverage window, verified swaps, pools and anomaly findings
+- [Live Pro](https://defi.wearetheartmakers.com/live-pro/): per-token add-on, sales-led; six checks (large trade, volume burst, trading went quiet, one-sided flow, one address dominates, pool liquidity drop) on a token's verified EVM pools read from confirmed blocks about every 5 minutes; pre-alerts by email, Telegram or webhook, each later checked against verified data (confirmed, or not confirmed with the difference); statistical observations, not claims of intent, not investment advice
 - [Pricing](https://defi.wearetheartmakers.com/pricing/): Evidence Snapshot $900 (7 days, one token, credited to a pilot); pilots; subscriptions from $1,500/month; stablecoin or bank transfer
 - [Buy online](https://app.wearetheartmakers.com/checkout): self-serve checkout
 - [Application](https://app.wearetheartmakers.com/)

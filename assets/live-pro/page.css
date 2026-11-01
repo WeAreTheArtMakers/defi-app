@@ -1,0 +1,178 @@
+/* Live Pro sales page (live-pro/index.html). Builds on site.css tokens; no external assets. */
+.lp{--measured:var(--brass);--usual:var(--blue);--rule:var(--ink-3);--r-lg:18px;--r-sm:10px}
+.lp p{margin:0 0 14px;color:var(--ink-2)}
+.lp h2{max-width:26ch}
+.lp .intro{margin:0 0 28px}
+.lp section{padding:clamp(48px,8vh,80px) 0;border-top:1px solid var(--line-soft)}
+.lp section.alt{background:var(--bg-2)}
+.lp .tnum{font-variant-numeric:tabular-nums}
+.lp .label{display:block;font:500 14px/1.3 var(--text);color:var(--brass-text);margin:0 0 10px}
+
+/* hero */
+.lp .hero{padding:clamp(32px,6vh,64px) 0 clamp(40px,7vh,72px);border-top:0}
+.lp .hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,64px);align-items:center}
+.lp .hero h1{font-size:clamp(36px,5.2vw,66px);line-height:1.02;max-width:17ch;margin:0 0 20px}
+.lp .hero .sub{font-size:clamp(18px,1.6vw,20px);line-height:1.55;max-width:56ch;color:var(--ink-2)}
+.lp .hero .ctas{margin-top:28px}
+.lp .hero .aside{font-size:14.5px;color:var(--ink-3);margin:14px 0 0;max-width:60ch}
+
+/* the alert slip (hero) and the full alert mock share the gauge */
+.slip{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:22px 22px 18px;position:relative}
+.slip::before{content:"";position:absolute;left:-1px;top:22px;bottom:22px;width:3px;border-radius:2px;background:var(--measured)}
+.slip .tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--brass-text)}
+.slip .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--measured);box-shadow:0 0 0 4px rgba(var(--rgb-brass),.18)}
+.slip h2,.mock h3{font:600 22px/1.2 var(--display);margin:10px 0 4px;color:var(--ink);max-width:none}
+.slip .on{font-size:15px;color:var(--ink-3);margin:0 0 18px}
+.slip .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:14px;color:var(--ink-3)}
+.slip .foot a{color:var(--brass-text);text-underline-offset:3px}
+
+.gauge{--m:95.3;--t:80;--u:40.5;position:relative;padding:30px 0 0}
+.gauge .track{position:relative;height:12px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);overflow:visible}
+.gauge .fill{position:absolute;left:0;top:0;bottom:0;width:calc(var(--m) * 1%);border-radius:999px;background:linear-gradient(90deg,rgba(var(--rgb-brass),.25),var(--measured))}
+.gauge .tick{position:absolute;top:-7px;bottom:-7px;width:2px;border-radius:1px;transform:translateX(-1px)}
+.gauge .tick.t{left:calc(var(--t) * 1%);background:var(--ink)}
+.gauge .tick.u{left:calc(var(--u) * 1%);background:var(--usual)}
+.gauge .pin{position:absolute;top:0;left:calc(var(--m) * 1%);transform:translateX(-50%);font:600 13px/1 var(--text);color:var(--brass-text);white-space:nowrap}
+.gauge .pin::after{content:"";display:block;width:0;height:0;margin:5px auto 0;border:5px solid transparent;border-top-color:var(--measured)}
+.gauge .scale{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-3);margin-top:8px}
+.gauge dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 0}
+.gauge dt{font-size:13px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+.gauge dt i{display:inline-block;width:10px;height:3px;border-radius:2px;flex:none}
+.gauge dd{margin:2px 0 0;font:600 19px/1.2 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.gauge .k-m i{background:var(--measured)} .gauge .k-t i{background:var(--ink)} .gauge .k-u i{background:var(--usual)} .gauge .k-d i{background:transparent}
+
+/* two clocks */
+.clocks{list-style:none;margin:clamp(36px,6vh,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.clocks li{position:relative;padding:20px 22px 4px 0}
+.clocks li::before{content:"";position:absolute;left:0;top:-5px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--ink-3)}
+.clocks li.now::before{border-color:var(--measured);background:var(--measured)}
+.clocks li.later::before{border-color:var(--ok);background:var(--ok)}
+.clocks .when{display:block;font:600 14px/1.3 var(--text);color:var(--ink-3);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.clocks li.now .when{color:var(--brass-text)} .clocks li.later .when{color:var(--ok)}
+.clocks b{display:block;font:600 18px/1.25 var(--display);color:var(--ink);margin-bottom:4px}
+.clocks p{font-size:15px;margin:0}
+
+/* six checks */
+.checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.check{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:22px 22px 20px}
+.check svg{display:block;width:72px;height:32px;color:var(--brass-text);margin-bottom:14px}
+.check h3{margin:0 0 12px;font-size:22px}
+.check .rule{margin:0 0 14px;padding:12px 14px;border-radius:var(--r-sm);background:var(--bg-2);border:1px solid var(--line-soft);font-size:15px;line-height:1.5;color:var(--ink)}
+.check .rule small{display:block;margin-top:6px;font-size:13.5px;color:var(--ink-3)}
+.check dl{margin:0;display:grid;gap:10px}
+.check dt{font-size:13.5px;color:var(--ink-3)}
+.check dd{margin:2px 0 0;font-size:15.5px;color:var(--ink-2)}
+.check .who{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.check .who li{font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.checks-note{margin-top:22px;font-size:15px;color:var(--ink-3);max-width:90ch}
+
+/* how to read an alert: annotated mock */
+.read{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:start}
+.mock{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden}
+.mock .chrome{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line-soft);background:var(--raised);font-size:13px;color:var(--ink-3)}
+.mock .chrome i{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+.mock .chrome span{margin-left:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mock .pane{padding:20px 22px;border-bottom:1px solid var(--line-soft);position:relative}
+.mock .pane:last-child{border-bottom:0}
+.mock .pane > .nb{position:absolute;right:16px;top:16px}
+.nb{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--measured);color:var(--brass-text);font:600 14px/1 var(--display);background:var(--surface);flex:none}
+.mock .tag{font-size:13px;font-weight:600;color:var(--brass-text)}
+.mock .on{font-size:15px;color:var(--ink-3);margin:0}
+.mock .summary{margin:12px 0 0;padding:10px 12px;border-left:2px solid var(--measured);background:var(--raised);border-radius:0 8px 8px 0;font-size:14.5px;color:var(--ink-2)}
+.mock .kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 18px;margin:16px 0 0;font-size:14.5px}
+.mock .kv dt{color:var(--ink-3)} .mock .kv dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.mock h4{font:600 16px/1.3 var(--text);color:var(--ink);margin:0 0 10px;padding-right:40px}
+.mock .split{display:flex;height:14px;border-radius:999px;overflow:hidden;border:1px solid var(--line);margin:10px 0 6px}
+.mock .split span{display:block;height:100%}
+.mock .split .c{background:var(--measured)} .mock .split .o{background:var(--bg-2)}
+.mock .small{font-size:13.5px;color:var(--ink-3);margin:0}
+.mock .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.mock .chip{font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.mock .chip.hi{border-color:color-mix(in srgb,var(--ok) 45%,transparent);color:var(--ok)}
+.mock .unusual{margin:10px 0 0;padding:10px 12px;border-radius:var(--r-sm);border:1px solid rgba(var(--rgb-brass),.5);background:rgba(var(--rgb-brass),.07)}
+.mock .unusual b{display:block;color:var(--ink);font-weight:600;font-size:15px}
+.mock .unusual span{font-size:13.5px;color:var(--ink-3)}
+.mock .next{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mock .next div{border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:10px 12px;background:var(--raised)}
+.mock .next b{display:block;font:600 18px/1.2 var(--display);color:var(--ink)}
+.mock .next span{font-size:13.5px;color:var(--ink-3)}
+.mock .verdict{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.pend{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.pill.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.pill.no{color:var(--ink-2);border-color:var(--line)}
+
+.notes{list-style:none;margin:0;padding:0;display:grid;gap:0;position:sticky;top:calc(var(--nav) + 20px)}
+.notes li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;padding:16px 0;border-top:1px solid var(--line-soft)}
+.notes li:first-child{border-top:0;padding-top:0}
+.notes b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+.notes p{font-size:15.5px;margin:0}
+.notmean{margin:28px 0 0;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface)}
+.notmean h3{margin:0 0 10px;font-size:20px}
+.notmean ul{margin:0;padding-left:20px}
+.notmean li{color:var(--ink-2);margin:0 0 6px;font-size:15.5px}
+
+/* video */
+.lp .demo-video{max-width:none;margin:0}
+.lp .demo-video figcaption a{color:var(--brass-text);text-underline-offset:3px}
+.vid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:center}
+
+/* features */
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+.feats h3{margin:0 0 12px;font-size:20px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.feats ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.feats li{font-size:15.5px;color:var(--ink-2);padding-left:18px;position:relative}
+.feats li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--brass)}
+.feats li b{color:var(--ink);font-weight:600}
+
+/* latency */
+.lp .tbl{max-width:880px}
+.lp td,.lp th{font-size:15px}
+.lp tbody th{font-weight:500;color:var(--ink)}
+@media (max-width:640px){.lp td.n,.lp th.n{white-space:normal}.lp td,.lp th{padding:10px 10px}}
+
+/* trust strip */
+.trust{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden}
+.trust li{padding:20px 22px;border-left:1px solid var(--line-soft)}
+.trust li:first-child{border-left:0}
+.trust b{display:block;font:600 17px/1.3 var(--display);color:var(--ink);margin-bottom:6px}
+.trust span{font-size:14.5px;color:var(--ink-2)}
+.lp section.trust-band{padding:clamp(32px,5vh,48px) 0}
+
+/* closing */
+.lp .closing{margin:0}
+.lp .closing p{margin:10px 0 0;max-width:58ch}
+
+@media (max-width:1080px){
+  .checks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .feats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust li:nth-child(3){border-left:0}
+  .trust li:nth-child(n+3){border-top:1px solid var(--line-soft)}
+}
+@media (max-width:920px){
+  .lp .hero-grid,.read,.vid{grid-template-columns:minmax(0,1fr)}
+  .clocks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .notes{position:static}
+}
+@media (max-width:640px){
+  .checks,.feats,.trust,.clocks{grid-template-columns:minmax(0,1fr)}
+  .clocks{border-top:0;border-left:1px solid var(--line);margin-left:4px}
+  .clocks li{padding:0 0 22px 22px}
+  .clocks li::before{left:-5px;top:4px}
+  .trust li{border-left:0;border-top:1px solid var(--line-soft)}
+  .trust li:first-child{border-top:0}
+  .gauge dl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mock .pane{padding:18px 16px}
+  .mock .next{grid-template-columns:minmax(0,1fr)}
+  .mock .kv{grid-template-columns:minmax(0,1fr);gap:0}
+  .mock .kv dd{margin-bottom:6px}
+  .slip{padding:18px 16px 16px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .slip .fill{animation:lp-fill 1.1s cubic-bezier(.2,.7,.2,1) .2s both}
+  .slip .pin{animation:lp-pin .5s ease-out 1.1s both}
+}
+@keyframes lp-fill{from{width:0}}
+@keyframes lp-pin{from{opacity:0;transform:translate(-50%,-6px)}}
