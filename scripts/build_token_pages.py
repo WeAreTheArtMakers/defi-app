@@ -40,7 +40,8 @@ OG_IMAGE = f"{SITE}/assets/og-card.png"
 TERMS_URL = f"{SITE}/terms/"
 PRIVACY_URL = f"{SITE}/privacy/"
 LEGAL_URL = f"{SITE}/legal/"
-CASE_STUDY_URLS = (f"{SITE}/case-studies/zora-base/", f"{SITE}/research/binance-14-outflow-2026-10-29/")
+CASE_STUDY_URLS = (f"{SITE}/case-studies/zora-base/", f"{SITE}/research/binance-14-outflow-2026-10-29/",
+                   f"{SITE}/research/market-reality-ena/")
 STATIC_PAGES = (METHOD_URL, *CASE_STUDY_URLS, PRICING_URL, TERMS_URL, PRIVACY_URL, LEGAL_URL)  # hand-written pages listed in sitemap.xml
 REPO_URL = "https://github.com/WeAreTheArtMakers/defi-intelligence"
 EMAIL = "admin@wearetheartmakers.com"
