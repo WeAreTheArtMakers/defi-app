@@ -50,7 +50,7 @@
           <h1 id="h-hero">Know what happened in your token's pools — within minutes, with the evidence.</h1>
           <p class="sub">Live Pro reads your token's DEX pools from confirmed blocks about every 5 minutes. When something unusual happens, you get a pre-alert with the transactions behind it. Later, each pre-alert is checked against our verified data: confirmed, or not confirmed with the difference.</p>
           <p class="ctas">
-            <a class="btn primary" href="mailto:admin@wearetheartmakers.com?subject=Live%20Pro">Request Live Pro for your token</a>
+            <a class="btn primary" href="#request">Request Live Pro for your token</a>
             <a class="btn" href="/tokens/">Start with a free 7-day evidence report</a>
           </p>
           <p class="aside">Live Pro is quoted per token, in writing. It is not part of the self-serve checkout.</p>
@@ -348,6 +348,30 @@
     </div>
   </section>
 
+  <section id="request" aria-labelledby="h-request" style="padding-top:0;border-top:0">
+    <div class="wrap">
+      <div class="frq" id="live-pro-request" data-api="https://app.wearetheartmakers.com">
+        <h2 id="h-request">Request Live Pro</h2>
+        <p class="intro">Tell us the token and network. We reply within one business day with the pools we would watch and a written quote.</p>
+        <form class="frq-form" novalidate hidden>
+          <label><span>Work email</span><input type="email" name="email" required maxlength="200" autocomplete="email" inputmode="email"></label>
+          <label><span>Name <span class="opt-l">(optional)</span></span><input type="text" name="name" maxlength="120" autocomplete="name"></label>
+          <label><span>Company <span class="opt-l">(optional)</span></span><input type="text" name="company" maxlength="120" autocomplete="organization"></label>
+          <label><span>You are <span class="opt-l">(optional)</span></span>
+            <select name="role"><option value="">Choose one</option><option value="token_team">Token team</option><option value="listing_desk">Exchange or listing desk</option><option value="fund">Fund</option><option value="other">Other</option></select></label>
+          <label class="wide"><span>Tokens to watch <span class="opt-l">(optional; name and network, or network and address)</span></span><input type="text" name="tokens" maxlength="500"></label>
+          <label class="wide"><span>Message <span class="opt-l">(optional)</span></span><textarea name="message" rows="4" maxlength="1000"></textarea></label>
+          <label class="hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          <label class="consent"><input type="checkbox" name="consent" required> <span class="frq-consent"></span></label>
+          <div class="frq-ts"></div>
+          <button class="btn primary" type="submit">Send request</button>
+          <p class="frq-msg" role="status" aria-live="polite"></p>
+        </form>
+        <p class="aside">Prefer email? Write to <a href="mailto:admin@wearetheartmakers.com?subject=Live%20Pro">admin@wearetheartmakers.com</a>. Live Pro is quoted per token, in writing.</p>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="h-close" style="padding-top:0;border-top:0">
     <div class="wrap">
       <div class="closing">
@@ -356,7 +380,7 @@
           <p>Tell us the token and network. We reply with the pools we would watch and a written quote.</p>
         </div>
         <div class="acts">
-          <a class="btn primary" href="mailto:admin@wearetheartmakers.com?subject=Live%20Pro">Request Live Pro for your token</a>
+          <a class="btn primary" href="#request">Request Live Pro for your token</a>
           <a class="btn" href="/tokens/">Start with a free 7-day evidence report</a>
         </div>
       </div>
@@ -381,5 +405,6 @@
   </div>
 </footer>
 <script src="/assets/video.js" defer></script>
+<script src="/assets/live-pro-request.js" defer></script>
 </body>
 </html>
