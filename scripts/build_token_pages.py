@@ -204,6 +204,7 @@ def footer() -> str:
         f'      <a href="{PRIVACY_URL}">Privacy</a>\n'
         f'      <a href="{LEGAL_URL}">Legal</a>\n'
         f'      <a href="mailto:{EMAIL}">Contact</a>\n'
+        "      <a href=\"https://t.me/watam_intelligence\" rel=\"noopener\">Telegram</a>\n"
         "    </nav>\n  </div>\n</footer>\n"
     )
 
