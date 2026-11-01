@@ -10,7 +10,7 @@
 <meta property="og:site_name" content="WATAM DeFi Intelligence">
 <meta property="og:url" content="https://defi.wearetheartmakers.com/live-pro/">
 <meta property="og:title" content="Live Pro: know what happened in your token's pools within minutes, with the evidence">
-<meta property="og:description" content="Near-real-time pre-alerts from confirmed blocks, each checked against verified data later. Six checks, a full evidence page per alert, email and Telegram delivery.">
+<meta property="og:description" content="Near-real-time pre-alerts from confirmed blocks, each checked against verified data later. Six checks, a full evidence page per alert, email or webhook delivery.">
 <meta property="og:image" content="https://defi.wearetheartmakers.com/assets/live-pro/watam-live-pro-demo-thumbnail.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
@@ -77,7 +77,7 @@
 
       <ol class="clocks" aria-label="What happens after a trade">
         <li><span class="when">On-chain</span><b>A swap lands in a block</b><p>Live Pro waits for the chain's confirmation depth. It never reads the mempool.</p></li>
-        <li class="now"><span class="when">About 2–9 minutes</span><b>Pre-alert</b><p>By email, Telegram or webhook, with the transaction and a link to the raw swaps.</p></li>
+        <li class="now"><span class="when">About 2–9 minutes</span><b>Pre-alert</b><p>By email or webhook, with the transaction and a link to the raw swaps.</p></li>
         <li><span class="when">Usually 12–36 hours</span><b>Verified run covers the window</b><p>Our verified pipeline reads the same blocks on its own schedule.</p></li>
         <li class="later"><span class="when">Verdict</span><b>Confirmed or not confirmed</b><p>Not confirmed comes with the difference, and you get a correction.</p></li>
       </ol>
@@ -275,7 +275,7 @@
         <div>
           <h3>Delivery and history</h3>
           <ul>
-            <li><b>Email, Telegram or webhook,</b> with the transaction link and a link to the raw swaps. A correction is sent if a pre-alert is not confirmed.</li>
+            <li><b>Email or webhook,</b> with the transaction link and a link to the raw swaps. A correction is sent if a pre-alert is not confirmed.</li>
             <li><b>Alerts list</b> with filters for period, check, status and token.</li>
             <li><b>CSV export</b> of the same list: values, thresholds, baselines, blocks, pools, transaction hashes, explorer links and, for large trades, the trader.</li>
             <li><b>Watched pools</b> for each token, with how far they are read and since when without a gap.</li>
