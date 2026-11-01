@@ -77,7 +77,7 @@
 
       <ol class="clocks" aria-label="What happens after a trade">
         <li><span class="when">On-chain</span><b>A swap lands in a block</b><p>Live Pro waits for the chain's confirmation depth. It never reads the mempool.</p></li>
-        <li class="now"><span class="when">About 2–9 minutes</span><b>Pre-alert</b><p>By email or webhook, with the transaction and a link to the raw swaps.</p></li>
+        <li class="now"><span class="when">About 1–9 minutes</span><b>Pre-alert</b><p>By email or webhook, with the transaction and a link to the raw swaps.</p></li>
         <li><span class="when">Usually 12–36 hours</span><b>Verified run covers the window</b><p>Our verified pipeline reads the same blocks on its own schedule.</p></li>
         <li class="later"><span class="when">Verdict</span><b>Confirmed or not confirmed</b><p>Not confirmed comes with the difference, and you get a correction.</p></li>
       </ol>
@@ -267,7 +267,7 @@
           <h3>Ask about this alert</h3>
           <ul>
             <li><b>Four preset questions in English and Turkish,</b> answered straight from the alert's stored facts, with no AI model involved: explain it, router or wallet, has it happened before, what it does not mean.</li>
-            <li><b>Your own questions</b> can be answered by your organization's own AI provider: Anthropic, OpenAI, or any OpenAI-compatible endpoint, including a model you host yourself. You pay your provider directly.</li>
+            <li><b>Your own questions</b> can be answered by your organization's own AI provider: Anthropic, OpenAI, or any OpenAI-compatible endpoint, including a model you host yourself behind a public HTTPS endpoint. You pay your provider directly.</li>
             <li><b>Every number is checked.</b> Each number in an answer must match a fact from the alert, and the answer lists the facts it uses. If a model answer fails that check, you get the answer built from the facts instead.</li>
             <li><b>No advice.</b> Questions asking for advice, a price view or who is behind an address are declined.</li>
           </ul>
