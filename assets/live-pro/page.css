@@ -176,3 +176,13 @@
 }
 @keyframes lp-fill{from{width:0}}
 @keyframes lp-pin{from{opacity:0;transform:translate(-50%,-6px)}}
+
+/* request form (assets/live-pro-request.js); the base form styles are .frq-* in site.css */
+.lp #request .frq{margin:0}
+.lp .frq-form .wide{grid-column:1/-1}
+.lp .frq-form select,.lp .frq-form textarea{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg-2);color:var(--ink);font:16px var(--text);min-height:46px}
+.lp .frq-form textarea{resize:vertical}
+.lp .frq-form input:focus-visible,.lp .frq-form select:focus-visible,.lp .frq-form textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.lp .frq .aside{margin:16px 0 0}
+.lp .frq-form [aria-invalid=true]{border-color:var(--warn)}
+#request{scroll-margin-top:84px}
