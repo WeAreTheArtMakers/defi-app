@@ -671,7 +671,11 @@ def llms_full(catalog: dict, entries: list[dict]) -> str:
 
 NETWORKS_BEGIN = "<!-- networks:begin"
 NETWORKS_END = "<!-- networks:end -->"
-RECENT_DAYS = 14
+RECENT_DAYS = 7
+FIRST_ADDED_FILE = "data/catalog-first-added.json"   # network:address → date the token first appeared in the catalog
+FIRST_ADDED: dict[str, str] = {}
+HERO_IDS = {"eth": "ethereum", "arb": "arbitrum", "op": "optimism", "base": "base", "bnb": "bsc", "avax": "avalanche",
+            "monad": "monad", "sol": "solana", "ton": "ton"}
 RECENT_MAX = 6
 _HEX = '<path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"{dash}/>'
 _SQUARE = '<rect class="mk-shape" x="5" y="5" width="34" height="34" rx="9" stroke="var(--brass)"{dash}/>'
@@ -705,7 +709,7 @@ NETWORK_CARDS = [
                  "PumpSwap"],
          desc="Swaps reconciled exactly against the pools' token balances. Pinned pools only; no anomaly findings yet."),
     dict(key="ton", tag="TON", shape=_DIAMOND, name="TON", fam="TVM, refreshed every 3 hours",
-         venues=["STON.fi v1", "STON.fi v2", "DeDust (classic pools)"],
+         venues=["STON.fi v1", "STON.fi v2", "DeDust (volatile pools)"],
          desc="Two independent providers must agree on every window. Pinned pools only; no anomaly findings yet."),
 ]
 
@@ -720,13 +724,15 @@ def _net_card(card: dict, rows: list[dict], now: datetime) -> str:
         if n:
             parts.append(f"{n} {label}")
     cutoff = now - timedelta(days=RECENT_DAYS)
-    recent = sorted((e for e in rows if (parse_ts(e.get("history_from")) or cutoff) > cutoff),
-                    key=lambda e: (parse_ts(e["history_from"]), e["address"]), reverse=True)
+    def added(e):     # the date the token first appeared in the catalog (not its history start: back-fills look new)
+        d = FIRST_ADDED.get(f'{e["network"]}:{e["address"]}')
+        return datetime.strptime(d, "%Y-%m-%d").replace(tzinfo=timezone.utc) if d else None
+    recent = sorted((e for e in rows if (added(e) or cutoff) > cutoff), key=lambda e: (added(e), e["address"]), reverse=True)
     when = []
     if recent:
         links = ", ".join(f'<a href="{page_path(e)}">{html.escape(display_symbol(e))}</a>' for e in recent[:RECENT_MAX])
         more = f" and {len(recent) - RECENT_MAX} more" if len(recent) > RECENT_MAX else ""
-        when.append(f'<p class="recent">Recently added: {links}{more}.</p>')
+        when.append(f'<p class="recent">Added in the last {RECENT_DAYS} days: {links}{more}.</p>')
     firsts = [t for t in (parse_ts(e.get("history_from")) for e in rows) if t]
     if card.get("note"):
         line = card["note"]
@@ -764,6 +770,8 @@ def networks_section(catalog: dict, entries: list[dict]) -> str | None:
         return None
     for extra in sorted(set(by_net) - {c["key"] for c in NETWORK_CARDS}):
         print(f"network {extra!r} is in the catalog but not in NETWORK_CARDS; add it to the homepage map", file=sys.stderr)
+    if not FIRST_ADDED:
+        print("first-added dates not loaded; no 'added' lines", file=sys.stderr)
     cards = "".join(_net_card(c, by_net[c["key"]], now) for c in NETWORK_CARDS)
     return (f'      <ul class="nets">\n{cards}      </ul>\n'
             f'      <p class="fine">Status of the catalog on {now.strftime("%d %b %Y")}; each token\'s live status, history length and proof '
@@ -779,15 +787,37 @@ def update_networks_section(out: Path, catalog: dict, entries: list[dict]) -> bo
     start = text.find(NETWORKS_BEGIN)
     end = text.find(NETWORKS_END)
     if start < 0 or end < start:
-        print("index.html: networks markers not found; homepage section left as it is", file=sys.stderr)
+        print("::warning::index.html: networks markers not found; homepage section left as it is", file=sys.stderr)
         return False
     body = networks_section(catalog, entries)
     if body is None:
-        print("catalog lacks entries for a homepage network; homepage section left as it is", file=sys.stderr)
+        print("::warning::catalog lacks entries for a homepage network; homepage section left as it is", file=sys.stderr)
         return False
     line_end = text.index("\n", start) + 1
-    path.write_text(text[:line_end] + body + "      " + text[end:], encoding="utf-8")
+    text = text[:line_end] + body + "      " + text[end:]
+    collecting = {c["key"] for c in NETWORK_CARDS
+                  if not any(e.get("status") == "available" for e in entries if e["network"] == c["key"])}
+    for hid, key in HERO_IDS.items():   # the hero diagram draws collecting networks with a dashed ring
+        text = re.sub(r'(\{ id:"%s", [^}\n]*?kind:"chain", x:[.0-9]+, y:[.0-9]+)(, collecting:true)?( \})' % hid,
+                      lambda m: m.group(1) + (", collecting:true" if key in collecting else "") + m.group(3), text)
+    path.write_text(text, encoding="utf-8")
     return True
+
+
+def load_first_added(out: Path, entries: list[dict], now) -> None:
+    """Fill FIRST_ADDED from the committed file; a token not in it yet is new today (the file is committed by the workflow).
+    Seeded on 2026-11-03 from the first commit of each address in the core repo's config/ (git log -S)."""
+    path = out / FIRST_ADDED_FILE
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    changed = False
+    for e in entries:
+        k = f'{e["network"]}:{e["address"]}'
+        if not data.get(k):
+            data[k] = now.strftime("%Y-%m-%d"); changed = True
+    FIRST_ADDED.clear(); FIRST_ADDED.update(data)
+    if changed:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def build(args) -> int:
@@ -825,6 +855,7 @@ def build(args) -> int:
     (tokens_dir / "index.html").write_text(index_page(catalog, entries), encoding="utf-8")
     (out / "sitemap.xml").write_text(sitemap(catalog, entries, out), encoding="utf-8")
     (out / "llms-full.txt").write_text(llms_full(catalog, entries), encoding="utf-8")
+    load_first_added(out, entries, parse_ts(catalog["generated_at"]))
     update_networks_section(out, catalog, entries)
     n_index = sum(1 for e in entries if indexable(e, catalog))
     print(f"wrote {len(entries)} token pages ({n_index} indexable) + tokens/index.html, sitemap.xml, llms-full.txt")
