@@ -43,7 +43,7 @@ jobs:
       - name: Commit if changed
         id: commit
         run: |
-          git add -A tokens sitemap.xml llms-full.txt
+          git add -A tokens sitemap.xml llms-full.txt index.html
           if git diff --cached --quiet; then
             echo "No changes."
             echo "changed=false" >> "$GITHUB_OUTPUT"

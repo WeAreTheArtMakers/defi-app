@@ -28,7 +28,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 SITE = "https://defi.wearetheartmakers.com"
@@ -667,6 +667,129 @@ def llms_full(catalog: dict, entries: list[dict]) -> str:
 
 # ---------------------------------------------------------------- commands
 
+# ---------------------------------------------------------------- homepage "networks" section
+
+NETWORKS_BEGIN = "<!-- networks:begin"
+NETWORKS_END = "<!-- networks:end -->"
+RECENT_DAYS = 14
+RECENT_MAX = 6
+_HEX = '<path class="mk-shape" d="M22 3l16.5 9.5v19L22 41 5.5 31.5v-19z" stroke="var(--blue)"{dash}/>'
+_SQUARE = '<rect class="mk-shape" x="5" y="5" width="34" height="34" rx="9" stroke="var(--brass)"{dash}/>'
+_DIAMOND = '<path class="mk-shape" d="M22 4l18 18-18 18L4 22z" stroke="var(--brass)"{dash}/>'
+# Fixed order and wording. Venues: only what the backend decodes (backend/app/chain/protocols.py recorded factories and
+# PROTOCOL_FAMILIES; backend/app/solana/programs.py SUPPORTED; config/ton_dex.toml), checked 3 Nov 2026. A trailing "*" marks
+# a venue verified pool by pool. A network missing from the live catalog keeps the old section (see update_networks_section).
+NETWORK_CARDS = [
+    dict(key="ethereum", tag="ETH", shape=_HEX, name="Ethereum", fam="EVM, chain id 1",
+         venues=["Uniswap v2", "Uniswap v3", "PancakeSwap v3", "Uniswap v4, per pool*"],
+         note="Back-fill on request for an Evidence Snapshot."),
+    dict(key="arbitrum", tag="ARB", shape=_HEX, name="Arbitrum One", fam="EVM, chain id 42161",
+         venues=["Uniswap v3", "SushiSwap v2", "Uniswap v4, per pool*"],
+         note="Back-fill on request for an Evidence Snapshot."),
+    dict(key="optimism", tag="OP", shape=_HEX, name="OP Mainnet", fam="EVM, chain id 10",
+         venues=["Uniswap v3", "Velodrome v2", "Velodrome Slipstream", "Uniswap v4, per pool*"],
+         note="Back-fill on request for an Evidence Snapshot."),
+    dict(key="base", tag="BASE", shape=_HEX, name="Base", fam="EVM, chain id 8453",
+         venues=["Uniswap v3", "Aerodrome v2", "Aerodrome Slipstream", "MetaDEX Slipstream", "PancakeSwap v3", "Uniswap v4, per pool*"],
+         note="Back-fill on request for an Evidence Snapshot."),
+    dict(key="bsc", tag="BNB", shape=_HEX, name="BNB Smart Chain", fam="EVM, chain id 56",
+         venues=["PancakeSwap v2", "PancakeSwap v3", "Uniswap v3", "PancakeSwap Infinity, per pool (verified hooked pools included)*",
+                 "Uniswap v4, per pool*"],
+         note="Collected forward only: windows starting more than 8 days back are refused."),
+    dict(key="avalanche", tag="AVAX", shape=_HEX, name="Avalanche C&#8209;Chain", fam="EVM, chain id 43114",
+         venues=["LFJ v1", "Pangolin v2", "Uniswap v3", "Pharaoh v3", "Uniswap v4, per pool*"]),
+    dict(key="monad", tag="MON", shape=_HEX, name="Monad", fam="EVM, chain id 143",
+         venues=["Uniswap v2", "Uniswap v3", "PancakeSwap v3", "Uniswap v4, per pool*"]),
+    dict(key="solana", tag="SOL", shape=_SQUARE, name="Solana", fam="SVM, refreshed hourly",
+         venues=["Raydium CPMM", "Raydium CLMM", "Orca Whirlpool", "Meteora DLMM", "Meteora DAMM v2", "Meteora dynamic AMM (v1)",
+                 "PumpSwap"],
+         desc="Swaps reconciled exactly against the pools' token balances. Pinned pools only; no anomaly findings yet."),
+    dict(key="ton", tag="TON", shape=_DIAMOND, name="TON", fam="TVM, refreshed every 3 hours",
+         venues=["STON.fi v1", "STON.fi v2", "DeDust (classic pools)"],
+         desc="Two independent providers must agree on every window. Pinned pools only; no anomaly findings yet."),
+]
+
+
+def _net_card(card: dict, rows: list[dict], now: datetime) -> str:
+    avail = [e for e in rows if e.get("status") == "available"]
+    status = "available" if avail else "collecting"
+    dash = "" if avail else ' stroke-dasharray="4 3"'
+    parts = [f"{len(rows)} token{'s' if len(rows) != 1 else ''}", f"{len(avail)} available"]
+    for st, label in (("collecting", "collecting"), ("on_hold", "on hold"), ("stale", "stale")):
+        n = sum(1 for e in rows if e.get("status") == st)
+        if n:
+            parts.append(f"{n} {label}")
+    cutoff = now - timedelta(days=RECENT_DAYS)
+    recent = sorted((e for e in rows if (parse_ts(e.get("history_from")) or cutoff) > cutoff),
+                    key=lambda e: (parse_ts(e["history_from"]), e["address"]), reverse=True)
+    when = []
+    if recent:
+        links = ", ".join(f'<a href="{page_path(e)}">{html.escape(display_symbol(e))}</a>' for e in recent[:RECENT_MAX])
+        more = f" and {len(recent) - RECENT_MAX} more" if len(recent) > RECENT_MAX else ""
+        when.append(f'<p class="recent">Recently added: {links}{more}.</p>')
+    firsts = [t for t in (parse_ts(e.get("history_from")) for e in rows) if t]
+    if card.get("note"):
+        line = card["note"]
+    elif not avail and firsts:
+        line = f"Collecting since {min(firsts).strftime('%d %b %Y')}; available after the verification period."
+    elif not avail:
+        line = "Available after the verification period."
+    else:
+        line = None
+    venues = "".join(f'<li class="per">{html.escape(v[:-1])}</li>' if v.endswith("*") else f"<li>{html.escape(v)}</li>"
+                     for v in card["venues"])
+    return (
+        f'        <li class="net{"" if avail else " collecting"}" data-s="{status}">\n'
+        f'          <div class="net-h">\n'
+        f'            <svg viewBox="0 0 44 44" aria-hidden="true">{card["shape"].format(dash=dash)}'
+        f'<text class="mk-txt" x="22" y="26" text-anchor="middle" fill="var(--ink)">{card["tag"]}</text></svg>\n'
+        f'            <div class="nm"><h3>{card["name"]}</h3><span class="fam">{card["fam"]}</span></div>\n'
+        f'            <span class="badge {"ok" if avail else "col"}">{"Available" if avail else "Collecting"}</span>\n'
+        f'          </div>\n'
+        f'          <ul class="venues" aria-label="Venues">{venues}</ul>\n'
+        f'          <p class="count">{" · ".join(parts)}</p>\n'
+        + (f'          <p>{card["desc"]}</p>\n' if card.get("desc") else "")
+        + "".join(f"          {w}\n" for w in when)
+        + (f'          <p class="when">{line}</p>\n' if line else "")
+        + "        </li>\n")
+
+
+def networks_section(catalog: dict, entries: list[dict]) -> str | None:
+    """The cards + footer line between the markers; None (keep the old section) if any network has no entries."""
+    now = parse_ts(catalog["generated_at"])
+    by_net: dict[str, list[dict]] = {}
+    for e in entries:
+        by_net.setdefault(e["network"], []).append(e)
+    if any(not by_net.get(c["key"]) for c in NETWORK_CARDS):
+        return None
+    for extra in sorted(set(by_net) - {c["key"] for c in NETWORK_CARDS}):
+        print(f"network {extra!r} is in the catalog but not in NETWORK_CARDS; add it to the homepage map", file=sys.stderr)
+    cards = "".join(_net_card(c, by_net[c["key"]], now) for c in NETWORK_CARDS)
+    return (f'      <ul class="nets">\n{cards}      </ul>\n'
+            f'      <p class="fine">Status of the catalog on {now.strftime("%d %b %Y")}; each token\'s live status, history length and proof '
+            f'counts are in the <a href="https://app.wearetheartmakers.com/catalog">token catalog</a>. Dashed venues are verified pool by '
+            f'pool: only pools with an accepted verification record are counted. Venue and network names identify the contracts we '
+            f'decode; they do not imply a partnership or endorsement.</p>\n')
+
+
+def update_networks_section(out: Path, catalog: dict, entries: list[dict]) -> bool:
+    """Rewrite only what lies between the markers in index.html. False (file untouched) if markers or data are missing."""
+    path = out / "index.html"
+    text = path.read_text(encoding="utf-8")
+    start = text.find(NETWORKS_BEGIN)
+    end = text.find(NETWORKS_END)
+    if start < 0 or end < start:
+        print("index.html: networks markers not found; homepage section left as it is", file=sys.stderr)
+        return False
+    body = networks_section(catalog, entries)
+    if body is None:
+        print("catalog lacks entries for a homepage network; homepage section left as it is", file=sys.stderr)
+        return False
+    line_end = text.index("\n", start) + 1
+    path.write_text(text[:line_end] + body + "      " + text[end:], encoding="utf-8")
+    return True
+
+
 def build(args) -> int:
     if args.catalog_file:
         catalog = json.loads(Path(args.catalog_file).read_text(encoding="utf-8"))
@@ -702,6 +825,7 @@ def build(args) -> int:
     (tokens_dir / "index.html").write_text(index_page(catalog, entries), encoding="utf-8")
     (out / "sitemap.xml").write_text(sitemap(catalog, entries, out), encoding="utf-8")
     (out / "llms-full.txt").write_text(llms_full(catalog, entries), encoding="utf-8")
+    update_networks_section(out, catalog, entries)
     n_index = sum(1 for e in entries if indexable(e, catalog))
     print(f"wrote {len(entries)} token pages ({n_index} indexable) + tokens/index.html, sitemap.xml, llms-full.txt")
     return 0
