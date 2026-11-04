@@ -160,6 +160,7 @@ USD values are not part of the evidence.
 
 - [Overview](https://defi.wearetheartmakers.com/)
 - [Token catalog](https://defi.wearetheartmakers.com/tokens/)
+- [Exit Check](https://defi.wearetheartmakers.com/exit-check/): free tool; value a wallet displays vs. what live aggregator sell quotes would pay out (KyberSwap, Velora, Jupiter, Raydium), shortfall, route and verified DEX exit depth for catalog tokens; quotes are indicative, not investment advice
 - [Pricing](https://defi.wearetheartmakers.com/pricing/): Evidence Snapshot $900 (7 days, one token); subscriptions from $1,500/month
 - [Buy online](https://app.wearetheartmakers.com/checkout): stablecoin or bank transfer
 - [Become a partner](https://app.wearetheartmakers.com/partners)

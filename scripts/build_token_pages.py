@@ -41,7 +41,7 @@ TERMS_URL = f"{SITE}/terms/"
 PRIVACY_URL = f"{SITE}/privacy/"
 LEGAL_URL = f"{SITE}/legal/"
 CASE_STUDY_URLS = (f"{SITE}/case-studies/zora-base/", f"{SITE}/research/binance-14-outflow-2026-10-29/",
-                   f"{SITE}/research/market-reality-ena/", f"{SITE}/live-pro/")
+                   f"{SITE}/research/market-reality-ena/", f"{SITE}/live-pro/", f"{SITE}/exit-check/")
 STATIC_PAGES = (METHOD_URL, *CASE_STUDY_URLS, PRICING_URL, TERMS_URL, PRIVACY_URL, LEGAL_URL)  # hand-written pages listed in sitemap.xml
 REPO_URL = "https://github.com/WeAreTheArtMakers/defi-intelligence"
 EMAIL = "admin@wearetheartmakers.com"
@@ -656,6 +656,7 @@ def llms_full(catalog: dict, entries: list[dict]) -> str:
         "",
         f"- [Overview]({SITE}/)",
         f"- [Token catalog]({SITE}/tokens/)",
+        f"- [Exit Check]({SITE}/exit-check/): free tool; value a wallet displays vs. what live aggregator sell quotes would pay out (KyberSwap, Velora, Jupiter, Raydium), shortfall, route and verified DEX exit depth for catalog tokens; quotes are indicative, not investment advice",
         f"- [Pricing]({PRICING_URL}): Evidence Snapshot $900 (7 days, one token); subscriptions from $1,500/month",
         f"- [Buy online]({APP}/checkout): stablecoin or bank transfer",
         f"- [Become a partner]({APP}/partners)",

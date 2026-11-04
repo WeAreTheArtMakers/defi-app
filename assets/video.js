@@ -1,3 +1,12 @@
+// Optional videos that stay hidden until an id is set: <figure class="demo-video" data-video-id="" hidden> (exit-check page).
+document.querySelectorAll("figure.demo-video[data-video-id]").forEach(fig => {
+  const id = (fig.dataset.videoId || "").trim();
+  const a = fig.querySelector("a.yt");
+  if (!a || !/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+  a.dataset.yt = id;
+  a.href = "https://youtu.be/" + id;
+  fig.hidden = false;
+});
 // Click-to-load YouTube: nothing is requested from YouTube until the visitor presses play.
 document.querySelectorAll("a.yt[data-yt]").forEach(a => a.addEventListener("click", e => {
   e.preventDefault();
