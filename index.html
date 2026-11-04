@@ -255,6 +255,16 @@ footer nav a:hover{color:var(--ink)}
 .demo-video .yt .play::after{content:"";position:absolute;left:31px;top:23px;border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent var(--brass-ink)}
 .demo-video .yt:hover .play,.demo-video .yt:focus-visible .play{transform:scale(1.06)}
 .demo-video figcaption{margin-top:10px;color:var(--ink-3);font-size:15px}
+/* Exit Check band */
+.exit-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.exit h2{max-width:22ch}
+.exit .tagline{font:600 clamp(20px,2.2vw,26px)/1.3 var(--display);color:var(--ink);margin:0 0 14px;max-width:34ch;text-wrap:balance}
+.exit-facts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.exit-facts li{padding:18px 0;border-bottom:1px solid var(--line)}
+.exit-facts h3{margin:0 0 4px;font:600 18px/1.3 var(--text);color:var(--ink)}
+.exit-facts p{margin:0;color:var(--ink-2);font-size:16px}
+.exit .fine{color:var(--ink-3);font-size:14px;margin:18px 0 0;max-width:60ch}
+@media (max-width:860px){.exit-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -267,6 +277,7 @@ footer nav a:hover{color:var(--ink)}
       <a class="opt2" href="#networks">Networks</a>
       <a href="#how">How it works</a>
       <a href="/tokens/">Tokens</a>
+      <a class="opt2" href="/exit-check/">Exit Check</a>
       <a class="opt2" href="/live-pro/">Live Pro</a>
       <a class="opt" href="/method/">Method</a>
       <a href="/pricing/">Pricing</a>
@@ -289,6 +300,7 @@ footer nav a:hover{color:var(--ink)}
   <a href="/method/">Method</a>
   <a href="/pricing/">Pricing</a>
   <a href="/tokens/">Tokens</a>
+  <a href="/exit-check/">Exit Check</a>
   <a href="/live-pro/">Live Pro</a>
   <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
   <a href="https://app.wearetheartmakers.com/checkout">Buy a plan</a>
@@ -540,6 +552,29 @@ footer nav a:hover{color:var(--ink)}
     </div>
   </section>
 
+  <section class="band exit" id="exit-check" aria-labelledby="h-exit">
+    <div class="wrap">
+      <div class="exit-grid">
+        <div>
+          <p class="kicker">New · free tool</p>
+          <h2 id="h-exit">Exit Check: what a sale really returns</h2>
+          <p class="tagline">Your wallet shows balance × last price. Exit Check shows what a sale actually returns.</p>
+          <p class="intro" style="margin-bottom:20px">Enter a network, a token and an amount. In seconds you see the value your wallet displays next to what live aggregator quotes would pay out, and the gap between them. No sign-up, nothing to install.</p>
+          <div class="ctas">
+            <a class="btn primary" href="https://app.wearetheartmakers.com/exit-check">Run an Exit Check</a>
+            <a class="btn" href="/exit-check/">How it works</a>
+          </div>
+          <p class="fine">Quotes are indicative and change every block. Informational only, not investment advice.</p>
+        </div>
+        <ul class="exit-facts">
+          <li><h3>Real sell quotes</h3><p>Aggregator quotes from KyberSwap and Velora on EVM networks, Jupiter and Raydium on Solana. A source that cannot answer is shown as unavailable, never filled with a number.</p></li>
+          <li><h3>The route</h3><p>Which venues and pools the best quote would use, how the amount splits between them, and the price impact of your size.</p></li>
+          <li><h3>Verified depth for catalog tokens</h3><p>For tokens in our catalog you also get our own on-chain verified DEX exit depth at −2, −5 and −10 %, read from the chain, not from a quote.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="band close" id="start" aria-labelledby="h-close">
     <div class="wrap">
       <h2 id="h-close">Bring one question. Leave with evidence.</h2>
@@ -560,6 +595,7 @@ footer nav a:hover{color:var(--ink)}
       <a href="/method/">Method</a>
       <a href="/pricing/">Pricing</a>
       <a href="/tokens/">Tokens</a>
+      <a href="/exit-check/">Exit Check</a>
       <a href="/live-pro/">Live Pro</a>
       <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
       <a href="/terms/">Terms</a>

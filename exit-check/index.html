@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exit Check: what a sale really returns — WATAM DeFi Intelligence</title>
+<meta name="description" content="Free Exit Check: enter a token and an amount and see the value your wallet displays next to what live aggregator sell quotes would pay out, the route, and our verified DEX exit depth for catalog tokens.">
+<link rel="canonical" href="https://defi.wearetheartmakers.com/exit-check/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WATAM DeFi Intelligence">
+<meta property="og:url" content="https://defi.wearetheartmakers.com/exit-check/">
+<meta property="og:title" content="Method — WATAM DeFi Intelligence">
+<meta property="og:description" content="Your wallet shows balance × last price. Exit Check shows what a sale actually returns: live aggregator quotes, the route and verified depth. Free, no sign-up.">
+<meta property="og:image" content="https://defi.wearetheartmakers.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://defi.wearetheartmakers.com/assets/og-card.png">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0A1020" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://defi.wearetheartmakers.com/#org","name":"WATAM Intelligence","alternateName":["WATAM","We Are The Art Makers"],"url":"https://defi.wearetheartmakers.com/","email":"admin@wearetheartmakers.com","logo":"https://defi.wearetheartmakers.com/assets/favicon.svg"},{"@type":"WebPage","@id":"https://defi.wearetheartmakers.com/exit-check/#page","url":"https://defi.wearetheartmakers.com/exit-check/","name":"Exit Check: what a sale really returns — WATAM DeFi Intelligence","description":"Free Exit Check: enter a token and an amount and see the value your wallet displays next to what live aggregator sell quotes would pay out, the route, and our verified DEX exit depth for catalog tokens.","isPartOf":{"@type":"WebSite","name":"WATAM DeFi Intelligence","url":"https://defi.wearetheartmakers.com/"},"publisher":{"@id":"https://defi.wearetheartmakers.com/#org"}},{"@type":"WebApplication","name":"Exit Check","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://app.wearetheartmakers.com/exit-check","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://defi.wearetheartmakers.com/#org"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>
+    <nav class="links" aria-label="Main">
+      <a href="/tokens/">Tokens</a>
+      <a href="/exit-check/" aria-current="page">Exit Check</a>
+      <a class="opt" href="/live-pro/">Live Pro</a>
+      <a class="opt" href="/method/">Method</a>
+      <a href="https://defi.wearetheartmakers.com/pricing/">Pricing</a>
+      <a class="btn primary" href="/app/">Open the app</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+    <article class="doc">
+      <p class="kicker">Exit Check · free</p>
+      <h1>Your wallet shows balance × last price. Exit Check shows what a sale actually returns.</h1>
+      <p class="lead">Pick a network, a token and an amount. In seconds you get the value your wallet displays, what live aggregator quotes would pay out for that amount today, where the sale would route, and, for tokens in our catalog, how much our verified on-chain data says the pools can absorb.</p>
+      <div class="ctas" style="margin:0 0 20px">
+        <a class="btn primary" href="https://app.wearetheartmakers.com/exit-check">Run an Exit Check</a>
+        <a class="btn" href="/tokens/">Browse the token catalog</a>
+      </div>
+      <p class="meta">On this page: <a href="#measures">What it measures</a> · <a href="#why">Why displayed value is not exit value</a> · <a href="#shortfall">Shortfall</a> · <a href="#sources">Data sources</a> · <a href="#limits">Limits</a> · <a href="#next">Next steps</a></p>
+
+      <h2 id="measures">What it measures</h2>
+      <p>One check takes a network, a token address and an amount (in tokens or in USD) and returns:</p>
+      <ul>
+        <li><strong>Displayed value</strong>: the amount times a reference price. This is what a wallet or portfolio tracker shows.</li>
+        <li><strong>You would receive</strong>: the best sell quote among the sources that answered, paid in the network's main stablecoin.</li>
+        <li><strong>Shortfall</strong>: how far the quote is below the displayed value.</li>
+        <li><strong>Price impact</strong>: how much worse the price for your full amount is than the price for a small 1 % probe, from the same source.</li>
+        <li><strong>Route</strong>: the venues and pools the best quote would use and how the amount splits between them.</li>
+        <li><strong>Flags</strong>: only what can be computed, such as no route found, sources that disagree by more than 5 %, one source answering alone, or a large shortfall.</li>
+        <li><strong>Verified exit depth</strong> (catalog tokens): how many tokens it takes to move the price of the exit pools by 2, 5 and 10 %, from our own chain reads.</li>
+      </ul>
+      <p>Each number carries a label: <em>estimated</em> (from a price or a quote) or <em>verified</em> (from our chain data). Every check gets a short result link you can share; the link expires after a while.</p>
+
+      <h2 id="why">Why displayed value is not exit value</h2>
+      <p>A last price describes the most recent small trade. It says nothing about what happens when you sell a position into the pools that actually hold the liquidity. A larger sale walks down the pool's price curve, is split across venues, and can be priced by market makers that quote only some sizes.</p>
+      <div class="ec-compare">
+        <div><b>What a wallet shows</b><span>Balance × last price. The same number whether you hold $500 or $500,000 of the token.</span></div>
+        <div><b>What Exit Check shows</b><span>What executable quotes pay for your amount now, and how deep the pools are around it.</span></div>
+      </div>
+      <p>For teams this is the difference between a treasury marked at last price and a treasury you could actually turn into stablecoins. For holders and listing or risk desks it is a quick size-versus-liquidity sanity check before a decision.</p>
+
+      <h2 id="shortfall">What “shortfall” means</h2>
+      <p>Shortfall is <code>receive ÷ displayed − 1</code>. If the displayed value is $10,000 and the best quote pays $9,200, the shortfall is −8 %. It bundles everything between a last price and a sale: price impact, venue fees and spread. It is a snapshot of one moment, not a prediction, and it is not a guarantee that a sale at that size would succeed. A source that cannot answer is shown with its status and is never replaced by a number.</p>
+
+      <h2 id="sources">Data sources</h2>
+      <table class="ec-table">
+        <tr><th scope="row">Sell quotes, EVM networks</th><td>KyberSwap Aggregator and Velora (ParaSwap), on the networks they support.</td></tr>
+        <tr><th scope="row">Sell quotes, Solana</th><td>Jupiter (“Powered by Jupiter”) and Raydium.</td></tr>
+        <tr><th scope="row">Reference price</th><td>A current price from a public price feed with a confidence and age check; a price that fails the check is not used.</td></tr>
+        <tr><th scope="row">Verified depth (catalog tokens)</th><td>Our own on-chain reads of the exit pools' state at one block, walked through the pool math at −2, −5 and −10 %, with the share of depth that sits in verified pools. Method: <a href="/method/">how data is collected and verified</a>.</td></tr>
+      </table>
+      <p>Quotes are requested only when you submit a check, shared briefly between visitors and rate limited per source. When a source is busy it is skipped and the result says so; that is never reported as “no route”.</p>
+
+      <h2 id="limits">Limits and disclaimer</h2>
+      <ul>
+        <li><strong>Informational only, not investment advice.</strong> Nothing here is a recommendation to buy, sell or hold.</li>
+        <li><strong>Quotes are indicative.</strong> They change every block, are not an order, and include no gas, tax or slippage setting. Your actual sale can differ.</li>
+        <li><strong>Not checked in this version:</strong> sell tax or honeypot behaviour and liquidity lock or LP ownership. A quote with a route does not prove that a sale will succeed or that no tax applies; each result states this.</li>
+        <li><strong>Catalog depth covers verified pools only.</strong> It describes the pools we measured, never a token's whole market, and the result shows what share of the depth is verified.</li>
+        <li><strong>Provider availability can change.</strong> Public quote endpoints may be rate limited or unavailable without notice. Independent analytics; not affiliated with the projects, exchanges or providers named.</li>
+      </ul>
+
+      <h2 id="next">How it connects to the paid products</h2>
+      <p>Exit Check is free and stands on its own. If a result shows a gap you need to understand or monitor, the same evidence-first approach continues in:</p>
+      <ul>
+        <li><strong>Decision brief in the free report.</strong> The free 7-day evidence report for a catalog token, from the <a href="/tokens/">token catalog</a>, is the starting point: it comes with a short decision brief built on a token's verified swap activity.</li>
+        <li><strong>Market Maker Scorecard pilot.</strong> For token teams who want to measure how their market makers actually provide liquidity, scoped as a pilot. <a href="mailto:admin@wearetheartmakers.com?subject=Market%20Maker%20Scorecard%20pilot">Ask about a pilot</a> or see <a href="/pricing/">pilots and pricing</a>.</li>
+        <li><strong><a href="/live-pro/">Live Pro alerts.</a></strong> Pre-alerts from confirmed blocks when liquidity leaves your pools or flow turns one-sided, each later checked against verified data.</li>
+      </ul>
+      <div class="ctas" style="margin:20px 0 0">
+        <a class="btn primary" href="https://app.wearetheartmakers.com/exit-check">Run an Exit Check</a>
+        <a class="btn" href="/pricing/">Pilots and pricing</a>
+        <a class="btn" href="/live-pro/">Live Pro</a>
+      </div>
+
+      <!-- EXIT-CHECK TUTORIAL VIDEO PLACEHOLDER.
+           To publish: put the 11-character YouTube id in data-video-id below. assets/video.js then reveals this block and loads the
+           video from youtube-nocookie.com only after a click. Empty id = block stays hidden. -->
+      <figure class="demo-video" data-video-id="" hidden>
+        <a class="yt" href="https://www.youtube.com/" aria-label="Play the Exit Check tutorial">
+          <span class="poster" aria-hidden="true">Exit Check: a short tutorial</span>
+          <span class="play" aria-hidden="true"></span>
+        </a>
+        <figcaption>A short walkthrough of an Exit Check. The video loads from YouTube only when you press play.</figcaption>
+      </figure>
+      <!-- END EXIT-CHECK TUTORIAL VIDEO PLACEHOLDER -->
+    </article>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Independent analytics; not affiliated with the projects, exchanges or quote providers named. Exit Check is informational, not investment advice.<br>DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/tokens/">Tokens</a>
+      <a href="/exit-check/" aria-current="page">Exit Check</a>
+      <a href="/live-pro/">Live Pro</a>
+      <a href="/method/">Method</a>
+      <a href="https://defi.wearetheartmakers.com/pricing/">Pricing</a>
+      <a href="https://app.wearetheartmakers.com/partners">Become a partner</a>
+      <a href="https://defi.wearetheartmakers.com/terms/">Terms</a>
+      <a href="https://defi.wearetheartmakers.com/privacy/">Privacy</a>
+      <a href="https://defi.wearetheartmakers.com/legal/">Legal</a>
+      <a href="mailto:admin@wearetheartmakers.com">Contact</a>
+      <a href="https://t.me/watam_intelligence" rel="noopener">Telegram</a>
+    </nav>
+  </div>
+</footer>
+<script src="/assets/video.js" defer></script>
+</body>
+</html>

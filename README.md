@@ -18,4 +18,6 @@ DNS: `defi` CNAME `wearetheartmakers.github.io`.
   `FREE_REPORTS_ENABLED`; core repo `docs/free-reports.md`), takes the consent text and the Cloudflare Turnstile site key
   from that answer (the Turnstile widget's hostnames must include `defi.wearetheartmakers.com`), and posts text/plain JSON
   (no CORS preflight). The report link is emailed by the app, never shown on the page. No cookies or tracking.
+- `/exit-check/` — hand-written page for the free Exit Check tool (app: https://app.wearetheartmakers.com/exit-check). Tutorial video: set
+  `data-video-id="<11-char YouTube id>"` on the `figure.demo-video` in `exit-check/index.html`; `assets/video.js` then reveals it (click-to-load, youtube-nocookie).
 - `robots.txt`, `llms.txt` — crawler rules (search, AI search and user-triggered fetchers allowed) and the LLM-readable summary.
