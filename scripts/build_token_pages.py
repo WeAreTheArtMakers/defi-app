@@ -34,6 +34,7 @@ from pathlib import Path
 SITE = "https://defi.wearetheartmakers.com"
 APP = "https://app.wearetheartmakers.com"
 CATALOG_URL = f"{APP}/api/public/catalog"
+COVERAGE_URL = f"{APP}/api/public/scorecard-coverage"   # the venues the Market Maker Scorecard reads (names only)
 PRICING_URL = f"{SITE}/pricing/"
 METHOD_URL = f"{SITE}/method/"
 OG_IMAGE = f"{SITE}/assets/og-card.png"
@@ -668,6 +669,58 @@ def llms_full(catalog: dict, entries: list[dict]) -> str:
 
 # ---------------------------------------------------------------- commands
 
+# ---------------------------------------------------------------- homepage "Market Maker Scorecard" venue lists
+
+SCORECARD_BEGIN = "<!-- scorecard:begin"
+SCORECARD_END = "<!-- scorecard:end -->"
+_VENUE = re.compile(r"^[A-Za-z0-9 .&+-]{2,24}$")
+
+
+def scorecard_block(cov: dict) -> str | None:
+    """The three venue lists, or None when the answer does not look right (then the page keeps what it has)."""
+    if not isinstance(cov, dict):
+        return None
+    lists = {k: [v for v in (cov.get(k) if isinstance(cov.get(k), list) else []) if isinstance(v, str) and _VENUE.fullmatch(v)]
+             for k in ("exchanges", "perpetuals", "liquidation_streams")}
+    if len(lists["exchanges"]) < 5 or not lists["perpetuals"]:
+        return None
+    rows = [("Exchanges, one by one", lists["exchanges"]), ("Perpetual futures", lists["perpetuals"]),
+            ("Liquidation streams", lists["liquidation_streams"])]
+    out = ['      <dl class="sc-venues">']
+    for title, names in rows:
+        if names:
+            out.append(f"        <div><dt>{esc(title)} <span>{len(names)}</span></dt><dd>{esc(', '.join(names))}</dd></div>")
+    out.append("      </dl>")
+    return "\n".join(out) + "\n"
+
+
+def update_scorecard_section(out: Path, url: str = COVERAGE_URL) -> bool:
+    """Rewrite only what lies between the scorecard markers in index.html from the public coverage route. False (file untouched)
+    when the markers, the route or a sane answer are missing."""
+    path = out / "index.html"
+    text = path.read_text(encoding="utf-8")
+    start, end = text.find(SCORECARD_BEGIN), text.find(SCORECARD_END)
+    if start < 0 or end < start:
+        print("::warning::index.html: scorecard markers not found; section left as it is", file=sys.stderr)
+        return False
+    try:
+        req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "watam-site-builder/1.0"})
+        with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310 (fixed https URL)
+            block = scorecard_block(json.loads(resp.read().decode("utf-8")))
+    except Exception as exc:  # noqa: BLE001 — a failing route must never fail the token-pages build
+        print(f"::warning::scorecard coverage unavailable ({type(exc).__name__}); section left as it is", file=sys.stderr)
+        return False
+    if block is None:
+        print("::warning::scorecard coverage answer not usable; section left as it is", file=sys.stderr)
+        return False
+    line_end = text.index("\n", start) + 1
+    end_line = text.rfind("\n", 0, end) + 1                 # keep the end marker's own indentation
+    new = text[:line_end] + block + text[end_line:]
+    if new != text:
+        path.write_text(new, encoding="utf-8")
+    return True
+
+
 # ---------------------------------------------------------------- homepage "networks" section
 
 NETWORKS_BEGIN = "<!-- networks:begin"
@@ -858,6 +911,7 @@ def build(args) -> int:
     (out / "llms-full.txt").write_text(llms_full(catalog, entries), encoding="utf-8")
     load_first_added(out, entries, parse_ts(catalog["generated_at"]))
     update_networks_section(out, catalog, entries)
+    update_scorecard_section(out)
     n_index = sum(1 for e in entries if indexable(e, catalog))
     print(f"wrote {len(entries)} token pages ({n_index} indexable) + tokens/index.html, sitemap.xml, llms-full.txt")
     return 0
