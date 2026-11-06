@@ -3,7 +3,7 @@
 > On-chain DEX analytics for token teams, exchange listing and risk teams and funds. Swaps are decoded directly from the
 > chain on Arbitrum One, OP Mainnet, Ethereum, Base, BNB Smart Chain, Monad, Avalanche C-Chain, Solana, TON. Every anomaly finding carries an Evidence Card that answers five questions. Independent analytics; not affiliated with the projects or exchanges listed.
 
-Data as of 06 Nov 2026, 15:44 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
+Data as of 06 Nov 2026, 20:36 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
 
 ## The five evidence questions
 
@@ -27,8 +27,8 @@ USD values are not part of the evidence.
 
 ### Arbitrum One
 
-- [ARB (Arbitrum) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0x912ce59144191c1204e64559fe8253a0e49e6548/): 550,291 verified swaps, 8 pools, history from 14 Oct 2026, 53 anomaly findings
-- [CRV (Curve DAO Token) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0x11cdb42b0eb46d95f990bedd4695a6e3fa034978/): 11,634 verified swaps, 4 pools, history from 23 Oct 2026, 18 anomaly findings
+- [ARB (Arbitrum) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0x912ce59144191c1204e64559fe8253a0e49e6548/): 550,291 verified swaps, 8 pools, history from 14 Oct 2026, 54 anomaly findings
+- [CRV (Curve DAO Token) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0x11cdb42b0eb46d95f990bedd4695a6e3fa034978/): 11,634 verified swaps, 4 pools, history from 23 Oct 2026, 19 anomaly findings
 - [ETHFI (ether.fi governance token) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0x7189fb5b6504bbff6a852b13b7b82a3c118fdc27/): 4,733 verified swaps, 1 pools, history from 23 Oct 2026, 4 anomaly findings
 - [GMX (GMX) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a/): 26,360 verified swaps, 5 pools, history from 23 Oct 2026, 14 anomaly findings
 - [LDO (Lido DAO Token) on Arbitrum One](https://defi.wearetheartmakers.com/tokens/arbitrum/0x13ad51ed4f1b7e9dc168d8a00cb3f4ddd85efa60/): 4,658 verified swaps, 3 pools, history from 23 Oct 2026, 7 anomaly findings
@@ -45,60 +45,60 @@ USD values are not part of the evidence.
 - [ETHFI (ether.fi governance token) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0xe0080d2f853ecddbd81a643dc10da075df26fd3f/): 21,167 verified swaps, 3 pools, history from 23 Oct 2026, 25 anomaly findings
 - [LDO (Lido DAO Token) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0xfdb794692724153d1488ccdbe0c56c252596735f/): 692 verified swaps, 2 pools, history from 23 Oct 2026, 5 anomaly findings
 - [OP (Optimism) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0x4200000000000000000000000000000000000042/): 441,118 verified swaps, 6 pools, history from 17 Oct 2026, 30 anomaly findings
-- [SNX (Synthetix Network Token) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0x8700daec35af8ff88c16bdf0418774cb3d7599b4/): 6,082 verified swaps, 1 pools, history from 22 Oct 2026, 11 anomaly findings
+- [SNX (Synthetix Network Token) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0x8700daec35af8ff88c16bdf0418774cb3d7599b4/): 6,082 verified swaps, 1 pools, history from 22 Oct 2026, 14 anomaly findings
 - [UNI (Uniswap) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0x6fd9d7ad17242c41f7131d257212c54a0e816691/): 19,626 verified swaps, 6 pools, history from 23 Oct 2026, 12 anomaly findings
-- [VELO (VelodromeV2) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0x9560e827af36c94d2ac33a39bce1fe78631088db/): 984,600 verified swaps, 6 pools, history from 17 Oct 2026, 21 anomaly findings
-- [WLD (Worldcoin) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0xdc6ff44d5d932cbd77b52e5612ba0529dc6226f1/): 26,271 verified swaps, 7 pools, history from 23 Oct 2026, 13 anomaly findings
+- [VELO (VelodromeV2) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0x9560e827af36c94d2ac33a39bce1fe78631088db/): 984,600 verified swaps, 6 pools, history from 17 Oct 2026, 22 anomaly findings
+- [WLD (Worldcoin) on OP Mainnet](https://defi.wearetheartmakers.com/tokens/optimism/0xdc6ff44d5d932cbd77b52e5612ba0529dc6226f1/): 26,271 verified swaps, 7 pools, history from 23 Oct 2026, 14 anomaly findings
 
 ### Ethereum
 
 - [1INCH (1INCH Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x111111111117dc0aa78b770fa6a738034120c302/): 3,189 verified swaps, 6 pools, history from 22 Oct 2026, 3 anomaly findings
 - [AAVE (Aave Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9/): 39,314 verified swaps, 8 pools, history from 23 Oct 2026, 11 anomaly findings
 - [COMP (Compound) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xc00e94cb662c3520282e6f5717214004a7f26888/): 4,364 verified swaps, 4 pools, history from 23 Oct 2026, 18 anomaly findings
-- [COW (CoW Protocol Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab/): 5,178 verified swaps, 4 pools, history from 22 Oct 2026, 4 anomaly findings
+- [COW (CoW Protocol Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab/): 5,178 verified swaps, 4 pools, history from 22 Oct 2026, 5 anomaly findings
 - [EIGEN (Eigen) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xec53bf9167f50cdeb3ae105f56099aaab9061f83/): 3,063 verified swaps, 2 pools, history from 23 Oct 2026, 13 anomaly findings
 - [ENA (ENA) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x57e114b691db790c35207b2e685d4a43181e6061/): 14,829 verified swaps, 6 pools, history from 23 Oct 2026, 13 anomaly findings
-- [ETHFI (ether.fi governance token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb/): 8,007 verified swaps, 3 pools, history from 23 Oct 2026, 11 anomaly findings
+- [ETHFI (ether.fi governance token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb/): 8,007 verified swaps, 3 pools, history from 23 Oct 2026, 12 anomaly findings
 - [FF (Falcon Finance) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xfa1c09fc8b491b6a4d3ff53a10cad29381b3f949/): 119 verified swaps, 4 pools, history from 25 Oct 2026
 - [FLUID (Fluid) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x6f40d4a6237c257fff2db00fa0510deeecd303eb/): 5,609 verified swaps, 2 pools, history from 22 Oct 2026, 10 anomaly findings
 - [LDO (Lido DAO Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x5a98fcbea516cf06857215779fd812ca3bef1b32/): 8,440 verified swaps, 4 pools, history from 23 Oct 2026, 10 anomaly findings
 - [LINK (ChainLink Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x514910771af9ca656af840dff83e8264ecf986ca/): 37,803 verified swaps, 8 pools, history from 23 Oct 2026, 5 anomaly findings
 - [ONDO (Ondo) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3/): 8,559 verified swaps, 3 pools, history from 23 Oct 2026, 8 anomaly findings
 - [PENDLE (Pendle) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x808507121b80c02388fad14726482e061b8da827/): 6,016 verified swaps, 3 pools, history from 23 Oct 2026, 11 anomaly findings
-- [REZ (Renzo) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x3b50805453023a91a8bf641e279401a0b23fa6f9/): 2,000 verified swaps, 3 pools, history from 25 Oct 2026, 12 anomaly findings
+- [REZ (Renzo) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x3b50805453023a91a8bf641e279401a0b23fa6f9/): 2,000 verified swaps, 3 pools, history from 25 Oct 2026, 13 anomaly findings
 - [SERV (OpenServ) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x40e3d1a4b2c47d9aa61261f5606136ef73e28042/): 1,228 verified swaps, 2 pools, history from 27 Oct 2026
 - [SNX (Synthetix Network Token) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f/): 1,289 verified swaps, 2 pools, history from 22 Oct 2026, 2 anomaly findings
 - [SUSHI (SushiToken) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x6b3595068778dd592e39a122f4f5a5cf09c90fe2/): 929 verified swaps, 1 pools, history from 22 Oct 2026, 4 anomaly findings
-- [UNI (Uniswap) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984/): 46,136 verified swaps, 8 pools, history from 17 Oct 2026, 19 anomaly findings
+- [UNI (Uniswap) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984/): 46,136 verified swaps, 8 pools, history from 17 Oct 2026, 20 anomaly findings
 - [WLD (Worldcoin) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x163f8c2467924be0ae7b5347228cabf260318753/): 3,136 verified swaps, 2 pools, history from 23 Oct 2026, 6 anomaly findings
 - [ZRO (LayerZero) on Ethereum](https://defi.wearetheartmakers.com/tokens/ethereum/0x6985884c4392d348587b19cb9eaaf157f13271cd/): 4,456 verified swaps, 1 pools, history from 23 Oct 2026, 6 anomaly findings
 
 ### Base
 
-- [AERO (Aerodrome) on Base](https://defi.wearetheartmakers.com/tokens/base/0x940181a94a35a4569e4529a3cdfb74e38fd98631/): 308,030 verified swaps, 8 pools, history from 25 Oct 2026, 27 anomaly findings
-- [B3 (B3) on Base](https://defi.wearetheartmakers.com/tokens/base/0xb3b32f9f8827d4634fe7d973fa1034ec9fddb3b3/): 15,202 verified swaps, 1 pools, history from 25 Oct 2026, 8 anomaly findings
+- [AERO (Aerodrome) on Base](https://defi.wearetheartmakers.com/tokens/base/0x940181a94a35a4569e4529a3cdfb74e38fd98631/): 308,030 verified swaps, 8 pools, history from 25 Oct 2026, 31 anomaly findings
+- [B3 (B3) on Base](https://defi.wearetheartmakers.com/tokens/base/0xb3b32f9f8827d4634fe7d973fa1034ec9fddb3b3/): 15,428 verified swaps, 1 pools, history from 25 Oct 2026, 8 anomaly findings
 - [CTR (CTR) on Base](https://defi.wearetheartmakers.com/tokens/base/0x11030f79109269d796fd0fb956d6244e502757f7/): 140,689 verified swaps, 1 pools, history from 25 Oct 2026, 8 anomaly findings
-- [DIEM (Diem) on Base](https://defi.wearetheartmakers.com/tokens/base/0xf4d97f2da56e8c3098f3a8d538db630a2606a024/): 45,631 verified swaps, 6 pools, history from 25 Oct 2026, 32 anomaly findings
+- [DIEM (Diem) on Base](https://defi.wearetheartmakers.com/tokens/base/0xf4d97f2da56e8c3098f3a8d538db630a2606a024/): 45,631 verified swaps, 6 pools, history from 25 Oct 2026, 33 anomaly findings
 - [DRV (Derive) on Base](https://defi.wearetheartmakers.com/tokens/base/0x9d0e8f5b25384c7310cb8c6ae32c8fbeb645d083/): 82,072 verified swaps, 4 pools, history from 25 Oct 2026, 16 anomaly findings
 - [MORPHO (Morpho Token) on Base](https://defi.wearetheartmakers.com/tokens/base/0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842/): 72,812 verified swaps, 7 pools, history from 23 Oct 2026, 19 anomaly findings
-- [PLAY (Play) on Base](https://defi.wearetheartmakers.com/tokens/base/0x853a7c99227499dba9db8c3a02aa691afdebf841/): 145,588 verified swaps, 3 pools, history from 28 Oct 2026, 4 anomaly findings
-- [SERV (OpenServ) on Base](https://defi.wearetheartmakers.com/tokens/base/0x5576d6ed9181f2225aff5282ac0ed29f755437ea/): 1,367 verified swaps, 2 pools, history from 27 Oct 2026, 3 anomaly findings
-- [UNI (Uniswap) on Base](https://defi.wearetheartmakers.com/tokens/base/0xc3de830ea07524a0761646a6a4e4be0e114a3c83/): 14,457 verified swaps, 5 pools, history from 23 Oct 2026, 10 anomaly findings
-- [VIRTUAL (Virtual Protocol) on Base](https://defi.wearetheartmakers.com/tokens/base/0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b/): 256,438 verified swaps, 8 pools, history from 25 Oct 2026, 24 anomaly findings
-- [XDP (Doppler) on Base](https://defi.wearetheartmakers.com/tokens/base/0x07b3d902783c3c12b077508c3b5c00113d1291d0/): 3,440,798 verified swaps, 2 pools, history from 17 Oct 2026, 31 anomaly findings
-- [ZORA (Zora) on Base](https://defi.wearetheartmakers.com/tokens/base/0x1111111111166b7fe7bd91427724b487980afc69/): 64,097 verified swaps, 6 pools, history from 23 Oct 2026, 32 anomaly findings
+- [PLAY (Play) on Base](https://defi.wearetheartmakers.com/tokens/base/0x853a7c99227499dba9db8c3a02aa691afdebf841/): 160,092 verified swaps, 3 pools, history from 28 Oct 2026, 4 anomaly findings
+- [SERV (OpenServ) on Base](https://defi.wearetheartmakers.com/tokens/base/0x5576d6ed9181f2225aff5282ac0ed29f755437ea/): 1,381 verified swaps, 2 pools, history from 27 Oct 2026, 4 anomaly findings
+- [UNI (Uniswap) on Base](https://defi.wearetheartmakers.com/tokens/base/0xc3de830ea07524a0761646a6a4e4be0e114a3c83/): 14,457 verified swaps, 5 pools, history from 23 Oct 2026, 11 anomaly findings
+- [VIRTUAL (Virtual Protocol) on Base](https://defi.wearetheartmakers.com/tokens/base/0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b/): 256,438 verified swaps, 8 pools, history from 25 Oct 2026, 25 anomaly findings
+- [XDP (Doppler) on Base](https://defi.wearetheartmakers.com/tokens/base/0x07b3d902783c3c12b077508c3b5c00113d1291d0/): 3,440,798 verified swaps, 2 pools, history from 17 Oct 2026, 32 anomaly findings
+- [ZORA (Zora) on Base](https://defi.wearetheartmakers.com/tokens/base/0x1111111111166b7fe7bd91427724b487980afc69/): 64,097 verified swaps, 6 pools, history from 23 Oct 2026, 34 anomaly findings
 
 ### BNB Smart Chain
 
 - [4 (4) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x0a43fc31a73013089df59194872ecae4cae14444/): 28,812 verified swaps, 3 pools, history from 23 Oct 2026, 11 anomaly findings
-- [AAVE (Aave Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xfb6115445bff7b52feb98650c87f44907e58f802/): 50,353 verified swaps, 5 pools, history from 23 Oct 2026, 19 anomaly findings
-- [AIOT (OKZOO) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x55ad16bd573b3365f43a9daeb0cc66a73821b4a5/): 233,439 verified swaps, 3 pools, history from 23 Oct 2026, 10 anomaly findings
+- [AAVE (Aave Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xfb6115445bff7b52feb98650c87f44907e58f802/): 50,353 verified swaps, 5 pools, history from 23 Oct 2026, 20 anomaly findings
+- [AIOT (OKZOO) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x55ad16bd573b3365f43a9daeb0cc66a73821b4a5/): 233,439 verified swaps, 3 pools, history from 23 Oct 2026, 11 anomaly findings
 - [Anome (Anome) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x6bc3855827fa6ee1229c937a26bb9fca1a0ffbf0/): 24,140 verified swaps, 1 pools, history from 23 Oct 2026, 13 anomaly findings
-- [AOP (Ark Of Panda) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xd5df4d260d7a0145f655bcbf3b398076f21016c7/): 59,473 verified swaps, 1 pools, history from 29 Oct 2026, 17 anomaly findings
+- [AOP (Ark Of Panda) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xd5df4d260d7a0145f655bcbf3b398076f21016c7/): 59,473 verified swaps, 1 pools, history from 29 Oct 2026, 19 anomaly findings
 - [ASTER (Aster) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x000ae314e2a2172a039b26378814c252734f556a/): 166,141 verified swaps, 8 pools, history from 23 Oct 2026, 35 anomaly findings
 - [BILL (Billions Network Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xdf24f8c21cb404b3031a450d8e049d6e39fc1fa5/): 2,375 verified swaps, 2 pools, history from 23 Oct 2026, 11 anomaly findings
 - [BSB (Block Street) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x595deaad1eb5476ff1e649fdb7efc36f1e4679cc/): 4,796 verified swaps, 2 pools, history from 23 Oct 2026, 6 anomaly findings
-- [BULLA (BULLA) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x595e21b20e78674f8a64c1566a20b2b316bc3511/): 148,826 verified swaps, 3 pools, history from 23 Oct 2026, 7 anomaly findings
+- [BULLA (BULLA) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x595e21b20e78674f8a64c1566a20b2b316bc3511/): 148,826 verified swaps, 3 pools, history from 23 Oct 2026, 9 anomaly findings
 - [Cake (PancakeSwap Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82/): 201,522 verified swaps, 8 pools, history from 23 Oct 2026, 6 anomaly findings
 - [CAP (Cap) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x99991c6aabba5a096f24f250b73580f5179b9999/): 192,150 verified swaps, 2 pools, history from 23 Oct 2026, 17 anomaly findings
 - [COAI (ChainOpera AI) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x0a8d6c86e1bce73fe4d0bd531e1a567306836ea5/): 94,959 verified swaps, 3 pools, history from 23 Oct 2026, 11 anomaly findings
@@ -110,9 +110,9 @@ USD values are not part of the evidence.
 - [FOREST (Forest) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x11cf6bf6d87cb0eb9c294fd6cbfec91ee3a1a7d0/): 86,571 verified swaps, 1 pools, history from 23 Oct 2026, 14 anomaly findings
 - [GRVT (GRVT) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x46f2564e0fa8248d15125e7e54173cfbdef91be7/): 11,542 verified swaps, 3 pools, history from 23 Oct 2026, 6 anomaly findings
 - [GSTOCK (Gstock) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xcafdbce93477261db8250e42bdae6e66733f9e20/): 26,658 verified swaps, 2 pools, history from 23 Oct 2026, 5 anomaly findings
-- [HANA (Hana Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x6261963ebe9ff014aad10ecc3b0238d4d04e8353/): 100,802 verified swaps, 1 pools, history from 29 Oct 2026, 1 anomaly findings
+- [HANA (Hana Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x6261963ebe9ff014aad10ecc3b0238d4d04e8353/): 100,802 verified swaps, 1 pools, history from 29 Oct 2026, 3 anomaly findings
 - [HUMA (Huma Finance) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x92516e0ddf1ddbf7fab1b79cac26689fdc5ba8e6/): 32,292 verified swaps, 1 pools, history from 01 Nov 2026, 5 anomaly findings
-- [JCT (JANCTION) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xea37a8de1de2d9d10772eeb569e28bfa5cb17707/): 532,469 verified swaps, 3 pools, history from 23 Oct 2026, 22 anomaly findings
+- [JCT (JANCTION) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xea37a8de1de2d9d10772eeb569e28bfa5cb17707/): 532,469 verified swaps, 3 pools, history from 23 Oct 2026, 24 anomaly findings
 - [LAB (LAB) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x7ec43cf65f1663f820427c62a5780b8f2e25593a/): 25,756 verified swaps, 3 pools, history from 23 Oct 2026, 27 anomaly findings
 - [LIGHT (LIGHT) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x477c2c0459004e3354ba427fa285d7c053203c0e/): 106,085 verified swaps, 1 pools, history from 29 Oct 2026, 2 anomaly findings
 - [LINK (ChainLink Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd/): 44,420 verified swaps, 6 pools, history from 23 Oct 2026, 12 anomaly findings
@@ -125,9 +125,9 @@ USD values are not part of the evidence.
 - [STBL (STBL_Token - STBL Governance Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x8dedf84656fa932157e27c060d8613824e7979e3/): 82,134 verified swaps, 2 pools, history from 23 Oct 2026, 11 anomaly findings
 - [TAG (Tagger) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x208bf3e7da9639f1eaefa2de78c23396b0682025/): 99,288 verified swaps, 1 pools, history from 29 Oct 2026, 6 anomaly findings
 - [TWT (Trust Wallet) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x4b0f1812e5df2a09796481ff14017e6005508003/): 19,119 verified swaps, 4 pools, history from 23 Oct 2026, 6 anomaly findings
-- [UB (Unibase) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x40b8129b786d766267a7a118cf8c07e31cdb6fde/): 148,808 verified swaps, 2 pools, history from 23 Oct 2026, 10 anomaly findings
-- [UP (Unitas) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x000008d2175f9aeaddb2430c26f8a6f73c5a0000/): 432,694 verified swaps, 2 pools, history from 23 Oct 2026, 6 anomaly findings
-- [WoD (World of Dypians) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xb994882a1b9bd98a71dd6ea5f61577c42848b0e8/): 82,122 verified swaps, 2 pools, history from 23 Oct 2026, 28 anomaly findings
+- [UB (Unibase) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x40b8129b786d766267a7a118cf8c07e31cdb6fde/): 148,808 verified swaps, 2 pools, history from 23 Oct 2026, 11 anomaly findings
+- [UP (Unitas) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0x000008d2175f9aeaddb2430c26f8a6f73c5a0000/): 432,694 verified swaps, 2 pools, history from 23 Oct 2026, 7 anomaly findings
+- [WoD (World of Dypians) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xb994882a1b9bd98a71dd6ea5f61577c42848b0e8/): 82,122 verified swaps, 2 pools, history from 23 Oct 2026, 29 anomaly findings
 - [XPIN (XPIN Token) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xd955c9ba56fb1ab30e34766e252a97ccce3d31a6/): 76,021 verified swaps, 1 pools, history from 29 Oct 2026, 2 anomaly findings
 - [XVS (Venus) on BNB Smart Chain](https://defi.wearetheartmakers.com/tokens/bsc/0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63/): 9,357 verified swaps, 3 pools, history from 23 Oct 2026, 1 anomaly findings
 
@@ -139,24 +139,24 @@ USD values are not part of the evidence.
 ### Avalanche C-Chain
 
 - [COQ (COQINU) on Avalanche C-Chain](https://defi.wearetheartmakers.com/tokens/avalanche/0x420fca0121dc28039145009570975747295f2329/): 1,220 verified swaps, 1 pools, history from 29 Oct 2026
-- [JOE (JoeToken) on Avalanche C-Chain](https://defi.wearetheartmakers.com/tokens/avalanche/0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd/): 3,984 verified swaps, 4 pools, history from 29 Oct 2026
+- [JOE (JoeToken) on Avalanche C-Chain](https://defi.wearetheartmakers.com/tokens/avalanche/0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd/): 3,984 verified swaps, 4 pools, history from 29 Oct 2026, 1 anomaly findings
 - [QI (BENQI) on Avalanche C-Chain](https://defi.wearetheartmakers.com/tokens/avalanche/0x8729438eb15e2c8b576fcc6aecda6a148776c0f5/): 4,852 verified swaps, 2 pools, history from 29 Oct 2026, 6 anomaly findings
 
 ### Solana
 
-- [GOLD on Solana](https://defi.wearetheartmakers.com/tokens/solana/LRxbtkvPfpctgR6MS52MAwtobrCCY9KiJgKMmpPpump/): 4,657 verified swaps, 1 pools, history from 27 Oct 2026
-- [GTA on Solana](https://defi.wearetheartmakers.com/tokens/solana/BsbsB3WLq7vbY5En3MBCAsTrcwaCxNKY2Mp5pGuLpump/): 5,430 verified swaps, 2 pools, history from 02 Nov 2026
-- [NST on Solana](https://defi.wearetheartmakers.com/tokens/solana/G7iK3prSzAA4vzcJWvsLUEsdCqzR7PnMzJV61vSdFSNW/): 500 verified swaps, 3 pools, history from 02 Nov 2026
+- [GOLD on Solana](https://defi.wearetheartmakers.com/tokens/solana/LRxbtkvPfpctgR6MS52MAwtobrCCY9KiJgKMmpPpump/): 4,732 verified swaps, 1 pools, history from 27 Oct 2026
+- [GTA on Solana](https://defi.wearetheartmakers.com/tokens/solana/BsbsB3WLq7vbY5En3MBCAsTrcwaCxNKY2Mp5pGuLpump/): 5,593 verified swaps, 2 pools, history from 02 Nov 2026
+- [NST on Solana](https://defi.wearetheartmakers.com/tokens/solana/G7iK3prSzAA4vzcJWvsLUEsdCqzR7PnMzJV61vSdFSNW/): 539 verified swaps, 3 pools, history from 02 Nov 2026
 
 ### TON
 
-- [ATF on TON](https://defi.wearetheartmakers.com/tokens/ton/0-0d716e395b44e9f756f3bc76b268f3bafba85fd4b9b85e5599e2b37a2f9a1f3d/): 44,236 verified swaps, 2 pools, history from 03 Nov 2026
-- [CATI on TON](https://defi.wearetheartmakers.com/tokens/ton/0-fe72f474373e97032441bdb873f9a6d3ad10bab08e6dbc7befa5e42b695f5400/): 1,462 verified swaps, 2 pools, history from 25 Oct 2026
-- [DOGS on TON](https://defi.wearetheartmakers.com/tokens/ton/0-afc49cb8786f21c87045b19ede78fc6b46c51048513f8e9a6d44060199c1bf0c/): 3,264 verified swaps, 4 pools, history from 25 Oct 2026
-- [EVAA on TON](https://defi.wearetheartmakers.com/tokens/ton/0-4a31f8d7fdafddb0e2e6fa3bb1c95672b453fbfca2a7cc6bfa274d6419cef681/): 16,528 verified swaps, 2 pools, history from 25 Oct 2026
-- [LOOT on TON](https://defi.wearetheartmakers.com/tokens/ton/0-8ce031330d514babb91a4a87505fef3ebbf685f4cf430ded4478f5acb8ca33a8/): 107,263 verified swaps, 1 pools, history from 03 Nov 2026
-- [MAJOR on TON](https://defi.wearetheartmakers.com/tokens/ton/0-ae3e6d351e576276e439e7168117fd64696fd6014cb90c77b2f2cbaacd4fcc00/): 2,380 verified swaps, 2 pools, history from 25 Oct 2026
-- [STON on TON](https://defi.wearetheartmakers.com/tokens/ton/0-3690254dc15b2297610cda60744a45f2b710aa4234b89adb630e99d79b01bd4f/): 1,957 verified swaps, 3 pools, history from 25 Oct 2026
+- [ATF on TON](https://defi.wearetheartmakers.com/tokens/ton/0-0d716e395b44e9f756f3bc76b268f3bafba85fd4b9b85e5599e2b37a2f9a1f3d/): 44,771 verified swaps, 2 pools, history from 03 Nov 2026
+- [CATI on TON](https://defi.wearetheartmakers.com/tokens/ton/0-fe72f474373e97032441bdb873f9a6d3ad10bab08e6dbc7befa5e42b695f5400/): 1,476 verified swaps, 2 pools, history from 25 Oct 2026
+- [DOGS on TON](https://defi.wearetheartmakers.com/tokens/ton/0-afc49cb8786f21c87045b19ede78fc6b46c51048513f8e9a6d44060199c1bf0c/): 3,314 verified swaps, 4 pools, history from 25 Oct 2026
+- [EVAA on TON](https://defi.wearetheartmakers.com/tokens/ton/0-4a31f8d7fdafddb0e2e6fa3bb1c95672b453fbfca2a7cc6bfa274d6419cef681/): 16,602 verified swaps, 2 pools, history from 25 Oct 2026
+- [LOOT on TON](https://defi.wearetheartmakers.com/tokens/ton/0-8ce031330d514babb91a4a87505fef3ebbf685f4cf430ded4478f5acb8ca33a8/): 110,311 verified swaps, 1 pools, history from 03 Nov 2026
+- [MAJOR on TON](https://defi.wearetheartmakers.com/tokens/ton/0-ae3e6d351e576276e439e7168117fd64696fd6014cb90c77b2f2cbaacd4fcc00/): 2,398 verified swaps, 2 pools, history from 25 Oct 2026
+- [STON on TON](https://defi.wearetheartmakers.com/tokens/ton/0-3690254dc15b2297610cda60744a45f2b710aa4234b89adb630e99d79b01bd4f/): 1,984 verified swaps, 3 pools, history from 25 Oct 2026
 
 ## Links
 
