@@ -678,7 +678,10 @@ _VENUE = re.compile(r"^[A-Za-z0-9 .&+-]{2,24}$")
 
 def scorecard_block(cov: dict) -> str | None:
     """The three venue lists, or None when the answer does not look right (then the page keeps what it has)."""
-    lists = {k: [v for v in cov.get(k) or [] if isinstance(v, str) and _VENUE.fullmatch(v)] for k in ("exchanges", "perpetuals", "liquidation_streams")}
+    if not isinstance(cov, dict):
+        return None
+    lists = {k: [v for v in (cov.get(k) if isinstance(cov.get(k), list) else []) if isinstance(v, str) and _VENUE.fullmatch(v)]
+             for k in ("exchanges", "perpetuals", "liquidation_streams")}
     if len(lists["exchanges"]) < 5 or not lists["perpetuals"]:
         return None
     rows = [("Exchanges, one by one", lists["exchanges"]), ("Perpetual futures", lists["perpetuals"]),
@@ -704,14 +707,15 @@ def update_scorecard_section(out: Path, url: str = COVERAGE_URL) -> bool:
         req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "watam-site-builder/1.0"})
         with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310 (fixed https URL)
             block = scorecard_block(json.loads(resp.read().decode("utf-8")))
-    except (OSError, ValueError) as exc:
+    except Exception as exc:  # noqa: BLE001 — a failing route must never fail the token-pages build
         print(f"::warning::scorecard coverage unavailable ({type(exc).__name__}); section left as it is", file=sys.stderr)
         return False
     if block is None:
         print("::warning::scorecard coverage answer not usable; section left as it is", file=sys.stderr)
         return False
     line_end = text.index("\n", start) + 1
-    new = text[:line_end] + block + text[end:]
+    end_line = text.rfind("\n", 0, end) + 1                 # keep the end marker's own indentation
+    new = text[:line_end] + block + text[end_line:]
     if new != text:
         path.write_text(new, encoding="utf-8")
     return True
