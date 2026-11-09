@@ -189,7 +189,7 @@ def _logo(gid: str) -> str:
 NAV_LINKS = [
     ("Tokens", "/tokens/", "tokens"), ("Method", "/method/", "method"), ("Pricing", "/pricing/", "pricing"),
     ("Live Pro", "/live-pro/", "live-pro"),
-    ("Türkiye Liquidity Index", f"{APP}/tr-index", ""), ("Method &amp; Trust", f"{APP}/methodology", ""),
+    ("Türkiye Liquidity Index", f"{APP}/tr-index", ""),
     ("Partners", f"{APP}/partners", ""),
 ]
 FOOTER_LINKS = [
