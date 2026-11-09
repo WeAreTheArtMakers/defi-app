@@ -1,23 +1,21 @@
-/* Shared styles for the static pages (tokens/…). Same tokens, header, buttons and footer as index.html. */
-@font-face{font-family:"Plex Sans";font-style:normal;font-weight:300 700;font-display:swap;src:url(fonts/ibm-plex-sans-latin.woff2) format("woff2")}
-@font-face{font-family:"Plex Condensed";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-condensed-600-latin.woff2) format("woff2")}
+/* Shared styles for the static pages (tokens/…). Same tokens, header, buttons and footer as the app's public pages. */
 :root{
-  --bg:#070C18; --bg-2:#0A1020; --surface:#111A2E; --raised:#17223B; --line:#24314D; --line-soft:#1B2640;
-  --ink:#E8EDF6; --ink-2:#A7B2C6; --ink-3:#8590A8;
-  --brass:#E2B65E; --brass-text:#E2B65E; --brass-ink:#1A1407; --blue:#7EA6FF; --ok:#6FD3A8; --code:#9DBBFF; --warn:#E7A951;
-  --rgb-bg:10,16,32; --rgb-brass:226,182,95;
-  --display:"Plex Condensed","Plex Sans",system-ui,sans-serif;
-  --text:"Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+--bg:#0b0d12; --bg-2:#0e1118; --surface:#12151d; --raised:#171b26; --line:#232836; --line-soft:#1a1e29;
+  --ink:#e8ebf2; --ink-2:#b5bccb; --ink-3:#8b93a6;
+  --brass:#7cc4ff; --brass-text:#7cc4ff; --brass-ink:#06121f; --blue:#3987e5; --ok:#5fd39a; --code:#9fd3ff; --warn:#f2c14e;
+  --rgb-bg:11,13,18; --rgb-brass:124,196,255;
+  --display:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --text:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --max:1240px; --gut:clamp(16px,4vw,48px); --nav:64px;
   color-scheme:dark;
 }
 @media (prefers-color-scheme:light){
   :root{
-    --bg:#F3F5F9; --bg-2:#E9EDF4; --surface:#FFFFFF; --raised:#F7F8FB; --line:#CDD5E3; --line-soft:#DEE4EE;
-    --ink:#0E1526; --ink-2:#3B4660; --ink-3:#56617A;
-    --brass-text:#8A5C0B; --blue:#2A55C4; --ok:#17704C; --code:#23479F; --warn:#9A5A06;
-    --rgb-bg:243,245,249; --rgb-brass:160,110,20;
+    --bg:#f7f8fb; --bg-2:#eef0f6; --surface:#ffffff; --raised:#f3f5fa; --line:#e2e5ee; --line-soft:#edeff5;
+    --ink:#121620; --ink-2:#3a4254; --ink-3:#6a7385;
+    --brass:#0b6bcb; --brass-text:#0b6bcb; --brass-ink:#ffffff; --blue:#2a78d6; --ok:#12804f; --code:#0b5aa8; --warn:#9a6a00;
+    --rgb-bg:247,248,251; --rgb-brass:11,107,203;
     color-scheme:light;
   }
 }
@@ -32,20 +30,10 @@ p a,li a,dd a,td a,.fine a{color:var(--brass-text);text-underline-offset:3px}
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
 code{font:0.88em/1.4 var(--mono);color:var(--code);overflow-wrap:anywhere}
 
-/* header */
-.bar{position:sticky;top:0;z-index:20;min-height:var(--nav);background:rgba(var(--rgb-bg),.9);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
-.bar .wrap{min-height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap}
-.mark{font:600 19px/1 var(--display);letter-spacing:.01em;text-decoration:none;display:flex;align-items:center;gap:10px;min-height:44px;white-space:nowrap}
-.mark i{width:10px;height:10px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px rgba(var(--rgb-brass),.2);flex:none}
-.links{display:flex;align-items:center;flex-wrap:wrap;gap:0 4px;font-size:15px}
-.links a{text-decoration:none;color:var(--ink-2);padding:10px 12px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
-.links a:hover,.links a[aria-current="page"]{color:var(--ink)}
-.links a[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--brass)}
-.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;font-weight:600;font-size:16px;line-height:1.2;text-decoration:none;border:1px solid var(--line);background:rgba(var(--rgb-bg),.6);color:var(--ink)}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:16px;line-height:1.2;text-decoration:none;border:1px solid var(--line);background:rgba(var(--rgb-bg),.6);color:var(--ink)}
 .btn:hover{border-color:var(--ink-3)}
 .btn.primary{background:var(--brass);color:var(--brass-ink);border-color:var(--brass)}
-.btn.primary:hover{background:#ecc677}
-.bar .btn{min-height:44px;padding:10px 18px;font-size:15px;margin-left:8px}
+.btn.primary:hover{filter:brightness(1.1)}
 
 /* content */
 main{padding:clamp(36px,6vh,64px) 0 clamp(56px,9vh,96px)}
@@ -89,31 +77,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td .sub{display:block;color:var(--ink-3);font-size:13px}
 td a{font-weight:600}
 
-/* footer */
-footer{padding:36px 0 44px;font-size:14px;color:var(--ink-3);background:var(--bg);border-top:1px solid var(--line-soft)}
-footer .wrap{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px 40px}
-footer p{margin:0;max-width:52ch}
-footer nav{display:flex;flex-wrap:wrap;gap:4px 18px}
-footer nav a{color:var(--ink-3);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
-footer nav a:hover{color:var(--ink)}
 
-@media (max-width:920px){
-  .links .opt{display:none}
-}
+
 @media (max-width:640px){
   body{font-size:16px}
-  .bar .wrap{padding-block:6px}
-  .links a{padding:8px 10px}
-  .bar .btn{margin-left:0}
   .facts{grid-template-columns:1fr}
   .facts dt{padding-bottom:0;border-top:1px solid var(--line-soft)}
   .facts dd{border-top:0;padding-top:2px}
   .ctas .btn{flex:1 1 100%;white-space:normal;text-align:center}
   th.opt,td.opt{display:none}
 }
-@media (max-width:380px){
-  .mark{font-size:16px}
-}
+
 .h-sub{display:block;font:500 15px/1.4 var(--text);color:var(--ink-3);margin-top:6px}
 
 /* pricing, terms, privacy and legal pages (moved from the defi-intelligence GitHub Pages site) */
@@ -253,3 +227,31 @@ main.pricing{padding:0}
 .ec-table th{color:var(--ink-3);font-weight:500;width:34%}
 .ec-table td{color:var(--ink-2)}
 @media (max-width:640px){.ec-compare{grid-template-columns:1fr}.ec-table th{width:auto}}
+
+/* ---------- shared header and footer (same markup and tokens as the app's public pages) */
+.site{position:sticky;top:0;z-index:30;background:rgba(var(--rgb-bg),.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site .in{max-width:var(--max);margin:0 auto;padding:0 var(--gut);min-height:var(--nav);display:flex;align-items:center;gap:8px 12px}
+.site a.brand{color:var(--ink);display:flex;align-items:center;text-decoration:none;flex:0 0 auto;min-height:44px}
+.logo{height:32px;width:auto;display:block;max-width:100%}
+.site nav.main.dk{display:flex;align-items:center;gap:0 2px;flex:1 1 auto;min-width:0;margin-left:10px}
+.site nav.main a{white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:14px;padding:8px 9px;border-radius:8px;display:inline-flex;align-items:center;min-height:36px}
+.site nav.main a:hover,.site nav.main a:focus-visible,.site nav.main a[aria-current="page"]{color:var(--ink);background:var(--line)}
+.site .signin{margin-left:auto;flex:0 0 auto;min-height:36px;padding:7px 14px;font-size:14px}
+.site details.menu{display:none;margin-left:auto}
+.site details.menu summary{list-style:none;cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:7px 12px;font-size:14px;font-weight:600;color:var(--ink);user-select:none;min-height:36px;display:inline-flex;align-items:center}
+.site details.menu summary::-webkit-details-marker{display:none}
+.site details.menu summary::after{content:" \25BE";margin-left:4px}
+.site details.menu[open] summary::after{content:" \25B4"}
+.site details.menu nav.main{position:absolute;left:0;right:0;top:100%;z-index:30;display:flex;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:6px var(--gut) 12px}
+.site details.menu nav.main a{padding:11px 8px;font-size:15px}
+@media (max-width:1100px){.site nav.main.dk{display:none}.site details.menu{display:block}.site .signin{margin-left:0}}
+@media (max-width:480px){.site .in{gap:8px}.logo{height:26px}.site .signin{padding:7px 12px}}
+.sitefoot{border-top:1px solid var(--line);margin-top:0;background:var(--surface);color:var(--ink-3)}
+.sitefoot .in{max-width:var(--max);margin:0 auto;padding:30px var(--gut) 34px;display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+.sitefoot .logo{height:32px;color:var(--ink)}
+.sitefoot p{margin:10px 0 0;color:var(--ink-3);font-size:13.5px;max-width:560px}
+.sitefoot ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 18px;align-content:flex-start}
+.sitefoot li a{color:var(--ink-2);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;min-height:32px}
+.sitefoot li a:hover{color:var(--ink);text-decoration:underline}
+.sitefoot .legal{border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+@media (min-width:860px){.sitefoot .in{grid-template-columns:1.1fr 1fr}.sitefoot .legal{grid-column:1/-1}}
