@@ -1,0 +1,192 @@
+WEBVTT
+
+1
+00:00:00.900 --> 00:00:05.130
+8 Kasım'da, 15 dakika içinde
+en az 531 milyon dolarlık
+
+2
+00:00:05.130 --> 00:00:07.700
+pozisyon tasfiye edildi.
+
+3
+00:00:08.080 --> 00:00:12.066
+Böyle anlarda token sahiplerinin ne
+kazanacağını tek bir soru belirler:
+
+4
+00:00:12.066 --> 00:00:13.918
+likidite gerçekten orada mıydı?
+
+5
+00:00:14.968 --> 00:00:18.008
+Token ekipleri, emir defterlerini derin
+tutsunlar diye piyasa yapıcılara ödeme yapar.
+
+6
+00:00:18.388 --> 00:00:19.814
+Ama çoğu ekip bunu denetleyemez.
+
+7
+00:00:20.194 --> 00:00:22.054
+Fiyat siteleri yalnızca şu anın
+anlık görüntüsünü gösterir.
+
+8
+00:00:22.434 --> 00:00:25.788
+Piyasa yapıcı panelleri ise piyasa
+yapıcının bildirdiğini gösterir.
+
+9
+00:00:26.168 --> 00:00:30.329
+Eksik olan, her defterin gerçekte ne
+tuttuğuna dair bağımsız bir kayıt:
+
+10
+00:00:30.329 --> 00:00:33.492
+her 5 dakikada bir, önemli
+olan dakikalar dahil.
+
+11
+00:00:34.542 --> 00:00:37.899
+WATAM Intelligence, tokeninizin
+tüm emir defterlerini,
+
+12
+00:00:37.899 --> 00:00:41.915
+kapsadığımız 23 borsanın
+her birinde, aynı anda okur,
+
+13
+00:00:41.915 --> 00:00:44.492
+her 5 dakikada bir — ve geçmişi saklar.
+
+14
+00:00:44.872 --> 00:00:47.147
+Altında, zincir üzerindeki
+DEX havuzlarınızı okuruz.
+
+15
+00:00:47.527 --> 00:00:51.934
+Yanında, vadeli işlemler: açık
+pozisyon, fonlama oranı ve tasfiyeler.
+
+16
+00:00:52.314 --> 00:00:56.122
+Bir işlem çiftini ancak gerçekten sizin
+tokeniniz olduğunu doğruladıktan sonra sayarız.
+
+17
+00:00:56.502 --> 00:01:01.627
+Ve gerçek bir satışın ne alacağını 1inch,
+0x, KyberSwap ve Velora üzerinden fiyatlarız.
+
+18
+00:01:02.007 --> 00:01:06.238
+Bağımsız. Piyasa yapıcınızdan veri
+almayız. Entegre edeceğiniz hiçbir şey yok.
+
+19
+00:01:07.288 --> 00:01:09.761
+O gece saat 21:55'te
+kaydettiğimiz tablo şu.
+
+20
+00:01:10.141 --> 00:01:13.288
+52 orta ölçekli tokenin
+genelinde, fiyatın %2'si içindeki
+
+21
+00:01:13.288 --> 00:01:15.479
+alış emirleri %38 düştü.
+
+22
+00:01:15.859 --> 00:01:17.781
+On bir token yarısından
+fazlasını kaybetti.
+
+23
+00:01:18.160 --> 00:01:20.017
+Aynı tokenler, aynı 5 dakika:
+
+24
+00:01:20.017 --> 00:01:23.791
+bir borsada defterler alış
+emirlerinin %41'ini korudu.
+
+25
+00:01:24.171 --> 00:01:25.259
+Bir diğerinde ise %88.
+
+26
+00:01:25.639 --> 00:01:28.684
+Peki zincir üzerindeki
+havuzlar? %96'sı yerinde kaldı.
+
+27
+00:01:29.064 --> 00:01:31.258
+Bu fark, anlık görüntüde görünmez.
+
+28
+00:01:31.638 --> 00:01:33.346
+Tam olarak ödeme yaptığınız şey de bu.
+
+29
+00:01:34.396 --> 00:01:37.448
+Market Maker Scorecard bunu
+tek bir sayfaya dönüştürür;
+
+30
+00:01:37.448 --> 00:01:41.636
+topluluğunuzla, borsanızla veya
+piyasa yapıcınızla paylaşabilirsiniz:
+
+31
+00:01:41.636 --> 00:01:45.645
+saat saat, borsa borsa,
+ödediğiniz derinlik korundu mu?
+
+32
+00:01:46.025 --> 00:01:48.434
+Live Pro sizin yerinize izler ve
+
+33
+00:01:48.434 --> 00:01:52.392
+tutmamaya başladığı an, bir tasfiye
+zinciri sırasında bile sizi uyarır.
+
+34
+00:01:53.442 --> 00:01:56.957
+Market Maker Scorecard ayda 490 dolardır.
+
+35
+00:01:57.337 --> 00:02:01.123
+30 Kasım'a kadar ilk ekiplerimiz 30 günlük
+
+36
+00:02:01.123 --> 00:02:04.031
+kurucu pilotunu 149 dolara yapabilir.
+
+37
+00:02:04.411 --> 00:02:08.019
+Live Pro uyarıları ayda
+499 dolardan başlar.
+
+38
+00:02:08.399 --> 00:02:13.137
+Borsalar ve piyasa yapıcılar, takip ettiğimiz
+tüm tokenlerin verisini lisanslayabilir.
+
+39
+00:02:14.187 --> 00:02:18.977
+Vizyonumuz basit: kendinizin doğrulayabileceği
+likidite, size anlatılan değil.
+
+40
+00:02:19.357 --> 00:02:20.333
+Bize tokeninizi gönderin.
+
+41
+00:02:20.713 --> 00:02:22.482
+Defterlerinizin gerçekte ne
+tuttuğunu size gösterelim.

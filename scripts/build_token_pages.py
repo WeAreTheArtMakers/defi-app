@@ -170,43 +170,57 @@ def jsonld(obj: dict) -> str:
 
 # ---------------------------------------------------------------- layout
 
-def header(current: str) -> str:
-    def link(href: str, label: str, key: str, cls: str = "") -> str:
-        cur = ' aria-current="page"' if key == current else ""
-        c = f' class="{cls}"' if cls else ""
-        return f'<a{c} href="{href}"{cur}>{label}</a>'
+_LOGO_MARK = ('<rect width="32" height="32" rx="8" fill="#0e1525"/><path d="M8 21l5-6 4 3 7-9" fill="none" stroke="url(#{g})" stroke-width="2.6" '
+              'stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="9" r="2.2" fill="#38d3f0"/>')
 
+
+def _logo(gid: str) -> str:
+    """The app's mark and the "WATAM DeFi Intelligence" wordmark (inline SVG, same as the app's public pages)."""
+    return (
+        '<svg class="logo" viewBox="0 0 236 32" role="img" aria-label="WATAM DeFi Intelligence" xmlns="http://www.w3.org/2000/svg">'
+        f'<defs><linearGradient id="{gid}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset="1" stop-color="#38d3f0"/></linearGradient></defs>'
+        + _LOGO_MARK.replace("{g}", gid)
+        + '<rect x=".5" y=".5" width="31" height="31" rx="7.5" fill="none" stroke="currentColor" stroke-opacity=".28"/>'
+        '<text x="42" y="21.5" font-size="16" font-weight="650" fill="currentColor" '
+        'font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">WATAM <tspan fill-opacity=".72">DeFi Intelligence</tspan></text></svg>'
+    )
+
+
+NAV_LINKS = [
+    ("Tokens", "/tokens/", "tokens"), ("Method", "/method/", "method"), ("Pricing", "/pricing/", "pricing"),
+    ("Live Pro", "/live-pro/", "live-pro"),
+    ("Türkiye Liquidity Index", f"{APP}/tr-index", ""),
+    ("Partners", f"{APP}/partners", ""),
+]
+FOOTER_LINKS = [
+    ("Türkiye Liquidity Index", f"{APP}/tr-index"), ("Türkiye Stress Atlas", f"{APP}/tr-atlas"),
+    ("Method &amp; Trust", f"{APP}/methodology"), ("Data platform", f"{APP}/platform"),
+    ("Token catalog", "/tokens/"), ("Pricing", "/pricing/"), ("Contact: " + EMAIL, f"mailto:{EMAIL}"),
+    ("Privacy", "/privacy/"), ("Terms", "/terms/"), ("Legal", "/legal/"),
+]
+
+
+def header(current: str) -> str:
+    links = "".join(
+        f'<a href="{h}"{" aria-current=\"page\"" if k and k == current else ""}>{label}</a>' for label, h, k in NAV_LINKS
+    )
     return (
         '<a class="skip" href="#main">Skip to content</a>\n'
-        '<header class="bar">\n  <div class="wrap">\n'
-        '    <a class="mark" href="/"><i aria-hidden="true"></i>WATAM DeFi Intelligence</a>\n'
-        '    <nav class="links" aria-label="Main">\n'
-        f'      {link("/tokens/", "Tokens", "tokens")}\n'
-        f'      {link("/method/", "Method", "method", "opt")}\n'
-        f'      {link(PRICING_URL, "Pricing", "pricing")}\n'
-        f'      {link(APP + "/partners", "Partners", "partners", "opt")}\n'
-        f'      <a class="btn primary" href="/app/">Open the app</a>\n'
-        "    </nav>\n  </div>\n</header>\n"
+        f'<header class="site" id="top"><div class="in"><a class="brand" href="/" aria-label="WATAM DeFi Intelligence">{_logo("wg1")}</a>'
+        f'<nav class="main dk" aria-label="Main">{links}</nav>'
+        f'<details class="menu"><summary>Menu</summary><nav class="main" aria-label="Menu">{links}</nav></details>'
+        f'<a class="btn primary signin" href="{APP}/login">Sign in</a></div></header>\n'
     )
 
 
 def footer() -> str:
+    items = "".join(f'<li><a href="{h}">{label}</a></li>' for label, h in FOOTER_LINKS)
     return (
-        "<footer>\n  <div class=\"wrap\">\n"
-        f"    <p>{esc(INDEPENDENCE)} Token and network names are trademarks of their owners. USD values are not part of the evidence.<br>"
-        "DeFi Intelligence is a product of WATAM Intelligence.<br>© 2026 WeAreTheArtMakers</p>\n"
-        '    <nav aria-label="Footer">\n'
-        '      <a href="/">Home</a>\n'
-        '      <a href="/tokens/">Tokens</a>\n'
-        f'      <a href="/method/">Method</a>\n'
-        f'      <a href="{PRICING_URL}">Pricing</a>\n'
-        f'      <a href="{APP}/partners">Become a partner</a>\n'
-        f'      <a href="{TERMS_URL}">Terms</a>\n'
-        f'      <a href="{PRIVACY_URL}">Privacy</a>\n'
-        f'      <a href="{LEGAL_URL}">Legal</a>\n'
-        f'      <a href="mailto:{EMAIL}">Contact</a>\n'
-        "      <a href=\"https://t.me/watam_intelligence\" rel=\"noopener\">Telegram</a>\n"
-        "    </nav>\n  </div>\n</footer>\n"
+        f'<footer class="sitefoot"><div class="in"><div>{_logo("wg2")}'
+        "<p>WATAM Intelligence measures public market data and publishes verifiable aggregates.</p>"
+        f"<p>{esc(INDEPENDENCE)} Token and network names are trademarks of their owners. Informational, not investment advice.</p></div>"
+        f"<ul>{items}</ul>"
+        '<div class="legal"><span>© 2026 WATAM Intelligence</span><span>Not investment advice</span></div></div></footer>\n'
     )
 
 
@@ -403,7 +417,7 @@ def token_page(entry: dict, catalog: dict) -> str:
             '  "toBlock":   "&lt;last block, hex&gt;"\n'
             "}]}</pre>\n"
         )
-        body.append('<p class="fine">The pool list, the exact block range and the expected swap count for each finding are in the Evidence Snapshot and in the application.</p>\n')
+        body.append('<p class="fine">The pool list, the exact block range and the expected swap count for each finding are in the application.</p>\n')
     else:
         body.append('<p class="intro">Evidence Cards cover anomaly findings on the EVM networks; anomaly detection is not yet available on this network, so the catalog reports coverage, verified swaps and pools only. For reference, an Evidence Card answers five questions:</p>\n')
         body.append(five_questions_html())
@@ -413,8 +427,8 @@ def token_page(entry: dict, catalog: dict) -> str:
     body.append('<h2 id="next">Get the evidence</h2>\n<div class="ctas">\n')
     mail = f"mailto:{EMAIL}?subject={urllib.parse.quote(f'{sym} on {net}')}"
     if is_index and vm == "evm":
-        body.append(f'  <a class="btn primary" href="{APP}/checkout">Get the Evidence Snapshot for {esc(sym)} ($900, 7 days)</a>\n')
-        body.append(f'  <a class="btn" href="{mail}">Ask about a pilot</a>\n')
+        body.append(f'  <a class="btn primary" href="{APP}/checkout?plan=mm_scorecard_monthly">Buy Token for {esc(sym)} (USD 490 per month)</a>\n')
+        body.append(f'  <a class="btn" href="{mail}">Free token check by email</a>\n')
     else:
         body.append(f'  <a class="btn primary" href="{mail}">Ask about this token</a>\n')
     body.append(f'  <a class="btn" href="{APP}/catalog">Open the catalog in the app</a>\n</div>\n')
@@ -529,7 +543,7 @@ def index_page(catalog: dict, entries: list[dict]) -> str:
     )
     body.append(
         '<div class="ctas">\n'
-        f'  <a class="btn primary" href="{APP}/checkout">Buy an Evidence Snapshot ($900, 7 days)</a>\n'
+        f'  <a class="btn primary" href="{APP}/checkout?plan=mm_scorecard_monthly">Buy Token (USD 490 per month)</a>\n'
         f'  <a class="btn" href="mailto:{EMAIL}?subject=Token%20coverage">Ask about a token not listed</a>\n'
         "</div>\n"
     )
@@ -658,7 +672,7 @@ def llms_full(catalog: dict, entries: list[dict]) -> str:
         f"- [Overview]({SITE}/)",
         f"- [Token catalog]({SITE}/tokens/)",
         f"- [Exit Check]({SITE}/exit-check/): free tool; value a wallet displays vs. what live aggregator sell quotes would pay out (KyberSwap, Velora, Jupiter, Raydium), shortfall, route and verified DEX exit depth for catalog tokens; quotes are indicative, not investment advice",
-        f"- [Pricing]({PRICING_URL}): Evidence Snapshot $900 (7 days, one token); subscriptions from $1,500/month",
+        f"- [Pricing]({PRICING_URL}): Token USD 490, Pro USD 990, Data USD 2,500, Enterprise from USD 5,000 per month; Listing Liquidity Dossier USD 750 per token, one-off",
         f"- [Buy online]({APP}/checkout): stablecoin or bank transfer",
         f"- [Become a partner]({APP}/partners)",
         f"- Contact: {EMAIL}",
@@ -740,16 +754,16 @@ _DIAMOND = '<path class="mk-shape" d="M22 4l18 18-18 18L4 22z" stroke="var(--bra
 NETWORK_CARDS = [
     dict(key="ethereum", tag="ETH", shape=_HEX, name="Ethereum", fam="EVM, chain id 1",
          venues=["Uniswap v2", "Uniswap v3", "PancakeSwap v3", "Uniswap v4, per pool*"],
-         note="Back-fill on request for an Evidence Snapshot."),
+         note="History depth is shown on each token page."),
     dict(key="arbitrum", tag="ARB", shape=_HEX, name="Arbitrum One", fam="EVM, chain id 42161",
          venues=["Uniswap v3", "SushiSwap v2", "Uniswap v4, per pool*"],
-         note="Back-fill on request for an Evidence Snapshot."),
+         note="History depth is shown on each token page."),
     dict(key="optimism", tag="OP", shape=_HEX, name="OP Mainnet", fam="EVM, chain id 10",
          venues=["Uniswap v3", "Velodrome v2", "Velodrome Slipstream", "Uniswap v4, per pool*"],
-         note="Back-fill on request for an Evidence Snapshot."),
+         note="History depth is shown on each token page."),
     dict(key="base", tag="BASE", shape=_HEX, name="Base", fam="EVM, chain id 8453",
          venues=["Uniswap v3", "Aerodrome v2", "Aerodrome Slipstream", "MetaDEX Slipstream", "PancakeSwap v3", "Uniswap v4, per pool*"],
-         note="Back-fill on request for an Evidence Snapshot."),
+         note="History depth is shown on each token page."),
     dict(key="bsc", tag="BNB", shape=_HEX, name="BNB Smart Chain", fam="EVM, chain id 56",
          venues=["PancakeSwap v2", "PancakeSwap v3", "Uniswap v3", "PancakeSwap Infinity, per pool (verified hooked pools included)*",
                  "Uniswap v4, per pool*"],

@@ -1,0 +1,195 @@
+WEBVTT
+
+1
+00:00:00.900 --> 00:00:05.130
+El 8 de noviembre, en
+15 minutos se liquidaron
+
+2
+00:00:05.130 --> 00:00:07.700
+al menos 531 millones de
+dólares en posiciones.
+
+3
+00:00:08.080 --> 00:00:12.066
+En momentos así, una sola pregunta decide
+lo que reciben los holders de tu token:
+
+4
+00:00:12.066 --> 00:00:13.918
+¿de verdad estaba ahí la liquidez?
+
+5
+00:00:14.968 --> 00:00:18.008
+Los equipos de tokens pagan a los creadores de
+mercado para mantener profundos los libros de órdenes.
+
+6
+00:00:18.388 --> 00:00:19.814
+Pero la mayoría de los
+equipos no puede comprobarlo.
+
+7
+00:00:20.194 --> 00:00:22.054
+Los sitios de precios muestran una
+instantánea del momento actual.
+
+8
+00:00:22.434 --> 00:00:25.788
+Los paneles de los creadores de mercado
+muestran lo que ellos mismos reportan.
+
+9
+00:00:26.168 --> 00:00:30.329
+Lo que falta es un registro independiente
+de lo que cada libro tenía realmente,
+
+10
+00:00:30.329 --> 00:00:33.492
+cada 5 minutos, incluidos
+los minutos que importaron.
+
+11
+00:00:34.542 --> 00:00:37.899
+WATAM Intelligence lee cada
+libro de órdenes de tu token
+
+12
+00:00:37.899 --> 00:00:41.915
+en cada una de las 23 bolsas que
+cubrimos, en el mismo instante,
+
+13
+00:00:41.915 --> 00:00:44.492
+cada 5 minutos, y guarda el historial.
+
+14
+00:00:44.872 --> 00:00:47.147
+Por debajo, leemos tus pools DEX on-chain.
+
+15
+00:00:47.527 --> 00:00:51.934
+Junto a ellos, los futuros perpetuos:
+interés abierto, funding y liquidaciones.
+
+16
+00:00:52.314 --> 00:00:56.122
+Solo contamos un par de trading después
+de verificar que realmente es tu token.
+
+17
+00:00:56.502 --> 00:01:01.627
+Y cotizamos lo que recibiría una venta real,
+a través de 1inch, 0x, KyberSwap y Velora.
+
+18
+00:01:02.007 --> 00:01:06.238
+Independiente. Sin datos de tu
+creador de mercado. Nada que integrar.
+
+19
+00:01:07.288 --> 00:01:09.761
+Esto es lo que registramos
+a las 21:55 de esa noche.
+
+20
+00:01:10.141 --> 00:01:13.288
+En 52 tokens de mediana capitalización,
+las órdenes de compra a menos del 2 %
+
+21
+00:01:13.288 --> 00:01:15.479
+del precio cayeron un 38 %.
+
+22
+00:01:15.859 --> 00:01:17.781
+Once tokens perdieron más de la mitad.
+
+23
+00:01:18.160 --> 00:01:20.017
+Mismos tokens, mismos 5 minutos:
+
+24
+00:01:20.017 --> 00:01:23.791
+en una bolsa los libros conservaron
+el 41 % de sus órdenes de compra.
+
+25
+00:01:24.171 --> 00:01:25.259
+En otra, el 88 %.
+
+26
+00:01:25.639 --> 00:01:28.684
+¿Y los pools on-chain? El 96 % seguía ahí.
+
+27
+00:01:29.064 --> 00:01:31.258
+Esa diferencia es invisible
+en una instantánea.
+
+28
+00:01:31.638 --> 00:01:33.346
+Es justo aquello por lo que estás pagando.
+
+29
+00:01:34.396 --> 00:01:37.448
+El Market Maker Scorecard lo
+convierte en una sola página
+
+30
+00:01:37.448 --> 00:01:41.636
+que puedes compartir con tu comunidad,
+tu bolsa o tu creador de mercado:
+
+31
+00:01:41.636 --> 00:01:45.645
+hora a hora, bolsa por bolsa: ¿se
+mantuvo la profundidad por la que pagas?
+
+32
+00:01:46.025 --> 00:01:48.434
+Live Pro lo vigila por ti y te avisa
+
+33
+00:01:48.434 --> 00:01:52.392
+en el momento en que deja de sostenerse,
+incluso durante una cascada de liquidaciones.
+
+34
+00:01:53.442 --> 00:01:56.957
+El Market Maker Scorecard
+cuesta 490 dólares al mes.
+
+35
+00:01:57.337 --> 00:02:01.123
+Hasta el 30 de noviembre, nuestros
+primeros equipos pueden hacer un
+
+36
+00:02:01.123 --> 00:02:04.031
+piloto fundador de 30
+días por 149 dólares.
+
+37
+00:02:04.411 --> 00:02:08.019
+Las alertas Live Pro empiezan
+en 499 dólares al mes.
+
+38
+00:02:08.399 --> 00:02:13.137
+Las bolsas y los creadores de mercado pueden
+licenciar los datos de todos los tokens que seguimos.
+
+39
+00:02:14.187 --> 00:02:18.977
+Nuestra visión es simple: liquidez que puedes
+verificar, no liquidez de la que te hablan.
+
+40
+00:02:19.357 --> 00:02:20.333
+Envíanos tu token.
+
+41
+00:02:20.713 --> 00:02:22.482
+Te mostraremos lo que tus
+libros realmente tenían.
