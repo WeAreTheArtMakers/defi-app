@@ -1,0 +1,196 @@
+WEBVTT
+
+1
+00:00:00.900 --> 00:00:05.130
+Ngày 8 tháng 11, trong 15 phút
+đã có ít nhất 531 triệu đô la
+
+2
+00:00:05.130 --> 00:00:07.700
+vị thế bị thanh lý.
+
+3
+00:00:08.080 --> 00:00:12.066
+Trong những khoảnh khắc như vậy, một câu hỏi
+quyết định người nắm giữ token nhận được gì:
+
+4
+00:00:12.066 --> 00:00:13.918
+thanh khoản có thực sự ở đó không?
+
+5
+00:00:14.968 --> 00:00:18.008
+Các đội token trả tiền cho nhà tạo
+lập thị trường để giữ sổ lệnh dày.
+
+6
+00:00:18.388 --> 00:00:19.814
+Nhưng hầu hết các đội
+không thể kiểm chứng.
+
+7
+00:00:20.194 --> 00:00:22.054
+Các trang giá chỉ hiển thị ảnh
+chụp của thời điểm hiện tại.
+
+8
+00:00:22.434 --> 00:00:25.788
+Bảng điều khiển của nhà tạo lập thị trường
+chỉ hiển thị những gì họ tự báo cáo.
+
+9
+00:00:26.168 --> 00:00:30.329
+Điều còn thiếu là một bản ghi độc lập về
+những gì mọi sổ lệnh thực sự nắm giữ —
+
+10
+00:00:30.329 --> 00:00:33.492
+cứ mỗi 5 phút, kể cả những
+phút quan trọng nhất.
+
+11
+00:00:34.542 --> 00:00:37.899
+WATAM Intelligence đọc mọi
+sổ lệnh của token của bạn
+
+12
+00:00:37.899 --> 00:00:41.915
+trên từng sàn trong số 23 sàn chúng
+tôi theo dõi, cùng một thời điểm,
+
+13
+00:00:41.915 --> 00:00:44.492
+cứ mỗi 5 phút — và lưu giữ lịch sử.
+
+14
+00:00:44.872 --> 00:00:47.147
+Bên dưới, chúng tôi đọc các
+pool DEX on-chain của bạn.
+
+15
+00:00:47.527 --> 00:00:51.934
+Bên cạnh là hợp đồng tương lai vĩnh
+cửu: vị thế mở, funding và thanh lý.
+
+16
+00:00:52.314 --> 00:00:56.122
+Chúng tôi chỉ tính một cặp giao dịch sau
+khi xác minh đó đúng là token của bạn.
+
+17
+00:00:56.502 --> 00:01:01.627
+Và chúng tôi báo giá số tiền một lệnh bán thực
+sự nhận được, qua 1inch, 0x, KyberSwap và Velora.
+
+18
+00:01:02.007 --> 00:01:06.238
+Độc lập. Không dùng dữ liệu từ nhà tạo lập
+thị trường của bạn. Không cần tích hợp gì.
+
+19
+00:01:07.288 --> 00:01:09.761
+Đây là những gì chúng tôi
+ghi nhận lúc 21:55 đêm đó.
+
+20
+00:01:10.141 --> 00:01:13.288
+Trên 52 token vốn hóa trung
+bình, lệnh mua trong phạm vi 2 %
+
+21
+00:01:13.288 --> 00:01:15.479
+của giá đã giảm 38 %.
+
+22
+00:01:15.859 --> 00:01:17.781
+11 token mất hơn một nửa.
+
+23
+00:01:18.160 --> 00:01:20.017
+Cùng các token, cùng 5 phút đó:
+
+24
+00:01:20.017 --> 00:01:23.791
+ở một sàn, sổ lệnh chỉ
+giữ lại 41 % lệnh mua.
+
+25
+00:01:24.171 --> 00:01:25.259
+Ở sàn khác là 88 %.
+
+26
+00:01:25.639 --> 00:01:28.684
+Còn các pool on-chain?
+96 % vẫn còn nguyên.
+
+27
+00:01:29.064 --> 00:01:31.258
+Sự khác biệt đó không thể
+thấy trong một ảnh chụp nhanh.
+
+28
+00:01:31.638 --> 00:01:33.346
+Đó chính là thứ bạn đang trả tiền.
+
+29
+00:01:34.396 --> 00:01:37.448
+Market Maker Scorecard biến
+tất cả thành một trang duy nhất
+
+30
+00:01:37.448 --> 00:01:41.636
+mà bạn có thể chia sẻ với cộng đồng,
+sàn hoặc nhà tạo lập thị trường:
+
+31
+00:01:41.636 --> 00:01:45.645
+từng giờ, từng sàn: độ sâu mà bạn
+trả tiền có được giữ vững không?
+
+32
+00:01:46.025 --> 00:01:48.434
+Live Pro theo dõi thay bạn và cảnh báo bạn
+
+33
+00:01:48.434 --> 00:01:52.392
+ngay khi nó không còn giữ được, kể
+cả trong một đợt thanh lý dây chuyền.
+
+34
+00:01:53.442 --> 00:01:56.957
+Market Maker Scorecard có
+giá 490 đô la mỗi tháng.
+
+35
+00:01:57.337 --> 00:02:01.123
+Đến hết ngày 30 tháng 11,
+các đội đầu tiên có thể chạy
+
+36
+00:02:01.123 --> 00:02:04.031
+gói thử nghiệm sáng lập
+30 ngày với giá 149 đô la.
+
+37
+00:02:04.411 --> 00:02:08.019
+Cảnh báo Live Pro bắt đầu
+từ 499 đô la mỗi tháng.
+
+38
+00:02:08.399 --> 00:02:13.137
+Sàn giao dịch và nhà tạo lập thị trường có thể
+cấp phép dữ liệu của mọi token chúng tôi theo dõi.
+
+39
+00:02:14.187 --> 00:02:18.977
+Tầm nhìn của chúng tôi rất đơn giản: thanh khoản bạn có thể
+kiểm chứng, không phải thanh khoản bạn chỉ được nghe kể.
+
+40
+00:02:19.357 --> 00:02:20.333
+Hãy gửi token của bạn cho chúng tôi.
+
+41
+00:02:20.713 --> 00:02:22.482
+Chúng tôi sẽ cho bạn thấy sổ lệnh
+của bạn thực sự nắm giữ những gì.

@@ -1,6 +1,6 @@
 # WATAM DeFi Intelligence
 
-> On-chain DEX analytics for protocol and token teams, exchange listing and risk teams and funds. Swaps are decoded
+> Independent liquidity data for token teams, exchanges and market makers: every order book of a token on 23 exchanges and its on-chain DEX pools, every five minutes, verified on chain, history kept. Also on-chain DEX analytics for protocol and token teams, exchange listing and risk teams and funds. Swaps are decoded
 > directly from the chain on Ethereum, Arbitrum One, OP Mainnet, Base, BNB Smart Chain, Avalanche C-Chain, Monad, Solana
 > and TON. Every anomaly finding carries an Evidence Card that answers five questions: what was observed; where the
 > evidence is (network, blocks, pools, transactions); how it was computed (method, frozen baseline); how much it can be
