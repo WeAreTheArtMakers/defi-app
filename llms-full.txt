@@ -3,7 +3,7 @@
 > On-chain DEX analytics for token teams, exchange listing and risk teams and funds. Swaps are decoded directly from the
 > chain on Arbitrum One, OP Mainnet, Ethereum, Base, BNB Smart Chain, Monad, Avalanche C-Chain, Solana, TON. Every anomaly finding carries an Evidence Card that answers five questions. Independent analytics; not affiliated with the projects or exchanges listed.
 
-Data as of 23 Nov 2026, 02:38 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
+Data as of 23 Nov 2026, 11:17 UTC. Source: https://app.wearetheartmakers.com/api/public/catalog (refreshed every 12 h on EVM networks, every 3 h on TON, every 1 h on Solana).
 
 ## The five evidence questions
 
@@ -150,22 +150,32 @@ USD values are not part of the evidence.
 
 ### Solana
 
-- [GOLD on Solana](https://defi.wearetheartmakers.com/tokens/solana/LRxbtkvPfpctgR6MS52MAwtobrCCY9KiJgKMmpPpump/): 17,052 verified swaps, 1 pools, history from 27 Oct 2026
-- [GTA on Solana](https://defi.wearetheartmakers.com/tokens/solana/BsbsB3WLq7vbY5En3MBCAsTrcwaCxNKY2Mp5pGuLpump/): 57,483 verified swaps, 2 pools, history from 18 Nov 2026
-- [NST on Solana](https://defi.wearetheartmakers.com/tokens/solana/G7iK3prSzAA4vzcJWvsLUEsdCqzR7PnMzJV61vSdFSNW/): 2,743 verified swaps, 3 pools, history from 02 Nov 2026
+- [ANTFUN on Solana](https://defi.wearetheartmakers.com/tokens/solana/CWZ6BsdnjkDVTGkmL6bGbJXXig6ceef12KvyGQW14cMt/): 121,085 verified swaps, 1 pools, history from 20 Nov 2026
+- [DBR on Solana](https://defi.wearetheartmakers.com/tokens/solana/DBRiDgJAMsM95moTzJs7M9LnkGErpbv9v6CUR1DXnUu5/): 29,321 verified swaps, 4 pools, history from 03 Nov 2026
+- [Fartcoin on Solana](https://defi.wearetheartmakers.com/tokens/solana/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump/): 208,673 verified swaps, 3 pools, history from 17 Nov 2026
+- [GOLD on Solana](https://defi.wearetheartmakers.com/tokens/solana/LRxbtkvPfpctgR6MS52MAwtobrCCY9KiJgKMmpPpump/): 17,271 verified swaps, 1 pools, history from 27 Oct 2026
+- [GTA on Solana](https://defi.wearetheartmakers.com/tokens/solana/BsbsB3WLq7vbY5En3MBCAsTrcwaCxNKY2Mp5pGuLpump/): 57,764 verified swaps, 2 pools, history from 18 Nov 2026
+- [JEANPHIL on Solana](https://defi.wearetheartmakers.com/tokens/solana/GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump/): 69,152 verified swaps, 3 pools, history from 19 Nov 2026
+- [NST on Solana](https://defi.wearetheartmakers.com/tokens/solana/G7iK3prSzAA4vzcJWvsLUEsdCqzR7PnMzJV61vSdFSNW/): 2,779 verified swaps, 3 pools, history from 02 Nov 2026
+- [PENGU on Solana](https://defi.wearetheartmakers.com/tokens/solana/2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv/): 72,892 verified swaps, 3 pools, history from 03 Nov 2026
+- [PYTH on Solana](https://defi.wearetheartmakers.com/tokens/solana/HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3/): 304,585 verified swaps, 2 pools, history from 13 Nov 2026
+- [swordcat on Solana](https://defi.wearetheartmakers.com/tokens/solana/5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump/): 42,029 verified swaps, 2 pools, history from 17 Nov 2026
+- [TripleT on Solana](https://defi.wearetheartmakers.com/tokens/solana/J8PSdNP3QewKq2Z1JJJFDMaqF7KcaiJhR7gbr5KZpump/): 30,644 verified swaps, 2 pools, history from 08 Nov 2026
+- [USELESS on Solana](https://defi.wearetheartmakers.com/tokens/solana/Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk/): 148,409 verified swaps, 3 pools, history from 07 Nov 2026
+- [WOJAK on Solana](https://defi.wearetheartmakers.com/tokens/solana/8J69rbLTzWWgUJziFY8jeu5tDwEPBwUz4pKBMr5rpump/): 12,014 verified swaps, 2 pools, history from 18 Nov 2026
 
 ### TON
 
-- [ATF on TON](https://defi.wearetheartmakers.com/tokens/ton/0-0d716e395b44e9f756f3bc76b268f3bafba85fd4b9b85e5599e2b37a2f9a1f3d/): 71,637 verified swaps, 2 pools, history from 03 Nov 2026
-- [CATI on TON](https://defi.wearetheartmakers.com/tokens/ton/0-fe72f474373e97032441bdb873f9a6d3ad10bab08e6dbc7befa5e42b695f5400/): 3,673 verified swaps, 2 pools, history from 25 Oct 2026
-- [DOGS on TON](https://defi.wearetheartmakers.com/tokens/ton/0-afc49cb8786f21c87045b19ede78fc6b46c51048513f8e9a6d44060199c1bf0c/): 8,420 verified swaps, 4 pools, history from 25 Oct 2026
-- [EVAA on TON](https://defi.wearetheartmakers.com/tokens/ton/0-4a31f8d7fdafddb0e2e6fa3bb1c95672b453fbfca2a7cc6bfa274d6419cef681/): 47,371 verified swaps, 2 pools, history from 25 Oct 2026
-- [LOOT on TON](https://defi.wearetheartmakers.com/tokens/ton/0-8ce031330d514babb91a4a87505fef3ebbf685f4cf430ded4478f5acb8ca33a8/): 208,036 verified swaps, 1 pools, history from 03 Nov 2026
-- [MAJOR on TON](https://defi.wearetheartmakers.com/tokens/ton/0-ae3e6d351e576276e439e7168117fd64696fd6014cb90c77b2f2cbaacd4fcc00/): 7,296 verified swaps, 2 pools, history from 25 Oct 2026
-- [NOT on TON](https://defi.wearetheartmakers.com/tokens/ton/0-2f956143c461769579baef2e32cc2d7bc18283f40d20bb03e432cd603ac33ffc/): 20,651 verified swaps, 4 pools, history from 04 Nov 2026
-- [REDO on TON](https://defi.wearetheartmakers.com/tokens/ton/0-59fdc69f3f20ebe4a513b3468dc61d194c3864a4464e3662c903648d1a52e6e0/): 8,199 verified swaps, 2 pools, history from 05 Nov 2026
-- [STON on TON](https://defi.wearetheartmakers.com/tokens/ton/0-3690254dc15b2297610cda60744a45f2b710aa4234b89adb630e99d79b01bd4f/): 6,256 verified swaps, 3 pools, history from 25 Oct 2026
-- [UTYA on TON](https://defi.wearetheartmakers.com/tokens/ton/0-5a0a05303a873a80708d967fe82736f4995b3bf581bbc18a1abe1fa8d48b5a9d/): 15,436 verified swaps, 4 pools, history from 05 Nov 2026
+- [ATF on TON](https://defi.wearetheartmakers.com/tokens/ton/0-0d716e395b44e9f756f3bc76b268f3bafba85fd4b9b85e5599e2b37a2f9a1f3d/): 71,900 verified swaps, 2 pools, history from 03 Nov 2026
+- [CATI on TON](https://defi.wearetheartmakers.com/tokens/ton/0-fe72f474373e97032441bdb873f9a6d3ad10bab08e6dbc7befa5e42b695f5400/): 3,687 verified swaps, 2 pools, history from 25 Oct 2026
+- [DOGS on TON](https://defi.wearetheartmakers.com/tokens/ton/0-afc49cb8786f21c87045b19ede78fc6b46c51048513f8e9a6d44060199c1bf0c/): 8,489 verified swaps, 4 pools, history from 25 Oct 2026
+- [EVAA on TON](https://defi.wearetheartmakers.com/tokens/ton/0-4a31f8d7fdafddb0e2e6fa3bb1c95672b453fbfca2a7cc6bfa274d6419cef681/): 48,601 verified swaps, 2 pools, history from 25 Oct 2026
+- [LOOT on TON](https://defi.wearetheartmakers.com/tokens/ton/0-8ce031330d514babb91a4a87505fef3ebbf685f4cf430ded4478f5acb8ca33a8/): 208,425 verified swaps, 1 pools, history from 03 Nov 2026
+- [MAJOR on TON](https://defi.wearetheartmakers.com/tokens/ton/0-ae3e6d351e576276e439e7168117fd64696fd6014cb90c77b2f2cbaacd4fcc00/): 7,317 verified swaps, 2 pools, history from 25 Oct 2026
+- [NOT on TON](https://defi.wearetheartmakers.com/tokens/ton/0-2f956143c461769579baef2e32cc2d7bc18283f40d20bb03e432cd603ac33ffc/): 20,736 verified swaps, 4 pools, history from 04 Nov 2026
+- [REDO on TON](https://defi.wearetheartmakers.com/tokens/ton/0-59fdc69f3f20ebe4a513b3468dc61d194c3864a4464e3662c903648d1a52e6e0/): 8,214 verified swaps, 2 pools, history from 05 Nov 2026
+- [STON on TON](https://defi.wearetheartmakers.com/tokens/ton/0-3690254dc15b2297610cda60744a45f2b710aa4234b89adb630e99d79b01bd4f/): 6,317 verified swaps, 3 pools, history from 25 Oct 2026
+- [UTYA on TON](https://defi.wearetheartmakers.com/tokens/ton/0-5a0a05303a873a80708d967fe82736f4995b3bf581bbc18a1abe1fa8d48b5a9d/): 15,484 verified swaps, 4 pools, history from 05 Nov 2026
 
 ## Links
 
