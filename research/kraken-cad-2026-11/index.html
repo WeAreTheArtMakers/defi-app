@@ -40,7 +40,7 @@
         <div class="tile" role="listitem"><b>C$24,250</b><span>lowest BTC/CAD trade, 21 Nov 08:00:43.513 UTC (trade 5604686)</span><small>≈ US$16,928 at 1.4325</small></div>
         <div class="tile" role="listitem"><b>US$57,734</b><span>Kraken BTC/USD, last trade 3.3 s earlier (trade 117223959)</span><small>±5 min range US$57,652–57,938</small></div>
         <div class="tile" role="listitem"><b>−70.7%</b><span>gap between the two, same exchange</span><small>implied CAD per USD 0.42 vs 1.4325</small></div>
-        <div class="tile" role="listitem"><b>11 of 11</b><span>Kraken CAD markets fell 66–79% at their lows (USD/CAD to 0.30; one USDT/CAD trade −99.8%)</span><small>USD and USDT markets: −0.1% to −6%</small></div>
+        <div class="tile" role="listitem"><b>11 of 11</b><span>Kraken CAD markets dislocated: lowest 15-minute averages 54–65% below their 18:00–19:00 reference</span><small>single-trade lows −65.7% to −79.0%; one isolated USDT/CAD print −99.8%; USD and USDT markets −0.1% to −6%</small></div>
       </div>
       <figure><img src="/assets/research-kraken-cad-2026-11/chart.png" width="1920" height="1080" alt="Kraken BTC/USDT near US$57–59k and BTC/CAD converted at the Bank of Canada rate falling to about US$16,900 on 21 Nov 2026; the implied CAD per USD and Kraken's own USD/CAD fall from 1.43 to about 0.5 and recover by midday." style="width:100%;height:auto"><figcaption>5-minute VWAPs of executed trades. Grey lines in the upper panel: the 29 inferred market-sell execution clusters of 5 BTC or more.</figcaption></figure>
       <figure class="demo-video">
@@ -88,6 +88,7 @@
 <tr><td>USDT/USD</td><td><code>USDTZUSD</code></td><td class="num">0.99874</td><td class="num">0.99755</td><td class="num"><span class="ts">11/20 23:34:32</span></td><td class="num">-0.1%</td><td class="num">23,035</td><td class="num">0</td></tr>
 <tr><td>USDC/USD</td><td><code>USDCUSD</code></td><td class="num">0.9998</td><td class="num">0.9998</td><td class="num"><span class="ts">11/20 18:00:00</span></td><td class="num">+0.0%</td><td class="num">31,120</td><td class="num">0</td></tr>
       </tbody></table></div>
+      <p>The "Low" column is the single lowest trade. Measured on 15-minute volume-weighted averages (quarters with at least 5 trades), every CAD pair's lowest quarter was 53.8% (USD/CAD) to 64.7% (BTC/CAD) below its reference, between 07:45 and 08:30 UTC on 21 Nov; ETH/CAD −55.0%, USDT/CAD −61.1% (<code>cad_lowest_15min_vwap</code> in evidence.json).</p>
       <p><small>USDT/CAD's low of 0.0022 is a single executed trade of 811.90 USDT (trade 3798113, 21 Nov 09:01:08 UTC); 25 USDT/CAD trades executed below 0.50.</small></p>
       <h2 id="pattern">The selling pattern: execution clusters</h2>
       <p>Kraken's public trade records carry no order id. We group market-sell trades whose timestamps fall within 5 ms of each other into <b>execution clusters</b>; a cluster is most likely one taker order, but the data does not establish that. On BTC/CAD, 29 execution clusters of 5 BTC or more account for 371.25 of the window's 374.86 BTC of market sells:</p>

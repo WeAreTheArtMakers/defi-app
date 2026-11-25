@@ -1399,6 +1399,63 @@
   "large_market_sells_btc": 371.2507,
   "large_market_sells": 29
  },
+ "cad_lowest_15min_vwap": {
+  "BTC/CAD": {
+   "pct": -64.7,
+   "quarter_utc": "2026-11-21T08:15:00+00:00",
+   "trades": 764
+  },
+  "USD/CAD": {
+   "pct": -53.8,
+   "quarter_utc": "2026-11-21T07:45:00+00:00",
+   "trades": 809
+  },
+  "ETH/CAD": {
+   "pct": -55.0,
+   "quarter_utc": "2026-11-21T08:15:00+00:00",
+   "trades": 196
+  },
+  "SOL/CAD": {
+   "pct": -59.6,
+   "quarter_utc": "2026-11-21T08:15:00+00:00",
+   "trades": 136
+  },
+  "XRP/CAD": {
+   "pct": -58.5,
+   "quarter_utc": "2026-11-21T08:00:00+00:00",
+   "trades": 180
+  },
+  "USDT/CAD": {
+   "pct": -61.1,
+   "quarter_utc": "2026-11-21T08:15:00+00:00",
+   "trades": 88
+  },
+  "USDC/CAD": {
+   "pct": -55.8,
+   "quarter_utc": "2026-11-21T08:15:00+00:00",
+   "trades": 571
+  },
+  "EUR/CAD": {
+   "pct": -55.8,
+   "quarter_utc": "2026-11-21T07:45:00+00:00",
+   "trades": 34
+  },
+  "DOGE/CAD": {
+   "pct": -63.0,
+   "quarter_utc": "2026-11-21T08:00:00+00:00",
+   "trades": 74
+  },
+  "PEPE/CAD": {
+   "pct": -61.8,
+   "quarter_utc": "2026-11-21T07:45:00+00:00",
+   "trades": 24
+  },
+  "XDC/CAD": {
+   "pct": -57.0,
+   "quarter_utc": "2026-11-21T08:00:00+00:00",
+   "trades": 89
+  }
+ },
  "pattern": {
   "note": "execution clusters inferred from timestamps (market-sell trades within 5 ms); Kraken public trades carry no order id",
   "hourly_orders": 9,
