@@ -21,7 +21,7 @@ FORMAT TSVWithNames
 SELECT venue,
   round(medianIf(least(bid_usd_2,ask_usd_2), sampled_at>='2026-11-17 00:00:00' AND sampled_at<'2026-11-20 00:00:00')) pre,
   round(medianIf(least(bid_usd_2,ask_usd_2), sampled_at>='2026-11-20 08:00:00' AND sampled_at<'2026-11-24 09:00:00')) during,
-  round(medianIf(least(bid_usd_2,ask_usd_2), sampled_at>='2026-11-24 10:00:00')) after
+  round(medianIf(least(bid_usd_2,ask_usd_2), sampled_at>='2026-11-24 10:00:00' AND sampled_at<'2026-11-25 04:00:00')) after
 FROM defi_chain.cex_depth_samples
-WHERE token='0xc729777d0470f30612b1564fd96e8dd26f5814e3' AND symbol NOT LIKE '%USDC' AND status='ok' AND sampled_at>='2026-11-17 00:00:00'
+WHERE token='0xc729777d0470f30612b1564fd96e8dd26f5814e3' AND symbol NOT LIKE '%USDC' AND status='ok' AND sampled_at>='2026-11-17 00:00:00' AND sampled_at<'2026-11-25 04:00:00'
 GROUP BY venue ORDER BY pre DESC;

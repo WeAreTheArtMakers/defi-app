@@ -37,7 +37,7 @@
       <p class="meta" style="overflow-wrap:anywhere">SAPIEN · Base <code>0xc729777d0470f30612b1564fd96e8dd26f5814e3</code> · spot order books only · historical window 17 Nov 00:00 – 25 Nov 04:00 UTC · data as of 25 Nov 2026 04:00 UTC · the historical series are WATAM's own samples; no independent historical order-book archive was available to compare</p>
       </div>
       <div class="tiles" role="list">
-        <div class="tile" role="listitem"><b>≈45%</b><span>of their 17–19 Nov depth on Binance, LBank, Toobit and BingX, 20 Nov 08:00 – 24 Nov 09:00 UTC (median)</span><small>$222,123 → $99,441 together</small></div>
+        <div class="tile" role="listitem"><b>≈45%</b><span>of their 17–19 Nov depth on Binance, LBank, Toobit and BingX, 20 Nov 08:00 – 24 Nov 09:00 UTC (median)</span><small>sum of the four books' window medians: $222,123 → $99,441 (not a simultaneous total)</small></div>
         <div class="tile" role="listitem"><b>&lt;15%</b><span>change on Coinbase, Kraken, KuCoin and Gate over the same window</span><small>Bitget −36%</small></div>
         <div class="tile" role="listitem"><b>3 books</b><span>returned between consecutive samples at 10:07 and 10:12 UTC on 24 Nov</span><small>LBank within 10:02–10:12</small></div>
         <div class="tile" role="listitem"><b>+0.4%</b><span>SAPIEN price change between those two samples</span><small>Binance mid 0.038665 → 0.038835</small></div>
@@ -47,26 +47,26 @@
       <h2 id="measured">What we measured</h2>
       <ul>
         <li><b>Metric:</b> the weaker side (the smaller of bid and ask) of each public order book within ±2% of its mid price, in USD (USDT counted at $1). One sample per book every 5 minutes, at the same moment on every exchange.</li>
-        <li><b>Books:</b> 12 exchanges, 14 books (Binance and MEXC also have USDC pairs, which are not used here). Window medians are taken over every 5-minute sample in the window.</li>
-        <li><b>Windows:</b> before = 17–19 Nov; during = 20 Nov 08:00 – 24 Nov 09:00 UTC; after = from 24 Nov 10:00 UTC.</li>
+        <li><b>Books:</b> 12 exchanges, 14 books (Binance and MEXC also have USDC pairs, which are not used here). Window medians are taken per book over every 5-minute sample in the window; adding medians of different books gives a sum of medians, not a total at one moment.</li>
+        <li><b>Windows:</b> before = 17–19 Nov; during = 20 Nov 08:00 – 24 Nov 09:00 UTC; after = 24 Nov 10:00 – 25 Nov 04:00 UTC.</li>
       </ul>
       <h2 id="table">Every book, three windows</h2>
-      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table><thead><tr><th>Exchange</th><th>Pair</th><th>17–19 Nov</th><th>20 Nov 08:00 – 24 Nov 09:00</th><th>Change</th><th>From 24 Nov 10:00</th></tr></thead><tbody>
-<tr><td>LBank</td><td><code>sapien_usdt</code></td><td>$64,053</td><td>$28,739</td><td>-55%</td><td>$60,735</td></tr>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table><thead><tr><th>Exchange</th><th>Pair</th><th>17–19 Nov</th><th>20 Nov 08:00 – 24 Nov 09:00</th><th>Change</th><th>24 Nov 10:00 – 25 Nov 04:00</th></tr></thead><tbody>
+<tr><td>LBank</td><td><code>sapien_usdt</code></td><td>$64,053</td><td>$28,739</td><td>-55%</td><td>$60,697</td></tr>
 <tr><td>Toobit</td><td><code>SAPIENUSDT</code></td><td>$55,781</td><td>$26,777</td><td>-52%</td><td>$55,036</td></tr>
-<tr><td>Binance</td><td><code>SAPIENUSDT</code></td><td>$54,612</td><td>$24,394</td><td>-55%</td><td>$52,802</td></tr>
-<tr><td>BingX</td><td><code>SAPIEN-USDT</code></td><td>$47,677</td><td>$19,531</td><td>-59%</td><td>$46,510</td></tr>
-<tr><td>Coinbase</td><td><code>SAPIEN-USD</code></td><td>$62,089</td><td>$56,578</td><td>-9%</td><td>$57,726</td></tr>
-<tr><td>Bitget</td><td><code>SAPIENUSDT</code></td><td>$27,501</td><td>$17,542</td><td>-36%</td><td>$25,867</td></tr>
+<tr><td>Binance</td><td><code>SAPIENUSDT</code></td><td>$54,612</td><td>$24,394</td><td>-55%</td><td>$52,816</td></tr>
+<tr><td>BingX</td><td><code>SAPIEN-USDT</code></td><td>$47,677</td><td>$19,531</td><td>-59%</td><td>$46,508</td></tr>
+<tr><td>Coinbase</td><td><code>SAPIEN-USD</code></td><td>$62,089</td><td>$56,578</td><td>-9%</td><td>$57,768</td></tr>
+<tr><td>Bitget</td><td><code>SAPIENUSDT</code></td><td>$27,501</td><td>$17,542</td><td>-36%</td><td>$25,914</td></tr>
 <tr><td>Gate</td><td><code>SAPIEN_USDT</code></td><td>$16,079</td><td>$14,045</td><td>-13%</td><td>$15,437</td></tr>
-<tr><td>Kraken</td><td><code>SAPIENUSD</code></td><td>$14,140</td><td>$14,235</td><td>+1%</td><td>$16,119</td></tr>
+<tr><td>Kraken</td><td><code>SAPIENUSD</code></td><td>$14,140</td><td>$14,235</td><td>+1%</td><td>$16,102</td></tr>
 <tr><td>KuCoin</td><td><code>SAPIEN-USDT</code></td><td>$13,242</td><td>$12,006</td><td>-9%</td><td>$12,573</td></tr>
-<tr><td>Crypto.com</td><td><code>SAPIEN_USD</code></td><td>$5,574</td><td>$5,389</td><td>-3%</td><td>$5,307</td></tr>
+<tr><td>Crypto.com</td><td><code>SAPIEN_USD</code></td><td>$5,574</td><td>$5,389</td><td>-3%</td><td>$5,333</td></tr>
 <tr><td>Bitrue</td><td><code>SAPIENUSDT</code></td><td>$1,294</td><td>$624</td><td>-52%</td><td>$1,218</td></tr>
 <tr><td>MEXC</td><td><code>SAPIENUSDT</code></td><td>$423</td><td>$407</td><td>-4%</td><td>$437</td></tr>
       </tbody></table></div>
       <h2 id="step">24 November: consecutive samples</h2>
-      <p>Book timestamps from each exchange's own clock (Binance: time we received it). Level counts did not change across the step, and no book reached the sampler's level limit, so this is not a pagination effect. Data: <a href="/assets/research-sapien-2026-11/step.tsv">step.tsv</a>.</p>
+      <p>Book timestamps from each exchange's own clock (Binance: time we received it). None of the four books reached the sampler's level limit at any time in the window (most levels seen: Binance 216 of 1,000, LBank 76 of 200, Toobit 102 of 200, BingX 88 of 1,000), and no sample was flagged as truncated within ±2%, so the step is not a pagination effect. Data: <a href="/assets/research-sapien-2026-11/step.tsv">step.tsv</a>.</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table><thead><tr><th>Exchange</th><th>Pair</th><th>Earlier sample (UTC)</th><th>Depth</th><th>Next sample (UTC)</th><th>Depth</th></tr></thead><tbody>
 <tr><td>Binance</td><td><code>SAPIENUSDT</code></td><td>10:07:33 (time received)</td><td>$23,019</td><td>10:12:07</td><td>$53,719</td></tr>
 <tr><td>BingX</td><td><code>SAPIEN-USDT</code></td><td>10:07:34</td><td>$18,457</td><td>10:12:07</td><td>$47,523</td></tr>
@@ -78,7 +78,7 @@
         <li><b>Prices:</b> our hourly mids match the official hourly candles of Binance (SAPIENUSDT) and Coinbase (SAPIEN-USD) for 17–25 Nov: median difference 0.24% and 0.28% over 192 hours.</li>
         <li><b>Today's books:</b> on 25 Nov at 03:38 UTC, Binance's public API gave ±2% bid $54,097 / ask $53,892; our 03:37 sample gave $53,287 / $53,225.</li>
         <li><b>Not a collector artifact:</b> in the same sampling run only one of 15 books we sample on Binance (SAPIEN) rose more than 1.8×. The collector runs before and after completed normally, with their usual few unread pairs. The step also shows on the exchanges' own book timestamps.</li>
-        <li><b>Not truncated:</b> none of these books hit the sampler's level limit in the window.</li>
+        <li><b>Not truncated:</b> no sample of these books was flagged as cut off inside ±2% of mid in the window.</li>
       </ul>
       <h2 id="reproduce">Reproduce it</h2>
       <p>Queries: <a href="/assets/research-sapien-2026-11/queries.sql">queries.sql</a> (ClickHouse, table <code>defi_chain.cex_depth_samples</code>). The tab-separated files above are their outputs.</p>
