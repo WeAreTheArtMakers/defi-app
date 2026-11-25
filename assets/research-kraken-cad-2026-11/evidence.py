@@ -113,6 +113,17 @@ ev["large_market_sells"] = [{"utc": U(g["t0"]).isoformat(timespec="milliseconds"
 ev["btc_cad_window"] = {"trades": len(btc), "volume_btc": round(sum(x[1] for x in btc), 4),
                         "market_sell_volume_btc": round(sum(x[1] for x in btc if x[3] == "s" and x[4] == "m"), 4),
                         "large_market_sells_btc": round(sum(g["v"] for g in big), 4), "large_market_sells": len(big)}
+# broader dislocation vs isolated prints: per CAD pair, the lowest 15-min VWAP (quarters with >= 5 trades) vs the 18:00-19:00 reference
+ev["cad_lowest_15min_vwap"] = {}
+for k, name in PAIRS.items():
+    if not name.endswith("/CAD"):
+        continue
+    q15 = collections.defaultdict(lambda: [0.0, 0.0, 0])
+    for p_, v_, t_, *_ in data[k]:
+        r_ = q15[int(t_ // 900 * 900)]; r_[0] += p_ * v_; r_[1] += v_; r_[2] += 1
+    lows = [(kk, r_[0] / r_[1], r_[2]) for kk, r_ in q15.items() if r_[1] > 0 and r_[2] >= 5]
+    lk, lv, ln = min(lows, key=lambda x: x[1])
+    ev["cad_lowest_15min_vwap"][name] = {"pct": round((lv / ev["pairs"][name]["ref_median_20nov_18_19utc"] - 1) * 100, 1), "quarter_utc": U(lk).isoformat(), "trades": ln}
 TT = lambda x: dt.datetime.fromisoformat(x["utc"])
 hourly = [x for x in ev["large_market_sells"] if TT(x).minute == 4 and TT(x).second in (34, 35)]
 quarter = [x for x in ev["large_market_sells"] if TT(x).second == 43]
