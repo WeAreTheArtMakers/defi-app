@@ -49,3 +49,11 @@
 .rs details summary{cursor:pointer;color:var(--ink-2)}
 .rs .note{border-left:3px solid var(--line);padding:2px 0 2px 14px;color:var(--ink-2)}
 .rs a.tx{font-family:var(--mono);font-size:13px}
+.rs .tbl{width:100%;border-collapse:collapse}
+.rs .tbl th{font-weight:600;color:var(--ink-2);vertical-align:bottom}
+.rs .tbl th.num{text-align:right}
+.rs .tbl td,.rs .tbl th{padding:10px 12px;border-bottom:1px solid var(--line)}
+.rs .tbl code{white-space:nowrap;overflow-wrap:normal}
+.rs .tbl td:first-child{white-space:nowrap}
+.rs .tbl .ts{font-variant-numeric:tabular-nums;white-space:nowrap}
+.rs .tbl small{color:var(--ink-3)}
