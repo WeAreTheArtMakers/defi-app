@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bitcoin was US$57,700 and US$16,900 on the same exchange: the Kraken CAD dislocation, 20–21 Nov 2026 — WATAM DeFi Intelligence</title>
+<meta name="description" content="Research note: on 21 Nov 2026 Kraken BTC/CAD traded at C$24,250 (US$16,928 at the Bank of Canada rate) while BTC/USD traded at US$57,734. Every Kraken CAD market moved together; USD markets did not. Reconstructed from Kraken's public executed-trade data, with the code to reproduce it.">
+<link rel="canonical" href="https://defi.wearetheartmakers.com/research/kraken-cad-2026-11/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="WATAM DeFi Intelligence">
+<meta property="og:url" content="https://defi.wearetheartmakers.com/research/kraken-cad-2026-11/">
+<meta property="og:title" content="Bitcoin was US$57,700 and US$16,900 on the same exchange: the Kraken CAD dislocation, 20–21 Nov 2026">
+<meta property="og:description" content="Research note: on 21 Nov 2026 Kraken BTC/CAD traded at C$24,250 (US$16,928 at the Bank of Canada rate) while BTC/USD traded at US$57,734. Every Kraken CAD market moved together; USD markets did not. Reconstructed from Kraken's public executed-trade data, with the code to reproduce it.">
+<meta property="og:image" content="https://defi.wearetheartmakers.com/assets/research-kraken-cad-2026-11/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://defi.wearetheartmakers.com/assets/research-kraken-cad-2026-11/og.png">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f8fb" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/research-kraken-cad-2026-11/page.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://defi.wearetheartmakers.com/#org", "name": "WATAM Intelligence", "alternateName": ["WATAM", "We Are The Art Makers"], "url": "https://defi.wearetheartmakers.com/", "email": "admin@wearetheartmakers.com", "logo": "https://defi.wearetheartmakers.com/assets/favicon.svg"}, {"@type": "Article", "@id": "https://defi.wearetheartmakers.com/research/kraken-cad-2026-11/#page", "url": "https://defi.wearetheartmakers.com/research/kraken-cad-2026-11/", "headline": "Bitcoin was US$57,700 and US$16,900 on the same exchange: the Kraken CAD dislocation, 20–21 Nov 2026", "description": "Research note: on 21 Nov 2026 Kraken BTC/CAD traded at C$24,250 (US$16,928 at the Bank of Canada rate) while BTC/USD traded at US$57,734. Every Kraken CAD market moved together; USD markets did not. Reconstructed from Kraken's public executed-trade data, with the code to reproduce it.", "datePublished": "2026-11-25", "image": "https://defi.wearetheartmakers.com/assets/research-kraken-cad-2026-11/og.png", "author": {"@id": "https://defi.wearetheartmakers.com/#org"}, "isPartOf": {"@type": "WebSite", "name": "WATAM DeFi Intelligence", "url": "https://defi.wearetheartmakers.com/"}, "publisher": {"@id": "https://defi.wearetheartmakers.com/#org"}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site" id="top"><div class="in"><a class="brand" href="/" aria-label="WATAM DeFi Intelligence"><svg class="logo" viewBox="0 0 236 32" role="img" aria-label="WATAM DeFi Intelligence" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="wg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset="1" stop-color="#38d3f0"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="#0e1525"/><path d="M8 21l5-6 4 3 7-9" fill="none" stroke="url(#wg1)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="9" r="2.2" fill="#38d3f0"/><rect x=".5" y=".5" width="31" height="31" rx="7.5" fill="none" stroke="currentColor" stroke-opacity=".28"/><text x="42" y="21.5" font-size="16" font-weight="650" fill="currentColor" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">WATAM <tspan fill-opacity=".72">DeFi Intelligence</tspan></text></svg></a><nav class="main dk" aria-label="Main"><a href="/tokens/">Tokens</a><a href="/method/">Method</a><a href="/pricing/">Pricing</a><a href="/live-pro/">Live Pro</a><a href="https://app.wearetheartmakers.com/tr-index">Türkiye Liquidity Index</a><a href="https://app.wearetheartmakers.com/partners">Partners</a></nav><details class="menu"><summary>Menu</summary><nav class="main" aria-label="Menu"><a href="/tokens/">Tokens</a><a href="/method/">Method</a><a href="/pricing/">Pricing</a><a href="/live-pro/">Live Pro</a><a href="https://app.wearetheartmakers.com/tr-index">Türkiye Liquidity Index</a><a href="https://app.wearetheartmakers.com/partners">Partners</a></nav></details><a class="btn primary signin" href="https://app.wearetheartmakers.com/login">Sign in</a></div></header>
+<main id="main">
+  <div class="wrap">
+    <article class="doc rs" style="max-width:960px">
+      <div class="narrow">
+      <p class="kicker">Research · 25 Nov 2026</p>
+      <h1>Bitcoin was US$57,700 and US$16,900 on the same exchange</h1>
+      <p class="lead">On 21 November 2026 at 08:00:43 UTC, Kraken's BTC/CAD market traded at <strong>C$24,250</strong> — US$16,928 at the Bank of Canada rate — three seconds after Kraken's BTC/USD traded at <strong>US$57,734</strong>. It was not a bitcoin crash: every Canadian-dollar market on Kraken moved together, while the US-dollar markets stayed near global prices. We rebuilt the event from every executed trade in Kraken's public data. Below: what happened, how we checked it, what it cannot tell us, and what WATAM did and did not see.</p>
+      <p class="meta" style="overflow-wrap:anywhere">Kraken spot markets · window 20 Nov 18:00 – 21 Nov 12:00 UTC (context 17–25 Nov) · all trades retrieved from Kraken's public Trades API on 25 Nov 2026, <b>after</b> the event, deduplicated by trade id · USD equivalents at the Bank of Canada 20 Nov rate 1.4325 (21–22 Nov was a weekend) · WATAM did not collect these CAD markets live</p>
+      </div>
+      <div class="tiles" role="list">
+        <div class="tile" role="listitem"><b>C$24,250</b><span>lowest BTC/CAD trade, 21 Nov 08:00:43.513 UTC (trade 5604686)</span><small>≈ US$16,928 at 1.4325</small></div>
+        <div class="tile" role="listitem"><b>US$57,734</b><span>Kraken BTC/USD, last trade 3.3 s earlier (trade 117223959)</span><small>±5 min range US$57,652–57,938</small></div>
+        <div class="tile" role="listitem"><b>−70.7%</b><span>gap between the two, same exchange</span><small>implied CAD per USD 0.42 vs 1.4325</small></div>
+        <div class="tile" role="listitem"><b>11 of 11</b><span>Kraken CAD markets fell 66–79% at their lows (USD/CAD to 0.30; one USDT/CAD trade −99.8%)</span><small>USD and USDT markets: −0.1% to −6%</small></div>
+      </div>
+      <figure><img src="/assets/research-kraken-cad-2026-11/chart.png" width="1920" height="1080" alt="Kraken BTC/USDT near US$57–59k and BTC/CAD converted at the Bank of Canada rate falling to about US$16,900 on 21 Nov 2026; the implied CAD per USD and Kraken's own USD/CAD fall from 1.43 to about 0.5 and recover by midday." style="width:100%;height:auto"><figcaption>5-minute VWAPs of executed trades. Grey lines in the upper panel: the 29 inferred market-sell execution clusters of 5 BTC or more.</figcaption></figure>
+      <figure class="demo-video">
+        <a class="yt" href="https://youtu.be/XokeH6EqrMo" data-yt="XokeH6EqrMo" aria-label="Play the 89-second video: Bitcoin was US$57,700 and US$16,900 on the same exchange">
+          <img src="/assets/research-kraken-cad-2026-11/video-thumb.jpg" width="1280" height="720" loading="lazy" alt="Video: Bitcoin was US$57,700 and US$16,900 on the same exchange — the Kraken CAD dislocation, 20–21 Nov 2026">
+          <span class="play" aria-hidden="true"></span>
+        </a>
+        <figcaption>89 seconds, English narration (AI voice) with English and Turkish subtitles on YouTube. The video loads from YouTube only when you press play.</figcaption>
+      </figure>
+      <div class="narrow">
+      <h2 id="timeline">Timeline (UTC; Türkiye time is UTC+3)</h2>
+      <p>Measured on the 15-minute implied CAD-per-USD rate (BTC/CAD VWAP ÷ BTC/USDT VWAP of executed trades) against the Bank of Canada rate 1.4325:</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="tbl"><tbody>
+<tr><td>First detected deviation (&gt; 2%)</td><td class="num">20 Nov 19:00–19:15</td></tr>
+<tr><td>First quarter ≥ 5%</td><td class="num">20 Nov 21:00</td></tr>
+<tr><td>Episode ≥ 5% (48 of its 53 quarters; longest continuous runs 5 h 30 min and 5 h)</td><td class="num">20 Nov 21:00 → 21 Nov 10:15 (13 h 15 min)</td></tr>
+<tr><td>Maximum divergence: single trade / 15-min VWAP</td><td class="num">−70.7% at 08:00:43 / −64.2% at 08:15</td></tr>
+<tr><td>Initial recovery (first quarter back under 5% after the low)</td><td class="num">21 Nov 10:15</td></tr>
+<tr><td>Sustained normalisation (within 2% for two hours, 15-min OHLC)</td><td class="num">21 Nov 15:45 (20 h 45 min after the first deviation)</td></tr>
+      </tbody></table></div>
+      <ul>
+        <li><b>20 Nov 19:00</b> — the 15-minute implied CAD-per-USD rate (BTC/CAD ÷ BTC/USDT) first moves more than 2% from the Bank of Canada rate, as the first hourly execution cluster of 20.8333 BTC executes at 19:04:34.</li>
+        <li><b>20 Nov 21:00</b> — the gap exceeds 10% (implied 1.2499, −12.8%); Kraken's own USD/CAD averages 1.3591 in the same 15 minutes.</li>
+        <li><b>21 Nov 03:04</b> — the last of 9 hourly clusters; <b>05:15</b> — the first of 18 quarter-hourly ones.</li>
+        <li><b>21 Nov 08:00:43.513</b> — the low: C$24,250. In 08:00–08:15, 122 trades (10.6948 BTC) executed below the US$20,000 equivalent (C$28,650). The worst 15 minutes: 08:15 (implied −64.1%).</li>
+        <li><b>21 Nov 08:12:15</b> — Kraken USD/CAD trades at 0.30001.</li>
+        <li><b>21 Nov 09:45–10:15</b> — CAD prices snap back toward the USD-equivalent level; under 5% from 10:15, within 2% for two hours from <b>15:45</b>.</li>
+      </ul>
+      <h2 id="pairs">Every Kraken CAD market, and the USD markets beside them</h2>
+      <p>Reference = median trade 20 Nov 18:00–19:00 UTC. Lowest executed trade in the window. "Below 90%" = trades under 90% of the reference.</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="tbl"><thead><tr><th>Market</th><th>Kraken pair</th><th class="num">Reference</th><th class="num">Low</th><th class="num">Low at (UTC)</th><th class="num">Deviation</th><th class="num">Trades</th><th class="num">Below 90%</th></tr></thead><tbody>
+<tr><td>BTC/CAD</td><td><code>XXBTZCAD</code></td><td class="num">84,200.00</td><td class="num">24,250.00</td><td class="num"><span class="ts">11/21 08:00:43</span></td><td class="num">-71.2%</td><td class="num">24,564</td><td class="num">20,841</td></tr>
+<tr><td>USD/CAD</td><td><code>ZUSDZCAD</code></td><td class="num">1.4303</td><td class="num">0.30001</td><td class="num"><span class="ts">11/21 08:12:15</span></td><td class="num">-79.0%</td><td class="num">41,193</td><td class="num">29,844</td></tr>
+<tr><td>ETH/CAD</td><td><code>XETHZCAD</code></td><td class="num">2,319.20</td><td class="num">796.27</td><td class="num"><span class="ts">11/21 08:02:47</span></td><td class="num">-65.7%</td><td class="num">5,407</td><td class="num">4,429</td></tr>
+<tr><td>SOL/CAD</td><td><code>SOLCAD</code></td><td class="num">98.97</td><td class="num">32</td><td class="num"><span class="ts">11/21 08:16:38</span></td><td class="num">-67.7%</td><td class="num">3,905</td><td class="num">3,264</td></tr>
+<tr><td>XRP/CAD</td><td><code>XXRPZCAD</code></td><td class="num">1.3002</td><td class="num">0.413</td><td class="num"><span class="ts">11/21 08:02:47</span></td><td class="num">-68.2%</td><td class="num">4,010</td><td class="num">3,341</td></tr>
+<tr><td>USDT/CAD</td><td><code>USDTCAD</code></td><td class="num">1.4284</td><td class="num">0.0022</td><td class="num"><span class="ts">11/21 09:01:08</span></td><td class="num">-99.8%</td><td class="num">5,388</td><td class="num">4,086</td></tr>
+<tr><td>USDC/CAD</td><td><code>USDCCAD</code></td><td class="num">1.4306</td><td class="num">0.4868</td><td class="num"><span class="ts">11/21 08:02:27</span></td><td class="num">-66.0%</td><td class="num">16,942</td><td class="num">13,231</td></tr>
+<tr><td>EUR/CAD</td><td><code>EURCAD</code></td><td class="num">1.5692</td><td class="num">0.5</td><td class="num"><span class="ts">11/21 08:02:47</span></td><td class="num">-68.1%</td><td class="num">2,096</td><td class="num">1,793</td></tr>
+<tr><td>DOGE/CAD</td><td><code>XDGCAD</code></td><td class="num">0.077718</td><td class="num">0.026181</td><td class="num"><span class="ts">11/21 08:02:22</span></td><td class="num">-66.3%</td><td class="num">975</td><td class="num">855</td></tr>
+<tr><td>PEPE/CAD</td><td><code>PEPECAD</code></td><td class="num">4.894e-06</td><td class="num">1.587e-06</td><td class="num"><span class="ts">11/21 08:02:47</span></td><td class="num">-67.6%</td><td class="num">342</td><td class="num">316</td></tr>
+<tr><td>XDC/CAD</td><td><code>XDCCAD</code></td><td class="num">0.03882</td><td class="num">0.01281</td><td class="num"><span class="ts">11/21 08:02:47</span></td><td class="num">-67.0%</td><td class="num">3,852</td><td class="num">2,974</td></tr>
+<tr><td>BTC/USDT</td><td><code>XBTUSDT</code></td><td class="num">58,580.50</td><td class="num">55,200.10</td><td class="num"><span class="ts">11/21 06:17:17</span></td><td class="num">-5.8%</td><td class="num">15,653</td><td class="num">0</td></tr>
+<tr><td>ETH/USD</td><td><code>XETHZUSD</code></td><td class="num">1,626.49</td><td class="num">1,536.00</td><td class="num"><span class="ts">11/21 04:08:04</span></td><td class="num">-5.6%</td><td class="num">67,876</td><td class="num">0</td></tr>
+<tr><td>USDT/USD</td><td><code>USDTZUSD</code></td><td class="num">0.99874</td><td class="num">0.99755</td><td class="num"><span class="ts">11/20 23:34:32</span></td><td class="num">-0.1%</td><td class="num">23,035</td><td class="num">0</td></tr>
+<tr><td>USDC/USD</td><td><code>USDCUSD</code></td><td class="num">0.9998</td><td class="num">0.9998</td><td class="num"><span class="ts">11/20 18:00:00</span></td><td class="num">+0.0%</td><td class="num">31,120</td><td class="num">0</td></tr>
+      </tbody></table></div>
+      <p><small>USDT/CAD's low of 0.0022 is a single executed trade of 811.90 USDT (trade 3798113, 21 Nov 09:01:08 UTC); 25 USDT/CAD trades executed below 0.50.</small></p>
+      <h2 id="pattern">The selling pattern: execution clusters</h2>
+      <p>Kraken's public trade records carry no order id. We group market-sell trades whose timestamps fall within 5 ms of each other into <b>execution clusters</b>; a cluster is most likely one taker order, but the data does not establish that. On BTC/CAD, 29 execution clusters of 5 BTC or more account for 371.25 of the window's 374.86 BTC of market sells:</p>
+      <ul>
+        <li><b>9</b> clusters at :04:34–:04:35 past each hour (20 Nov 19:04 → 21 Nov 03:04), 8 of exactly 20.8333 BTC — 182.49 BTC;</li>
+        <li><b>18</b> clusters every 15 minutes at :43 seconds (21 Nov 05:15 → 09:30), 10 of exactly 10.4167 BTC — 171.08 BTC; the others executed smaller sizes;</li>
+        <li>2 more: 8.3333 BTC at 18:27:02 and 9.3484 BTC at 04:27:01.</li>
+      </ul>
+      <p>Equal sizes on a fixed clock are consistent with a scheduled execution. <b>The public data does not show whether a cluster is one order, who sent these trades, whether they came from one account, why, or why some clusters executed below the recurring size.</b> Kraken's REST documentation lists the side and order-type fields without further definition; we read "s" + "m" as a market sell.</p>
+      <details><summary>All 29 execution clusters</summary>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="tbl"><thead><tr><th>First fill (UTC)</th><th class="num">BTC</th><th class="num">Fills</th><th class="num">Price swept (C$)</th><th>Trade ids</th></tr></thead><tbody>
+<tr><td><span class="ts">11/20 18:27:02.092</span></td><td class="num">8.3333</td><td class="num">52</td><td class="num">84,421 → 83,634</td><td><code>5589848–5589899</code></td></tr>
+<tr><td><span class="ts">11/20 19:04:34.832</span></td><td class="num">20.8333</td><td class="num">198</td><td class="num">83,274 → 80,000</td><td><code>5590101–5590298</code></td></tr>
+<tr><td><span class="ts">11/20 20:04:34.808</span></td><td class="num">20.8333</td><td class="num">183</td><td class="num">83,596 → 75,000</td><td><code>5590543–5590725</code></td></tr>
+<tr><td><span class="ts">11/20 21:04:35.063</span></td><td class="num">20.8333</td><td class="num">174</td><td class="num">82,045 → 61,880</td><td><code>5591081–5591254</code></td></tr>
+<tr><td><span class="ts">11/20 22:04:34.778</span></td><td class="num">15.8235</td><td class="num">116</td><td class="num">77,212 → 57,775</td><td><code>5591702–5591817</code></td></tr>
+<tr><td><span class="ts">11/20 23:04:34.769</span></td><td class="num">20.8333</td><td class="num">248</td><td class="num">73,003 → 56,986</td><td><code>5592236–5592483</code></td></tr>
+<tr><td><span class="ts">11/21 00:04:34.773</span></td><td class="num">20.8333</td><td class="num">176</td><td class="num">62,180 → 49,612</td><td><code>5593351–5593526</code></td></tr>
+<tr><td><span class="ts">11/21 01:04:34.759</span></td><td class="num">20.8333</td><td class="num">191</td><td class="num">72,224 → 61,340</td><td><code>5594480–5594670</code></td></tr>
+<tr><td><span class="ts">11/21 02:04:34.747</span></td><td class="num">20.8333</td><td class="num">211</td><td class="num">57,698 → 51,260</td><td><code>5595600–5595810</code></td></tr>
+<tr><td><span class="ts">11/21 03:04:34.737</span></td><td class="num">20.8333</td><td class="num">245</td><td class="num">58,399 → 51,738</td><td><code>5596636–5596880</code></td></tr>
+<tr><td><span class="ts">11/21 04:27:01.386</span></td><td class="num">9.3484</td><td class="num">155</td><td class="num">79,500 → 60,000</td><td><code>5599039–5599193</code></td></tr>
+<tr><td><span class="ts">11/21 05:15:43.521</span></td><td class="num">10.4167</td><td class="num">126</td><td class="num">76,485 → 64,000</td><td><code>5599618–5599743</code></td></tr>
+<tr><td><span class="ts">11/21 05:30:43.559</span></td><td class="num">10.4167</td><td class="num">77</td><td class="num">73,800 → 60,500</td><td><code>5599861–5599937</code></td></tr>
+<tr><td><span class="ts">11/21 05:45:43.590</span></td><td class="num">10.4167</td><td class="num">117</td><td class="num">67,546 → 52,000</td><td><code>5600110–5600226</code></td></tr>
+<tr><td><span class="ts">11/21 06:00:43.539</span></td><td class="num">5.2707</td><td class="num">88</td><td class="num">60,500 → 50,000</td><td><code>5600697–5600784</code></td></tr>
+<tr><td><span class="ts">11/21 06:15:43.512</span></td><td class="num">10.4167</td><td class="num">127</td><td class="num">59,080 → 45,000</td><td><code>5601028–5601154</code></td></tr>
+<tr><td><span class="ts">11/21 06:30:43.530</span></td><td class="num">9.1137</td><td class="num">129</td><td class="num">53,500 → 40,590</td><td><code>5601387–5601515</code></td></tr>
+<tr><td><span class="ts">11/21 06:45:43.519</span></td><td class="num">9.8202</td><td class="num">133</td><td class="num">46,677 → 36,700</td><td><code>5601865–5601997</code></td></tr>
+<tr><td><span class="ts">11/21 07:00:43.505</span></td><td class="num">8.7046</td><td class="num">106</td><td class="num">45,111 → 33,750</td><td><code>5602423–5602528</code></td></tr>
+<tr><td><span class="ts">11/21 07:15:43.508</span></td><td class="num">7.4550</td><td class="num">60</td><td class="num">37,250 → 30,755</td><td><code>5603060–5603119</code></td></tr>
+<tr><td><span class="ts">11/21 07:30:43.557</span></td><td class="num">7.3939</td><td class="num">65</td><td class="num">49,076 → 37,000</td><td><code>5603565–5603629</code></td></tr>
+<tr><td><span class="ts">11/21 07:45:43.515</span></td><td class="num">10.3183</td><td class="num">66</td><td class="num">38,799 → 29,420</td><td><code>5604123–5604188</code></td></tr>
+<tr><td><span class="ts">11/21 08:00:43.512</span></td><td class="num">10.4167</td><td class="num">104</td><td class="num">31,000 → 24,250</td><td><code>5604590–5604693</code></td></tr>
+<tr><td><span class="ts">11/21 08:15:43.518</span></td><td class="num">10.4167</td><td class="num">67</td><td class="num">30,500 → 24,251</td><td><code>5605606–5605672</code></td></tr>
+<tr><td><span class="ts">11/21 08:30:43.499</span></td><td class="num">10.4167</td><td class="num">130</td><td class="num">35,765 → 28,000</td><td><code>5606385–5606514</code></td></tr>
+<tr><td><span class="ts">11/21 08:45:43.513</span></td><td class="num">8.8356</td><td class="num">156</td><td class="num">42,500 → 33,312</td><td><code>5607203–5607358</code></td></tr>
+<tr><td><span class="ts">11/21 09:00:43.512</span></td><td class="num">10.4167</td><td class="num">258</td><td class="num">44,000 → 35,002</td><td><code>5608073–5608330</code></td></tr>
+<tr><td><span class="ts">11/21 09:15:43.515</span></td><td class="num">10.4167</td><td class="num">226</td><td class="num">36,550 → 30,300</td><td><code>5609423–5609648</code></td></tr>
+<tr><td><span class="ts">11/21 09:30:43.499</span></td><td class="num">10.4167</td><td class="num">87</td><td class="num">37,640 → 32,830</td><td><code>5610625–5610711</code></td></tr>
+      </tbody></table></div></details>
+      <h2 id="protection">What Kraken's market price protection measures</h2>
+      <p>Kraken's <a href="https://support.kraken.com/articles/201648183-market-price-protection">Market Price Protection</a> cancels a market order "as soon as the bid/ask spread gets unusually wide" (BTC/CAD: 15%). It looks at the spread of the pair's own book — not at BTC/USD or an external FX rate — so a CAD book whose bids and asks move down together can stay inside it. Which orders it cancelled during the event is not visible in public data. Kraken said on 21 Nov, as quoted by <a href="https://www.financemagnates.com/cryptocurrency/exchange/bitcoin-at-17k-why-krakens-flash-crash-avoided-saxos-2015-repricing-trap/">Finance Magnates</a>, that its platform "processed every order correctly", found no breach, and that "executed trades stand".</p>
+      <h2 id="watam">What WATAM saw — and what we changed</h2>
+      <ul>
+        <li><b>Saw:</b> Kraken's BTC/USDT book every 15 minutes (72 of 72 samples in the window; mid US$57,820.5 at 08:04 UTC).</li>
+        <li><b>Missed:</b> Kraken's CAD books were not in our samplers (they read USD-stable, TRY and KRW books), and no job compared prices across fiat quotes. We have no live record of the CAD books; nothing on this page was reconstructed as if we had.</li>
+        <li><b>Under validation (not live):</b> Kraken CAD books every 15 minutes, converted at the independent Bank of Canada daily rate — not at the venue's own USD/CAD, which itself traded down to 0.30 — and an operator alert when a CAD book and the same venue's USD book disagree by 5% or more. We tested it by replaying the executed-trade prices of 20–21 Nov at the sampler's read times; a trade replay is not order-book data, so it does not show when live monitoring would have alerted.</li>
+      </ul>
+      <h2 id="reproduce">Reproduce it</h2>
+      <ol>
+        <li><a href="/assets/research-kraken-cad-2026-11/fetch_trades.py">fetch_trades.py</a> downloads the trades from Kraken's public API into <code>data/</code> (about 1 request per 1.2 s; it skips the trade the <code>since</code> cursor repeats at each page boundary). Its header lists the two commands used.</li>
+        <li>Save <code>https://api.kraken.com/0/public/OHLC?pair=XXBTZCAD&amp;interval=15</code> and the same for <code>XBTUSDT</code> as <code>data/ohlc15_&lt;pair&gt;.json</code>. That endpoint keeps only the latest 720 candles (7.5 days); after 28 Nov 2026 use Kraken's downloadable OHLCVT archive.</li>
+        <li><a href="/assets/research-kraken-cad-2026-11/evidence.py">evidence.py</a> recomputes every figure on this page into <a href="/assets/research-kraken-cad-2026-11/evidence.json">evidence.json</a>.</li>
+      </ol>
+      <p>Bank of Canada rate: <a href="https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json">Valet FXUSDCAD</a>. No Kraken data is hosted here.</p>
+      <h2 id="limits">What this does and does not say</h2>
+      <ul>
+        <li>It says what executed, at what price and time, on which Kraken markets, and that the move was confined to the CAD quote.</li>
+        <li>It does not identify any trader, attribute intent, or say that any rule or system failed. Order-book states between trades and internal order handling are not public.</li>
+        <li>USD equivalents use one daily reference rate; a few tenths of a percent of ordinary FX movement are within that rounding.</li>
+      </ul>
+      <h2 id="yours">Would your monitoring have caught it?</h2>
+      <p>WATAM is built for exchanges, market makers and risk teams that need to see every book of a token across venues and quotes, every 5–15 minutes, with the sources and queries behind each number. If a 71% cross-pair gap on your venue — or on a venue you quote on — would matter to you, write to <a href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a>. Packages for exchanges and market makers start at the <a href="/pricing/">Data plan</a>.</p>
+      <p class="ctas" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn primary" href="mailto:admin@wearetheartmakers.com?subject=Cross-venue%20monitoring">Talk to us</a> <a class="btn" href="/pricing/">See pricing</a></p>
+      </div>
+    </article>
+  </div>
+</main>
+<footer class="sitefoot"><div class="in"><div><svg class="logo" viewBox="0 0 236 32" role="img" aria-label="WATAM DeFi Intelligence" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="wg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset="1" stop-color="#38d3f0"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="#0e1525"/><path d="M8 21l5-6 4 3 7-9" fill="none" stroke="url(#wg2)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="9" r="2.2" fill="#38d3f0"/><rect x=".5" y=".5" width="31" height="31" rx="7.5" fill="none" stroke="currentColor" stroke-opacity=".28"/><text x="42" y="21.5" font-size="16" font-weight="650" fill="currentColor" font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">WATAM <tspan fill-opacity=".72">DeFi Intelligence</tspan></text></svg><p>WATAM Intelligence measures public market data and publishes verifiable aggregates.</p><p>Independent analytics; not affiliated with the projects or exchanges listed. Token and network names are trademarks of their owners. Informational, not investment advice.</p></div><ul><li><a href="https://app.wearetheartmakers.com/tr-index">Türkiye Liquidity Index</a></li><li><a href="https://app.wearetheartmakers.com/tr-atlas">Türkiye Stress Atlas</a></li><li></li><li><a href="https://app.wearetheartmakers.com/platform">Data platform</a></li><li><a href="/tokens/">Token catalog</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="mailto:admin@wearetheartmakers.com">Contact: admin@wearetheartmakers.com</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/terms/">Terms</a></li><li><a href="/legal/">Legal</a></li></ul><div class="legal"><span>© 2026 WATAM Intelligence</span><span>Not investment advice</span></div></div></footer>
+<script src="/assets/video.js" defer></script>
+</body>
+</html>

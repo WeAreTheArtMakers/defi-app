@@ -1,0 +1,1421 @@
+{
+ "window_utc": [
+  "2026-11-20T18:00:00Z",
+  "2026-11-21T12:00:00Z"
+ ],
+ "boc_usdcad_20nov": 1.4325,
+ "pairs": {
+  "BTC/CAD": {
+   "kraken_pair": "XXBTZCAD",
+   "trades": 24564,
+   "volume_base": 639.829601,
+   "ref_median_20nov_18_19utc": 84200.0,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 24250.0,
+   "low_utc": "2026-11-21T08:00:43.512881+00:00",
+   "low_tsi": "21 Nov 11:00:43",
+   "low_trade_id": 5604686,
+   "low_trade_volume": 0.07721893,
+   "trades_at_low_price": 8,
+   "volume_at_low_price": 3.247626,
+   "max_deviation_pct": -71.2,
+   "trades_below_90pct_ref": 20841,
+   "volume_below_90pct_ref": 544.736661,
+   "first_below_90pct_utc": "2026-11-20T20:04:34.808066+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:23:11.734139+00:00"
+  },
+  "USD/CAD": {
+   "kraken_pair": "ZUSDZCAD",
+   "trades": 41193,
+   "volume_base": 22572632.385146,
+   "ref_median_20nov_18_19utc": 1.43026,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.30001,
+   "low_utc": "2026-11-21T08:12:15.171685+00:00",
+   "low_tsi": "21 Nov 11:12:15",
+   "low_trade_id": 6864187,
+   "low_trade_volume": 295.92992731,
+   "trades_at_low_price": 1,
+   "volume_at_low_price": 295.929927,
+   "max_deviation_pct": -79.02,
+   "trades_below_90pct_ref": 29844,
+   "volume_below_90pct_ref": 16582830.892771,
+   "first_below_90pct_utc": "2026-11-20T21:17:45.244575+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:04:31.909328+00:00"
+  },
+  "ETH/CAD": {
+   "kraken_pair": "XETHZCAD",
+   "trades": 5407,
+   "volume_base": 1362.910872,
+   "ref_median_20nov_18_19utc": 2319.2,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 796.27,
+   "low_utc": "2026-11-21T08:02:47.804100+00:00",
+   "low_tsi": "21 Nov 11:02:47",
+   "low_trade_id": 2807284,
+   "low_trade_volume": 0.00747106,
+   "trades_at_low_price": 3,
+   "volume_at_low_price": 0.757321,
+   "max_deviation_pct": -65.67,
+   "trades_below_90pct_ref": 4429,
+   "volume_below_90pct_ref": 1022.295305,
+   "first_below_90pct_utc": "2026-11-20T21:15:52.393234+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:01:22.520723+00:00"
+  },
+  "SOL/CAD": {
+   "kraken_pair": "SOLCAD",
+   "trades": 3905,
+   "volume_base": 13051.952673,
+   "ref_median_20nov_18_19utc": 98.97,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 32.0,
+   "low_utc": "2026-11-21T08:16:38.711946+00:00",
+   "low_tsi": "21 Nov 11:16:38",
+   "low_trade_id": 909335,
+   "low_trade_volume": 0.17817721,
+   "trades_at_low_price": 2,
+   "volume_at_low_price": 0.356349,
+   "max_deviation_pct": -67.67,
+   "trades_below_90pct_ref": 3264,
+   "volume_below_90pct_ref": 10520.146846,
+   "first_below_90pct_utc": "2026-11-20T21:12:35.260878+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:02:59.085731+00:00"
+  },
+  "XRP/CAD": {
+   "kraken_pair": "XXRPZCAD",
+   "trades": 4010,
+   "volume_base": 1554807.867502,
+   "ref_median_20nov_18_19utc": 1.30021,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.413,
+   "low_utc": "2026-11-21T08:02:47.692025+00:00",
+   "low_tsi": "21 Nov 11:02:47",
+   "low_trade_id": 1963519,
+   "low_trade_volume": 6580.98633058,
+   "trades_at_low_price": 4,
+   "volume_at_low_price": 19751.86184,
+   "max_deviation_pct": -68.24,
+   "trades_below_90pct_ref": 3341,
+   "volume_below_90pct_ref": 1380268.230251,
+   "first_below_90pct_utc": "2026-11-20T20:08:11.971373+00:00",
+   "last_below_90pct_utc": "2026-11-21T11:12:03.009401+00:00"
+  },
+  "USDT/CAD": {
+   "kraken_pair": "USDTCAD",
+   "trades": 5388,
+   "volume_base": 1993045.999101,
+   "ref_median_20nov_18_19utc": 1.4284,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.0022,
+   "low_utc": "2026-11-21T09:01:08.248008+00:00",
+   "low_tsi": "21 Nov 12:01:08",
+   "low_trade_id": 3798113,
+   "low_trade_volume": 811.903,
+   "trades_at_low_price": 1,
+   "volume_at_low_price": 811.903,
+   "max_deviation_pct": -99.85,
+   "trades_below_90pct_ref": 4086,
+   "volume_below_90pct_ref": 1135826.33073,
+   "first_below_90pct_utc": "2026-11-20T21:21:24.829785+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:10:47.246708+00:00"
+  },
+  "USDC/CAD": {
+   "kraken_pair": "USDCCAD",
+   "trades": 16942,
+   "volume_base": 9378189.21162,
+   "ref_median_20nov_18_19utc": 1.4306,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.4868,
+   "low_utc": "2026-11-21T08:02:27.708385+00:00",
+   "low_tsi": "21 Nov 11:02:27",
+   "low_trade_id": 2168774,
+   "low_trade_volume": 186.98369874,
+   "trades_at_low_price": 1,
+   "volume_at_low_price": 186.983699,
+   "max_deviation_pct": -65.97,
+   "trades_below_90pct_ref": 13231,
+   "volume_below_90pct_ref": 7000257.520521,
+   "first_below_90pct_utc": "2026-11-20T21:21:47.390591+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:03:20.609486+00:00"
+  },
+  "EUR/CAD": {
+   "kraken_pair": "EURCAD",
+   "trades": 2096,
+   "volume_base": 549630.096172,
+   "ref_median_20nov_18_19utc": 1.5692,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.5,
+   "low_utc": "2026-11-21T08:02:47.686938+00:00",
+   "low_tsi": "21 Nov 11:02:47",
+   "low_trade_id": 318775,
+   "low_trade_volume": 99.99996901,
+   "trades_at_low_price": 1,
+   "volume_at_low_price": 99.999969,
+   "max_deviation_pct": -68.14,
+   "trades_below_90pct_ref": 1793,
+   "volume_below_90pct_ref": 493088.337394,
+   "first_below_90pct_utc": "2026-11-20T21:25:21.795969+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:00:49.928504+00:00"
+  },
+  "DOGE/CAD": {
+   "kraken_pair": "XDGCAD",
+   "trades": 975,
+   "volume_base": 5305676.151489,
+   "ref_median_20nov_18_19utc": 0.0777184,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.0261809,
+   "low_utc": "2026-11-21T08:02:22.443649+00:00",
+   "low_tsi": "21 Nov 11:02:22",
+   "low_trade_id": 149279,
+   "low_trade_volume": 389.81164499,
+   "trades_at_low_price": 2,
+   "volume_at_low_price": 390.006648,
+   "max_deviation_pct": -66.31,
+   "trades_below_90pct_ref": 855,
+   "volume_below_90pct_ref": 4534102.808245,
+   "first_below_90pct_utc": "2026-11-20T21:14:16.751548+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:00:14.647566+00:00"
+  },
+  "PEPE/CAD": {
+   "kraken_pair": "PEPECAD",
+   "trades": 342,
+   "volume_base": 21553740206.19501,
+   "ref_median_20nov_18_19utc": 4.894e-06,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 1.587e-06,
+   "low_utc": "2026-11-21T08:02:47.739347+00:00",
+   "low_tsi": "21 Nov 11:02:47",
+   "low_trade_id": 78822,
+   "low_trade_volume": 113421332.61116,
+   "trades_at_low_price": 2,
+   "volume_at_low_price": 124954547.93402,
+   "max_deviation_pct": -67.57,
+   "trades_below_90pct_ref": 316,
+   "volume_below_90pct_ref": 20898562575.00817,
+   "first_below_90pct_utc": "2026-11-20T21:25:29.568917+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:01:51.192349+00:00"
+  },
+  "XDC/CAD": {
+   "kraken_pair": "XDCCAD",
+   "trades": 3852,
+   "volume_base": 39295960.05745,
+   "ref_median_20nov_18_19utc": 0.03882,
+   "ref_basis": "median of the first 20 trades of the window (no trade 18:00-19:00 UTC)",
+   "low": 0.01281,
+   "low_utc": "2026-11-21T08:02:47.873661+00:00",
+   "low_tsi": "21 Nov 11:02:47",
+   "low_trade_id": 78944,
+   "low_trade_volume": 1168.37726,
+   "trades_at_low_price": 1,
+   "volume_at_low_price": 1168.37726,
+   "max_deviation_pct": -67.0,
+   "trades_below_90pct_ref": 2974,
+   "volume_below_90pct_ref": 30197288.7885,
+   "first_below_90pct_utc": "2026-11-20T21:20:46.957755+00:00",
+   "last_below_90pct_utc": "2026-11-21T10:04:50.970819+00:00"
+  },
+  "BTC/USDT": {
+   "kraken_pair": "XBTUSDT",
+   "trades": 15653,
+   "volume_base": 464.157118,
+   "ref_median_20nov_18_19utc": 58580.5,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 55200.1,
+   "low_utc": "2026-11-21T06:17:17.735162+00:00",
+   "low_tsi": "21 Nov 09:17:17",
+   "low_trade_id": 12306497,
+   "low_trade_volume": 0.01195417,
+   "trades_at_low_price": 2,
+   "volume_at_low_price": 0.012057,
+   "max_deviation_pct": -5.77,
+   "trades_below_90pct_ref": 0,
+   "volume_below_90pct_ref": 0,
+   "first_below_90pct_utc": null,
+   "last_below_90pct_utc": null
+  },
+  "ETH/USD": {
+   "kraken_pair": "XETHZUSD",
+   "trades": 67876,
+   "volume_base": 60346.309652,
+   "ref_median_20nov_18_19utc": 1626.495,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 1536.0,
+   "low_utc": "2026-11-21T04:08:04.258059+00:00",
+   "low_tsi": "21 Nov 07:08:04",
+   "low_trade_id": 69707283,
+   "low_trade_volume": 0.03247395,
+   "trades_at_low_price": 2,
+   "volume_at_low_price": 0.082474,
+   "max_deviation_pct": -5.56,
+   "trades_below_90pct_ref": 0,
+   "volume_below_90pct_ref": 0,
+   "first_below_90pct_utc": null,
+   "last_below_90pct_utc": null
+  },
+  "USDT/USD": {
+   "kraken_pair": "USDTZUSD",
+   "trades": 23035,
+   "volume_base": 209687003.160996,
+   "ref_median_20nov_18_19utc": 0.99874,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.99755,
+   "low_utc": "2026-11-20T23:34:32.649458+00:00",
+   "low_tsi": "21 Nov 02:34:32",
+   "low_trade_id": 85918837,
+   "low_trade_volume": 4444.40090147,
+   "trades_at_low_price": 2,
+   "volume_at_low_price": 22349.641911,
+   "max_deviation_pct": -0.12,
+   "trades_below_90pct_ref": 0,
+   "volume_below_90pct_ref": 0,
+   "first_below_90pct_utc": null,
+   "last_below_90pct_utc": null
+  },
+  "USDC/USD": {
+   "kraken_pair": "USDCUSD",
+   "trades": 31120,
+   "volume_base": 64648033.374053,
+   "ref_median_20nov_18_19utc": 0.9998,
+   "ref_basis": "median trade 20 Nov 18:00-19:00 UTC",
+   "low": 0.9998,
+   "low_utc": "2026-11-20T18:00:00.201968+00:00",
+   "low_tsi": "20 Nov 21:00:00",
+   "low_trade_id": 24315993,
+   "low_trade_volume": 100.0,
+   "trades_at_low_price": 18106,
+   "volume_at_low_price": 25988648.095908,
+   "max_deviation_pct": 0.0,
+   "trades_below_90pct_ref": 0,
+   "volume_below_90pct_ref": 0,
+   "first_below_90pct_utc": null,
+   "last_below_90pct_utc": null
+  }
+ },
+ "low": {
+  "btc_cad": 24250.0,
+  "utc": "2026-11-21T08:00:43.512881+00:00",
+  "tsi": "21 Nov 11:00:43",
+  "trade_id": 5604686,
+  "usd_equivalent_at_boc": 16928.45,
+  "btc_usd_last_trade_before": 57734.4,
+  "btc_usd_last_trade_before_utc": "2026-11-21T08:00:40.183238+00:00",
+  "btc_usd_trade_id": 117223959,
+  "btc_usd_range_pm5min": [
+   57651.8,
+   57938.1
+  ],
+  "gap_vs_btc_usd_pct": -70.68,
+  "implied_cad_per_usd": 0.42,
+  "trades_below_usd20k_equiv_0800_0815": 122,
+  "volume_below_usd20k_equiv_0800_0815": 10.6948
+ },
+ "implied_15m": [
+  {
+   "utc": "2026-11-20T18:00:00+00:00",
+   "btc_cad_vwap": 84321.29,
+   "btc_usdt_vwap": 58933.67,
+   "implied_cad_per_usd": 1.4308,
+   "vs_boc_pct": -0.12,
+   "kraken_usdcad_vwap": 1.4312,
+   "btc_cad_trades": 98,
+   "btc_cad_volume": 1.1522
+  },
+  {
+   "utc": "2026-11-20T18:15:00+00:00",
+   "btc_cad_vwap": 83892.83,
+   "btc_usdt_vwap": 59094.03,
+   "implied_cad_per_usd": 1.4196,
+   "vs_boc_pct": -0.9,
+   "kraken_usdcad_vwap": 1.4299,
+   "btc_cad_trades": 133,
+   "btc_cad_volume": 9.8379
+  },
+  {
+   "utc": "2026-11-20T18:30:00+00:00",
+   "btc_cad_vwap": 83982.46,
+   "btc_usdt_vwap": 58790.0,
+   "implied_cad_per_usd": 1.4285,
+   "vs_boc_pct": -0.28,
+   "kraken_usdcad_vwap": 1.4303,
+   "btc_cad_trades": 31,
+   "btc_cad_volume": 0.9243
+  },
+  {
+   "utc": "2026-11-20T18:45:00+00:00",
+   "btc_cad_vwap": 83362.74,
+   "btc_usdt_vwap": 58421.48,
+   "implied_cad_per_usd": 1.4269,
+   "vs_boc_pct": -0.39,
+   "kraken_usdcad_vwap": 1.431,
+   "btc_cad_trades": 131,
+   "btc_cad_volume": 1.4117
+  },
+  {
+   "utc": "2026-11-20T19:00:00+00:00",
+   "btc_cad_vwap": 81541.79,
+   "btc_usdt_vwap": 58254.29,
+   "implied_cad_per_usd": 1.3998,
+   "vs_boc_pct": -2.29,
+   "kraken_usdcad_vwap": 1.4253,
+   "btc_cad_trades": 250,
+   "btc_cad_volume": 21.2003
+  },
+  {
+   "utc": "2026-11-20T19:15:00+00:00",
+   "btc_cad_vwap": 82740.48,
+   "btc_usdt_vwap": 57903.19,
+   "implied_cad_per_usd": 1.4289,
+   "vs_boc_pct": -0.25,
+   "kraken_usdcad_vwap": 1.4275,
+   "btc_cad_trades": 47,
+   "btc_cad_volume": 0.3484
+  },
+  {
+   "utc": "2026-11-20T19:30:00+00:00",
+   "btc_cad_vwap": 83462.6,
+   "btc_usdt_vwap": 58393.24,
+   "implied_cad_per_usd": 1.4293,
+   "vs_boc_pct": -0.22,
+   "kraken_usdcad_vwap": 1.4306,
+   "btc_cad_trades": 46,
+   "btc_cad_volume": 0.2027
+  },
+  {
+   "utc": "2026-11-20T19:45:00+00:00",
+   "btc_cad_vwap": 83511.8,
+   "btc_usdt_vwap": 58599.51,
+   "implied_cad_per_usd": 1.4251,
+   "vs_boc_pct": -0.51,
+   "kraken_usdcad_vwap": 1.4303,
+   "btc_cad_trades": 100,
+   "btc_cad_volume": 2.0907
+  },
+  {
+   "utc": "2026-11-20T20:00:00+00:00",
+   "btc_cad_vwap": 80130.14,
+   "btc_usdt_vwap": 58525.92,
+   "implied_cad_per_usd": 1.3691,
+   "vs_boc_pct": -4.42,
+   "kraken_usdcad_vwap": 1.4165,
+   "btc_cad_trades": 311,
+   "btc_cad_volume": 22.5046
+  },
+  {
+   "utc": "2026-11-20T20:15:00+00:00",
+   "btc_cad_vwap": 81309.58,
+   "btc_usdt_vwap": 58607.9,
+   "implied_cad_per_usd": 1.3873,
+   "vs_boc_pct": -3.15,
+   "kraken_usdcad_vwap": 1.3897,
+   "btc_cad_trades": 68,
+   "btc_cad_volume": 0.1755
+  },
+  {
+   "utc": "2026-11-20T20:30:00+00:00",
+   "btc_cad_vwap": 81233.23,
+   "btc_usdt_vwap": 58310.33,
+   "implied_cad_per_usd": 1.3931,
+   "vs_boc_pct": -2.75,
+   "kraken_usdcad_vwap": 1.3843,
+   "btc_cad_trades": 105,
+   "btc_cad_volume": 0.9201
+  },
+  {
+   "utc": "2026-11-20T20:45:00+00:00",
+   "btc_cad_vwap": 82412.05,
+   "btc_usdt_vwap": 58497.84,
+   "implied_cad_per_usd": 1.4088,
+   "vs_boc_pct": -1.65,
+   "kraken_usdcad_vwap": 1.4012,
+   "btc_cad_trades": 50,
+   "btc_cad_volume": 0.5728
+  },
+  {
+   "utc": "2026-11-20T21:00:00+00:00",
+   "btc_cad_vwap": 72955.88,
+   "btc_usdt_vwap": 58371.6,
+   "implied_cad_per_usd": 1.2499,
+   "vs_boc_pct": -12.75,
+   "kraken_usdcad_vwap": 1.3591,
+   "btc_cad_trades": 288,
+   "btc_cad_volume": 21.5375
+  },
+  {
+   "utc": "2026-11-20T21:15:00+00:00",
+   "btc_cad_vwap": 75077.56,
+   "btc_usdt_vwap": 58528.73,
+   "implied_cad_per_usd": 1.2827,
+   "vs_boc_pct": -10.45,
+   "kraken_usdcad_vwap": 1.2889,
+   "btc_cad_trades": 93,
+   "btc_cad_volume": 0.6647
+  },
+  {
+   "utc": "2026-11-20T21:30:00+00:00",
+   "btc_cad_vwap": 77010.25,
+   "btc_usdt_vwap": 59219.97,
+   "implied_cad_per_usd": 1.3004,
+   "vs_boc_pct": -9.22,
+   "kraken_usdcad_vwap": 1.3125,
+   "btc_cad_trades": 144,
+   "btc_cad_volume": 0.8329
+  },
+  {
+   "utc": "2026-11-20T21:45:00+00:00",
+   "btc_cad_vwap": 80952.29,
+   "btc_usdt_vwap": 59159.2,
+   "implied_cad_per_usd": 1.3684,
+   "vs_boc_pct": -4.48,
+   "kraken_usdcad_vwap": 1.3783,
+   "btc_cad_trades": 75,
+   "btc_cad_volume": 0.242
+  },
+  {
+   "utc": "2026-11-20T22:00:00+00:00",
+   "btc_cad_vwap": 64751.74,
+   "btc_usdt_vwap": 59179.02,
+   "implied_cad_per_usd": 1.0942,
+   "vs_boc_pct": -23.62,
+   "kraken_usdcad_vwap": 1.2876,
+   "btc_cad_trades": 285,
+   "btc_cad_volume": 17.9169
+  },
+  {
+   "utc": "2026-11-20T22:15:00+00:00",
+   "btc_cad_vwap": 73840.91,
+   "btc_usdt_vwap": 59223.37,
+   "implied_cad_per_usd": 1.2468,
+   "vs_boc_pct": -12.96,
+   "kraken_usdcad_vwap": 1.2541,
+   "btc_cad_trades": 49,
+   "btc_cad_volume": 0.3504
+  },
+  {
+   "utc": "2026-11-20T22:30:00+00:00",
+   "btc_cad_vwap": 75757.79,
+   "btc_usdt_vwap": 59154.2,
+   "implied_cad_per_usd": 1.2807,
+   "vs_boc_pct": -10.6,
+   "kraken_usdcad_vwap": 1.2813,
+   "btc_cad_trades": 78,
+   "btc_cad_volume": 0.1377
+  },
+  {
+   "utc": "2026-11-20T22:45:00+00:00",
+   "btc_cad_vwap": 80836.65,
+   "btc_usdt_vwap": 59040.14,
+   "implied_cad_per_usd": 1.3692,
+   "vs_boc_pct": -4.42,
+   "kraken_usdcad_vwap": 1.3614,
+   "btc_cad_trades": 72,
+   "btc_cad_volume": 0.2736
+  },
+  {
+   "utc": "2026-11-20T23:00:00+00:00",
+   "btc_cad_vwap": 61509.82,
+   "btc_usdt_vwap": 59163.74,
+   "implied_cad_per_usd": 1.0397,
+   "vs_boc_pct": -27.42,
+   "kraken_usdcad_vwap": 1.24,
+   "btc_cad_trades": 621,
+   "btc_cad_volume": 25.4459
+  },
+  {
+   "utc": "2026-11-20T23:15:00+00:00",
+   "btc_cad_vwap": 75568.79,
+   "btc_usdt_vwap": 59051.94,
+   "implied_cad_per_usd": 1.2797,
+   "vs_boc_pct": -10.67,
+   "kraken_usdcad_vwap": 1.3025,
+   "btc_cad_trades": 86,
+   "btc_cad_volume": 0.228
+  },
+  {
+   "utc": "2026-11-20T23:30:00+00:00",
+   "btc_cad_vwap": 77271.31,
+   "btc_usdt_vwap": 59039.66,
+   "implied_cad_per_usd": 1.3088,
+   "vs_boc_pct": -8.64,
+   "kraken_usdcad_vwap": 1.3096,
+   "btc_cad_trades": 101,
+   "btc_cad_volume": 0.3847
+  },
+  {
+   "utc": "2026-11-20T23:45:00+00:00",
+   "btc_cad_vwap": 65632.26,
+   "btc_usdt_vwap": 58902.29,
+   "implied_cad_per_usd": 1.1143,
+   "vs_boc_pct": -22.22,
+   "kraken_usdcad_vwap": 1.1574,
+   "btc_cad_trades": 225,
+   "btc_cad_volume": 4.8007
+  },
+  {
+   "utc": "2026-11-21T00:00:00+00:00",
+   "btc_cad_vwap": 56061.69,
+   "btc_usdt_vwap": 58957.92,
+   "implied_cad_per_usd": 0.9509,
+   "vs_boc_pct": -33.62,
+   "kraken_usdcad_vwap": 1.062,
+   "btc_cad_trades": 561,
+   "btc_cad_volume": 27.3876
+  },
+  {
+   "utc": "2026-11-21T00:15:00+00:00",
+   "btc_cad_vwap": 72443.33,
+   "btc_usdt_vwap": 59015.84,
+   "implied_cad_per_usd": 1.2275,
+   "vs_boc_pct": -14.31,
+   "kraken_usdcad_vwap": 1.2651,
+   "btc_cad_trades": 197,
+   "btc_cad_volume": 0.5376
+  },
+  {
+   "utc": "2026-11-21T00:30:00+00:00",
+   "btc_cad_vwap": 71485.01,
+   "btc_usdt_vwap": 59102.25,
+   "implied_cad_per_usd": 1.2095,
+   "vs_boc_pct": -15.57,
+   "kraken_usdcad_vwap": 1.1714,
+   "btc_cad_trades": 249,
+   "btc_cad_volume": 1.9221
+  },
+  {
+   "utc": "2026-11-21T00:45:00+00:00",
+   "btc_cad_vwap": 67702.3,
+   "btc_usdt_vwap": 59079.14,
+   "implied_cad_per_usd": 1.146,
+   "vs_boc_pct": -20.0,
+   "kraken_usdcad_vwap": 1.0862,
+   "btc_cad_trades": 236,
+   "btc_cad_volume": 0.9914
+  },
+  {
+   "utc": "2026-11-21T01:00:00+00:00",
+   "btc_cad_vwap": 63139.45,
+   "btc_usdt_vwap": 59036.4,
+   "implied_cad_per_usd": 1.0695,
+   "vs_boc_pct": -25.34,
+   "kraken_usdcad_vwap": 1.218,
+   "btc_cad_trades": 429,
+   "btc_cad_volume": 23.6688
+  },
+  {
+   "utc": "2026-11-21T01:15:00+00:00",
+   "btc_cad_vwap": 71019.57,
+   "btc_usdt_vwap": 59179.88,
+   "implied_cad_per_usd": 1.2001,
+   "vs_boc_pct": -16.23,
+   "kraken_usdcad_vwap": 1.2035,
+   "btc_cad_trades": 113,
+   "btc_cad_volume": 1.1029
+  },
+  {
+   "utc": "2026-11-21T01:30:00+00:00",
+   "btc_cad_vwap": 67457.9,
+   "btc_usdt_vwap": 58974.49,
+   "implied_cad_per_usd": 1.1438,
+   "vs_boc_pct": -20.15,
+   "kraken_usdcad_vwap": 1.1556,
+   "btc_cad_trades": 277,
+   "btc_cad_volume": 1.5964
+  },
+  {
+   "utc": "2026-11-21T01:45:00+00:00",
+   "btc_cad_vwap": 62764.57,
+   "btc_usdt_vwap": 58997.23,
+   "implied_cad_per_usd": 1.0639,
+   "vs_boc_pct": -25.73,
+   "kraken_usdcad_vwap": 1.0428,
+   "btc_cad_trades": 242,
+   "btc_cad_volume": 1.4516
+  },
+  {
+   "utc": "2026-11-21T02:00:00+00:00",
+   "btc_cad_vwap": 53625.11,
+   "btc_usdt_vwap": 59035.11,
+   "implied_cad_per_usd": 0.9084,
+   "vs_boc_pct": -36.59,
+   "kraken_usdcad_vwap": 1.0361,
+   "btc_cad_trades": 660,
+   "btc_cad_volume": 24.9025
+  },
+  {
+   "utc": "2026-11-21T02:15:00+00:00",
+   "btc_cad_vwap": 65758.01,
+   "btc_usdt_vwap": 58977.0,
+   "implied_cad_per_usd": 1.115,
+   "vs_boc_pct": -22.17,
+   "kraken_usdcad_vwap": 1.0998,
+   "btc_cad_trades": 158,
+   "btc_cad_volume": 1.9094
+  },
+  {
+   "utc": "2026-11-21T02:30:00+00:00",
+   "btc_cad_vwap": 61311.09,
+   "btc_usdt_vwap": 58697.85,
+   "implied_cad_per_usd": 1.0445,
+   "vs_boc_pct": -27.08,
+   "kraken_usdcad_vwap": 1.0345,
+   "btc_cad_trades": 117,
+   "btc_cad_volume": 0.5435
+  },
+  {
+   "utc": "2026-11-21T02:45:00+00:00",
+   "btc_cad_vwap": 58178.6,
+   "btc_usdt_vwap": 58635.13,
+   "implied_cad_per_usd": 0.9922,
+   "vs_boc_pct": -30.74,
+   "kraken_usdcad_vwap": 0.9978,
+   "btc_cad_trades": 147,
+   "btc_cad_volume": 0.6054
+  },
+  {
+   "utc": "2026-11-21T03:00:00+00:00",
+   "btc_cad_vwap": 53157.44,
+   "btc_usdt_vwap": 58268.47,
+   "implied_cad_per_usd": 0.9123,
+   "vs_boc_pct": -36.32,
+   "kraken_usdcad_vwap": 1.0134,
+   "btc_cad_trades": 601,
+   "btc_cad_volume": 24.2474
+  },
+  {
+   "utc": "2026-11-21T03:15:00+00:00",
+   "btc_cad_vwap": 59003.94,
+   "btc_usdt_vwap": 58346.99,
+   "implied_cad_per_usd": 1.0113,
+   "vs_boc_pct": -29.41,
+   "kraken_usdcad_vwap": 1.0239,
+   "btc_cad_trades": 221,
+   "btc_cad_volume": 1.4842
+  },
+  {
+   "utc": "2026-11-21T03:30:00+00:00",
+   "btc_cad_vwap": 57195.71,
+   "btc_usdt_vwap": 57194.03,
+   "implied_cad_per_usd": 1.0,
+   "vs_boc_pct": -30.19,
+   "kraken_usdcad_vwap": 0.9967,
+   "btc_cad_trades": 277,
+   "btc_cad_volume": 0.9685
+  },
+  {
+   "utc": "2026-11-21T03:45:00+00:00",
+   "btc_cad_vwap": 58161.13,
+   "btc_usdt_vwap": 56649.77,
+   "implied_cad_per_usd": 1.0267,
+   "vs_boc_pct": -28.33,
+   "kraken_usdcad_vwap": 1.0151,
+   "btc_cad_trades": 818,
+   "btc_cad_volume": 20.6408
+  },
+  {
+   "utc": "2026-11-21T04:00:00+00:00",
+   "btc_cad_vwap": 71504.49,
+   "btc_usdt_vwap": 56029.44,
+   "implied_cad_per_usd": 1.2762,
+   "vs_boc_pct": -10.91,
+   "kraken_usdcad_vwap": 1.2748,
+   "btc_cad_trades": 489,
+   "btc_cad_volume": 7.7316
+  },
+  {
+   "utc": "2026-11-21T04:15:00+00:00",
+   "btc_cad_vwap": 66718.92,
+   "btc_usdt_vwap": 55796.56,
+   "implied_cad_per_usd": 1.1958,
+   "vs_boc_pct": -16.53,
+   "kraken_usdcad_vwap": 1.3914,
+   "btc_cad_trades": 259,
+   "btc_cad_volume": 10.2674
+  },
+  {
+   "utc": "2026-11-21T04:30:00+00:00",
+   "btc_cad_vwap": 76490.66,
+   "btc_usdt_vwap": 55981.17,
+   "implied_cad_per_usd": 1.3664,
+   "vs_boc_pct": -4.62,
+   "kraken_usdcad_vwap": 1.3808,
+   "btc_cad_trades": 197,
+   "btc_cad_volume": 2.3522
+  },
+  {
+   "utc": "2026-11-21T04:45:00+00:00",
+   "btc_cad_vwap": 77905.98,
+   "btc_usdt_vwap": 56354.7,
+   "implied_cad_per_usd": 1.3824,
+   "vs_boc_pct": -3.5,
+   "kraken_usdcad_vwap": 1.3858,
+   "btc_cad_trades": 68,
+   "btc_cad_volume": 0.6614
+  },
+  {
+   "utc": "2026-11-21T05:00:00+00:00",
+   "btc_cad_vwap": 77348.87,
+   "btc_usdt_vwap": 56380.82,
+   "implied_cad_per_usd": 1.3719,
+   "vs_boc_pct": -4.23,
+   "kraken_usdcad_vwap": 1.3742,
+   "btc_cad_trades": 111,
+   "btc_cad_volume": 1.0324
+  },
+  {
+   "utc": "2026-11-21T05:15:00+00:00",
+   "btc_cad_vwap": 69086.12,
+   "btc_usdt_vwap": 56310.97,
+   "implied_cad_per_usd": 1.2269,
+   "vs_boc_pct": -14.35,
+   "kraken_usdcad_vwap": 1.3426,
+   "btc_cad_trades": 243,
+   "btc_cad_volume": 11.3647
+  },
+  {
+   "utc": "2026-11-21T05:30:00+00:00",
+   "btc_cad_vwap": 64330.17,
+   "btc_usdt_vwap": 55953.16,
+   "implied_cad_per_usd": 1.1497,
+   "vs_boc_pct": -19.74,
+   "kraken_usdcad_vwap": 1.2263,
+   "btc_cad_trades": 244,
+   "btc_cad_volume": 11.9956
+  },
+  {
+   "utc": "2026-11-21T05:45:00+00:00",
+   "btc_cad_vwap": 58852.29,
+   "btc_usdt_vwap": 55847.24,
+   "implied_cad_per_usd": 1.0538,
+   "vs_boc_pct": -26.44,
+   "kraken_usdcad_vwap": 1.1173,
+   "btc_cad_trades": 585,
+   "btc_cad_volume": 15.849
+  },
+  {
+   "utc": "2026-11-21T06:00:00+00:00",
+   "btc_cad_vwap": 55069.16,
+   "btc_usdt_vwap": 55775.59,
+   "implied_cad_per_usd": 0.9873,
+   "vs_boc_pct": -31.08,
+   "kraken_usdcad_vwap": 1.0893,
+   "btc_cad_trades": 323,
+   "btc_cad_volume": 7.3247
+  },
+  {
+   "utc": "2026-11-21T06:15:00+00:00",
+   "btc_cad_vwap": 50748.61,
+   "btc_usdt_vwap": 55543.68,
+   "implied_cad_per_usd": 0.9137,
+   "vs_boc_pct": -36.22,
+   "kraken_usdcad_vwap": 0.986,
+   "btc_cad_trades": 375,
+   "btc_cad_volume": 13.7194
+  },
+  {
+   "utc": "2026-11-21T06:30:00+00:00",
+   "btc_cad_vwap": 46232.99,
+   "btc_usdt_vwap": 56773.9,
+   "implied_cad_per_usd": 0.8143,
+   "vs_boc_pct": -43.15,
+   "kraken_usdcad_vwap": 0.8789,
+   "btc_cad_trades": 473,
+   "btc_cad_volume": 13.4133
+  },
+  {
+   "utc": "2026-11-21T06:45:00+00:00",
+   "btc_cad_vwap": 40718.59,
+   "btc_usdt_vwap": 57641.4,
+   "implied_cad_per_usd": 0.7064,
+   "vs_boc_pct": -50.69,
+   "kraken_usdcad_vwap": 0.7387,
+   "btc_cad_trades": 552,
+   "btc_cad_volume": 15.5111
+  },
+  {
+   "utc": "2026-11-21T07:00:00+00:00",
+   "btc_cad_vwap": 36960.93,
+   "btc_usdt_vwap": 58067.65,
+   "implied_cad_per_usd": 0.6365,
+   "vs_boc_pct": -55.57,
+   "kraken_usdcad_vwap": 0.7054,
+   "btc_cad_trades": 637,
+   "btc_cad_volume": 14.5906
+  },
+  {
+   "utc": "2026-11-21T07:15:00+00:00",
+   "btc_cad_vwap": 35804.15,
+   "btc_usdt_vwap": 58303.02,
+   "implied_cad_per_usd": 0.6141,
+   "vs_boc_pct": -57.13,
+   "kraken_usdcad_vwap": 0.7367,
+   "btc_cad_trades": 427,
+   "btc_cad_volume": 12.547
+  },
+  {
+   "utc": "2026-11-21T07:30:00+00:00",
+   "btc_cad_vwap": 41984.1,
+   "btc_usdt_vwap": 58188.63,
+   "implied_cad_per_usd": 0.7215,
+   "vs_boc_pct": -49.63,
+   "kraken_usdcad_vwap": 0.8673,
+   "btc_cad_trades": 598,
+   "btc_cad_volume": 12.2042
+  },
+  {
+   "utc": "2026-11-21T07:45:00+00:00",
+   "btc_cad_vwap": 32749.9,
+   "btc_usdt_vwap": 57971.43,
+   "implied_cad_per_usd": 0.5649,
+   "vs_boc_pct": -60.56,
+   "kraken_usdcad_vwap": 0.6605,
+   "btc_cad_trades": 505,
+   "btc_cad_volume": 14.6018
+  },
+  {
+   "utc": "2026-11-21T08:00:00+00:00",
+   "btc_cad_vwap": 31189.89,
+   "btc_usdt_vwap": 57817.69,
+   "implied_cad_per_usd": 0.5395,
+   "vs_boc_pct": -62.34,
+   "kraken_usdcad_vwap": 0.6732,
+   "btc_cad_trades": 976,
+   "btc_cad_volume": 22.3752
+  },
+  {
+   "utc": "2026-11-21T08:15:00+00:00",
+   "btc_cad_vwap": 29690.72,
+   "btc_usdt_vwap": 57811.47,
+   "implied_cad_per_usd": 0.5136,
+   "vs_boc_pct": -64.15,
+   "kraken_usdcad_vwap": 0.6607,
+   "btc_cad_trades": 764,
+   "btc_cad_volume": 18.8291
+  },
+  {
+   "utc": "2026-11-21T08:30:00+00:00",
+   "btc_cad_vwap": 35692.2,
+   "btc_usdt_vwap": 57547.55,
+   "implied_cad_per_usd": 0.6202,
+   "vs_boc_pct": -56.7,
+   "kraken_usdcad_vwap": 0.8204,
+   "btc_cad_trades": 716,
+   "btc_cad_volume": 16.1374
+  },
+  {
+   "utc": "2026-11-21T08:45:00+00:00",
+   "btc_cad_vwap": 43749.84,
+   "btc_usdt_vwap": 57848.71,
+   "implied_cad_per_usd": 0.7563,
+   "vs_boc_pct": -47.21,
+   "kraken_usdcad_vwap": 0.856,
+   "btc_cad_trades": 1026,
+   "btc_cad_volume": 19.9281
+  },
+  {
+   "utc": "2026-11-21T09:00:00+00:00",
+   "btc_cad_vwap": 40409.81,
+   "btc_usdt_vwap": 57913.43,
+   "implied_cad_per_usd": 0.6978,
+   "vs_boc_pct": -51.29,
+   "kraken_usdcad_vwap": 0.7649,
+   "btc_cad_trades": 1207,
+   "btc_cad_volume": 19.1464
+  },
+  {
+   "utc": "2026-11-21T09:15:00+00:00",
+   "btc_cad_vwap": 36117.54,
+   "btc_usdt_vwap": 57978.3,
+   "implied_cad_per_usd": 0.6229,
+   "vs_boc_pct": -56.51,
+   "kraken_usdcad_vwap": 0.6906,
+   "btc_cad_trades": 1332,
+   "btc_cad_volume": 27.364
+  },
+  {
+   "utc": "2026-11-21T09:30:00+00:00",
+   "btc_cad_vwap": 39131.27,
+   "btc_usdt_vwap": 57957.9,
+   "implied_cad_per_usd": 0.6752,
+   "vs_boc_pct": -52.87,
+   "kraken_usdcad_vwap": 0.7033,
+   "btc_cad_trades": 1394,
+   "btc_cad_volume": 38.1089
+  },
+  {
+   "utc": "2026-11-21T09:45:00+00:00",
+   "btc_cad_vwap": 55467.74,
+   "btc_usdt_vwap": 58030.28,
+   "implied_cad_per_usd": 0.9558,
+   "vs_boc_pct": -33.27,
+   "kraken_usdcad_vwap": 0.9002,
+   "btc_cad_trades": 1395,
+   "btc_cad_volume": 34.236
+  },
+  {
+   "utc": "2026-11-21T10:00:00+00:00",
+   "btc_cad_vwap": 74032.62,
+   "btc_usdt_vwap": 58009.46,
+   "implied_cad_per_usd": 1.2762,
+   "vs_boc_pct": -10.91,
+   "kraken_usdcad_vwap": 1.2534,
+   "btc_cad_trades": 578,
+   "btc_cad_volume": 8.6056
+  },
+  {
+   "utc": "2026-11-21T10:15:00+00:00",
+   "btc_cad_vwap": 79679.08,
+   "btc_usdt_vwap": 58082.24,
+   "implied_cad_per_usd": 1.3718,
+   "vs_boc_pct": -4.24,
+   "kraken_usdcad_vwap": 1.3704,
+   "btc_cad_trades": 104,
+   "btc_cad_volume": 0.8274
+  },
+  {
+   "utc": "2026-11-21T10:30:00+00:00",
+   "btc_cad_vwap": 80446.86,
+   "btc_usdt_vwap": 57942.02,
+   "implied_cad_per_usd": 1.3884,
+   "vs_boc_pct": -3.08,
+   "kraken_usdcad_vwap": 1.3692,
+   "btc_cad_trades": 38,
+   "btc_cad_volume": 0.1495
+  },
+  {
+   "utc": "2026-11-21T10:45:00+00:00",
+   "btc_cad_vwap": 80487.74,
+   "btc_usdt_vwap": 57951.66,
+   "implied_cad_per_usd": 1.3889,
+   "vs_boc_pct": -3.05,
+   "kraken_usdcad_vwap": 1.3713,
+   "btc_cad_trades": 26,
+   "btc_cad_volume": 0.3426
+  },
+  {
+   "utc": "2026-11-21T11:00:00+00:00",
+   "btc_cad_vwap": 80035.9,
+   "btc_usdt_vwap": 57964.59,
+   "implied_cad_per_usd": 1.3808,
+   "vs_boc_pct": -3.61,
+   "kraken_usdcad_vwap": 1.3833,
+   "btc_cad_trades": 40,
+   "btc_cad_volume": 0.0838
+  },
+  {
+   "utc": "2026-11-21T11:15:00+00:00",
+   "btc_cad_vwap": 79527.41,
+   "btc_usdt_vwap": 57909.0,
+   "implied_cad_per_usd": 1.3733,
+   "vs_boc_pct": -4.13,
+   "kraken_usdcad_vwap": 1.3735,
+   "btc_cad_trades": 19,
+   "btc_cad_volume": 0.063
+  },
+  {
+   "utc": "2026-11-21T11:30:00+00:00",
+   "btc_cad_vwap": 80693.93,
+   "btc_usdt_vwap": 58370.9,
+   "implied_cad_per_usd": 1.3824,
+   "vs_boc_pct": -3.49,
+   "kraken_usdcad_vwap": 1.379,
+   "btc_cad_trades": 50,
+   "btc_cad_volume": 0.2244
+  },
+  {
+   "utc": "2026-11-21T11:45:00+00:00",
+   "btc_cad_vwap": 81242.67,
+   "btc_usdt_vwap": 58143.87,
+   "implied_cad_per_usd": 1.3973,
+   "vs_boc_pct": -2.46,
+   "kraken_usdcad_vwap": 1.3938,
+   "btc_cad_trades": 23,
+   "btc_cad_volume": 0.1254
+  }
+ ],
+ "dislocation_start_15m_utc": "2026-11-20T19:00:00+00:00",
+ "durations": {
+  "definition": "15-min implied CAD per USD = BTC/CAD VWAP / BTC/USDT VWAP vs the Bank of Canada 20 Nov rate 1.4325",
+  "first_deviation_over_2pct_quarter_utc": "2026-11-20T19:00:00+00:00",
+  "first_quarter_at_or_over_5pct_utc": "2026-11-20T21:00:00+00:00",
+  "episode_at_or_over_5pct_utc": [
+   "2026-11-20T21:00:00+00:00",
+   "2026-11-21T10:15:00+00:00"
+  ],
+  "episode_hours": 13.25,
+  "quarters_in_episode": 53,
+  "quarters_at_or_over_5pct": 48,
+  "continuous_runs_at_or_over_5pct_utc": [
+   [
+    "2026-11-20T21:00:00+00:00",
+    "2026-11-20T21:45:00+00:00"
+   ],
+   [
+    "2026-11-20T22:00:00+00:00",
+    "2026-11-20T22:45:00+00:00"
+   ],
+   [
+    "2026-11-20T23:00:00+00:00",
+    "2026-11-21T04:30:00+00:00"
+   ],
+   [
+    "2026-11-21T05:15:00+00:00",
+    "2026-11-21T10:15:00+00:00"
+   ]
+  ],
+  "worst_quarter": {
+   "utc": "2026-11-21T08:15:00+00:00",
+   "vs_boc_pct": -64.15
+  },
+  "first_quarter_back_under_5pct_after_low_utc": "2026-11-21T10:15:00+00:00",
+  "sustained_normalisation_utc": "2026-11-21T15:45:00+00:00",
+  "first_deviation_to_sustained_normalisation_hours": 20.75
+ },
+ "sustained_recovery_utc": "2026-11-21T15:45:00+00:00",
+ "execution_clusters_note": "inferred from timestamps; Kraken public trades have no order id",
+ "large_market_sells": [
+  {
+   "utc": "2026-11-20T18:27:02.092+00:00",
+   "btc": 8.3333,
+   "fills": 52,
+   "from_cad": 84421.2,
+   "to_cad": 83634.4,
+   "trade_ids": [
+    5589848,
+    5589899
+   ]
+  },
+  {
+   "utc": "2026-11-20T19:04:34.832+00:00",
+   "btc": 20.8333,
+   "fills": 198,
+   "from_cad": 83274.2,
+   "to_cad": 80000.0,
+   "trade_ids": [
+    5590101,
+    5590298
+   ]
+  },
+  {
+   "utc": "2026-11-20T20:04:34.808+00:00",
+   "btc": 20.8333,
+   "fills": 183,
+   "from_cad": 83596.0,
+   "to_cad": 75000.0,
+   "trade_ids": [
+    5590543,
+    5590725
+   ]
+  },
+  {
+   "utc": "2026-11-20T21:04:35.063+00:00",
+   "btc": 20.8333,
+   "fills": 174,
+   "from_cad": 82045.2,
+   "to_cad": 61880.0,
+   "trade_ids": [
+    5591081,
+    5591254
+   ]
+  },
+  {
+   "utc": "2026-11-20T22:04:34.778+00:00",
+   "btc": 15.8235,
+   "fills": 116,
+   "from_cad": 77212.5,
+   "to_cad": 57775.0,
+   "trade_ids": [
+    5591702,
+    5591817
+   ]
+  },
+  {
+   "utc": "2026-11-20T23:04:34.769+00:00",
+   "btc": 20.8333,
+   "fills": 248,
+   "from_cad": 73002.6,
+   "to_cad": 56986.0,
+   "trade_ids": [
+    5592236,
+    5592483
+   ]
+  },
+  {
+   "utc": "2026-11-21T00:04:34.773+00:00",
+   "btc": 20.8333,
+   "fills": 176,
+   "from_cad": 62180.2,
+   "to_cad": 49611.9,
+   "trade_ids": [
+    5593351,
+    5593526
+   ]
+  },
+  {
+   "utc": "2026-11-21T01:04:34.759+00:00",
+   "btc": 20.8333,
+   "fills": 191,
+   "from_cad": 72224.1,
+   "to_cad": 61340.0,
+   "trade_ids": [
+    5594480,
+    5594670
+   ]
+  },
+  {
+   "utc": "2026-11-21T02:04:34.747+00:00",
+   "btc": 20.8333,
+   "fills": 211,
+   "from_cad": 57697.7,
+   "to_cad": 51260.0,
+   "trade_ids": [
+    5595600,
+    5595810
+   ]
+  },
+  {
+   "utc": "2026-11-21T03:04:34.737+00:00",
+   "btc": 20.8333,
+   "fills": 245,
+   "from_cad": 58399.0,
+   "to_cad": 51738.0,
+   "trade_ids": [
+    5596636,
+    5596880
+   ]
+  },
+  {
+   "utc": "2026-11-21T04:27:01.386+00:00",
+   "btc": 9.3484,
+   "fills": 155,
+   "from_cad": 79500.0,
+   "to_cad": 60000.0,
+   "trade_ids": [
+    5599039,
+    5599193
+   ]
+  },
+  {
+   "utc": "2026-11-21T05:15:43.521+00:00",
+   "btc": 10.4167,
+   "fills": 126,
+   "from_cad": 76484.6,
+   "to_cad": 64000.0,
+   "trade_ids": [
+    5599618,
+    5599743
+   ]
+  },
+  {
+   "utc": "2026-11-21T05:30:43.559+00:00",
+   "btc": 10.4167,
+   "fills": 77,
+   "from_cad": 73800.0,
+   "to_cad": 60500.0,
+   "trade_ids": [
+    5599861,
+    5599937
+   ]
+  },
+  {
+   "utc": "2026-11-21T05:45:43.590+00:00",
+   "btc": 10.4167,
+   "fills": 117,
+   "from_cad": 67546.0,
+   "to_cad": 52000.0,
+   "trade_ids": [
+    5600110,
+    5600226
+   ]
+  },
+  {
+   "utc": "2026-11-21T06:00:43.539+00:00",
+   "btc": 5.2707,
+   "fills": 88,
+   "from_cad": 60500.0,
+   "to_cad": 50000.0,
+   "trade_ids": [
+    5600697,
+    5600784
+   ]
+  },
+  {
+   "utc": "2026-11-21T06:15:43.512+00:00",
+   "btc": 10.4167,
+   "fills": 127,
+   "from_cad": 59080.0,
+   "to_cad": 45000.0,
+   "trade_ids": [
+    5601028,
+    5601154
+   ]
+  },
+  {
+   "utc": "2026-11-21T06:30:43.530+00:00",
+   "btc": 9.1137,
+   "fills": 129,
+   "from_cad": 53500.0,
+   "to_cad": 40590.0,
+   "trade_ids": [
+    5601387,
+    5601515
+   ]
+  },
+  {
+   "utc": "2026-11-21T06:45:43.519+00:00",
+   "btc": 9.8202,
+   "fills": 133,
+   "from_cad": 46677.4,
+   "to_cad": 36700.0,
+   "trade_ids": [
+    5601865,
+    5601997
+   ]
+  },
+  {
+   "utc": "2026-11-21T07:00:43.505+00:00",
+   "btc": 8.7046,
+   "fills": 106,
+   "from_cad": 45111.0,
+   "to_cad": 33750.0,
+   "trade_ids": [
+    5602423,
+    5602528
+   ]
+  },
+  {
+   "utc": "2026-11-21T07:15:43.508+00:00",
+   "btc": 7.455,
+   "fills": 60,
+   "from_cad": 37250.1,
+   "to_cad": 30754.9,
+   "trade_ids": [
+    5603060,
+    5603119
+   ]
+  },
+  {
+   "utc": "2026-11-21T07:30:43.557+00:00",
+   "btc": 7.3939,
+   "fills": 65,
+   "from_cad": 49075.5,
+   "to_cad": 37000.0,
+   "trade_ids": [
+    5603565,
+    5603629
+   ]
+  },
+  {
+   "utc": "2026-11-21T07:45:43.515+00:00",
+   "btc": 10.3183,
+   "fills": 66,
+   "from_cad": 38799.0,
+   "to_cad": 29420.0,
+   "trade_ids": [
+    5604123,
+    5604188
+   ]
+  },
+  {
+   "utc": "2026-11-21T08:00:43.512+00:00",
+   "btc": 10.4167,
+   "fills": 104,
+   "from_cad": 31000.0,
+   "to_cad": 24250.0,
+   "trade_ids": [
+    5604590,
+    5604693
+   ]
+  },
+  {
+   "utc": "2026-11-21T08:15:43.518+00:00",
+   "btc": 10.4167,
+   "fills": 67,
+   "from_cad": 30500.1,
+   "to_cad": 24251.4,
+   "trade_ids": [
+    5605606,
+    5605672
+   ]
+  },
+  {
+   "utc": "2026-11-21T08:30:43.499+00:00",
+   "btc": 10.4167,
+   "fills": 130,
+   "from_cad": 35764.8,
+   "to_cad": 28000.1,
+   "trade_ids": [
+    5606385,
+    5606514
+   ]
+  },
+  {
+   "utc": "2026-11-21T08:45:43.513+00:00",
+   "btc": 8.8356,
+   "fills": 156,
+   "from_cad": 42500.0,
+   "to_cad": 33312.0,
+   "trade_ids": [
+    5607203,
+    5607358
+   ]
+  },
+  {
+   "utc": "2026-11-21T09:00:43.512+00:00",
+   "btc": 10.4167,
+   "fills": 258,
+   "from_cad": 44000.1,
+   "to_cad": 35002.0,
+   "trade_ids": [
+    5608073,
+    5608330
+   ]
+  },
+  {
+   "utc": "2026-11-21T09:15:43.515+00:00",
+   "btc": 10.4167,
+   "fills": 226,
+   "from_cad": 36550.0,
+   "to_cad": 30300.0,
+   "trade_ids": [
+    5609423,
+    5609648
+   ]
+  },
+  {
+   "utc": "2026-11-21T09:30:43.499+00:00",
+   "btc": 10.4167,
+   "fills": 87,
+   "from_cad": 37640.0,
+   "to_cad": 32830.1,
+   "trade_ids": [
+    5610625,
+    5610711
+   ]
+  }
+ ],
+ "btc_cad_window": {
+  "trades": 24564,
+  "volume_btc": 639.8296,
+  "market_sell_volume_btc": 374.864,
+  "large_market_sells_btc": 371.2507,
+  "large_market_sells": 29
+ },
+ "pattern": {
+  "note": "execution clusters inferred from timestamps (market-sell trades within 5 ms); Kraken public trades carry no order id",
+  "hourly_orders": 9,
+  "hourly_btc": 182.4899,
+  "hourly_full_size_20_8333": 8,
+  "quarter_orders": 18,
+  "quarter_btc": 171.079,
+  "quarter_full_size_10_4167": 10,
+  "other_orders": [
+   {
+    "utc": "2026-11-20T18:27:02.092+00:00",
+    "btc": 8.3333
+   },
+   {
+    "utc": "2026-11-21T04:27:01.386+00:00",
+    "btc": 9.3484
+   }
+  ]
+ }
+}
