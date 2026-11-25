@@ -26,7 +26,8 @@
 .bn-price strong{font-size:clamp(48px,10vw,88px);line-height:1;color:#e0b45a}.bn-tag{font-size:17px;margin:10px 0 4px}.bn-end{font-weight:600;margin:6px 0 18px}
 .bn-chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;padding:0;list-style:none}.bn-chips li{border:1px solid currentColor;border-color:rgba(127,140,160,.45);border-radius:999px;padding:4px 12px;font-size:13px}
 .bn-grid{display:grid;gap:28px;grid-template-columns:minmax(0,1fr)}@media(min-width:900px){.bn-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}}
-.bn-video{width:100%;max-width:360px;aspect-ratio:9/16;border-radius:16px;background:#0b0d12;display:block}
+.bn-video{width:100%;border-radius:16px;background:#0b0d12;display:block}.bn-v{max-width:360px;aspect-ratio:9/16}.bn-h{aspect-ratio:16/9;display:none}
+@media(min-width:900px){.bn-hero .bn-grid{grid-template-columns:minmax(0,1fr)}.bn-h{display:block}.bn-v{display:none}}
 .bn-terms{font-size:14px;line-height:1.55}.bn-terms li{margin:0 0 6px}.bn-ended{display:none}.bn-over .bn-live{display:none}.bn-over .bn-ended{display:block}
 .bn-sample img{background:#fff;width:100%;max-width:520px;border-radius:12px;border:1px solid rgba(127,140,160,.35)}
 </style>
@@ -47,7 +48,7 @@
           <p class="bn-end">Offer ends 30 November 2026, 23:59:59 Istanbul time (UTC+3).</p>
           <ul class="bn-chips"><li>One token</li><li>One-time purchase</li><li>Crypto payments: USDC / USDT</li><li>No quantity limit</li></ul>
           <div class="cta"><a class="btn primary" href="https://app.wearetheartmakers.com/checkout?plan=dossier_black_november_2026">Get your Liquidity Dossier — $99</a><a class="btn" href="#included">What is included</a></div>
-          <p class="small" style="margin-top:10px">You choose your token at checkout: only tokens we measure are offered, so we never take a payment we cannot deliver.</p>
+          <p class="small" style="margin-top:10px">Choose your token at checkout. Not on the list? Choose “Other” and enter its contract: we confirm coverage within 1 business day, or refund in full.</p>
         </div>
         <div class="bn-ended" role="status">
           <p class="bn-end">This offer ended on 30 November 2026 at 23:59 Istanbul time.</p>
@@ -55,7 +56,12 @@
         </div>
       </div>
       <div>
-        <video class="bn-video" controls playsinline preload="metadata" poster="thumbnail-black-november-2026.jpg" aria-label="Black November campaign film, 34 seconds">
+        <video class="bn-video bn-h" controls playsinline preload="none" poster="thumbnail-black-november-2026-landscape.jpg" aria-label="Black November campaign film, 34 seconds (16:9)">
+          <source src="watam-black-november-2026-landscape.mp4" type="video/mp4">
+          <track kind="captions" srclang="en" label="English" src="watam-black-november-2026-landscape.en.vtt" default>
+          <track kind="subtitles" srclang="tr" label="Türkçe" src="watam-black-november-2026-landscape.tr.vtt">
+        </video>
+        <video class="bn-video bn-v" controls playsinline preload="none" poster="thumbnail-black-november-2026.jpg" aria-label="Black November campaign film, 34 seconds (9:16)">
           <source src="watam-black-november-2026.mp4" type="video/mp4">
           <track kind="captions" srclang="en" label="English" src="watam-black-november-2026.en.vtt" default>
           <track kind="subtitles" srclang="tr" label="Türkçe" src="watam-black-november-2026.tr.vtt">
@@ -91,9 +97,9 @@
     <div class="wrap">
       <h2 id="how-h">How it works</h2>
       <ol>
-        <li>Open the checkout and choose your token from the list of tokens we measure.</li>
+        <li>Open the checkout and choose your token from the list, or choose “Other” and enter its network and contract address.</li>
         <li>Enter your work email and organization, and accept the <a href="/terms/">terms of sale</a>.</li>
-        <li>Send the exact USDC or USDT amount shown (slightly below USD 99: it identifies your payment) within 24 hours, on one of the listed networks.</li>
+        <li>Send the exact USDC or USDT amount shown within 24 hours, on one of the listed networks. It is between USD 98.01 and 98.99, never more than USD 99: the cents identify your payment.</li>
         <li>We confirm the payment on chain, then email your access and deliver the Dossier within 2 business days.</li>
       </ol>
     </div>
@@ -103,10 +109,10 @@
     <div class="wrap bn-terms">
       <h2 id="terms-h">Campaign terms</h2>
       <ul>
-        <li><b>Price.</b> USD 99 per Dossier instead of the regular USD 750 (the Listing Liquidity Dossier's list price on our <a href="/pricing/#liquidity">pricing page</a> since 9 November 2026). Excluding VAT/KDV. The discount applies only to the Listing Liquidity Dossier; Token, Pro, Data and Enterprise prices are unchanged.</li>
+        <li><b>Price.</b> USD 99 per Dossier (you pay the exact amount shown at checkout, between USD 98.01 and 98.99) instead of the regular USD 750 (the Listing Liquidity Dossier's list price on our <a href="/pricing/#liquidity">pricing page</a> since 9 November 2026). Excluding VAT/KDV. The discount applies only to the Listing Liquidity Dossier; Token, Pro, Data and Enterprise prices are unchanged.</li>
         <li><b>Period.</b> From 25 November 2026 until 30 November 2026, 23:59:59 Europe/Istanbul (UTC+3). Orders started before the end keep their normal 24-hour payment window. From 1 December 2026, 00:00 Istanbul time, the regular price of USD 750 applies.</li>
         <li><b>Quantity.</b> No quantity limit. One token per Dossier; buy one Dossier per token.</li>
-        <li><b>Eligibility.</b> Tokens available in our catalog on EVM networks, shown at checkout. Not sure? Ask for the free token check at <a href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a>.</li>
+        <li><b>Eligibility.</b> Any token on a supported EVM network. Tokens for which we already verify at least three exchange order books are listed at checkout. For any other token, choose <b>Other</b> and enter its network and contract address: we confirm by email within 1 business day of payment whether we can measure it, and if we cannot, we refund the full amount. Not sure? Ask for the free token check at <a href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a>.</li>
         <li><b>Payment.</b> USDC or USDT on Ethereum, Arbitrum One, OP Mainnet (USDC, USDT) and Base (USDC only), to the address shown at checkout. A payment counts only when it is confirmed on chain for the exact amount, token and network shown; a transaction hash or a screenshot is not a payment. Network fees are paid by the sender. Bank transfer is also possible.</li>
         <li><b>Delivery.</b> PDF and CSV by email within 2 business days of the confirmed payment. Best effort, no SLA. A Dossier never replaces an active subscription.</li>
         <li><b>Terms.</b> The <a href="/terms/">terms of sale</a>, including refunds, apply unchanged. For business customers.</li>
