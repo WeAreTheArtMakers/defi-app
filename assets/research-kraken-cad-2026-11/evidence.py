@@ -1,15 +1,23 @@
 """Kraken CAD dislocation, 20-21 Nov 2026: every figure of the case study, recomputed from Kraken's public data in data/ (retrieved by fetch_trades.py
 on 25 Nov 2026, AFTER the event; deduplicated by trade_id: the Trades `since` cursor repeats the last trade of each page). WATAM did not collect
-these markets live. Output: evidence.json + printed summary. Run: python3 evidence.py"""
+these markets live. Output: evidence.json + printed summary. Run: python3 evidence.py
+Inputs in data/: <pair>.jsonl(.gz) from fetch_trades.py (see its docstring), and ohlc15_<pair>.json from
+https://api.kraken.com/0/public/OHLC?pair=<pair>&interval=15 for XXBTZCAD and XBTUSDT. That endpoint returns only the latest 720 candles (7.5 days):
+after 28 Nov 2026 use Kraken's downloadable OHLCVT archive, or download trades to 21 Nov 18:00 UTC instead."""
 import gzip, json, statistics as st, datetime as dt, collections
 U = lambda t: dt.datetime.fromtimestamp(t, dt.UTC)
 TSI = lambda t: (U(t) + dt.timedelta(hours=3)).strftime("%d %b %H:%M:%S")
 BOC_20NOV = 1.4325                      # Bank of Canada FXUSDCAD, 20 Nov 2026 (Valet); 21-22 Nov is a weekend
 R0, R1 = dt.datetime(2026, 11, 20, 18, tzinfo=dt.UTC).timestamp(), dt.datetime(2026, 11, 20, 19, tzinfo=dt.UTC).timestamp()
 
+def _open(name):
+    import os
+    return gzip.open(f"data/{name}.jsonl.gz", "rt") if os.path.exists(f"data/{name}.jsonl.gz") else open(f"data/{name}.jsonl")
+
+
 def load(name):
     out, seen = [], set()
-    for l in gzip.open(f"data/{name}.jsonl.gz", "rt"):
+    for l in _open(name):
         p, v, t, s, ty, m, i = json.loads(l)
         if i not in seen:
             seen.add(i); out.append((float(p), float(v), float(t), s, ty, int(i)))
@@ -59,6 +67,25 @@ ev["implied_15m"] = [{"utc": U(k).isoformat(), "btc_cad_vwap": round(cad[k][0], 
 first = next(x for x in ev["implied_15m"] if abs(x["vs_boc_pct"]) > 2)
 ev["dislocation_start_15m_utc"] = first["utc"]
 
+# durations, from the 15-min implied series (executed-trade VWAPs; not order-book quotes)
+q = [(dt.datetime.fromisoformat(x["utc"]), x["vs_boc_pct"]) for x in ev["implied_15m"]]
+f5 = next(t for t, v in q if abs(v) >= 5); last5 = max(t for t, v in q if abs(v) >= 5)
+runs, cur = [], None
+for t, v in q:
+    if abs(v) >= 5:
+        cur = cur or [t, t]; cur[1] = t
+    elif cur:
+        runs.append(cur); cur = None
+if cur: runs.append(cur)
+Q = dt.timedelta(minutes=15)
+ev["durations"] = {"definition": "15-min implied CAD per USD = BTC/CAD VWAP / BTC/USDT VWAP vs the Bank of Canada 20 Nov rate 1.4325",
+    "first_deviation_over_2pct_quarter_utc": ev["dislocation_start_15m_utc"], "first_quarter_at_or_over_5pct_utc": f5.isoformat(),
+    "episode_at_or_over_5pct_utc": [f5.isoformat(), (last5 + Q).isoformat()], "episode_hours": round((last5 + Q - f5).total_seconds() / 3600, 2),
+    "quarters_in_episode": sum(1 for t, v in q if f5 <= t <= last5), "quarters_at_or_over_5pct": sum(1 for t, v in q if f5 <= t <= last5 and abs(v) >= 5),
+    "continuous_runs_at_or_over_5pct_utc": [[a.isoformat(), (b + Q).isoformat()] for a, b in runs],
+    "worst_quarter": {"utc": min(q, key=lambda x: x[1])[0].isoformat(), "vs_boc_pct": min(q, key=lambda x: x[1])[1]},
+    "first_quarter_back_under_5pct_after_low_utc": next(t for t, v in q if t > U(low[2]) and abs(v) < 5).isoformat()}
+
 # recovery from Kraken 15-min OHLC (VWAP column): implied rate within 2 % of the BoC rate for 2 hours in a row after the low
 def ohlc(name):
     d = json.load(open(f"data/ohlc15_{name}.json"))
@@ -68,8 +95,11 @@ seq = [(k, oc[k] / ou[k]) for k in sorted(set(oc) & set(ou))]
 for i, (k, v) in enumerate(seq):
     if k > low[2] and all(abs(x / BOC_20NOV - 1) <= 0.02 for _, x in seq[i:i + 8]):
         ev["sustained_recovery_utc"] = U(k).isoformat(); break
+ev["durations"]["sustained_normalisation_utc"] = ev["sustained_recovery_utc"]
+ev["durations"]["first_deviation_to_sustained_normalisation_hours"] = round((dt.datetime.fromisoformat(ev["sustained_recovery_utc"]) - dt.datetime.fromisoformat(ev["dislocation_start_15m_utc"])).total_seconds() / 3600, 2)
 
-# repeated market-sell orders on BTC/CAD: fills of one taker order share (nearly) one timestamp; >= 5 BTC
+# execution clusters on BTC/CAD: market-sell trades within 5 ms of each other, >= 5 BTC in total. Kraken's public trades carry NO order id, so a
+# cluster is an INFERRED group of executions (most likely one taker order, but not established).
 groups, cur = [], None
 for p, v, t, s, ty, i in btc:
     if cur and s == cur["s"] and ty == cur["ty"] and t - cur["t1"] <= 0.005:
@@ -77,11 +107,19 @@ for p, v, t, s, ty, i in btc:
     else:
         cur = {"t0": t, "t1": t, "s": s, "ty": ty, "v": v, "n": 1, "lo": p, "hi": p, "first": i, "last": i}; groups.append(cur)
 big = [g for g in groups if g["s"] == "s" and g["ty"] == "m" and g["v"] >= 5]
+ev["execution_clusters_note"] = "inferred from timestamps; Kraken public trades have no order id"
 ev["large_market_sells"] = [{"utc": U(g["t0"]).isoformat(timespec="milliseconds"), "btc": round(g["v"], 4), "fills": g["n"], "from_cad": g["hi"], "to_cad": g["lo"],
                              "trade_ids": [g["first"], g["last"]]} for g in big]
 ev["btc_cad_window"] = {"trades": len(btc), "volume_btc": round(sum(x[1] for x in btc), 4),
                         "market_sell_volume_btc": round(sum(x[1] for x in btc if x[3] == "s" and x[4] == "m"), 4),
                         "large_market_sells_btc": round(sum(g["v"] for g in big), 4), "large_market_sells": len(big)}
+TT = lambda x: dt.datetime.fromisoformat(x["utc"])
+hourly = [x for x in ev["large_market_sells"] if TT(x).minute == 4 and TT(x).second in (34, 35)]
+quarter = [x for x in ev["large_market_sells"] if TT(x).second == 43]
+ev["pattern"] = {"note": "execution clusters inferred from timestamps (market-sell trades within 5 ms); Kraken public trades carry no order id",
+    "hourly_orders": len(hourly), "hourly_btc": round(sum(x["btc"] for x in hourly), 4), "hourly_full_size_20_8333": sum(1 for x in hourly if abs(x["btc"] - 20.8333) < 1e-3),
+    "quarter_orders": len(quarter), "quarter_btc": round(sum(x["btc"] for x in quarter), 4), "quarter_full_size_10_4167": sum(1 for x in quarter if abs(x["btc"] - 10.4167) < 1e-3),
+    "other_orders": [{"utc": x["utc"], "btc": x["btc"]} for x in ev["large_market_sells"] if x not in hourly and x not in quarter]}
 json.dump(ev, open("evidence.json", "w"), indent=1)
 print(json.dumps({k: v for k, v in ev.items() if k not in ("implied_15m", "pairs", "large_market_sells")}, indent=1))
 for name, r in ev["pairs"].items():

@@ -1032,7 +1032,45 @@
   }
  ],
  "dislocation_start_15m_utc": "2026-11-20T19:00:00+00:00",
+ "durations": {
+  "definition": "15-min implied CAD per USD = BTC/CAD VWAP / BTC/USDT VWAP vs the Bank of Canada 20 Nov rate 1.4325",
+  "first_deviation_over_2pct_quarter_utc": "2026-11-20T19:00:00+00:00",
+  "first_quarter_at_or_over_5pct_utc": "2026-11-20T21:00:00+00:00",
+  "episode_at_or_over_5pct_utc": [
+   "2026-11-20T21:00:00+00:00",
+   "2026-11-21T10:15:00+00:00"
+  ],
+  "episode_hours": 13.25,
+  "quarters_in_episode": 53,
+  "quarters_at_or_over_5pct": 48,
+  "continuous_runs_at_or_over_5pct_utc": [
+   [
+    "2026-11-20T21:00:00+00:00",
+    "2026-11-20T21:45:00+00:00"
+   ],
+   [
+    "2026-11-20T22:00:00+00:00",
+    "2026-11-20T22:45:00+00:00"
+   ],
+   [
+    "2026-11-20T23:00:00+00:00",
+    "2026-11-21T04:30:00+00:00"
+   ],
+   [
+    "2026-11-21T05:15:00+00:00",
+    "2026-11-21T10:15:00+00:00"
+   ]
+  ],
+  "worst_quarter": {
+   "utc": "2026-11-21T08:15:00+00:00",
+   "vs_boc_pct": -64.15
+  },
+  "first_quarter_back_under_5pct_after_low_utc": "2026-11-21T10:15:00+00:00",
+  "sustained_normalisation_utc": "2026-11-21T15:45:00+00:00",
+  "first_deviation_to_sustained_normalisation_hours": 20.75
+ },
  "sustained_recovery_utc": "2026-11-21T15:45:00+00:00",
+ "execution_clusters_note": "inferred from timestamps; Kraken public trades have no order id",
  "large_market_sells": [
   {
    "utc": "2026-11-20T18:27:02.092+00:00",
@@ -1362,14 +1400,13 @@
   "large_market_sells": 29
  },
  "pattern": {
+  "note": "execution clusters inferred from timestamps (market-sell trades within 5 ms); Kraken public trades carry no order id",
   "hourly_orders": 9,
   "hourly_btc": 182.4899,
-  "hourly_first": "2026-11-20T19:04:34.832+00:00",
-  "hourly_last": "2026-11-21T03:04:34.737+00:00",
+  "hourly_full_size_20_8333": 8,
   "quarter_orders": 18,
   "quarter_btc": 171.079,
-  "quarter_first": "2026-11-21T05:15:43.521+00:00",
-  "quarter_last": "2026-11-21T09:30:43.499+00:00",
+  "quarter_full_size_10_4167": 10,
   "other_orders": [
    {
     "utc": "2026-11-20T18:27:02.092+00:00",
@@ -1379,8 +1416,6 @@
     "utc": "2026-11-21T04:27:01.386+00:00",
     "btc": 9.3484
    }
-  ],
-  "hourly_full_size_20_8333": 8,
-  "quarter_full_size_10_4167": 10
+  ]
  }
 }

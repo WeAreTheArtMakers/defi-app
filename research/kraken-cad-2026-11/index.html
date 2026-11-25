@@ -42,16 +42,25 @@
         <div class="tile" role="listitem"><b>−70.7%</b><span>gap between the two, same exchange</span><small>implied CAD per USD 0.42 vs 1.4325</small></div>
         <div class="tile" role="listitem"><b>11 of 11</b><span>Kraken CAD markets fell 66–79% at their lows (USD/CAD to 0.30; one USDT/CAD trade −99.8%)</span><small>USD and USDT markets: −0.1% to −6%</small></div>
       </div>
-      <figure><img src="/assets/research-kraken-cad-2026-11/chart.png" width="1920" height="1080" alt="Kraken BTC/USDT near US$57–59k and BTC/CAD converted at the Bank of Canada rate falling to about US$16,900 on 21 Nov 2026; the implied CAD per USD and Kraken's own USD/CAD fall from 1.43 to about 0.5 and recover by midday." style="width:100%;height:auto"><figcaption>5-minute VWAPs of executed trades. Grey lines in the upper panel: the 29 market sells of 5 BTC or more.</figcaption></figure>
+      <figure><img src="/assets/research-kraken-cad-2026-11/chart.png" width="1920" height="1080" alt="Kraken BTC/USDT near US$57–59k and BTC/CAD converted at the Bank of Canada rate falling to about US$16,900 on 21 Nov 2026; the implied CAD per USD and Kraken's own USD/CAD fall from 1.43 to about 0.5 and recover by midday." style="width:100%;height:auto"><figcaption>5-minute VWAPs of executed trades. Grey lines in the upper panel: the 29 inferred market-sell execution clusters of 5 BTC or more.</figcaption></figure>
       <div class="narrow">
       <h2 id="timeline">Timeline (UTC; Türkiye time is UTC+3)</h2>
+      <p>Measured on the 15-minute implied CAD-per-USD rate (BTC/CAD VWAP ÷ BTC/USDT VWAP of executed trades) against the Bank of Canada rate 1.4325:</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="tbl"><tbody>
+<tr><td>First detected deviation (&gt; 2%)</td><td class="num">20 Nov 19:00–19:15</td></tr>
+<tr><td>First quarter ≥ 5%</td><td class="num">20 Nov 21:00</td></tr>
+<tr><td>Episode ≥ 5% (48 of its 53 quarters; longest continuous runs 5 h 30 min and 5 h)</td><td class="num">20 Nov 21:00 → 21 Nov 10:15 (13 h 15 min)</td></tr>
+<tr><td>Maximum divergence: single trade / 15-min VWAP</td><td class="num">−70.7% at 08:00:43 / −64.2% at 08:15</td></tr>
+<tr><td>Initial recovery (first quarter back under 5% after the low)</td><td class="num">21 Nov 10:15</td></tr>
+<tr><td>Sustained normalisation (within 2% for two hours, 15-min OHLC)</td><td class="num">21 Nov 15:45 (20 h 45 min after the first deviation)</td></tr>
+      </tbody></table></div>
       <ul>
-        <li><b>20 Nov 19:00</b> — the 15-minute implied CAD-per-USD rate (BTC/CAD ÷ BTC/USDT) first moves more than 2% from the Bank of Canada rate, as the first hourly market sell of 20.8333 BTC executes at 19:04:34.</li>
+        <li><b>20 Nov 19:00</b> — the 15-minute implied CAD-per-USD rate (BTC/CAD ÷ BTC/USDT) first moves more than 2% from the Bank of Canada rate, as the first hourly execution cluster of 20.8333 BTC executes at 19:04:34.</li>
         <li><b>20 Nov 21:00</b> — the gap exceeds 10% (implied 1.2499, −12.8%); Kraken's own USD/CAD averages 1.3591 in the same 15 minutes.</li>
-        <li><b>21 Nov 03:04</b> — the last of 9 hourly market sells; <b>05:15</b> — the first of 18 quarter-hourly ones.</li>
+        <li><b>21 Nov 03:04</b> — the last of 9 hourly clusters; <b>05:15</b> — the first of 18 quarter-hourly ones.</li>
         <li><b>21 Nov 08:00:43.513</b> — the low: C$24,250. In 08:00–08:15, 122 trades (10.6948 BTC) executed below the US$20,000 equivalent (C$28,650). The worst 15 minutes: 08:15 (implied −64.1%).</li>
         <li><b>21 Nov 08:12:15</b> — Kraken USD/CAD trades at 0.30001.</li>
-        <li><b>21 Nov 09:45–10:15</b> — CAD prices snap back toward the USD-equivalent level; the implied rate stays within 2% of the Bank of Canada rate for two hours from <b>15:45</b> (15-minute OHLC).</li>
+        <li><b>21 Nov 09:45–10:15</b> — CAD prices snap back toward the USD-equivalent level; under 5% from 10:15, within 2% for two hours from <b>15:45</b>.</li>
       </ul>
       <h2 id="pairs">Every Kraken CAD market, and the USD markets beside them</h2>
       <p>Reference = median trade 20 Nov 18:00–19:00 UTC. Lowest executed trade in the window. "Below 90%" = trades under 90% of the reference.</p>
@@ -73,15 +82,15 @@
 <tr><td>USDC/USD</td><td><code>USDCUSD</code></td><td class="num">0.9998</td><td class="num">0.9998</td><td class="num"><span class="ts">11/20 18:00:00</span></td><td class="num">+0.0%</td><td class="num">31,120</td><td class="num">0</td></tr>
       </tbody></table></div>
       <p><small>USDT/CAD's low of 0.0022 is a single executed trade of 811.90 USDT (trade 3798113, 21 Nov 09:01:08 UTC); 25 USDT/CAD trades executed below 0.50.</small></p>
-      <h2 id="pattern">The selling pattern</h2>
-      <p>Fills of one taker order carry (almost) one timestamp. On BTC/CAD, 29 market sells of 5 BTC or more account for 371.25 of the window's 374.86 BTC of market sells:</p>
+      <h2 id="pattern">The selling pattern: execution clusters</h2>
+      <p>Kraken's public trade records carry no order id. We group market-sell trades whose timestamps fall within 5 ms of each other into <b>execution clusters</b>; a cluster is most likely one taker order, but the data does not establish that. On BTC/CAD, 29 execution clusters of 5 BTC or more account for 371.25 of the window's 374.86 BTC of market sells:</p>
       <ul>
-        <li><b>9</b> sells at :04:34–:04:35 past each hour (20 Nov 19:04 → 21 Nov 03:04), 8 of exactly 20.8333 BTC — 182.49 BTC;</li>
-        <li><b>18</b> sells every 15 minutes at :43 seconds (21 Nov 05:15 → 09:30), 10 of exactly 10.4167 BTC — 171.08 BTC; the others executed smaller sizes;</li>
+        <li><b>9</b> clusters at :04:34–:04:35 past each hour (20 Nov 19:04 → 21 Nov 03:04), 8 of exactly 20.8333 BTC — 182.49 BTC;</li>
+        <li><b>18</b> clusters every 15 minutes at :43 seconds (21 Nov 05:15 → 09:30), 10 of exactly 10.4167 BTC — 171.08 BTC; the others executed smaller sizes;</li>
         <li>2 more: 8.3333 BTC at 18:27:02 and 9.3484 BTC at 04:27:01.</li>
       </ul>
-      <p>Equal sizes on a fixed clock are consistent with a scheduled execution. <b>The public data does not show who sent these orders, whether they came from one account, why, or why some executed below the recurring size.</b> Kraken's REST documentation lists the side and order-type fields without further definition; we read "s" + "m" as a market sell.</p>
-      <details><summary>All 29 orders</summary>
+      <p>Equal sizes on a fixed clock are consistent with a scheduled execution. <b>The public data does not show whether a cluster is one order, who sent these trades, whether they came from one account, why, or why some clusters executed below the recurring size.</b> Kraken's REST documentation lists the side and order-type fields without further definition; we read "s" + "m" as a market sell.</p>
+      <details><summary>All 29 execution clusters</summary>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="tbl"><thead><tr><th>First fill (UTC)</th><th class="num">BTC</th><th class="num">Fills</th><th class="num">Price swept (C$)</th><th>Trade ids</th></tr></thead><tbody>
 <tr><td><span class="ts">11/20 18:27:02.092</span></td><td class="num">8.3333</td><td class="num">52</td><td class="num">84,421 → 83,634</td><td><code>5589848–5589899</code></td></tr>
 <tr><td><span class="ts">11/20 19:04:34.832</span></td><td class="num">20.8333</td><td class="num">198</td><td class="num">83,274 → 80,000</td><td><code>5590101–5590298</code></td></tr>
@@ -119,10 +128,15 @@
       <ul>
         <li><b>Saw:</b> Kraken's BTC/USDT book every 15 minutes (72 of 72 samples in the window; mid US$57,820.5 at 08:04 UTC).</li>
         <li><b>Missed:</b> Kraken's CAD books were not in our samplers (they read USD-stable, TRY and KRW books), and no job compared prices across fiat quotes. We have no live record of the CAD books; nothing on this page was reconstructed as if we had.</li>
-        <li><b>Built (tested, rolling out):</b> Kraken CAD books every 15 minutes, converted at the independent Bank of Canada daily rate — not at the venue's own USD/CAD, which itself traded down to 0.30 — and an operator alert when a CAD book and the same venue's USD book disagree by 5% or more. On 15-minute trade prices, that threshold was first crossed in the 20 Nov 21:00 UTC quarter, about 11 hours before the low.</li>
+        <li><b>Under validation (not live):</b> Kraken CAD books every 15 minutes, converted at the independent Bank of Canada daily rate — not at the venue's own USD/CAD, which itself traded down to 0.30 — and an operator alert when a CAD book and the same venue's USD book disagree by 5% or more. We tested it by replaying the executed-trade prices of 20–21 Nov at the sampler's read times; a trade replay is not order-book data, so it does not show when live monitoring would have alerted.</li>
       </ul>
       <h2 id="reproduce">Reproduce it</h2>
-      <p><a href="/assets/research-kraken-cad-2026-11/fetch_trades.py">fetch_trades.py</a> downloads the trades from Kraken's public API (about 1 request per 1.2 s; it skips the trade the <code>since</code> cursor repeats at each page boundary). <a href="/assets/research-kraken-cad-2026-11/evidence.py">evidence.py</a> recomputes every figure above into <a href="/assets/research-kraken-cad-2026-11/evidence.json">evidence.json</a>. Bank of Canada rate: <a href="https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json">Valet FXUSDCAD</a>.</p>
+      <ol>
+        <li><a href="/assets/research-kraken-cad-2026-11/fetch_trades.py">fetch_trades.py</a> downloads the trades from Kraken's public API into <code>data/</code> (about 1 request per 1.2 s; it skips the trade the <code>since</code> cursor repeats at each page boundary). Its header lists the two commands used.</li>
+        <li>Save <code>https://api.kraken.com/0/public/OHLC?pair=XXBTZCAD&amp;interval=15</code> and the same for <code>XBTUSDT</code> as <code>data/ohlc15_&lt;pair&gt;.json</code>. That endpoint keeps only the latest 720 candles (7.5 days); after 28 Nov 2026 use Kraken's downloadable OHLCVT archive.</li>
+        <li><a href="/assets/research-kraken-cad-2026-11/evidence.py">evidence.py</a> recomputes every figure on this page into <a href="/assets/research-kraken-cad-2026-11/evidence.json">evidence.json</a>.</li>
+      </ol>
+      <p>Bank of Canada rate: <a href="https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json">Valet FXUSDCAD</a>. No Kraken data is hosted here.</p>
       <h2 id="limits">What this does and does not say</h2>
       <ul>
         <li>It says what executed, at what price and time, on which Kraken markets, and that the move was confined to the CAD quote.</li>

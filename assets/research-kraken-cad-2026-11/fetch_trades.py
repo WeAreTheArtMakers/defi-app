@@ -1,5 +1,8 @@
-"""Kraken public Trades, paginated with the documented `since` cursor (ns). Rate-limited (~1 req / 1.2 s). Writes <pair>.jsonl:
-[price, volume, time, side b/s, type m/l, misc, trade_id]."""
+"""Kraken public Trades, paginated with the documented `since` cursor (ns). Rate-limited (~1 req / 1.2 s). Writes data/<pair><OUT_SUFFIX>.jsonl:
+[price, volume, time, side b/s, type m/l, misc, trade_id]. The cursor returns the last trade of a page again at the next page: duplicates are skipped.
+Default window 20 Nov 2026 18:00 - 21 Nov 12:00 UTC; START_TS / END_TS (unix seconds) and OUT_SUFFIX override it.
+  python3 fetch_trades.py XXBTZCAD ZUSDZCAD XETHZCAD SOLCAD XXRPZCAD USDTCAD USDCCAD EURCAD XDGCAD PEPECAD XDCCAD XBTUSDT XETHZUSD USDTZUSD USDCUSD
+  START_TS=1795247400 END_TS=1795249200 OUT_SUFFIX=_0750_0820 python3 fetch_trades.py XXBTZUSD"""
 import json, sys, time, urllib.request, datetime as dt
 START = int(dt.datetime(2026, 11, 20, 18, tzinfo=dt.timezone.utc).timestamp())
 END = int(dt.datetime(2026, 11, 21, 12, tzinfo=dt.timezone.utc).timestamp())
@@ -20,7 +23,8 @@ END = int(float(__import__("os").environ.get("END_TS", END)))
 OUT = __import__("os").environ.get("OUT_SUFFIX", "")
 for pair in sys.argv[1:]:
     since, n, req, seen = int(START * 10**9), 0, 0, set()
-    with open(f"{pair}{OUT}.jsonl", "w") as f:
+    __import__("os").makedirs("data", exist_ok=True)
+    with open(f"data/{pair}{OUT}.jsonl", "w") as f:
         while True:
             res = get(pair, since); req += 1
             last = int(res.pop("last")); rows = next(iter(res.values()))
